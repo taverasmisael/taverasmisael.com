@@ -5,6 +5,7 @@ specifiers:
   '@astrojs/tailwind': ^2.1.2
   '@types/node': ^18.11.9
   astro: ^1.6.7
+  rambda: ^7.3.0
   tailwindcss: ^3.0.24
 
 dependencies:
@@ -12,6 +13,7 @@ dependencies:
   '@astrojs/tailwind': 2.1.2_tailwindcss@3.2.3
   '@types/node': 18.11.9
   astro: 1.6.7_@types+node@18.11.9
+  rambda: 7.3.0
   tailwindcss: 3.2.3
 
 packages:
@@ -3242,6 +3244,10 @@ packages:
   /quick-lru/5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
+    dev: false
+
+  /rambda/7.3.0:
+    resolution: {integrity: sha512-RFVofZYaG2TaVcxjnM0ejdVWf/59rFq1f57OGnjP3GT/bthzFw0GVr5rkP9PKbVlEuF/Y7bOVPLfiiYfxq/EWQ==}
     dev: false
 
   /read-cache/1.0.0:
