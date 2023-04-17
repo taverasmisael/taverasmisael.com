@@ -6,16 +6,42 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "pnpm astro:check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "astro:check": "astro check && tsc --noEmit",
+    "format": "prettier -c .",
+    "format:save": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:fix": "pnpm format:save && npm run lint:fix"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.11.6",
-    "@astrojs/tailwind": "^2.1.2",
-    "@types/node": "^18.11.9",
-    "astro": "^1.6.7",
-    "rambda": "^7.3.0",
-    "tailwindcss": "^3.0.24"
+    "@astrojs/mdx": "^0.19.0",
+    "@astrojs/prefetch": "^0.2.1",
+    "@astrojs/sitemap": "^1.2.2",
+    "@astrojs/solid-js": "^2.1.0",
+    "@astrojs/tailwind": "^3.1.1",
+    "@astrojs/ts-plugin": "^0.4.4",
+    "astro": "^2.3.0",
+    "rambda": "^7.5.0",
+    "solid-js": "^1.7.3",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "@total-typescript/ts-reset": "^0.4.2",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-astro": "^0.26.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-tailwindcss": "^3.11.0",
+    "prettier": "^2.8.7",
+    "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.7"
   }
 }

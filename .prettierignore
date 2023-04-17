@@ -1,0 +1,18 @@
+# Ignore artifacts:
+build
+coverage
+pnpm-debug.log
+pnpm-lock.yaml
+npm-debug.log
+
+# Ignore OS generated files
+.DS_Store
+
+# Ignore node modules
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
+# Ignore public folder
+public
