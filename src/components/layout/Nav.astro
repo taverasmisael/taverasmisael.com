@@ -1,0 +1,43 @@
+---
+import NavLink from "./NavLink.astro";
+
+interface Props {
+  activePage: string;
+  isMobile: boolean;
+}
+
+const pages = [
+  {
+    name: "Blog",
+    path: "blog",
+    href: "/blog",
+  },
+  {
+    name: "About",
+    path: "about",
+    href: "/about",
+  },
+  {
+    name: "Projects",
+    path: "projects",
+    href: "/projects",
+  },
+  {
+    name: "Contact",
+    path: "contact",
+    href: "/contact",
+  },
+] as const;
+
+const { isMobile, activePage } = Astro.props;
+---
+
+<nav class="flex items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
+  {
+    pages.map(page => (
+      <NavLink isMobile={isMobile} isActive={activePage === page.path} href={page.href}>
+        {page.name}
+      </NavLink>
+    ))
+  }
+</nav>
