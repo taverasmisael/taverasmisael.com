@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+
+const Collections = {
+  blog: "posts",
+} as const;
+type CollectionKeys = keyof typeof Collections;
+
+function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKeys] {
+  return Collections[key as CollectionKeys];
+}
+
+interface Params {
+  slug: string;
+}
+
+const { slug } = Astro.params as unknown as Params;
+
+const [collection, name] = slug.split("/");
+
+const collectionName = getCollectionName(collection);
+
+if (!collectionName) {
+  return Astro.redirect(`/404?from=${slug}`);
+}
+
+const postFound = await getCollection(collectionName, ({ id }) => id.includes(name));
+
+if (!postFound.length) {
+  return Astro.redirect(`/404?from=${slug}`);
+}
+
+const [lang, ...rest] = postFound[0].slug.split("/");
+
+return Astro.redirect(`/${lang}/${collection}/${rest.join('/')}`);
+---

@@ -1,0 +1,26 @@
+---
+import { AdmonitionTypes } from "./types";
+
+export interface Props {
+  type: (typeof AdmonitionTypes)[keyof typeof AdmonitionTypes];
+  class?: string;
+}
+
+const { type, class: className } = Astro.props;
+const color = {
+  [AdmonitionTypes.Alert]: "red-400",
+  [AdmonitionTypes.Disclaimer]: "yellow-400",
+  [AdmonitionTypes.Info]: "green-400",
+  [AdmonitionTypes.Tip]: "blue-400",
+}[type];
+---
+
+<div
+  class:list={[
+    "prose-p:m-0 relative rounded-sm bg-slate-100/30 p-2 pl-4 shadow-sm dark:bg-slate-900/30 prose-a:font-normal",
+    className,
+  ]}
+>
+  <div aria-hidden="true" class:list={["absolute inset-0 h-full w-1 rounded-sm", `bg-${color}`]}></div>
+  <slot />
+</div>

@@ -1,0 +1,5 @@
+---
+const search = new URLSearchParams(Astro.url.search)
+---
+
+<h1>{search.get('from')}</h1>

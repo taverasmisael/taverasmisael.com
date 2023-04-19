@@ -13,9 +13,6 @@ module.exports = {
     "plugin:astro/recommended",
     "plugin:tailwindcss/recommended",
     "plugin:astro/jsx-a11y-strict",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:@typescript-eslint/strict",
     "prettier",
   ],
   parserOptions: {
@@ -24,7 +21,6 @@ module.exports = {
     extraFileExtensions: [".astro"],
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
   rules: {
     "tailwindcss/no-custom-classname": "off",
   },
@@ -36,6 +32,12 @@ module.exports = {
         es2020: true,
         "astro/astro": true,
       },
+      extends: [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict",
+      ],
+      plugins: ["@typescript-eslint"],
       // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
@@ -51,6 +53,15 @@ module.exports = {
         "astro/prefer-object-class-list": "error",
         "astro/prefer-split-class-list": "error",
       },
+    },
+    {
+      files: ["*.ts", "*.tsx"],
+      plugins: ["@typescript-eslint"],
+      extends: [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict",
+      ],
     },
   ],
 };
