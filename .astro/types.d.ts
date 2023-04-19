@@ -114,7 +114,7 @@ declare module 'astro:content' {
 		"posts": {
 "es/10-consejos-que-yo-debería-seguir.mdx": {
   id: "es/10-consejos-que-yo-debería-seguir.mdx",
-  slug: "es/10-consejos-que-yo-debería-seguir",
+  slug: "es/10-consejos-que-yo-deberia-seguir",
   body: string,
   collection: "posts",
   data: InferEntrySchema<"posts">
