@@ -17,10 +17,10 @@ const { title, description, lang = "es" } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title} — Misael Taveras</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-slate-50 dark:bg-gray-900">
+  <body class="bg-slate-50 text-slate-900 dark:bg-gray-900 dark:text-slate-100">
     <Header />
 		<!-- This is a hack to prevent the header from overlapping the content -->
 		<div aria-hidden="true" class="h-12" />
