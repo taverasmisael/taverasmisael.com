@@ -1,9 +1,10 @@
 ---
+import { getFullLocalizedPath } from "@/utils/i18n";
 const year = new Date().getFullYear();
 
-const pages = [
+const basePages = [
   {
-    href: "Archivo",
+    href: "/archivo",
     text: "Archivo",
   },
   {
@@ -13,7 +14,7 @@ const pages = [
   {
     href: "/terminos",
     text: "Condiciones",
-  }
+  },
 ];
 
 const social = [
@@ -34,6 +35,13 @@ const social = [
     text: "Podcast",
   },
 ];
+
+const [, locale] = Astro.url.pathname.split("/");
+const localizePath = getFullLocalizedPath(locale)
+const pages = basePages.map(page => ({
+  ...page,
+  href: localizePath(page.href),
+}));
 ---
 
 <footer

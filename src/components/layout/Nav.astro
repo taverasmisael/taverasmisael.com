@@ -1,6 +1,6 @@
 ---
 import NavLink from "./NavLink.astro";
-import { fullLocalizedPath } from "@/utils/i18n";
+import { getFullLocalizedPath } from "@/utils/i18n";
 
 interface Props {
   activePage: string;
@@ -31,9 +31,10 @@ const basePages = [
 ] as const;
 
 const { isMobile, activePage } = Astro.props;
-const [, lang] = Astro.url.pathname.split("/");
-const pages = basePages.map(page => ({ ...page, href: fullLocalizedPath(lang, page.href) }));
-console.log({ pages });
+const [, locale] = Astro.url.pathname.split("/");
+const localizePath = getFullLocalizedPath(locale)
+const pages = basePages.map(page => ({ ...page, href: localizePath(page.href) }));
+
 ---
 
 <nav role="navigation" class="flex items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
