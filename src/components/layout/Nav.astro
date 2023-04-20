@@ -32,7 +32,7 @@ const pages = [
 const { isMobile, activePage } = Astro.props;
 ---
 
-<nav class="flex items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
+<nav role="navigation" class="flex items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
   {
     pages.map(page => (
       <NavLink isMobile={isMobile} isActive={activePage === page.path} href={page.href}>

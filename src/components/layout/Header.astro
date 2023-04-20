@@ -10,7 +10,7 @@ const basePath = Astro.url.pathname.split("/")[2]; // 0 is empty, 1 is lang, 2 i
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <button
           type="button"
-          class="inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset dark:hover:bg-gray-700 dark:focus:ring-white"
+          class="inline-flex items-center justify-center rounded-md p-2 dark:hover:bg-gray-700"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -39,9 +39,7 @@ const basePath = Astro.url.pathname.split("/")[2]; // 0 is empty, 1 is lang, 2 i
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2">
-        <button
-          class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white"
-        >
+        <button class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white">
           <span class="sr-only">Search</span>
           <svg
             class="h-6 w-6"
@@ -57,9 +55,18 @@ const basePath = Astro.url.pathname.split("/")[2]; // 0 is empty, 1 is lang, 2 i
       </div>
     </div>
   </div>
-  <div class="hidden sm:hidden" id="mobile-menu">
-    <Nav isMobile activePage={basePath} />
+  <div class="mobile-menu grid transition-all sm:hidden" id="mobile-menu" aria-hidden="true">
+    <div class="overflow-hidden"><Nav isMobile activePage={basePath} /></div>
   </div>
 </header>
 
 <script src="./utils/mobile-menu.ts"></script>
+<style>
+  .mobile-menu {
+    grid-template-rows: 0fr;
+  }
+
+  .mobile-menu.open {
+    grid-template-rows: 1fr;
+  }
+</style>
