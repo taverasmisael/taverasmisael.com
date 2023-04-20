@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Basic.astro";
+import { DEFAULT_LOCALE } from "@/utils/i18n";
 import { getCollection } from "astro:content";
 
 interface Params {
@@ -13,9 +14,7 @@ const posts = (await getCollection("posts", ({ id }) => id.startsWith(`${lang}/`
 }));
 
 if (!posts.length) {
-  const postFound = await getCollection("posts", ({ id }) => id.includes(lang));
-  console.log({ postFound });
-  return Astro.redirect(`/es/blog/?fromLang=${lang}`);
+  return Astro.redirect(`/${DEFAULT_LOCALE}/blog/?fromLang=${lang}`);
 }
 ---
 
