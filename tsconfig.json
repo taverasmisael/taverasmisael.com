@@ -2,8 +2,11 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "verbatimModuleSyntax": true,
+    "strictNullChecks": true,
     "jsxImportSource": "solid-js",
+    "importsNotUsedAsValues": "remove",
     "jsx": "preserve",
+    "plugins": [{ "name": "@astrojs/ts-plugin" }],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

@@ -1,61 +1,39 @@
 ---
-import type JSX from "solid-js";
 import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
 import PodcastLogo from "@/components/logos/Podcast.astro";
 
-import { getFullLocalizedPath } from "@/utils/i18n";
 const year = new Date().getFullYear();
 
-const basePages = [
-  {
-    href: "/archivo",
-    text: "Archivo",
-  },
-  {
-    href: "/privacidad",
-    text: "Privacidad",
-  },
-  {
-    href: "/terminos",
-    text: "Condiciones",
-  },
-];
-
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const social = [
   {
     href: "https://twitter.com/taverasmisael",
     text: "Twitter",
-    icon: TwitterLogo as unknown as () => JSX.Element,
+    icon: TwitterLogo,
   },
   {
     href: "https://www.linkedin.com/in/taverasmisael/",
     text: "LinkedIn",
-    icon: LinkedInLogo as unknown as () => JSX.Element,
+    icon: LinkedInLogo,
   },
   {
     href: "https://github.com/taverasmisael",
     text: "GitHub",
-    icon: GitHubLogo as unknown as () => JSX.Element,
+    icon: GitHubLogo,
   },
   {
     href: "https://open.spotify.com/show/18Ty4rvMQVW7btwcXvo8Uq",
     text: "Podcast",
-    icon: PodcastLogo as unknown as () => JSX.Element,
+    icon: PodcastLogo,
   },
 ];
-
-const [, locale] = Astro.url.pathname.split("/");
-const localizePath = getFullLocalizedPath(locale);
-const pages = basePages.map(page => ({
-  ...page,
-  href: localizePath(page.href),
-}));
+/* eslint-enable @typescript-eslint/no-unsafe-assignment */
 ---
 
 <footer
-  class="mx-auto mt-8 max-w-7xl border-t border-slate-200/50 px-2 py-6 text-center text-xs dark:border-slate-800/50 sm:px-6 sm:text-left"
+  class="mx-auto mt-8 w-full max-w-7xl border-t border-slate-200/50 px-2 py-6 text-center text-xs dark:border-slate-800/50 sm:px-6 sm:text-left"
 >
   <div class="sm:flex sm:items-center sm:justify-between">
     <h6 class="hidden sm:block">
@@ -64,24 +42,8 @@ const pages = basePages.map(page => ({
     <ul class="flex items-center justify-center gap-4">
       {
         social.map(link => (
-          <a href={link.href} class="p-2 hover:text-slate-700 dark:hover:text-white" target="_blank">
+          <a href={link.href} target="_blank" class="p-2 hover:text-slate-800 dark:hover:text-blue-50" target="_blank">
             <link.icon class="w-6 sm:w-5" />
-          </a>
-        ))
-      }
-    </ul>
-  </div>
-  <div class="my-3 mt-8 text-slate-700 dark:text-slate-300 sm:mt-3">
-    <ul class="space-x-4 text-sm sm:text-xs">
-      {
-        pages.map((link, i) => (
-          <a
-            href={link.href}
-            class="dark:hover-text-slate-100 p-2 hover:text-slate-50"
-            class:list={{ "sm:pl-0": i === 0 }}
-            target="_blank"
-          >
-            {link.text}
           </a>
         ))
       }

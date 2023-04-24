@@ -111,153 +111,153 @@ declare module 'astro:content' {
 	>;
 
 	const entryMap: {
-		"posts": {
+		"blog": {
 "es/10-consejos-que-yo-debería-seguir.mdx": {
   id: "es/10-consejos-que-yo-debería-seguir.mdx",
   slug: "es/10-consejos-que-yo-deberia-seguir",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/8-extensiones-esenciales-para-vscode.md": {
   id: "es/8-extensiones-esenciales-para-vscode.md",
   slug: "es/8-extensiones-esenciales-para-vscode",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/anunciando-mi-podcast.md": {
   id: "es/anunciando-mi-podcast.md",
   slug: "es/anunciando-mi-podcast",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/aprendiendo-a-aprender.mdx": {
   id: "es/aprendiendo-a-aprender.mdx",
   slug: "es/aprendiendo-a-aprender",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/caso-de-uso-nuevo-landing.mdx": {
   id: "es/caso-de-uso-nuevo-landing.mdx",
   slug: "es/caso-de-uso-nuevo-landing",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/domina-todos-los-bucles-for-en-que-hay-en-java-script.md": {
   id: "es/domina-todos-los-bucles-for-en-que-hay-en-java-script.md",
   slug: "es/domina-todos-los-bucles-for-en-que-hay-en-java-script",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/entendiendo-los-snapshots-de-jest.mdx": {
   id: "es/entendiendo-los-snapshots-de-jest.mdx",
   slug: "es/entendiendo-los-snapshots-de-jest",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/extensiones-y-temas-para-personalizar-vscode.md": {
   id: "es/extensiones-y-temas-para-personalizar-vscode.md",
   slug: "es/extensiones-y-temas-para-personalizar-vscode",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/github-no-es-suficiente-portafolio.md": {
   id: "es/github-no-es-suficiente-portafolio.md",
   slug: "es/github-no-es-suficiente-portafolio",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/hacktoberfest-ya-esta-aqui.md": {
   id: "es/hacktoberfest-ya-esta-aqui.md",
   slug: "es/hacktoberfest-ya-esta-aqui",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/introduccion-a-la-programacion-funcional.mdx": {
   id: "es/introduccion-a-la-programacion-funcional.mdx",
   slug: "es/introduccion-a-la-programacion-funcional",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1.md": {
   id: "es/javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1.md",
   slug: "es/javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-2.md": {
   id: "es/javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-2.md",
   slug: "es/javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-2",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/la-historia-detras-del-blog.mdx": {
   id: "es/la-historia-detras-del-blog.mdx",
   slug: "es/la-historia-detras-del-blog",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/lanzando-mi-pagina-hoy.md": {
   id: "es/lanzando-mi-pagina-hoy.md",
   slug: "es/lanzando-mi-pagina-hoy",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/lo-que-trae-es2020.mdx": {
   id: "es/lo-que-trae-es2020.mdx",
   slug: "es/lo-que-trae-es2020",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/mejorando-la-comunicacion.md": {
   id: "es/mejorando-la-comunicacion.md",
   slug: "es/mejorando-la-comunicacion",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/porque-utilizo-brave-como-mi-navegador.mdx": {
   id: "es/porque-utilizo-brave-como-mi-navegador.mdx",
   slug: "es/porque-utilizo-brave-como-mi-navegador",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/usar-map-filter-y-reduce-para-olvidarnos-de-los-bucles-for.mdx": {
   id: "es/usar-map-filter-y-reduce-para-olvidarnos-de-los-bucles-for.mdx",
   slug: "es/usar-map-filter-y-reduce-para-olvidarnos-de-los-bucles-for",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] },
 "es/vence-el-sindrome-de-impostor.md": {
   id: "es/vence-el-sindrome-de-impostor.md",
   slug: "es/vence-el-sindrome-de-impostor",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 "es/viviendo-con-el-enemigo-en-cuarentena.md": {
   id: "es/viviendo-con-el-enemigo-en-cuarentena.md",
   slug: "es/viviendo-con-el-enemigo-en-cuarentena",
   body: string,
-  collection: "posts",
-  data: InferEntrySchema<"posts">
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] },
 },
 

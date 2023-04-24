@@ -1,13 +1,15 @@
 ---
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
+import { DEFAULT_LOCALE } from "@/utils/i18n";
 export interface Props {
   title: string;
-  lang: string;
+  lang?: string;
   description: string;
+  class?: string;
 }
 
-const { title, description, lang = "es" } = Astro.props;
+const { title, class: className, description, lang = DEFAULT_LOCALE } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,10 +22,10 @@ const { title, description, lang = "es" } = Astro.props;
     <title>{title} — Misael Taveras</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-slate-50 text-slate-900 dark:bg-gray-900 dark:text-slate-100">
+  <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={className}>
     <Header />
 		<!-- This is a hack to prevent the header from overlapping the content -->
-		<div aria-hidden="true" class="h-12" />
+		<div aria-hidden="true" class="h-20" />
     <slot />
     <Footer />
   </body>

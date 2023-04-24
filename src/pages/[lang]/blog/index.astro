@@ -1,57 +1,55 @@
 ---
-import Layout from "@/layouts/Basic.astro";
 import { DEFAULT_LOCALE } from "@/utils/i18n";
+import { isAfter } from "date-fns";
 import { getCollection } from "astro:content";
+import Layout from "@/layouts/Basic.astro";
+import FeaturedPost from "@/components/content/FeaturedPost.astro";
+import CardPost from "@/components/content/CardPost.astro";
 
 interface Params {
   lang: string;
 }
 
 const { lang } = Astro.params as unknown as Params;
-const posts = (await getCollection("posts", ({ id }) => id.startsWith(`${lang}/`))).map(p => ({
-  ...p,
-  slug: p.slug.replace(`${lang}/`, ""),
-}));
+const allPosts = (await getCollection("blog", ({ id }) => id.startsWith(`${lang}/`)))
+  .sort((a, b) => (isAfter(a.data.date, b.data.date) ? -1 : 1))
+  .map(p => ({
+    ...p,
+    slug: p.slug.replace(`${lang}/`, ""),
+    data: {
+      ...p.data,
+      date: p.data.date.toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" }),
+    },
+  }));
 
-if (!posts.length) {
+if (!allPosts.length) {
   return Astro.redirect(`/${DEFAULT_LOCALE}/blog/?fromLang=${lang}`);
 }
+
+// TODO: add featured post. This can be with a prop in the frontmatter, or by date, or by popularity (not sure who to measure that).
+const [featuredPost, ...posts] = allPosts;
 ---
 
-<Layout title="Misael Taveras web">
+<Layout title="Misael Taveras web" description="Blog page" class="dark:!bg-gray-900">
   <main>
-    <h1>Welcome to taverasmisael <span class="text-gradient">v2</span></h1>
-    {
-      posts.map(p => (
-        <div>
-          <h2>
-            {p.slug}
-            <a href={p.slug} class="text-red-400 underline">
-              {p.data.title}
-            </a>
-          </h2>
+    <div class="container mx-auto w-full px-8 py-24">
+      <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
+        <div class="col-span-full lg:col-span-2"><FeaturedPost post={featuredPost} /></div>
+        <!-- Semi featured -->
+        <div class="col-span-full divide-y lg:col-span-2">
+          <div class="flex h-full flex-col justify-between">
+            {posts.slice(0, 2).map(post => <CardPost post={post} />)}
+          </div>
         </div>
-      ))
-    }
+      </div>
+    </div>
+    <!-- Rest of the posts -->
+    <div class="bg-white dark:bg-gray-800">
+      <div class="container mx-auto w-full px-8 py-12">
+        <div class="grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.slice(2).map(post => <CardPost post={post} />)}
+        </div>
+      </div>
+    </div>
   </main>
 </Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-</style>
