@@ -1,4 +1,4 @@
-import locales, { DEFAULT_LOCALE, type LocaleKey } from "@/i18n";
+import { locales, DEFAULT_LOCALE, PAGE_URLS, PAGE_NAMES, type PageName, type Language } from "@/i18n";
 
 export function getFullLocalizedPath(locale: string) {
   return (path: string): string => {
@@ -6,18 +6,26 @@ export function getFullLocalizedPath(locale: string) {
   };
 }
 
-export function getLangFromUrl(url: URL, withFallback?: boolean): string {
+export function getLangFromUrl<T extends boolean = false>(
+  url: URL,
+  withFallback?: T
+): T extends true ? Language : string {
   const [, lang] = url.pathname.split("/");
 
   if (withFallback) {
     return isSupportedLang(lang) ? lang : DEFAULT_LOCALE;
   }
 
-  return lang;
+  return lang as T extends true ? Language : string;
 }
 
-export function isSupportedLang(lang: string): lang is LocaleKey {
+export function isSupportedLang(lang: string): lang is Language {
   return lang in locales;
 }
 
-export { DEFAULT_LOCALE };
+export function getLocalizedPage(locale: Language, page: PageName): string {
+  return PAGE_URLS[page][locale];
+}
+
+// Re exporting some types to avoid src to use the i18n module directly
+export { PAGE_NAMES, DEFAULT_LOCALE, type Language as LocaleKey, type PageName as PageNamesKey };
