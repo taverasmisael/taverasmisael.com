@@ -1,16 +1,15 @@
 ---
+import { path, split, pipe, filter } from "rambda";
 import Footer from "@/components/layout/Footer.astro";
 import MinimalHeader from "@/components/layout/MinimalHeader.astro";
-import { DEFAULT_LOCALE, getFullLocalizedPath } from "@/utils/i18n";
+import { DEFAULT_LOCALE, getFullLocalizedPath, isSupportedLang } from "@/utils/i18n";
 
 export const prerender = true;
 
-const search = new URLSearchParams(Astro.url.search);
-const [, , localeFromPath] = Astro.url.pathname.split("/");
-const [localeFromSearch] = search.get("from")?.split("/") || [];
+const search = new URLSearchParams(Astro.url.search).get("from") ?? "";
+const localeFromSearch = pipe(split("/"), filter(Boolean), path("0"))(search) as string;
 
-// TODO: Check if the locales are valid
-const lang = localeFromPath || localeFromSearch || DEFAULT_LOCALE;
+const lang = isSupportedLang(localeFromSearch) ? localeFromSearch : DEFAULT_LOCALE;
 const getLocalizedPath = getFullLocalizedPath(lang);
 const homeURL = getLocalizedPath("/");
 const luckyURL = getLocalizedPath("/random");

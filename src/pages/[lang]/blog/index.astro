@@ -1,7 +1,7 @@
 ---
-import { DEFAULT_LOCALE } from "@/utils/i18n";
 import { isAfter } from "date-fns";
 import { getCollection } from "astro:content";
+import { DEFAULT_LOCALE, isSupportedLang } from "@/utils/i18n";
 import Layout from "@/layouts/Basic.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
 import CardPost from "@/components/content/CardPost.astro";
@@ -11,6 +11,11 @@ interface Params {
 }
 
 const { lang } = Astro.params as unknown as Params;
+
+if (!isSupportedLang(lang)) {
+  return Astro.redirect(`/${DEFAULT_LOCALE}/blog/?fromLang=${lang}`);
+}
+
 const allPosts = (await getCollection("blog", ({ id }) => id.startsWith(`${lang}/`)))
   .sort((a, b) => (isAfter(a.data.date, b.data.date) ? -1 : 1))
   .map(p => ({

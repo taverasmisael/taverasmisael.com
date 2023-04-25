@@ -1,29 +1,13 @@
 ---
-import Layout from "../layouts/Basic.astro";
+import { DEFAULT_LOCALE } from "@/i18n";
+import { isSupportedLang } from "@/utils/i18n";
+
+const headerLang = Astro.request.headers.get("accept-language");
+if (headerLang) {
+  const browserLang = headerLang.split(",")[0].split("-")[0];
+  const lang = isSupportedLang(browserLang) ? browserLang : DEFAULT_LOCALE;
+  return Astro.redirect(`/${lang}`);
+}
+
+return Astro.redirect(`/${DEFAULT_LOCALE}`);
 ---
-
-<Layout description="HOME" title="Misael Taveras web">
-  <main>
-    <h1>Welcome to taverasmisael <span class="text-gradient">v2</span></h1>
-  </main>
-</Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-</style>
