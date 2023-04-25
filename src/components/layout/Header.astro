@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
 import Nav from "./Nav.astro";
 
-const basePath = Astro.url.pathname.split("/")[2]; // 0 is empty, 1 is lang, 2 is the page
+const basePath = Astro.url.pathname
 ---
 
 <header class="fixed top-0 w-full bg-white shadow-md transition-transform dark:bg-slate-950">

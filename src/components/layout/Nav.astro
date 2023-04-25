@@ -1,46 +1,25 @@
 ---
 import NavLink from "./NavLink.astro";
-import { getFullLocalizedPath } from "@/utils/i18n";
+import { getLocalizedPage, getLangFromUrl, PAGE_NAMES } from "@/utils/i18n";
 
 interface Props {
   activePage: string;
   isMobile?: boolean;
 }
 
-const basePages = [
-  {
-    name: "Blog",
-    path: "blog",
-    href: "/blog",
-  },
-  {
-    name: "About",
-    path: "about",
-    href: "/about",
-  },
-  {
-    name: "Projects",
-    path: "projects",
-    href: "/projects",
-  },
-  {
-    name: "Contact",
-    path: "contact",
-    href: "/contact",
-  },
-] as const;
-
 const { isMobile, activePage } = Astro.props;
-const [, locale] = Astro.url.pathname.split("/");
-const localizePath = getFullLocalizedPath(locale)
-const pages = basePages.map(page => ({ ...page, href: localizePath(page.href) }));
-
+const locale = getLangFromUrl(Astro.url, true);
+const pages = PAGE_NAMES.map(name => ({
+  name,
+  path: getLocalizedPage(locale, name),
+  href: getLocalizedPage(locale, name),
+}));
 ---
 
 <nav role="navigation" class="flex items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
   {
     pages.map(page => (
-      <NavLink isMobile={isMobile} isActive={activePage === page.path} href={page.href}>
+      <NavLink isMobile={isMobile} isActive={activePage.startsWith(page.path)} href={page.href}>
         {page.name}
       </NavLink>
     ))
