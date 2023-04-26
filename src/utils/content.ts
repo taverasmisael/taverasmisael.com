@@ -24,12 +24,13 @@ export async function getBlogEntry(slug: string): Promise<BlogEntry | undefined>
     const pLang = p.slug.split("/")[0] as Language;
     return {
       lang: pLang,
-      slug: getEntryURL('blog', p.slug),
+      slug: getEntryURL("blog", p.slug),
       isOriginal: pLang === DEFAULT_LOCALE,
     };
   });
 
   const meta: BlogEntryMeta = {
+    lang,
     title: entry.data.title,
     description: entry.data.description,
     canonical: entry.slug, // TODO: use real canonical
@@ -56,21 +57,22 @@ export function getEntryURL(entryType: CollectionKeys, slug: string): string {
 
 export interface BlogEntry {
   entry: CollectionEntry<"blog">;
+  isOriginal: boolean;
   meta: BlogEntryMeta;
   translations: BlogTranslationReference[];
-  isOriginal: boolean;
 }
 
 export interface BlogTranslationReference {
+  isOriginal: boolean;
   lang: Language;
   slug: string;
-  isOriginal: boolean;
 }
 
 export interface BlogEntryMeta {
-  title: string;
-  description: string;
   canonical: string;
+  description: string;
+  lang: Language;
   ogTitle: string;
   ogType: string;
+  title: string;
 }

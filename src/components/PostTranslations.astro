@@ -1,0 +1,37 @@
+---
+import { type BlogTranslationReference } from "@/utils/content";
+import { getLanguageName, useTranslation, type Language } from "@/utils/i18n";
+
+interface Props {
+  translations: BlogTranslationReference[];
+  lang: Language;
+  class?: string;
+}
+
+const { translations, class: className } = Astro.props;
+
+const t = useTranslation(Astro.props.lang)
+---
+
+<aside class="my-4 rounded-sm bg-blue-100 px-4 py-6 text-sm dark:bg-slate-700" class:list={className}>
+  <div class="container mx-auto max-w-4xl">
+    <p>
+      {t('ui', 'translation_available_in')}:
+      {
+        translations.map((translation, idx) => (
+          <Fragment>
+            <a
+              class="px-1 font-semibold hover:underline"
+              href={translation.slug}
+              lang={translation.lang}
+              hreflang={translation.lang}
+            >
+              {getLanguageName(translation.lang)} {translation.isOriginal ? "(Original)" : null}
+            </a>
+            {idx < translations.length - 1 ? "|" : null}
+          </Fragment>
+        ))
+      }
+    </p>
+  </div>
+</aside>

@@ -3,8 +3,7 @@ import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Basic.astro";
 import { Image } from "astro:assets";
 import { getBlogEntry } from "@/utils/content";
-import PageBanner from "@/components/PageBanner.astro";
-import { getLanguageName } from "@/utils/i18n";
+import PostTranslations from "@/components/PostTranslations.astro";
 
 const post = await getBlogEntry(Object.values(Astro.params).join("/"));
 
@@ -24,21 +23,13 @@ const components = {
 
 <Layout lang={Astro.params.lang} description={meta.description} title={meta.title}>
   <main
-    class="prose prose-slate dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm mx-auto px-4"
+    class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"
   >
     {
-      translations.length && (
-        <PageBanner class="not-prose">
-          Translations available in:{" "}
-          {translations.map((translation, idx) => (
-            <Fragment>
-              <a href={translation.slug}>
-                {getLanguageName(translation.lang)} {translation.isOriginal ? "(Original)" : null}
-              </a>
-              {idx < translations.length - 1 ? '|' : null}
-            </Fragment>
-          ))}
-        </PageBanner>
+      !!translations.length && (
+        <div class="not-prose">
+          <PostTranslations lang={meta.lang} translations={translations} />
+        </div>
       )
     }
     <article>
@@ -47,6 +38,7 @@ const components = {
         src={entry.data.banner.src}
         width={entry.data.banner.width}
         height={entry.data.banner.height}
+        class:list={{ "!mt-0": !!translations.length }}
       />
       <h1>{entry.data.title}</h1>
       <Content components={components} />

@@ -22,7 +22,8 @@
     "close_menu": "Close menu",
     "social": "Social",
     "links": "Links",
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "translation_available_in": "Translation available in"
   },
   "errors": {
     "not_found": "Page not found",
