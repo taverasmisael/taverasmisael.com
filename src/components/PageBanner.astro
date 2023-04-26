@@ -11,8 +11,6 @@ const { class: className } = Astro.props;
   class:list={className}
 >
   <div class="container mx-auto max-w-4xl">
-    <p class="dark:text-slate-50">
-      <slot />
-    </p>
+    <slot />
   </div>
 </aside>

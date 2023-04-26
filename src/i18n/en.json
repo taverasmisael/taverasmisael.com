@@ -23,7 +23,8 @@
     "social": "Social",
     "links": "Links",
     "copyright": "All rights reserved.",
-    "translation_available_in": "Translation available in"
+    "translation_available_in": "Translation available in",
+    "original": "Original"
   },
   "errors": {
     "not_found": "Page not found",

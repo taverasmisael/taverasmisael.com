@@ -25,13 +25,9 @@ const components = {
   <main
     class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"
   >
-    {
-      !!translations.length && (
-        <div class="not-prose">
-          <PostTranslations lang={meta.lang} translations={translations} />
-        </div>
-      )
-    }
+    <div class="not-prose">
+      {!!translations.length && <PostTranslations lang={meta.lang} translations={translations} />}
+    </div>
     <article>
       <Image
         alt={entry.data.title}
