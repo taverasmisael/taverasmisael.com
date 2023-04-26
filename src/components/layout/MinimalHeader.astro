@@ -1,12 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
+import { getLangFromUrl } from "@/utils/i18n";
+
+const lang = getLangFromUrl(Astro.url, true);
 ---
 
 <header class="relative top-0 w-full bg-slate-50 shadow-md dark:bg-gray-900">
   <div class="mx-auto max-w-7xl px-2 sm:border-none sm:px-6 lg:px-8">
     <div class="relative flex h-20 items-center justify-between">
-      <a href="/">
+      <a href={`/${lang}`}>
         <span class="sr-only">Misael Taveras</span>
         <Image
           class="block h-8 w-auto"

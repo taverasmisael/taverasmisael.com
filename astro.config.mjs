@@ -10,6 +10,7 @@ import netlify from "@astrojs/netlify/functions";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
+  trailingSlash: 'never',
   adapter: netlify(),
   markdown: {
     remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" },

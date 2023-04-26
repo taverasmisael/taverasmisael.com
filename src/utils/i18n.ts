@@ -2,7 +2,7 @@ import { locales, DEFAULT_LOCALE, PAGE_URLS, PAGE_NAMES, type PageName, type Lan
 
 export function getFullLocalizedPath(locale: string) {
   return (path: string): string => {
-    return `/${locale || DEFAULT_LOCALE}${path}/`;
+    return `/${locale || DEFAULT_LOCALE}${path}`;
   };
 }
 
@@ -28,4 +28,4 @@ export function getLocalizedPage(locale: Language, page: PageName): string {
 }
 
 // Re exporting some types to avoid src to use the i18n module directly
-export { PAGE_NAMES, DEFAULT_LOCALE, type Language as LocaleKey, type PageName as PageNamesKey };
+export { PAGE_NAMES, DEFAULT_LOCALE, type Language, type PageName };

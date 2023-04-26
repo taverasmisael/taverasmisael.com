@@ -2,8 +2,10 @@
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
 import Nav from "./Nav.astro";
+import { getLangFromUrl } from "@/utils/i18n";
 
 const basePath = Astro.url.pathname
+const lang = getLangFromUrl(Astro.url, true)
 ---
 
 <header class="fixed top-0 w-full bg-white shadow-md transition-transform dark:bg-slate-950">
@@ -25,7 +27,7 @@ const basePath = Astro.url.pathname
       </div>
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex shrink-0 items-center">
-          <a href="/">
+          <a href={`/${lang}`}>
             <span class="sr-only">Misael Taveras</span>
             <Image
               class="block h-8 w-auto"

@@ -1,5 +1,4 @@
 ---
-import { isAfter } from "date-fns";
 import { getCollection } from "astro:content";
 import { DEFAULT_LOCALE, isSupportedLang } from "@/utils/i18n";
 import Layout from "@/layouts/Basic.astro";
@@ -13,14 +12,14 @@ interface Params {
 const { lang } = Astro.params as unknown as Params;
 
 if (!isSupportedLang(lang)) {
-  return Astro.redirect(`/${DEFAULT_LOCALE}/blog/?fromLang=${lang}`);
+  return Astro.redirect(`/${DEFAULT_LOCALE}/blog?fromLang=${lang}`);
 }
 
 const allPosts = (await getCollection("blog", ({ id }) => id.startsWith(`${lang}/`)))
-  .sort((a, b) => (isAfter(a.data.date, b.data.date) ? -1 : 1))
+  .sort((a, b) => (a.data.date > b.data.date ? -1 : 1))
   .map(p => ({
     ...p,
-    slug: p.slug.replace(`${lang}/`, ""),
+    slug: p.slug.replace(`${lang}`, Astro.url.pathname),
     data: {
       ...p.data,
       date: p.data.date.toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" }),
@@ -28,9 +27,8 @@ const allPosts = (await getCollection("blog", ({ id }) => id.startsWith(`${lang}
   }));
 
 if (!allPosts.length) {
-  return Astro.redirect(`/${DEFAULT_LOCALE}/blog/?fromLang=${lang}`);
+  return Astro.redirect(`/${DEFAULT_LOCALE}/blog?fromLang=${lang}`);
 }
-
 // TODO: add featured post. This can be with a prop in the frontmatter, or by date, or by popularity (not sure who to measure that).
 const [featuredPost, ...posts] = allPosts;
 ---
