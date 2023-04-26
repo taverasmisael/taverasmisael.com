@@ -37,7 +37,6 @@ Para crear tests necesitamos lo que se conoce como un _Test framework_, una libr
 
 ![Una camara fotografica](../../../assets/posts/aaron-schwartz-snap.jpg)
 
-
 Los tests, como explicábamos aseguran que el valor que esperamos sea igual que el que realmente se nos devuelve la funcionalidad que estamos probando. Esto es fácil de hacer cuando los valores son simples, como números, cadenas, booleanos; pero ¿Qué pasa cuando los valores son más complejos? ¿Qué hacemos cuando son objetos o queremos asegurarnos que todo nuestro estado sea de una forma? ¿Qué tal si queremos asegurar que el componente `X` muestre cierta estructura?
 
 Los snapshots son capturas de un momento o estado especifico en nuestro aplicación.
@@ -145,7 +144,6 @@ Si bien es cierto que los snpashots son rápidos y ligeros, hacer snapshots de t
 Otra desventaja de usar snapshots cuando podríamos usar cualquier otro matcher está en que los tests dejan de tener sentido sin ver el snapshot, haciendo que a futuros desarrolladores (uno mismo incluido) se le haga difícil entender la intención del test.
 
 ```js
-// Me inventé esta librería 👇🏽
 import { render, simulate } from 'test-library-for-react'
 import Component from './Component'
 
@@ -197,6 +195,8 @@ En una ocasión, duré unas horas debugueado un snapshot que siempre daba difere
 - Los snapshots **no son** buenos para hacer TDD y a que los snapshots están pensados con el un estado final en mente, así que habría que estar actualizando los snapshots en cada cambio.
 
 ## Conclusión
+
+![GIF: Gary and Avocato from Final Space looking at each other](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjQ0ZjJlYTViZWUyMDU4OTQyZDQ4OTNlM2UxZDYzNWJkZmUyNjJhZSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/3DAr0Tqv7knsXjH9tN/giphy.gif)
 
 En este articulo hemos explorado una de las herramientas que tenemos a la mano para crear tests con más facilidad. **Si eliminamos la fricción que existe para empezar a crear test, es más probable que empecemos a hacerlos.** Ya no hay excusas para no agregar tests a tus aplicaciones.
 

@@ -112,8 +112,15 @@ declare module 'astro:content' {
 
 	const entryMap: {
 		"blog": {
-"es/10-consejos-que-yo-debería-seguir.mdx": {
-  id: "es/10-consejos-que-yo-debería-seguir.mdx",
+"en/entendiendo-los-snapshots-de-jest.md": {
+  id: "en/entendiendo-los-snapshots-de-jest.md",
+  slug: "en/entendiendo-los-snapshots-de-jest",
+  body: string,
+  collection: "blog",
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] },
+"es/10-consejos-que-yo-deberia-seguir.mdx": {
+  id: "es/10-consejos-que-yo-deberia-seguir.mdx",
   slug: "es/10-consejos-que-yo-deberia-seguir",
   body: string,
   collection: "blog",
