@@ -1,15 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-
-const Collections = {
-  blog: "blog",
-} as const;
-type CollectionKeys = keyof typeof Collections;
-
-function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKeys] {
-  return Collections[key as CollectionKeys];
-}
-
+import { getCollectionName, getEntryURL } from "@/utils/content";
 interface Params {
   slug: string;
 }
@@ -30,7 +21,5 @@ if (!postFound.length) {
   return Astro.redirect(`/404?from=${slug}`);
 }
 
-const [lang, ...rest] = postFound[0].slug.split("/");
-
-return Astro.redirect(`/${lang}/${collection}/${rest.join("/")}`);
+return Astro.redirect(getEntryURL(collectionName, postFound[0].slug));
 ---

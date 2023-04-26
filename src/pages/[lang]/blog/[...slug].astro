@@ -2,26 +2,19 @@
 import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Basic.astro";
 import { Image } from "astro:assets";
-import { getEntryBySlug, type CollectionEntry } from "astro:content";
+import { getBlogEntry } from "@/utils/content";
+import PageBanner from "@/components/PageBanner.astro";
+import { getLanguageName } from "@/utils/i18n";
 
-interface Props {
-  entry: CollectionEntry<"blog">;
-}
+const post = await getBlogEntry(Object.values(Astro.params).join("/"));
 
-const entry = await getEntryBySlug("blog", Object.values(Astro.params).join("/"));
-
-if (!entry) {
+if (!post) {
   return Astro.redirect(`/404?from=${Astro.url.pathname.substring(-1)}`);
 }
 
-const { Content } = await entry.render();
-const meta = {
-  title: `${entry.data.title} — TaverasMisael`,
-  description: entry.data.description,
-  canonical: entry.slug,
-  ogTitle: entry.data.title,
-  ogType: "article",
-};
+const { Content } = await post.entry.render();
+
+const { meta, entry, translations } = post;
 
 const components = {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -29,10 +22,25 @@ const components = {
 };
 ---
 
-<Layout lang={Astro.params.lang} description={meta.description} title={entry.data.title}>
+<Layout lang={Astro.params.lang} description={meta.description} title={meta.title}>
   <main
     class="prose prose-slate dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm mx-auto px-4"
   >
+    {
+      translations.length && (
+        <PageBanner class="not-prose">
+          Translations available in:{" "}
+          {translations.map((translation, idx) => (
+            <Fragment>
+              <a href={translation.slug}>
+                {getLanguageName(translation.lang)} {translation.isOriginal ? "(Original)" : null}
+              </a>
+              {idx < translations.length - 1 ? '|' : null}
+            </Fragment>
+          ))}
+        </PageBanner>
+      )
+    }
     <article>
       <Image
         alt={entry.data.title}
