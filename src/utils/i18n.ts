@@ -4,6 +4,7 @@ import {
   DEFAULT_LOCALE,
   PAGE_URLS,
   PAGE_NAMES,
+  LANGUAGES_NAMES,
   type LocaleSet,
   type PageName,
   type Language,
@@ -45,6 +46,11 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
   ): string => {
     return pathOr(`TODO: ${domain}.${key.toString()}`, [domain, key as string], locales[locale]);
   };
+}
+
+export function getLanguageName(lang: Language): string {
+  if(!isSupportedLang(lang)) return lang
+  return LANGUAGES_NAMES[lang];
 }
 
 // Re exporting some types to avoid src to use the i18n module directly
