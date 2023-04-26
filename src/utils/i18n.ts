@@ -4,6 +4,7 @@ import {
   DEFAULT_LOCALE,
   PAGE_URLS,
   PAGE_NAMES,
+  type LocaleSet,
   type PageName,
   type Language,
   type LocaleDomain,
@@ -36,9 +37,13 @@ export function getLocalizedPage(locale: Language, page: PageName): string {
   return PAGE_URLS[page][locale];
 }
 
-export function useTranslation(locale: Language) {
-  return (domain: LocaleDomain, key: string): string => {
-    return pathOr(`TODO: ${domain}.${key}`, [domain, key], locales[locale]);
+export function useTranslation<TLocale extends Language>(locale: TLocale) {
+  // Future Misael, the trick here is to put TDomain and TKey on the returned function instead of the useTranslation
+  return <TDomain extends LocaleDomain, TKey extends keyof LocaleSet[TLocale][TDomain]>(
+    domain: TDomain,
+    key: TKey
+  ): string => {
+    return pathOr(`TODO: ${domain}.${key.toString()}`, [domain, key as string], locales[locale]);
   };
 }
 

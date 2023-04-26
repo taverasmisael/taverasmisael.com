@@ -8,10 +8,12 @@ export type Language = typeof LANGUAGES[number];
 
 export const DEFAULT_LOCALE = "es" satisfies Language;
 
+export type LocaleSet = Record<Language, BaseLocale>;
+
 export const locales = {
   es: Spanish,
   en: English,
-} as const satisfies Record<Language, BaseLocale>;
+} as const satisfies LocaleSet;
 
 export const PAGE_NAMES = ['blog', 'about', 'contact'] as const
 export type PageName = typeof PAGE_NAMES[number];
