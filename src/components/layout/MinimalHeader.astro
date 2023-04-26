@@ -1,9 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
-import { getLangFromUrl } from "@/utils/i18n";
+import { getLangFromUrl, type Language } from "@/utils/i18n";
 
-const lang = getLangFromUrl(Astro.url, true);
+interface Props {
+  lang?: Language;
+}
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
 ---
 
 <header class="relative top-0 w-full bg-slate-50 shadow-md dark:bg-gray-900">

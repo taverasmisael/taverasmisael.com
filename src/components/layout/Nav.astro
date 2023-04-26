@@ -1,6 +1,6 @@
 ---
 import NavLink from "./NavLink.astro";
-import { getLocalizedPage, getLangFromUrl, PAGE_NAMES, type PageName } from "@/utils/i18n";
+import { getLocalizedPage, getLangFromUrl, PAGE_NAMES, type PageName, useTranslation } from "@/utils/i18n";
 
 interface Props {
   activePage: string;
@@ -10,8 +10,9 @@ interface Props {
 const { isMobile, activePage } = Astro.props;
 const locale = getLangFromUrl(Astro.url, true);
 const localizePage = (page: PageName) => getLocalizedPage(locale, page);
+const t = useTranslation(locale)
 const pages = PAGE_NAMES.map(name => ({
-  name,
+  name: t('navigation', name),
   path: localizePage(name),
   href: localizePage(name),
 }));

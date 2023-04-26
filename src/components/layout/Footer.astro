@@ -3,6 +3,11 @@ import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
 import PodcastLogo from "@/components/logos/Podcast.astro";
+import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";
+
+interface Props {
+  lang?: Language;
+}
 
 const year = new Date().getFullYear();
 
@@ -30,6 +35,9 @@ const social = [
   },
 ];
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true)
+const t = useTranslation(lang)
 ---
 
 <footer
@@ -37,7 +45,7 @@ const social = [
 >
   <div class="sm:flex sm:items-center sm:justify-between">
     <h6 class="hidden sm:block">
-      Todos los derechos reservados ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
+      {t('ui', 'copyright')} ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
     </h6>
     <ul class="flex items-center justify-center gap-4">
       {

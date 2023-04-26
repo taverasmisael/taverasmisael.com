@@ -2,10 +2,15 @@
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
 import Nav from "./Nav.astro";
-import { getLangFromUrl } from "@/utils/i18n";
+import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";
+interface Props {
+  lang?: Language;
+}
 
-const basePath = Astro.url.pathname
-const lang = getLangFromUrl(Astro.url, true)
+const basePath = Astro.url.pathname;
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
+const t = useTranslation(lang)
 ---
 
 <header class="fixed top-0 w-full bg-white shadow-md transition-transform dark:bg-slate-950">
@@ -18,7 +23,7 @@ const lang = getLangFromUrl(Astro.url, true)
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          <span class="sr-only">Open main menu</span>
+          <span class="sr-only" data-open-text={t('ui', 'open_menu')} data-close-text={t('ui', 'close_menu')}>{t('ui', 'open_menu')}</span>
           <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             ></path>
