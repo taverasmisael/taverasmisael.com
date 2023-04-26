@@ -2,7 +2,7 @@
 import { path, split, pipe, filter } from "rambda";
 import Footer from "@/components/layout/Footer.astro";
 import MinimalHeader from "@/components/layout/MinimalHeader.astro";
-import { DEFAULT_LOCALE, getFullLocalizedPath, isSupportedLang } from "@/utils/i18n";
+import { DEFAULT_LOCALE, getFullLocalizedPath, isSupportedLang, useTranslation } from "@/utils/i18n";
 
 export const prerender = true;
 
@@ -13,6 +13,8 @@ const lang = isSupportedLang(localeFromSearch) ? localeFromSearch : DEFAULT_LOCA
 const getLocalizedPath = getFullLocalizedPath(lang);
 const homeURL = getLocalizedPath("/");
 const luckyURL = getLocalizedPath("/random");
+
+const t = useTranslation(lang);
 ---
 
 <!DOCTYPE html>
@@ -22,27 +24,29 @@ const luckyURL = getLocalizedPath("/random");
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Página no encontrada — Misael Taveras</title>
-    <meta name="description" content="La página que buscabas no está disponible." />
+    <title>{t("errors", "not_found")}— Misael Taveras</title>
+    <meta name="description" content={t("errors", "not_found_description")} />
   </head>
   <body class="flex h-full flex-col bg-slate-50 text-slate-900 dark:bg-gray-900 dark:text-slate-100">
-    <MinimalHeader />
+    <MinimalHeader lang={lang} />
     <main class="grid flex-1 place-items-center px-6 py-24 sm:py-32 lg:px-8">
       <div class="text-center">
         <p class="text-xl text-slate-600 dark:text-slate-300 sm:text-4xl">404</p>
-        <h1 class="mb-10 text-4xl font-bold sm:mb-12 sm:text-6xl">La página que buscas no existe</h1>
-        <p class="mb-24 sm:mb-20">Es posible que la página se haya movido o solo exista en otro universo</p>
+        <h1 class="mb-10 text-4xl font-bold sm:mb-12 sm:text-6xl">{t("errors", "not_found_description")}</h1>
+        <p class="mb-24 sm:mb-20">{t("errors", "not_found_message")}</p>
         <div class="space-x-8">
           <a
             href={homeURL}
             class="inline-block rounded-md bg-blue-50 px-6 py-3 font-semibold shadow-sm transition-colors hover:bg-blue-100/50 active:bg-blue-100 dark:bg-slate-800 dark:hover:bg-slate-800/90 dark:active:bg-slate-800/70"
-            >Ir al inicio</a
+            >{t("navigation", "go_home")}</a
           >
 
-          <a href={luckyURL} class="inline-block font-semibold text-blue-800 dark:text-blue-50">Me siento con suerte</a>
+          <a href={luckyURL} class="inline-block font-semibold text-blue-800 dark:text-blue-50"
+            >{t("navigation", "feeling_lucky")}</a
+          >
         </div>
       </div>
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

@@ -1,4 +1,13 @@
-import { locales, DEFAULT_LOCALE, PAGE_URLS, PAGE_NAMES, type PageName, type Language } from "@/i18n";
+import { pathOr } from "rambda";
+import {
+  locales,
+  DEFAULT_LOCALE,
+  PAGE_URLS,
+  PAGE_NAMES,
+  type PageName,
+  type Language,
+  type LocaleDomain,
+} from "@/i18n";
 
 export function getFullLocalizedPath(locale: string) {
   return (path: string): string => {
@@ -25,6 +34,12 @@ export function isSupportedLang(lang: string): lang is Language {
 
 export function getLocalizedPage(locale: Language, page: PageName): string {
   return PAGE_URLS[page][locale];
+}
+
+export function useTranslation(locale: Language) {
+  return (domain: LocaleDomain, key: string): string => {
+    return pathOr(`TODO: ${domain}.${key}`, [domain, key], locales[locale]);
+  };
 }
 
 // Re exporting some types to avoid src to use the i18n module directly

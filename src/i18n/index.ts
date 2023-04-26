@@ -1,6 +1,8 @@
 import Spanish from "./es.json";
 import English from "./en.json";
 
+type BaseLocale = typeof Spanish;
+
 export const LANGUAGES = ['es', 'en'] as const
 export type Language = typeof LANGUAGES[number];
 
@@ -9,7 +11,7 @@ export const DEFAULT_LOCALE = "es" satisfies Language;
 export const locales = {
   es: Spanish,
   en: English,
-} as const satisfies Record<Language, typeof Spanish>;
+} as const satisfies Record<Language, BaseLocale>;
 
 export const PAGE_NAMES = ['blog', 'about', 'contact'] as const
 export type PageName = typeof PAGE_NAMES[number];
@@ -29,3 +31,5 @@ export const PAGE_URLS = {
     en: "/en/contact",
   },
 } as const satisfies PageURL
+
+export type LocaleDomain = keyof BaseLocale

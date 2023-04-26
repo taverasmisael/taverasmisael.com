@@ -1,1 +1,33 @@
-{}
+{
+  "navigation": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "go_home": "Go Home",
+    "go_back": "Go Back",
+    "go_to_blog": "Go to Blog",
+    "feeling_lucky": "I'm feeling lucky"
+  },
+  "ui": {
+    "read_more": "Read More",
+    "open": "Open",
+    "close": "Close",
+    "search": "Search",
+    "search_results": "Search Results",
+    "no_results": "No Results",
+    "load_more": "Load More",
+    "menu": "Menu",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "social": "Social",
+    "links": "Links",
+    "copyright": "All rights reserved."
+  },
+  "errors": {
+    "not_found": "Page not found",
+    "not_found_description": "The page you are looking for does not exist.",
+    "not_found_message": "It's possible that the page has moved or only exists in another universe.",
+    "server_error": "Server error"
+  }
+}

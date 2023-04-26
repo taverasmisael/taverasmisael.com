@@ -1,1 +1,33 @@
-{}
+{
+  "navigation": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "about": "Sobre Mi",
+    "contact": "Contacto",
+    "go_home": "Ir al Inicio",
+    "go_back": "Volver",
+    "go_to_blog": "Ir al Blog",
+    "feeling_lucky": "Me siento con suerte"
+  },
+  "ui": {
+    "read_more": "Leer más",
+    "open": "Abrir",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "search_results": "Resultados de la búsqueda",
+    "no_results": "No hay resultados",
+    "load_more": "Cargar más",
+    "menu": "Menú",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú",
+    "social": "Social",
+    "links": "Enlaces",
+    "copyright": "Todos los derechos reservados"
+  },
+  "errors": {
+    "not_found": "Página no encontrada",
+    "not_found_description": "La página que estás buscando no existe.",
+    "not_found_message": "Es posible que la página se haya movido o solo exista en otro universo",
+    "server_error": "Error del servidor"
+  }
+}

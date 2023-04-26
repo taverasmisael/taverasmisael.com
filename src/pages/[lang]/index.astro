@@ -1,9 +1,14 @@
 ---
 import { DEFAULT_LOCALE } from "@/i18n";
 import Layout from "@/layouts/Basic.astro";
-import { isSupportedLang, getLangFromUrl } from "@/utils/i18n";
+import { isSupportedLang } from "@/utils/i18n";
 
-const lang = getLangFromUrl(Astro.url);
+interface Params {
+  lang: string;
+}
+
+const { lang } = Astro.params as unknown as Params;
+
 if (!isSupportedLang(lang)) {
   return Astro.redirect(`/${DEFAULT_LOCALE}?fromLang=${lang}`);
 }
