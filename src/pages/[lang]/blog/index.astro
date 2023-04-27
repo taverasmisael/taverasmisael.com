@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { DEFAULT_LOCALE, isSupportedLang } from "@/utils/i18n";
-import Layout from "@/layouts/Basic.astro";
+import Layout from "@/layouts/WithHeader.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
 import CardPost from "@/components/content/CardPost.astro";
 
@@ -34,6 +34,9 @@ const [featuredPost, ...posts] = allPosts;
 ---
 
 <Layout title="Misael Taveras web" description="Blog page" class="dark:!bg-gray-900">
+  <Fragment slot="head">
+    <meta name="twitter:card" content="summary_large_image" />
+  </Fragment>
   <main>
     <div class="container mx-auto w-full px-8 py-24">
       <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
