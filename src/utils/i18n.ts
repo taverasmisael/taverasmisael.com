@@ -1,6 +1,7 @@
 import { pathOr } from "rambda";
 import {
   locales,
+  LANGUAGES,
   DEFAULT_LOCALE,
   PAGE_URLS,
   PAGE_NAMES,
@@ -49,9 +50,9 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
 }
 
 export function getLanguageName(lang: Language): string {
-  if(!isSupportedLang(lang)) return lang
+  if (!isSupportedLang(lang)) return lang;
   return LANGUAGES_NAMES[lang];
 }
 
 // Re exporting some types to avoid src to use the i18n module directly
-export { PAGE_NAMES, DEFAULT_LOCALE, type Language, type PageName };
+export { PAGE_NAMES, DEFAULT_LOCALE, LANGUAGES, type Language, type PageName };

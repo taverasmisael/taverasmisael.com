@@ -1,6 +1,6 @@
 ---
 import Admonition from "@/components/content/Admonition/Admonition.astro";
-import Layout from "@/layouts/WithHeader.astro";
+import Layout from "@/layouts/Entry.astro";
 import { Image } from "astro:assets";
 import { getBlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
@@ -21,7 +21,13 @@ const components = {
 };
 ---
 
-<Layout lang={Astro.params.lang} description={meta.description} title={meta.title}>
+<Layout
+  canonical={meta.canonical}
+  lang={Astro.params.lang}
+  description={meta.description}
+  title={meta.title}
+  translations={translations}
+>
   <main
     class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"
   >

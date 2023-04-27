@@ -2,6 +2,7 @@
 import { path, split, pipe, filter } from "rambda";
 import Layout from "@/layouts/WithMiniHeader.astro";
 import { DEFAULT_LOCALE, getFullLocalizedPath, isSupportedLang, useTranslation } from "@/utils/i18n";
+import { slugToCanonical } from "@/utils/content";
 
 export const prerender = true;
 
@@ -14,9 +15,11 @@ const homeURL = getLocalizedPath("/");
 const luckyURL = getLocalizedPath("/random");
 
 const t = useTranslation(lang);
+const canonical = slugToCanonical('/404')
 ---
 
 <Layout
+  canonical={canonical}
   fullHeight
   lang={lang}
   description={t("errors", "not_found_description")}

@@ -31,5 +31,9 @@
     "not_found_description": "The page you are looking for does not exist.",
     "not_found_message": "It's possible that the page has moved or only exists in another universe.",
     "server_error": "Server error"
+  },
+  "page_descriptions": {
+    "blog": "Find articles about web development, technology, programming, design and more.",
+    "home": "Welcome to my website"
   }
 }
