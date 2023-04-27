@@ -1,0 +1,29 @@
+---
+import Basic from "./Basic.astro";
+
+import Header from "@/components/layout/MinimalHeader.astro";
+import Footer from "@/components/layout/Footer.astro";
+import { DEFAULT_LOCALE } from "@/utils/i18n";
+import type { DefaultLayoutProps } from "./types";
+
+type Props = DefaultLayoutProps;
+
+const {
+  title,
+  description,
+  fullHeight,
+  lang = DEFAULT_LOCALE,
+  class: className,
+  ["class:list"]: classList,
+} = Astro.props;
+---
+
+<Basic lang={lang} title={title} class:list={[className, classList]} description={description} fullHeight={fullHeight}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+  <Header />
+  <!-- This is a hack to prevent the header from overlapping the content -->
+  <slot />
+  <Footer />
+</Basic>
