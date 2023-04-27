@@ -1,15 +1,17 @@
 ---
 import { getCollection } from "astro:content";
-import { DEFAULT_LOCALE, isSupportedLang } from "@/utils/i18n";
-import Layout from "@/layouts/WithHeader.astro";
+import { DEFAULT_LOCALE, LANGUAGES, getLocalizedPage, isSupportedLang, useTranslation } from "@/utils/i18n";
+import Layout from "@/layouts/Entry.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
 import CardPost from "@/components/content/CardPost.astro";
+import { slugToCanonical, getEntryURL } from "@/utils/content";
 
 interface Params {
   lang: string;
 }
 
 const { lang } = Astro.params as unknown as Params;
+const { pathname, origin } = Astro.url;
 
 if (!isSupportedLang(lang)) {
   return Astro.redirect(`/${DEFAULT_LOCALE}/blog?fromLang=${lang}`);
@@ -19,7 +21,7 @@ const allPosts = (await getCollection("blog", ({ id }) => id.startsWith(`${lang}
   .sort((a, b) => (a.data.date > b.data.date ? -1 : 1))
   .map(p => ({
     ...p,
-    slug: p.slug.replace(`${lang}`, Astro.url.pathname),
+    slug: slugToCanonical(getEntryURL("blog", p.slug), origin),
     data: {
       ...p.data,
       date: p.data.date.toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" }),
@@ -31,12 +33,23 @@ if (!allPosts.length) {
 }
 // TODO: add featured post. This can be with a prop in the frontmatter, or by date, or by popularity (not sure who to measure that).
 const [featuredPost, ...posts] = allPosts;
+const canonical = slugToCanonical(pathname, origin);
+
+const translations = LANGUAGES.filter(l => l !== lang).map(l => ({
+  slug: getLocalizedPage(l, "blog"),
+  lang: l,
+  isOriginal: l === DEFAULT_LOCALE,
+}));
+const t = useTranslation(lang);
 ---
 
-<Layout title="Misael Taveras web" description="Blog page" class="dark:!bg-gray-900">
-  <Fragment slot="head">
-    <meta name="twitter:card" content="summary_large_image" />
-  </Fragment>
+<Layout
+  canonical={canonical}
+  title={t("navigation", "blog")}
+  description={t("page_descriptions", "blog")}
+  class="dark:!bg-gray-900"
+  translations={translations}
+>
   <main>
     <div class="container mx-auto w-full px-8 py-24">
       <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 md:grid-cols-3 md:gap-8 lg:grid-cols-4">

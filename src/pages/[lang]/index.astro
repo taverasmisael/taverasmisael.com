@@ -1,7 +1,7 @@
 ---
-import { DEFAULT_LOCALE } from "@/i18n";
 import Layout from "@/layouts/WithHeader.astro";
-import { isSupportedLang } from "@/utils/i18n";
+import { isSupportedLang, DEFAULT_LOCALE, LANGUAGES } from "@/utils/i18n";
+import { slugToCanonical } from "@/utils/content";
 
 interface Params {
   lang: string;
@@ -10,11 +10,27 @@ interface Params {
 const { lang } = Astro.params as unknown as Params;
 
 if (!isSupportedLang(lang)) {
-  return Astro.redirect(`/${DEFAULT_LOCALE}?fromLang=${lang}`);
+  return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 }
+
+const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
+  lang: language,
+  slug: `/${language}`,
+}));
+
+const { origin } = Astro.url;
+
+const canonical = slugToCanonical(lang === DEFAULT_LOCALE ? "/" : `/${lang}`, origin);
 ---
 
-<Layout description="HOME" title="Misael Taveras web">
+<Layout canonical={canonical} description="HOME" title="Misael Taveras web">
+  <Fragment slot="head">
+    {
+      translations.map(translation => (
+        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
+      ))
+    }
+  </Fragment>
   <main>
     <h1>Welcome to taverasmisael <span class="text-gradient bg-gradient-to-tr from-slate-400 to-blue-500">v2</span></h1>
   </main>
