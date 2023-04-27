@@ -1,6 +1,7 @@
 ---
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
+import { SITE } from "@/config";
 
 type Props = DefaultLayoutProps;
 
@@ -8,6 +9,7 @@ const {
   title,
   description,
   fullHeight,
+  canonical,
   lang = DEFAULT_LOCALE,
   class: className,
   ["class:list"]: classList,
@@ -20,9 +22,11 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="docsearch:language" content={lang}>
     <meta name="generator" content={Astro.generator} />
-    <title>{title} — Misael Taveras</title>
+    <title>{title} — {SITE.title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <slot name="head" />
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>

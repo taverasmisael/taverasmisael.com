@@ -8,10 +8,25 @@ import type { DefaultLayoutProps } from "./types";
 
 type Props = DefaultLayoutProps;
 
-const { title, class: className, description, lang = DEFAULT_LOCALE, fullHeight } = Astro.props;
+const {
+  title,
+  description,
+  fullHeight,
+  canonical,
+  lang = DEFAULT_LOCALE,
+  class: className,
+  ["class:list"]: classList,
+} = Astro.props;
 ---
 
-<Basic lang={lang} title={title} class:list={className} description={description} fullHeight={fullHeight}>
+<Basic
+  canonical={canonical}
+  lang={lang}
+  title={title}
+  class:list={[className, classList]}
+  description={description}
+  fullHeight={fullHeight}
+>
   <Fragment slot="head">
     <slot name="head" />
   </Fragment>
