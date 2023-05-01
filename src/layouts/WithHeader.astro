@@ -30,9 +30,9 @@ const {
   <Fragment slot="head">
     <slot name="head" />
   </Fragment>
-  <Header />
+  <Header lang={lang} />
   <!-- This is a hack to prevent the header from overlapping the content -->
   <div aria-hidden="true" class="h-20"></div>
   <slot />
-  <Footer />
+  <Footer lang={lang} />
 </Basic>
