@@ -5,6 +5,7 @@ import Layout from "@/layouts/Entry.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
 import CardPost from "@/components/content/CardPost.astro";
 import { slugToCanonical, getEntryURL } from "@/utils/content";
+import TranslationArchiveBanner from "@/components/TranslationArchiveBanner.astro";
 
 interface Params {
   lang: string;
@@ -44,14 +45,16 @@ const t = useTranslation(lang);
 ---
 
 <Layout
+  lang={lang}
   canonical={canonical}
   title={t("navigation", "blog")}
   description={t("page_descriptions", "blog")}
   class="dark:!bg-gray-900"
   translations={translations}
 >
+  <TranslationArchiveBanner lang={lang} type="blog" />
   <main>
-    <div class="container mx-auto w-full px-8 py-24">
+    <div class="container mx-auto w-full p-8 md:py-24">
       <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
         <div class="col-span-full lg:col-span-2"><FeaturedPost post={featuredPost} /></div>
         <!-- Semi featured -->

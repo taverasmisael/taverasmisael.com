@@ -24,16 +24,35 @@
     "links": "Links",
     "copyright": "All rights reserved.",
     "translation_available_in": "Translation available in",
-    "original": "Original"
+    "original": "Original",
+    "version": "Version",
+    "dark_mode": "Dark mode",
+    "light_mode": "Light mode",
+    "theme": "Theme",
+    "original_version": "Original Version"
   },
-  "errors": {
-    "not_found": "Page not found",
-    "not_found_description": "The page you are looking for does not exist.",
-    "not_found_message": "It's possible that the page has moved or only exists in another universe.",
-    "server_error": "Server error"
+  "messages": {
+    "page_not_found": "Page not found",
+    "page_not_found_description": "The page you are looking for does not exist.",
+    "page_not_found_message": "It's possible that the page has moved or only exists in another universe.",
+    "server_error": "Server error",
+    "server_error_description": "An error occurred while processing your request.",
+    "server_error_message": "It's possible that the server is under maintenance or that it has exploded",
+    "contact_thanks": "Thanks for contacting me!",
+    "contact_thanks_description": "I will contact you as soon as possible.",
+    "reading_translation_archive": "This {{collection_name}} is originally written in {{original_language}}. To see all the entries, visit the ",
+    "incomplete_translation_disclaimer": "This translation may be incomplete. To see the original version, visit the "
   },
   "page_descriptions": {
     "blog": "Find articles about web development, technology, programming, design and more.",
     "home": "Welcome to my website"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Spanish"
+  },
+  "collections": {
+    "all": "All",
+    "blog": "Blog"
   }
 }

@@ -24,16 +24,35 @@
     "links": "Enlaces",
     "copyright": "Todos los derechos reservados",
     "translation_available_in": "Traducción disponible en",
-    "original": "Original"
+    "original": "Original",
+    "version": "Versión",
+    "dark_mode": "Modo oscuro",
+    "light_mode": "Modo claro",
+    "theme": "Tema",
+    "original_version": "Versión Original"
   },
-  "errors": {
-    "not_found": "Página no encontrada",
-    "not_found_description": "La página que estás buscando no existe.",
-    "not_found_message": "Es posible que la página se haya movido o solo exista en otro universo",
-    "server_error": "Error del servidor"
+  "messages": {
+    "page_not_found": "Página no encontrada",
+    "page_not_found_description": "La página que estás buscando no existe.",
+    "page_not_found_message": "Es posible que la página se haya movido o solo exista en otro universo",
+    "server_error": "Error del servidor",
+    "server_error_description": "Algo salió mal en el servidor.",
+    "server_error_message": "Es posible que el servidor esté en mantenimiento o que haya explotado",
+    "contact_thanks": "Gracias por contactarme",
+    "contact_thanks_description": "Me pondré en contacto contigo lo antes posible.",
+    "reading_translation_archive": "[NOTE]: esta KEY no se usa en español, porque es el lenguaje original",
+    "incomplete_translation_disclaimer": "[NOTE]: esta KEY no se usa en español, porque es el lenguaje original"
   },
   "page_descriptions": {
     "blog": "Encuentra artículos sobre desarrollo web, tecnología, programación, diseño y más.",
     "home": "Bienvenido a mi sitio web"
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "collections": {
+    "all": "Todo",
+    "blog": "Blog"
   }
 }

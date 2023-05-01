@@ -39,13 +39,43 @@ export function getLocalizedPage(locale: Language, page: PageName): string {
   return PAGE_URLS[page][locale];
 }
 
+const missingTranslationParams = (translation: string, translationId: string) => {
+  const missingParams = translation.match(/{{(.*?)}}/g);
+  if (missingParams) {
+    console.warn(`Missing params for ${translationId}: ${missingParams.join(", ")}`);
+  }
+};
+
 export function useTranslation<TLocale extends Language>(locale: TLocale) {
   // Future Misael, the trick here is to put TDomain and TKey on the returned function instead of the useTranslation
-  return <TDomain extends LocaleDomain, TKey extends keyof LocaleSet[TLocale][TDomain]>(
+  return <
+    TDomain extends LocaleDomain,
+    TKey extends keyof LocaleSet[TLocale][TDomain],
+    Params extends Record<string, string>
+  >(
     domain: TDomain,
-    key: TKey
+    key: TKey,
+    params?: Params
   ): string => {
-    return pathOr(`TODO: ${domain}.${key.toString()}`, [domain, key as string], locales[locale]);
+    const translation = pathOr(`TODO: ${domain}.${key.toString()}`, [domain, key as string], locales[locale]);
+    if (translation.startsWith("TODO")) console.warn(`Missing translation for ${domain}.${key.toString()}`);
+    if (translation.startsWith("[NOTE]: "))
+      console.error(
+        `Translation ${domain}.${key.toString()} is not meant to be used, at least on this locale (${locale})`
+      );
+    if (translation.includes("{{") && !params) missingTranslationParams(translation, `${domain}.${key.toString()}`);
+
+    if (params) {
+      const processedTranslation = Object.entries(params).reduce((acc, [key, value]) => {
+        return acc.replace(`{{${key}}}`, value);
+      }, translation);
+
+      if (processedTranslation.includes("{{"))
+        missingTranslationParams(processedTranslation, `${domain}.${key.toString()}`);
+
+      return processedTranslation;
+    }
+    return translation;
   };
 }
 
