@@ -1,0 +1,33 @@
+---
+import { getLocalizedPage, DEFAULT_LOCALE, type Language, useTranslation } from "@/utils/i18n";
+import PageBanner from "./PageBanner.astro";
+import { type CollectionKey } from "@/utils/content";
+
+export interface Props {
+  lang: Language;
+  type: CollectionKey;
+}
+const { lang, type } = Astro.props;
+const t = useTranslation(lang);
+---
+
+{
+  lang !== DEFAULT_LOCALE && (
+    <PageBanner class="!bg-blue-950">
+      <p class="text-xs text-blue-200">
+        {t("messages", "reading_translation_archive", {
+          collection_name: t("collections", type).toLocaleLowerCase(),
+          original_language: t("languages", DEFAULT_LOCALE),
+        })}
+        <a
+          class="lowercase underline dark:text-blue-100"
+          hreflang={DEFAULT_LOCALE}
+          href={getLocalizedPage(DEFAULT_LOCALE, "blog")}
+        >
+          {t("ui", "original_version")}
+        </a>
+        .
+      </p>
+    </PageBanner>
+  )
+}

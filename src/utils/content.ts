@@ -4,11 +4,12 @@ import { SITE } from "@/config";
 
 const Collections = {
   blog: "blog",
-} as const;
-type CollectionKeys = keyof typeof Collections;
+} as const satisfies Record<string, Parameters<typeof getCollection>["0"]>;
 
-export function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKeys] {
-  return Collections[key as CollectionKeys];
+export type CollectionKey = keyof typeof Collections;
+
+export function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKey] {
+  return Collections[key as CollectionKey];
 }
 
 export async function getBlogEntry(slug: string): Promise<BlogEntry | undefined> {
@@ -47,7 +48,7 @@ export async function getBlogEntry(slug: string): Promise<BlogEntry | undefined>
   };
 }
 
-export function getEntryURL(entryType: CollectionKeys, slug: string): string {
+export function getEntryURL(entryType: CollectionKey, slug: string): string {
   const collection = getCollectionName(entryType);
 
   if (!collection) throw new Error(`Invalid collection name: ${entryType}`);
