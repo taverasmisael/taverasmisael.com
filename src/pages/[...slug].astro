@@ -15,7 +15,7 @@ if (!collectionName) {
   return Astro.redirect(`/404?from=${slug}`);
 }
 
-const postFound = await getCollection(collectionName, ({ id }) => id.includes(name));
+const postFound = await getCollection(collectionName, ({ slug }) => slug.includes(name));
 
 if (!postFound.length) {
   return Astro.redirect(`/404?from=${slug}`);
