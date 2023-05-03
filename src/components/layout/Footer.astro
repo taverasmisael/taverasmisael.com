@@ -2,8 +2,9 @@
 import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
-import PodcastLogo from "@/components/logos/Podcast.astro";
+import RSSFeedLogo from "@/components/logos/RSSFeed.astro";
 import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";
+import { slugToCanonical } from "@/utils/content";
 
 interface Props {
   lang?: Language;
@@ -29,9 +30,9 @@ const social = [
     icon: GitHubLogo,
   },
   {
-    href: "https://open.spotify.com/show/18Ty4rvMQVW7btwcXvo8Uq",
-    text: "Podcast",
-    icon: PodcastLogo,
+    href: slugToCanonical("/rss.xml", Astro.url.origin),
+    text: "RSS",
+    icon: RSSFeedLogo,
   },
 ];
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
@@ -51,6 +52,7 @@ const t = useTranslation(lang);
       {
         social.map(link => (
           <a href={link.href} target="_blank" class="p-2 hover:text-slate-800 dark:hover:text-blue-50" target="_blank">
+            <span class="sr-only">{link.text}</span>
             <link.icon class="w-6 sm:w-5" />
           </a>
         ))
