@@ -32,7 +32,7 @@ const t = useTranslation(lang);
           </svg>
         </button>
       </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
         <div class="flex shrink-0 items-center">
           <a href={`/${lang}`}>
             <span class="sr-only">Misael Taveras</span>
@@ -49,21 +49,22 @@ const t = useTranslation(lang);
         <div class="hidden sm:ml-6 sm:block">
           <Nav activePage={basePath} />
         </div>
-      </div>
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2">
-        <button class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white">
-          <span class="sr-only">{t("ui", "search")}</span>
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </button>
+        <div class="insetr-0 absolute right-1 flex items-center pr-2 sm:relative sm:right-0">
+          <button class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white">
+            <span class="sr-only">{t("ui", "search")}</span>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
