@@ -57,13 +57,14 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
     key: TKey,
     params?: Params
   ): string => {
-    const translation = pathOr(`TODO: ${domain}.${key.toString()}`, [domain, key as string], locales[locale]);
-    if (translation.startsWith("TODO")) console.warn(`Missing translation for ${domain}.${key.toString()}`);
+    const translationId = `${domain}.${key.toString()}`;
+    const translation = pathOr(`TODO: ${translationId}`, [domain, key as string], locales[locale]);
+    if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
     if (translation.startsWith("[NOTE]: "))
       console.error(
-        `Translation ${domain}.${key.toString()} is not meant to be used, at least on this locale (${locale})`
+        `Translation ${translationId} is not meant to be used, at least on this locale (${locale})`
       );
-    if (translation.includes("{{") && !params) missingTranslationParams(translation, `${domain}.${key.toString()}`);
+    if (translation.includes("{{") && !params) missingTranslationParams(translation, `${translationId}`);
 
     if (params) {
       const processedTranslation = Object.entries(params).reduce((acc, [key, value]) => {
@@ -71,7 +72,7 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
       }, translation);
 
       if (processedTranslation.includes("{{"))
-        missingTranslationParams(processedTranslation, `${domain}.${key.toString()}`);
+        missingTranslationParams(processedTranslation, `${translationId}`);
 
       return processedTranslation;
     }

@@ -29,7 +29,9 @@
     "dark_mode": "Modo oscuro",
     "light_mode": "Modo claro",
     "theme": "Tema",
-    "original_version": "Versión Original"
+    "original_version": "Versión Original",
+    "more_about_me": "Más sobre mí",
+    "cv_download": "Descargar CV"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
@@ -45,7 +47,8 @@
   },
   "page_descriptions": {
     "blog": "Encuentra artículos sobre desarrollo web, tecnología, programación, diseño y más.",
-    "home": "Bienvenido a mi sitio web"
+    "home": "Bienvenido a mi sitio web",
+    "about": "Senior Frontend Developer, apasionado por la programación funcional y el desarrollo web."
   },
   "languages": {
     "en": "Inglés",

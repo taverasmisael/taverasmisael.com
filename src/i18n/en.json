@@ -29,7 +29,9 @@
     "dark_mode": "Dark mode",
     "light_mode": "Light mode",
     "theme": "Theme",
-    "original_version": "Original Version"
+    "original_version": "Original Version",
+    "more_about_me": "Know me more",
+    "cv_download": "Resume"
   },
   "messages": {
     "page_not_found": "Page not found",
@@ -45,7 +47,8 @@
   },
   "page_descriptions": {
     "blog": "Find articles about web development, technology, programming, design and more.",
-    "home": "Welcome to my website"
+    "home": "Welcome to my website",
+    "about": "Senior Frontend Developer, passionate about functional programming and web development."
   },
   "languages": {
     "en": "English",
