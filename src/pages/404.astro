@@ -15,12 +15,12 @@ const homeURL = getLocalizedPath("/");
 const luckyURL = getLocalizedPath("/random");
 
 const t = useTranslation(lang);
-const canonical = slugToCanonical('/404')
+const canonical = slugToCanonical("/404");
 ---
 
 <Layout
-  canonical={canonical}
   fullHeight
+  canonical={canonical}
   lang={lang}
   description={t("messages", "page_not_found_description")}
   title={t("messages", "page_not_found")}

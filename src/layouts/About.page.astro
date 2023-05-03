@@ -1,0 +1,65 @@
+---
+import { isSupportedLang, LANGUAGES, getLocalizedPage, useTranslation, type Language } from "@/utils/i18n";
+import { slugToCanonical } from "@/utils/content";
+import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
+import Layout from "./WithHeader.astro";
+import PageBanner from "@/components/PageBanner.astro";
+
+interface Props {
+  frontmatter: AboutFrontmatter;
+}
+
+interface AboutFrontmatter {
+  lang: Language;
+  title: string;
+  description: string;
+  cvLink: string;
+}
+
+const PAGE = "about";
+
+const { frontmatter } = Astro.props;
+const { lang, cvLink } = frontmatter;
+
+if (!isSupportedLang(lang)) {
+  return Astro.redirect(`/404?from=${Astro.url.pathname}`);
+}
+
+const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
+  lang: language,
+  slug: getLocalizedPage(language, PAGE),
+}));
+
+const { origin } = Astro.url;
+
+const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
+const t = useTranslation(lang);
+---
+
+<Layout lang={lang} canonical={canonical} description={t("page_descriptions", PAGE)} title={t("navigation", PAGE)}>
+  <Fragment slot="head">
+    {
+      translations.map(translation => (
+        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
+      ))
+    }
+  </Fragment>
+  <main>
+    <PageBanner class="!bg-gray-950">
+      My resume is available for <a
+        href={cvLink}
+        download="taverasmisael-frontend-engineer-resume.pdf"
+        class="bg-gradient-to-tr from-blue-600 to-blue-400 bg-clip-text text-transparent">download here</a
+      >.
+    </PageBanner>
+    <div class="container mx-auto w-full">
+      <div
+        class="prose prose-slate dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm mx-auto px-4"
+      >
+        <slot />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style></style>
