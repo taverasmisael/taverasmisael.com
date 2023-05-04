@@ -1,0 +1,20 @@
+---
+import type { Language } from "@/i18n";
+import { getEntriesByLang, type CollectionKey } from "@/utils/content";
+import CardPost from "./content/CardPost.astro";
+
+interface Props {
+  collection: CollectionKey;
+  max?: number;
+  lang: Language;
+}
+
+console.log(import.meta.env.PUBLIC_SITE_URL)
+const { lang, collection, max = 4 } = Astro.props;
+const allEntries = await getEntriesByLang(collection, lang);
+const entries = allEntries.slice(0, max).sort((a, b) => (a.entry.data.date > b.entry.data.date ? -1 : 1));
+---
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-4">
+  {entries.map(entry => <CardPost post={entry.entry} meta={entry.meta} />)}
+</div>

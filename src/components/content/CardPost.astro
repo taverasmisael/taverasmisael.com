@@ -1,25 +1,27 @@
 ---
+import type { BlogEntryMeta } from "@/utils/content";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<'blog'>;
+  meta: BlogEntryMeta;
 }
 
-const { post } = Astro.props;
+const { post, meta } = Astro.props;
 ---
 
 <div
   class="group flex flex-col justify-between rounded-md p-4 text-slate-800 ring-blue-100 transition-all hover:bg-blue-50 hover:shadow-sm hover:ring-2 dark:text-slate-200 dark:ring-gray-700 dark:hover:bg-gray-950/50"
 >
   <div>
-    <a href={post.slug} class="block hover:underline">
+    <a href={meta.canonical || post.slug} class="block hover:underline">
       <h2
         class="mb-2 text-2xl font-semibold text-slate-900 group-hover:text-slate-950 dark:text-blue-50 dark:group-hover:text-slate-100 md:mb-4"
       >
-        {post.data.title}
+        {meta.title || post.data.title}
       </h2>
     </a>
-    <p class="mb-4 text-sm md:mb-6 lg:text-base">{post.data.description}</p>
+    <p class="mb-4 text-sm md:mb-6 lg:text-base">{meta.description}</p>
   </div>
-  <span class="block text-xs">{post.data.date}</span>
+  <time datetime={post.data.date.toISOString()} class="block text-xs">{meta.formattedDate || post.data.date}</time>
 </div>

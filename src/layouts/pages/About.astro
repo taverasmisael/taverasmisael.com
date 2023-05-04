@@ -4,6 +4,7 @@ import { slugToCanonical } from "@/utils/content";
 import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 import Layout from "@/layouts/WithHeader.astro";
 import PageBanner from "@/components/PageBanner.astro";
+import RecentEntries from "@/components/RecentEntries.astro";
 
 interface Props {
   frontmatter: AboutFrontmatter;
@@ -46,17 +47,19 @@ const t = useTranslation(lang);
   </Fragment>
   <main>
     <PageBanner class="!bg-blue-100 dark:!bg-gray-950">
-      {t('messages', "cv_is_available_in")} {' '}<a
-        href={cvLink}
-        download="taverasmisael-frontend-engineer-resume.pdf"
-        class="text-blue-500 underline">{t('ui', "download_here").toLocaleLowerCase()}</a
+      {t("messages", "cv_is_available_in")}
+      {" "}<a href={cvLink} download="taverasmisael-frontend-engineer-resume.pdf" class="text-blue-500 underline"
+        >{t("ui", "download_here").toLocaleLowerCase()}</a
       >.
     </PageBanner>
     <div class="container mx-auto w-full">
       <div
-        class="prose prose-slate dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm mx-auto px-4"
+        class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"
       >
         <slot />
+        <FullWidthBlock withContainer class="not-prose">
+          <RecentEntries lang={lang} collection="blog" />
+        </FullWidthBlock>
       </div>
     </div>
   </main>
