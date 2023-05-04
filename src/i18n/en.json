@@ -60,5 +60,23 @@
   "collections": {
     "all": "All",
     "blog": "Blog"
+  },
+  "forms": {
+    "name": "Name", 
+    "email": "Email",
+    "reason": "Reason",
+    "message": "Message",
+    "message.placeholder": "Hi, I would like to...",
+    "send": "Send",
+    "submit": "Submit",
+    "submitting": "Sending",
+    "disclaimer": "All fields are required. I'll get back to you as soon as possible.",
+    "success": "Your message has been sent successfully!",
+    "reason.default": "Why are you reaching out?",
+    "reason.hello": "Say hi",
+    "reason.question": "I have a question",
+    "reason.help": "I need help with something",
+    "reason.work": "I want to work with you",
+    "error": "There was an error sending your message. Please try again later."
   }
 }

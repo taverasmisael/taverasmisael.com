@@ -60,5 +60,23 @@
   "collections": {
     "all": "Todo",
     "blog": "Blog"
+  },
+  "forms": {
+    "name": "Nombre",
+    "email": "Email",
+    "reason": "Motivo",
+    "message": "Mensaje",
+    "message.placeholder": "Hola, me gustaría...",
+    "send": "Enviar",
+    "submit": "Enviar",
+    "submitting": "Enviando",
+    "disclaimer": "Todos los campos son obligatorios. Me pondré en contacto contigo lo antes posible.",
+    "success": "¡Tu mensaje ha sido enviado con éxito!",
+    "error": "¡Ups! Algo salió mal. Por favor, inténtalo de nuevo más tarde.",
+    "reason.default": "¿Por qué quieres contactarme?",
+    "reason.hello": "Pasaba a saludar",
+    "reason.question": "Tengo una pregunta",
+    "reason.help": "Necesito ayuda",
+    "reason.work": "Quisiera trabajar contigo"
   }
 }
