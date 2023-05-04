@@ -10,7 +10,6 @@ import {
 import { slugToCanonical } from "@/utils/content";
 import Layout from "@/layouts/WithHeader.astro";
 import ContactForm from "@/components/forms/ContactForm.astro";
-import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 
 interface Props {
   frontmatter: AboutFrontmatter;
@@ -42,7 +41,13 @@ const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
 const t = useTranslation(lang);
 ---
 
-<Layout lang={lang} canonical={canonical} description={t("page_descriptions", PAGE)} title={t("navigation", PAGE)}>
+<Layout
+  fullHeight
+  lang={lang}
+  canonical={canonical}
+  description={t("page_descriptions", PAGE)}
+  title={t("navigation", PAGE)}
+>
   <Fragment slot="head">
     {
       translations.map(translation => (
@@ -51,18 +56,20 @@ const t = useTranslation(lang);
     }
   </Fragment>
   <main>
-    <div class="container mx-auto w-full">
-      <FullWidthBlock withContainer class="mb-12 bg-blue-50 dark:bg-gray-900">
-        <h1 class="mb-4 mt-12 text-6xl font-bold">{frontmatter.title}</h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>
-      </FullWidthBlock>
-      <div class="grid md:grid-cols-2">
-        <div>
-          <div class="prose dark:prose-invert xl:prose-lg prose-code:text-blue-800 dark:prose-code:text-blue-200">
-            <slot />
+    <div class="w-full">
+      <div class="grid items-center gap-4">
+        <div class="items-center bg-blue-200 px-6 py-4 dark:bg-slate-950 sm:px-8 lg:py-12 xl:px-32">
+          <div class="prose dark:prose-invert xl:prose-lg grid items-center">
+            <div class="container">
+              <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
+              <p class="m-0 text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>
+              <slot />
+            </div>
           </div>
         </div>
-        <ContactForm lang={lang} />
+        <div class="px-6 py-4 sm:px-8 lg:py-12 xl:px-24" id="contact-form">
+          <ContactForm lang={lang} />
+        </div>
       </div>
     </div>
   </main>

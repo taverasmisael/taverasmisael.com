@@ -42,7 +42,6 @@ const t = useTranslation(lang);
 ---
 
 <Layout
-  fullHeight
   lang={lang}
   canonical={canonical}
   description={t("page_descriptions", PAGE)}
@@ -67,7 +66,7 @@ const t = useTranslation(lang);
             </div>
           </div>
         </div>
-        <div class="" id="contact-form">
+        <div class="px-6 py-4 sm:px-8 lg:py-12 xl:px-24" id="contact-form">
           <ContactForm lang={lang} />
         </div>
       </div>

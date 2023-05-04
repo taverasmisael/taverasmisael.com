@@ -8,8 +8,57 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslation(lang);
+const labelClassName = "relative mb-4 block font-semibold";
+const baseFormControlClassName =
+  "p-4 focus:outline-none border border-blue-50 focus:ring ring-blue-100 rounded-md dark:ring-slate-800 w-full shadow";
+const inputClassName = `${baseFormControlClassName}`;
+const textareaClassName = `${baseFormControlClassName} resize-none scroll-m-6`;
+const selectClassName = `${baseFormControlClassName} appearance-none`;
 ---
 
-<form>
-  HOLA
+<form class="container mx-auto space-y-8">
+  <div class="flex w-full flex-col gap-8 md:flex-row">
+    <label for="name" class="flex-1">
+      <span class:list={labelClassName}>Name</span>
+      <input id="name" required name="name" type="text" class:list={inputClassName} placeholder="Joe Doe" />
+    </label>
+    <label for="email" class="flex-1">
+      <span class:list={labelClassName}>Email</span>
+      <input required id="email" name="email" type="email" class:list={inputClassName} placeholder="joe@doe.com" />
+    </label>
+  </div>
+  <label for="reason" class="block">
+    <span class:list={labelClassName}>Reason</span>
+    <select class:list={selectClassName} required>
+      <option value="" disabled selected> Why are you reaching out?</option>
+      <option value="hello">Say hi</option>
+      <option value="question">I have a question</option>
+      <option value="help">I need help with something</option>
+      <option value="work">I want to work with you</option>
+    </select>
+  </label>
+  <label for="message" class="block">
+    <span class:list={labelClassName}>Message</span>
+    <textarea
+      id="message"
+      name="message"
+      class:list={textareaClassName}
+      rows="8"
+      required
+      placeholder="Hi, I would like to..."></textarea>
+  </label>
+  <span class="pl-2 text-xs"> All fields are required. I'll get back to you as soon as possible.</span>
+  <button
+    type="submit"
+    class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors hover:bg-blue-300/50 active:bg-blue-300 dark:bg-slate-800 dark:hover:bg-slate-800/90 dark:active:bg-slate-800/70"
+    >Submit</button
+  >
 </form>
+
+<style>
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%239ea4b0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+  }
+</style>
