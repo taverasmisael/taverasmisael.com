@@ -1,11 +1,13 @@
 ---
+import type { BlogEntryMeta } from "@/utils/content";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
   post: CollectionEntry<"blog">;
+  meta: BlogEntryMeta;
 }
 
-const { post } = Astro.props;
+const { post, meta } = Astro.props;
 ---
 
 <div
@@ -23,12 +25,12 @@ const { post } = Astro.props;
     <h2
       class="mb-6 mt-3 max-w-md text-2xl font-semibold text-blue-900 hover:underline dark:text-blue-50 sm:mb-8 sm:text-4xl"
     >
-      <a href={post.slug}>{post.data.title}</a>
+      <a href={meta.canonical}>{meta.title}</a>
     </h2>
-    <p class="mb-4 font-light sm:mb-8 md:text-lg">{post.data.description}</p>
+    <p class="mb-4 font-light sm:mb-8 md:text-lg">{meta.description}</p>
   </div>
   <div class="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-900 sm:pt-6">
-    <span class="block flex-1 text-sm text-slate-800 dark:text-slate-300">{post.data.date}</span>
+    <time datetime={post.data.date.toISOString()} class="block flex-1 text-sm text-slate-800 dark:text-slate-300">{meta.formattedDate}</time>
     <ul class="flex gap-2 text-xs sm:gap-4">
       {
         post.data.tags.map(tag => {

@@ -1,10 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import { DEFAULT_LOCALE, LANGUAGES, getLocalizedPage, isSupportedLang, useTranslation } from "@/utils/i18n";
 import Layout from "@/layouts/Entry.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
 import CardPost from "@/components/content/CardPost.astro";
-import { slugToCanonical, getEntryURL } from "@/utils/content";
+import { slugToCanonical, getEntriesByLang } from "@/utils/content";
 import TranslationArchiveBanner from "@/components/TranslationArchiveBanner.astro";
 
 interface Params {
@@ -18,22 +17,14 @@ if (!isSupportedLang(lang)) {
   return Astro.redirect(`/${DEFAULT_LOCALE}/blog?fromLang=${lang}`);
 }
 
-const allPosts = (await getCollection("blog", ({ id }) => id.startsWith(`${lang}/`)))
-  .sort((a, b) => (a.data.date > b.data.date ? -1 : 1))
-  .map(p => ({
-    ...p,
-    slug: slugToCanonical(getEntryURL("blog", p.slug), origin),
-    data: {
-      ...p.data,
-      date: p.data.date.toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" }),
-    },
-  }));
+const allPosts = await getEntriesByLang("blog", lang);
 
 if (!allPosts.length) {
   return Astro.redirect(`/${DEFAULT_LOCALE}/blog?fromLang=${lang}`);
 }
 // TODO: add featured post. This can be with a prop in the frontmatter, or by date, or by popularity (not sure who to measure that).
-const [featuredPost, ...posts] = allPosts;
+const [featuredPost, ...posts] = allPosts.sort((a, b) => (a.entry.data.date > b.entry.data.date ? -1 : 1));
+
 const canonical = slugToCanonical(pathname, origin);
 
 const translations = LANGUAGES.filter(l => l !== lang).map(l => ({
@@ -47,20 +38,22 @@ const t = useTranslation(lang);
 <Layout
   lang={lang}
   canonical={canonical}
+  translations={translations}
   title={t("navigation", "blog")}
   description={t("page_descriptions", "blog")}
   class="dark:!bg-gray-900"
-  translations={translations}
 >
   <TranslationArchiveBanner lang={lang} type="blog" />
   <main>
     <div class="container mx-auto w-full p-8 md:py-24">
       <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
-        <div class="col-span-full lg:col-span-2"><FeaturedPost post={featuredPost} /></div>
+        <div class="col-span-full lg:col-span-2">
+          <FeaturedPost meta={featuredPost.meta} post={featuredPost.entry} />
+        </div>
         <!-- Semi featured -->
         <div class="col-span-full divide-y lg:col-span-2">
           <div class="flex h-full flex-col justify-between">
-            {posts.slice(0, 2).map(post => <CardPost post={post} />)}
+            {posts.slice(0, 2).map(post => <CardPost meta={post.meta} post={post.entry} />)}
           </div>
         </div>
       </div>
@@ -69,7 +62,7 @@ const t = useTranslation(lang);
     <div class="bg-white dark:bg-gray-800">
       <div class="container mx-auto w-full px-8 py-12">
         <div class="grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(2).map(post => <CardPost post={post} />)}
+          {posts.slice(2).map(post => <CardPost meta={post.meta} post={post.entry} />)}
         </div>
       </div>
     </div>
