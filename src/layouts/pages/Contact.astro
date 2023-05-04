@@ -41,13 +41,7 @@ const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
 const t = useTranslation(lang);
 ---
 
-<Layout
-  fullHeight
-  lang={lang}
-  canonical={canonical}
-  description={t("page_descriptions", PAGE)}
-  title={t("navigation", PAGE)}
->
+<Layout lang={lang} canonical={canonical} description={t("page_descriptions", PAGE)} title={t("navigation", PAGE)}>
   <Fragment slot="head">
     {
       translations.map(translation => (
@@ -55,11 +49,11 @@ const t = useTranslation(lang);
       ))
     }
   </Fragment>
-  <main>
-    <div class="w-full">
-      <div class="grid items-center gap-4">
-        <div class="items-center bg-blue-200 px-6 py-4 dark:bg-slate-950 sm:px-8 lg:py-12 xl:px-32">
-          <div class="prose dark:prose-invert xl:prose-lg grid items-center">
+  <main class="h-full min-h-screen">
+    <div class="h-full min-h-screen w-full">
+      <div class="grid h-full min-h-screen items-center gap-4 lg:grid-cols-2">
+        <div class="h-full items-center bg-blue-200 px-6 py-4 dark:bg-slate-950 sm:px-8 lg:py-12 xl:p-32">
+          <div class="prose dark:prose-invert xl:prose-lg grid h-full items-center">
             <div class="container">
               <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
               <p class="m-0 text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>
