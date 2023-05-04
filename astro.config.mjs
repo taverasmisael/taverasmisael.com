@@ -9,6 +9,7 @@ import netlify from "@astrojs/netlify/functions";
 
 // https://astro.build/config
 export default defineConfig({
+  site: process.env.PUBLIC_SITE_URL,
   output: "server",
   adapter: netlify(),
   markdown: {

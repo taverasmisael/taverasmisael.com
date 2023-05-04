@@ -1,7 +1,6 @@
 ---
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
-import { SITE } from "@/config";
 
 type Props = DefaultLayoutProps;
 
@@ -24,7 +23,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="docsearch:language" content={lang}>
     <meta name="generator" content={Astro.generator} />
-    <title>{title} — {SITE.title}</title>
+    <title>{title} — Misael Taveras</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <slot name="head" />
