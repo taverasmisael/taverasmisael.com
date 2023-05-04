@@ -14,6 +14,6 @@ const allEntries = await getEntriesByLang(collection, lang);
 const entries = allEntries.slice(0, max).sort((a, b) => (a.entry.data.date > b.entry.data.date ? -1 : 1));
 ---
 
-<div class="grid sm:grid-cols-2 lg:grid-cols-4">
+<div class="grid sm:grid-cols-2 xl:grid-cols-4">
   {entries.map(entry => <CardPost post={entry.entry} meta={entry.meta} />)}
 </div>
