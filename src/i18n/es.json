@@ -50,7 +50,8 @@
   "page_descriptions": {
     "blog": "Encuentra artículos sobre desarrollo web, tecnología, programación, diseño y más.",
     "home": "Bienvenido a mi sitio web",
-    "about": "Senior Frontend Developer, apasionado por la programación funcional y el desarrollo web."
+    "about": "Senior Frontend Developer, apasionado por la programación funcional y el desarrollo web.",
+    "contact": "¿Tienes algo que contarme? ¡Genial! Puedes hacerlo a través de mis redes sociales o completando el siguiente formulario."
   },
   "languages": {
     "en": "Inglés",

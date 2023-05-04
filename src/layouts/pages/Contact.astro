@@ -1,10 +1,16 @@
 ---
-import { isSupportedLang, LANGUAGES, getLocalizedPage, useTranslation, type Language } from "@/utils/i18n";
+import {
+  isSupportedLang,
+  LANGUAGES,
+  getLocalizedPage,
+  useTranslation,
+  type Language,
+  type PageName,
+} from "@/utils/i18n";
 import { slugToCanonical } from "@/utils/content";
-import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 import Layout from "@/layouts/WithHeader.astro";
-import PageBanner from "@/components/PageBanner.astro";
-import RecentEntries from "@/components/RecentEntries.astro";
+import ContactForm from "@/components/forms/ContactForm.astro";
+import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 
 interface Props {
   frontmatter: AboutFrontmatter;
@@ -14,13 +20,12 @@ interface AboutFrontmatter {
   lang: Language;
   title: string;
   description: string;
-  cvLink: string;
 }
 
-const PAGE = "about";
+const PAGE = "contact" satisfies PageName;
 
 const { frontmatter } = Astro.props;
-const { lang, cvLink } = frontmatter;
+const { lang } = frontmatter;
 
 if (!isSupportedLang(lang)) {
   return Astro.redirect(`/404?from=${Astro.url.pathname}`);
@@ -46,20 +51,18 @@ const t = useTranslation(lang);
     }
   </Fragment>
   <main>
-    <PageBanner class="!bg-blue-100 dark:!bg-gray-950">
-      {t("messages", "cv_is_available_in")}
-      {" "}<a href={cvLink} download="taverasmisael-frontend-engineer-resume.pdf" class="text-blue-500 underline"
-        >{t("ui", "download_here").toLocaleLowerCase()}</a
-      >.
-    </PageBanner>
     <div class="container mx-auto w-full">
-      <div
-        class="prose prose-slate dark:prose-invert lg:prose-lg 2xl:prose-xl mx-auto px-4"
-      >
-        <slot />
-        <FullWidthBlock withContainer class="not-prose">
-          <RecentEntries lang={lang} collection="blog" />
-        </FullWidthBlock>
+      <FullWidthBlock withContainer class="mb-12 bg-blue-50 dark:bg-gray-900">
+        <h1 class="mb-4 mt-12 text-6xl font-bold">{frontmatter.title}</h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>
+      </FullWidthBlock>
+      <div class="grid md:grid-cols-2">
+        <div>
+          <div class="prose dark:prose-invert xl:prose-lg prose-code:text-blue-800 dark:prose-code:text-blue-200">
+            <slot />
+          </div>
+        </div>
+        <ContactForm lang={lang} />
       </div>
     </div>
   </main>

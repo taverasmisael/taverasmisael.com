@@ -31,7 +31,8 @@
     "theme": "Theme",
     "original_version": "Original Version",
     "more_about_me": "Know me more",
-    "download_here": "Download here"
+    "download_here": "Download here",
+    "download": "Download"
   },
   "messages": {
     "page_not_found": "Page not found",
@@ -49,7 +50,8 @@
   "page_descriptions": {
     "blog": "Find articles about web development, technology, programming, design and more.",
     "home": "Welcome to my website",
-    "about": "Senior Frontend Developer, passionate about functional programming and web development."
+    "about": "Senior Frontend Developer, passionate about functional programming and web development.",
+    "contact": "Do you have something to tell me? Great! You can do it through my social networks or by completing the following form."
   },
   "languages": {
     "en": "English",

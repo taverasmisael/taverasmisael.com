@@ -1,0 +1,15 @@
+---
+import type { Language } from "@/i18n";
+import { useTranslation } from "@/utils/i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslation(lang);
+---
+
+<form>
+  HOLA
+</form>
