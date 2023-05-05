@@ -5,6 +5,8 @@ export function sitemap(): AstroIntegration {
   const aSitemap = AstroSitemap({
     i18n: { defaultLocale: "es", locales: { es: "es", en: "en" } },
     customPages: ["https://localhost:3000/en"],
+    // Remove all RSS feeds from the sitemap
+    filter: page => !/rss(-\w{2})?(-\w{2})?.xml/.test(page),
   });
   const NAME = "TAVERAS_SITEMAP";
 

@@ -1,0 +1,14 @@
+---
+import { DEFAULT_LOCALE, type Language } from "@/i18n";
+import { isSupportedLang } from "@/utils/i18n";
+
+const { lang } = Astro.params as { lang: Language };
+
+if (!isSupportedLang(lang)) {
+  return Astro.redirect("/404");
+}
+
+const feedURL = lang === DEFAULT_LOCALE ? "/rss.xml" : `/rss-${lang}.xml`
+
+return Astro.redirect(feedURL);
+---
