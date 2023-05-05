@@ -3,14 +3,14 @@ import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
 import RSSFeedLogo from "@/components/logos/RSSFeed.astro";
-import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";
+import { getLangFromUrl, useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
 import { slugToCanonical } from "@/utils/content";
 
 interface Props {
   lang?: Language;
 }
 
-const year = new Date().getFullYear();
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const social = [
@@ -30,14 +30,14 @@ const social = [
     icon: GitHubLogo,
   },
   {
-    href: slugToCanonical("/rss.xml", Astro.url.origin),
+    href: getLocalizedPage(lang, "feed"),
     text: "RSS",
     icon: RSSFeedLogo,
   },
 ];
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 
-const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
+const year = new Date().getFullYear();
 const t = useTranslation(lang);
 ---
 

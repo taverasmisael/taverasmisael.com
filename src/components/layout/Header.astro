@@ -3,7 +3,7 @@
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
 import Nav from "./Nav.astro";
-import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";
+import { getLangFromUrl, useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
 interface Props {
   lang?: Language;
 }
@@ -35,7 +35,7 @@ const t = useTranslation(lang);
       </div>
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
         <div class="flex shrink-0 items-center">
-          <a href={`/${lang}`}>
+          <a href={getLocalizedPage(lang, "home")}>
             <span class="sr-only">Misael Taveras</span>
             <Image
               class="block h-8 w-auto"

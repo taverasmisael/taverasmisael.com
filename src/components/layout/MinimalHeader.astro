@@ -2,7 +2,7 @@
 // @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
-import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";
+import { getLangFromUrl, getLocalizedPage, useTranslation, type Language } from "@/utils/i18n";
 
 interface Props {
   lang?: Language;
@@ -15,7 +15,7 @@ const t = useTranslation(lang);
 <header class="relative top-0 z-40 w-full bg-slate-50 shadow-md dark:bg-gray-900">
   <div class="mx-auto max-w-7xl px-2 sm:border-none sm:px-6 lg:px-8">
     <div class="relative flex h-20 items-center justify-between">
-      <a href={`/${lang}`}>
+      <a href={getLocalizedPage(lang, "home")}>
         <span class="sr-only">Misael Taveras</span>
         <Image
           class="block h-8 w-auto"
