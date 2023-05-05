@@ -9,14 +9,10 @@ import netlify from "@astrojs/netlify/functions";
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL,
-  output: "server",
   adapter: netlify(),
-  markdown: {
-    remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" },
-  },
-  experimental: {
-    assets: true,
-  },
+  experimental: { assets: true },
   integrations: [tailwind(), mdx(), prefetch(), sitemap(), solidjs()],
+  markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
+  output: "server",
+  site: process.env.PUBLIC_SITE_URL,
 });
