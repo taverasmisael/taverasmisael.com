@@ -3,14 +3,14 @@
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
 import Nav from "./Nav.astro";
-import { getLangFromUrl, useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
+import { useTranslation, type Language, getLocalizedPage, DEFAULT_LOCALE } from "@/utils/i18n";
 interface Props {
   lang?: Language;
 }
 
 const basePath = Astro.url.pathname;
 
-const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
+const lang = Astro.props.lang ?? DEFAULT_LOCALE;
 const t = useTranslation(lang);
 ---
 
@@ -48,7 +48,7 @@ const t = useTranslation(lang);
           </a>
         </div>
         <div class="hidden sm:ml-6 sm:block">
-          <Nav activePage={basePath} />
+          <Nav lang={lang} activePage={basePath} />
         </div>
         <div class="insetr-0 absolute right-1 flex items-center pr-2 sm:relative sm:right-0">
           <button class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white">
@@ -70,7 +70,7 @@ const t = useTranslation(lang);
     </div>
   </div>
   <div class="mobile-menu grid transition-all sm:hidden" id="mobile-menu" aria-hidden="true">
-    <div class="overflow-hidden"><Nav isMobile activePage={basePath} /></div>
+    <div class="overflow-hidden"><Nav lang={lang} isMobile activePage={basePath} /></div>
   </div>
 </header>
 

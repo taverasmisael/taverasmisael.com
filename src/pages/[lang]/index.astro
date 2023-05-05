@@ -23,7 +23,7 @@ const { origin } = Astro.url;
 const canonical = slugToCanonical(lang === DEFAULT_LOCALE ? "/" : `/${lang}`, origin);
 ---
 
-<Layout canonical={canonical} description="HOME" title="Misael Taveras web">
+<Layout lang={lang} canonical={canonical} description="HOME" title="Misael Taveras web">
   <Fragment slot="head">
     {
       translations.map(translation => (

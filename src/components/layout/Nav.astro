@@ -1,25 +1,31 @@
 ---
 import NavLink from "./NavLink.astro";
-import { getLocalizedPage, getLangFromUrl, PAGE_NAMES, type PageName, useTranslation } from "@/utils/i18n";
+import {
+  getLocalizedPage,
+  PAGE_NAMES,
+  type PageName,
+  useTranslation,
+  type Language,
+} from "@/utils/i18n";
 
 interface Props {
   activePage: string;
   isMobile?: boolean;
+  lang: Language;
 }
 
-const { isMobile, activePage } = Astro.props;
+const { isMobile, activePage, lang } = Astro.props;
 const ignoredPages = ["feed", "home"] satisfies PageName[];
-type IgnoredPageName = typeof ignoredPages[number];
-type ValidPageName =  Exclude<PageName, IgnoredPageName>
+type IgnoredPageName = (typeof ignoredPages)[number];
+type ValidPageName = Exclude<PageName, IgnoredPageName>;
 
 function isIgnoredPage(n: PageName): n is ValidPageName {
   return !ignoredPages.includes(n);
 }
 
 const validPages: ValidPageName[] = PAGE_NAMES.filter(isIgnoredPage);
-const locale = getLangFromUrl(Astro.url, true);
-const localizePage = (page: PageName) => getLocalizedPage(locale, page);
-const t = useTranslation(locale);
+const localizePage = (page: PageName) => getLocalizedPage(lang, page);
+const t = useTranslation(lang);
 const pages = validPages.map(name => ({
   name: t("navigation", name),
   path: localizePage(name),

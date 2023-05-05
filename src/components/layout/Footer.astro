@@ -3,14 +3,13 @@ import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
 import RSSFeedLogo from "@/components/logos/RSSFeed.astro";
-import { getLangFromUrl, useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
-import { slugToCanonical } from "@/utils/content";
+import {  useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
 
 interface Props {
-  lang?: Language;
+  lang: Language;
 }
 
-const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
+const { lang } = Astro.props;
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const social = [

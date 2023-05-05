@@ -2,13 +2,13 @@
 // @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
-import { getLangFromUrl, getLocalizedPage, useTranslation, type Language } from "@/utils/i18n";
+import { DEFAULT_LOCALE, getLocalizedPage, useTranslation, type Language } from "@/utils/i18n";
 
 interface Props {
   lang?: Language;
 }
 
-const lang = Astro.props.lang ?? getLangFromUrl(Astro.url, true);
+const lang = Astro.props.lang ?? DEFAULT_LOCALE;
 const t = useTranslation(lang);
 ---
 
