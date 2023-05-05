@@ -1,4 +1,5 @@
 ---
+// @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
 import logo from "@/assets/brand/logo-REPLACE.svg";
 import { getLangFromUrl, useTranslation, type Language } from "@/utils/i18n";

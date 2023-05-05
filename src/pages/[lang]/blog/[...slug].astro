@@ -1,6 +1,7 @@
 ---
 import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
+// @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
 import { getBlogEntry, getCollection, type BlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
