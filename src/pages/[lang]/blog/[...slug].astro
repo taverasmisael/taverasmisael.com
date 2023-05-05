@@ -2,9 +2,24 @@
 import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
 import { Image } from "astro:assets";
-import { getBlogEntry } from "@/utils/content";
+import { getBlogEntry, getCollection, type BlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/i18n";
+
+export const prerender = true;
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+
+  return blogEntries.map(e => {
+    const [lang, slug] = e.slug.split("/") as [Language, string];
+
+    return { params: { lang, slug }, props: { post: e } };
+  });
+}
+
+interface Props {
+  post?: BlogEntry;
+}
 
 const post = await getBlogEntry(Object.values(Astro.params).join("/"));
 
@@ -12,9 +27,8 @@ if (!post) {
   return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 }
 
-const { Content } = await post.entry.render();
-
 const { meta, entry, translations } = post;
+const { Content } = await entry.render();
 
 const components = {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

@@ -100,3 +100,6 @@ export interface BlogEntryMeta {
   ogType: string;
   title: string;
 }
+
+// RE-EXPORTS
+export { getCollection }
