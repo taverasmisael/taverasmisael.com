@@ -4,6 +4,7 @@ import Layout from "@/layouts/Entry.astro";
 import { Image } from "astro:assets";
 import { getBlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
+import type { Language } from "@/i18n";
 
 const post = await getBlogEntry(Object.values(Astro.params).join("/"));
 
@@ -23,7 +24,7 @@ const components = {
 
 <Layout
   canonical={meta.canonical}
-  lang={Astro.params.lang}
+  lang={Astro.params.lang as Language}
   description={meta.description}
   title={meta.title}
   translations={translations}
