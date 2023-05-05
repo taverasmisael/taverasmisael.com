@@ -3,38 +3,36 @@ import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
 // @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
-import { getBlogEntry, getCollection, type BlogEntry } from "@/utils/content";
+import { getCollection, type BlogEntry, blogCollectionToBlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/i18n";
 
-// export const prerender = true;
+// We need to prerender all blog entries to generate the sitemap feed.
+// At least is faster than gatsby. At this point, not sure why not do full SSG instead.
+export const prerender = true;
 export async function getStaticPaths() {
-  // TODO: Only get the paths for X more recent posts or most popular (not sure how to do this)
-  // This is an hybrid integration anyway
-  const blogEntries = await getCollection("blog");
+  const blogCollection = await getCollection("blog");
+  const blogEntries = await Promise.all(blogCollection.map(e => blogCollectionToBlogEntry(e, e.slug)));
 
-  return blogEntries.map(e => {
-    const [lang, slug] = e.slug.split("/") as [Language, string];
+  return blogEntries.map(blogEntry => {
+    const [lang, entrySlug] = blogEntry.entry.slug.split("/") as [Language, string];
 
-    return { params: { lang, slug }, props: { post: e } };
+    return { params: { lang, entrySlug }, props: { post: blogEntry } };
   });
 }
 
 interface Props {
-  post?: BlogEntry;
+  post: BlogEntry;
 }
 
-const post = await getBlogEntry(Object.values(Astro.params).join("/"));
+const post = Astro.props.post;
 
-if (!post) {
-  return Astro.redirect(`/404?from=${Astro.url.pathname}`);
-}
+if (!post) return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 
 const { meta, entry, translations } = post;
 const { Content } = await entry.render();
 
 const components = {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   Admonition: Admonition,
 };
 ---
