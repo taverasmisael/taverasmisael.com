@@ -6,8 +6,10 @@ import { getBlogEntry, getCollection, type BlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/i18n";
 
-export const prerender = true;
+// export const prerender = true;
 export async function getStaticPaths() {
+  // TODO: Only get the paths for X more recent posts or most popular (not sure how to do this)
+  // This is an hybrid integration anyway
   const blogEntries = await getCollection("blog");
 
   return blogEntries.map(e => {

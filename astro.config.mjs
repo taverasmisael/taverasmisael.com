@@ -11,8 +11,22 @@ import netlify from "@astrojs/netlify/functions";
 export default defineConfig({
   adapter: netlify(),
   experimental: { assets: true },
-  integrations: [tailwind(), mdx(), prefetch(), sitemap(), solidjs()],
+  integrations: [tailwind(), mdx(), prefetch({
+    selector: "article a:not([href^="/"]), a[rel*='prefetch']"
+  }), sitemap({
+    i18n: {
+      defaultLocale: "es",
+      locales: {
+        es: "es",
+        en: "en",
+      }
+    },
+    filter: (page) => {
+      console.log({ page })
+      return true
+    }
+  }), solidjs()],
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
   output: "server",
-  site: process.env.PUBLIC_SITE_URL,
+  site: import.meta.env.PUBLIC_SITE_URL || process.env.PUBLIC_SITE_URL || "https://localhost:3000",
 });

@@ -36,14 +36,7 @@ export function isSupportedLang(lang: string): lang is Language {
 }
 
 export function getLocalizedPage(locale: Language, page: PageName) {
-  return PAGE_URLS[page][locale];
-}
-
-export function getPageNameFromURL(lang: Language, slug: string) {
-  const found = Object.values(PAGE_URLS).find(pageURLs => Object.values(pageURLs).find(url => url.includes(slug)));
-
-  if (!found) return null;
-  return found[lang];
+  return `/${locale}/${PAGE_URLS[page]}`;
 }
 
 const missingTranslationParams = (translation: string, translationId: string) => {
