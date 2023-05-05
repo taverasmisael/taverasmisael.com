@@ -35,8 +35,15 @@ export function isSupportedLang(lang: string): lang is Language {
   return lang in locales;
 }
 
-export function getLocalizedPage(locale: Language, page: PageName): string {
+export function getLocalizedPage(locale: Language, page: PageName) {
   return PAGE_URLS[page][locale];
+}
+
+export function getPageNameFromURL(lang: Language, slug: string) {
+  const found = Object.values(PAGE_URLS).find(pageURLs => Object.values(pageURLs).find(url => url.includes(slug)));
+
+  if (!found) return null;
+  return found[lang];
 }
 
 const missingTranslationParams = (translation: string, translationId: string) => {
@@ -61,9 +68,7 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
     const translation = pathOr(`TODO: ${translationId}`, [domain, key as string], locales[locale]);
     if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
     if (translation.startsWith("[NOTE]: "))
-      console.error(
-        `Translation ${translationId} is not meant to be used, at least on this locale (${locale})`
-      );
+      console.error(`Translation ${translationId} is not meant to be used, at least on this locale (${locale})`);
     if (translation.includes("{{") && !params) missingTranslationParams(translation, `${translationId}`);
 
     if (params) {
@@ -71,8 +76,7 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
         return acc.replace(`{{${key}}}`, value);
       }, translation);
 
-      if (processedTranslation.includes("{{"))
-        missingTranslationParams(processedTranslation, `${translationId}`);
+      if (processedTranslation.includes("{{")) missingTranslationParams(processedTranslation, `${translationId}`);
 
       return processedTranslation;
     }
