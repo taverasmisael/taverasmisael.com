@@ -1,3 +1,4 @@
+import { anyPass, complement } from "rambda";
 import { createReadStream, createWriteStream, copyFile, unlink } from "fs";
 import { fileURLToPath } from "url";
 import { SitemapIndexStream, XMLToSitemapIndexStream, streamToPromise } from "sitemap";
@@ -11,13 +12,19 @@ interface SitemapConfig {
   entriesSitemapName: string;
 }
 
+const ignoreRSS = (page: string) => /rss(-\w{2})?(-\w{2})?.xml/.test(page);
+const ignoreSitemapIndex = (page: string) => /(sitemap-index.xml|sitemap.xml)/.test(page);
+const ignoreImageFolder = (page: string) => /(_image)/.test(page);
+
+const sitemapFilter = complement(anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder]));
+
 export function sitemap({ entriesSitemapName }: SitemapConfig): AstroIntegration {
   let astroConfig: AstroConfig;
   const aSitemap = AstroSitemap({
     i18n: { defaultLocale: "es", locales: { es: "es", en: "en" } },
     customPages: ["https://localhost:3000/en"],
     // Remove all RSS feeds from the sitemap
-    filter: page => !/rss(-\w{2})?(-\w{2})?.xml/.test(page),
+    filter: sitemapFilter,
   });
   const NAME = "@taverasmisael/sitemap";
   const logger = new Logger(NAME);
