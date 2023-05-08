@@ -1,3 +1,4 @@
+import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
@@ -5,7 +6,9 @@ import prefetch from "@astrojs/prefetch";
 import solidjs from "@astrojs/solid-js";
 import netlify from "@astrojs/netlify/functions";
 
-import { sitemap} from './integrations/sitemap'
+import { sitemap } from "./integrations/sitemap";
+
+const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,10 +20,10 @@ export default defineConfig({
     prefetch({
       selector: "article a:not([href^='/']), a[rel*='prefetch']",
     }),
-    sitemap({ entriesSitemapName: 'sitemap.xml'}),
+    sitemap({ entriesSitemapName: "sitemap.xml" }),
     solidjs(),
   ],
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
   output: "server",
-  site: import.meta.env.PUBLIC_SITE_URL || process.env.PUBLIC_SITE_URL || "https://localhost:3000",
+  site: env.PUBLIC_SITE_URL || "https://localhost:5000",
 });

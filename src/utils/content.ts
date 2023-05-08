@@ -1,7 +1,8 @@
 import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
-import { type Language, DEFAULT_LOCALE } from "./i18n";
+import { type Language, DEFAULT_LOCALE } from "@/utils/i18n";
+import { getEnv } from "@/utils/env";
 
-const SITE_URL = import.meta.env.PUBLIC_SITE_URL as string;
+const SITE_URL = getEnv().SITE;
 
 const Collections = {
   blog: "blog",
