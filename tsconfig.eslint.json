@@ -5,6 +5,7 @@
     "./astro.config.mjs",
     "./tailwind.config.cjs",
     "./src/**/*.astro",
+    "./integrations/**/*.ts",
     "./src/**/*.js",
     "./src/**/*.ts",
     "./src/**/*.tsx",

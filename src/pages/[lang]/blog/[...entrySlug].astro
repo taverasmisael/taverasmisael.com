@@ -9,7 +9,7 @@ import type { Language } from "@/i18n";
 
 // We need to prerender all blog entries to generate the sitemap feed.
 // At least is faster than gatsby. At this point, not sure why not do full SSG instead.
-export const prerender = true;
+// export const prerender = true;
 export async function getStaticPaths() {
   const blogCollection = await getCollection("blog");
   const blogEntries = await Promise.all(blogCollection.map(e => blogCollectionToBlogEntry(e, e.slug)));

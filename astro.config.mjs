@@ -17,7 +17,7 @@ export default defineConfig({
     prefetch({
       selector: "article a:not([href^='/']), a[rel*='prefetch']",
     }),
-    sitemap(),
+    sitemap({ entriesSitemapName: 'sitemap.xml'}),
     solidjs(),
   ],
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
