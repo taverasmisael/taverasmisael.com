@@ -17,11 +17,9 @@ export default defineConfig({
   integrations: [
     tailwind(),
     mdx(),
-    prefetch({
-      selector: "article a:not([href^='/']), a[rel*='prefetch']",
-    }),
-    sitemap({ entriesSitemapName: "sitemap.xml" }),
+    prefetch({ selector: "article a:not([href^='/']), a[rel*='prefetch']" }),
     solidjs(),
+    sitemap({ name: "sitemap.xml", customPaths: ["/en", "/es"] }),
   ],
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
   output: "server",
