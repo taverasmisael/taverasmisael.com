@@ -3,38 +3,23 @@ import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
 // @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
-import { getCollection, type BlogEntry, blogCollectionToBlogEntry } from "@/utils/content";
+import { getBlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/i18n";
 
-// We need to prerender all blog entries to generate the sitemap feed.
-// At least is faster than gatsby. At this point, not sure why not do full SSG instead.
-// export const prerender = true;
-export async function getStaticPaths() {
-  const blogCollection = await getCollection("blog");
-  const blogEntries = await Promise.all(blogCollection.map(e => blogCollectionToBlogEntry(e, e.slug)));
+type Params = {
+  lang: Language;
+  slug: string;
+};
 
-  return blogEntries.map(blogEntry => {
-    const [lang, entrySlug] = blogEntry.entry.slug.split("/") as [Language, string];
-
-    return { params: { lang, entrySlug }, props: { post: blogEntry } };
-  });
-}
-
-interface Props {
-  post: BlogEntry;
-}
-
-const post = Astro.props.post;
+const post = await getBlogEntry(Object.values(Astro.params as Params).join("/"));
 
 if (!post) return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 
 const { meta, entry, translations } = post;
 const { Content } = await entry.render();
 
-const components = {
-  Admonition: Admonition,
-};
+const components = { Admonition: Admonition };
 ---
 
 <Layout
