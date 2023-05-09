@@ -18,7 +18,7 @@ const getLocalizedPath = getFullLocalizedPath(lang);
 const canonical = slugToCanonical(getLocalizedPath("/"));
 
 const featuredPost = await getBlogEntry(
-  lang !== DEFAULT_LOCALE ? "en/entendiendo-los-snapshots-de-jest" : "es/10-consejos-que-yo-deberia-seguir.mdx"
+  lang !== DEFAULT_LOCALE ? "en/entendiendo-los-snapshots-de-jest" : "es/10-consejos-que-yo-deberia-seguir"
 );
 
 const urls = {
@@ -31,47 +31,64 @@ const t = useTranslation(lang);
 ---
 
 <Layout canonical={canonical} lang={lang} description={t("page_descriptions", "home")} title={t("navigation", "home")}>
-  <main class="container mx-auto w-full space-y-8 px-2">
+  <main class="container mx-auto w-full px-8">
     <FullWidthBlock
       withContainer
-      class="bg-blue-200 py-32 shadow dark:bg-slate-950 dark:bg-gradient-to-tl dark:from-slate-900 dark:to-slate-950 lg:py-64"
+      class="bg-gradient-to-tl from-blue-100 to-blue-200 text-xl leading-8 text-slate-800 shadow dark:bg-slate-950 dark:from-slate-900 dark:to-slate-950 dark:text-slate-300 lg:py-64"
     >
-      <h1>Hi, I'm <strong>Misael Taveras</strong></h1>
-      <p>I'm a frontend engineer, currently working with React, TypeScript, and Node.</p>
-
-      <p>You can <a href={urls.about} class="btn btn-primary" rel="prefetch">read more about me here.</a></p>
-    </FullWidthBlock>
-    <div class="grid gap-8 py-16 md:grid-cols-2 lg:py-32">
-      <div>
-        <h2>I also write a blog</h2>
+      <h2 class="mb-8 text-5xl tracking-wide md:text-6xl lg:text-8xl">Hello there 👋🏽</h2>
+      <div class="max-w-lg">
+        <p class="mb-6">
+          I'm <strong class="font-semibold text-slate-950 dark:text-white">Misael Taveras</strong>, and I'm a frontend
+          engineer from the Dominican Republic.
+        </p>
+        <p class="mb-12">
+          I enjoy working with <span class="font-semibold">React</span>, <span class="font-semibold">TypeScript</span>,
+          and <span class="font-semibold">Node</span>.
+        </p>
         <p>
-          My end goal is to help people learn new things, and I do that by writing about the things I learn. There
-          you'll find articles about JavaScript, React, Visual Studio Code, and softskills like communication and
-          productivity.
+          You can <a href={urls.about} class="font-semibold text-slate-950 underline dark:text-white" rel="prefetch"
+            >read more about me here
+          </a>
         </p>
       </div>
-      <div>
+    </FullWidthBlock>
+    <div class="gap-8 py-16 lg:grid lg:grid-cols-2 xl:py-32">
+      <div class="prose dark:prose-invert xl:prose-lg prose-a:no-underline">
+        <h2>I also write a blog</h2>
+        <p>
+          There you'll find articles about porgramming, and sowftware, but also soft skilss like communication,
+          productivity and learning.
+        </p>
+        <p>My end goal is to help people learn new things, and I do that by writing about the things I learn.</p>
+        <a
+          href={urls.blog}
+          class="mt-12 hidden rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-700 dark:ring-slate-800 dark:ring-offset-slate-800 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:active:bg-slate-900/80 lg:inline-block"
+          rel="prefetch">View all posts</a
+        >
+      </div>
+      <div class="mt-8 lg:mt-0">
         {featuredPost && <FeaturedPost post={featuredPost.entry} meta={featuredPost.meta} />}
-
-        <a href={urls.blog} rel="prefetch">Check all posts</a>
+        <a
+          href={urls.blog}
+          class="mt-12 block rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-700 dark:ring-slate-800 dark:ring-offset-slate-800 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:active:bg-slate-900/80 lg:hidden"
+          rel="prefetch">View all posts</a
+        >
       </div>
     </div>
-    <FullWidthBlock withContainer class="bg-slate-200 py-16 dark:bg-slate-900 lg:py-32">
-      <h2>Testimonials</h2>
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="prose xl:prose-lg dark:prose-invert">
+    <FullWidthBlock withContainer class="bg-slate-200 py-16 dark:bg-slate-900 xl:py-32">
+      <div class="gap-8 lg:grid lg:grid-cols-2">
+        <div class="prose dark:prose-invert xl:prose-lg">
+          <h2>Testimonials</h2>
           <p>
             Working with diferent teams and people, I've had the opportunity to learn a lot from them. Here are some of
             the things they've said about me.
           </p>
           <p>
-            If you want to know more about my work, you can check my{" "}
-            <a href="https://www.linkedin.com/in/taverasmisael/" rel="nofollow external">LinkedIn profile</a>.
-          </p><p>
             If you are ready to work with me, you can <a href={urls.contact} rel="prefetch">contact me here</a>.
           </p>
         </div>
-        <div>
+        <div class="mt-8 lg:mt-0">
           <!-- TODO: USE the real testimonials -->
           <blockquote>
             <p>
