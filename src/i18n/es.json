@@ -36,7 +36,6 @@
   },
   "messages": {
     "page_not_found": "Página no encontrada",
-    "page_not_found_description": "La página que estás buscando no existe.",
     "page_not_found_message": "Es posible que la página se haya movido o solo exista en otro universo",
     "server_error": "Error del servidor",
     "server_error_description": "Algo salió mal en el servidor.",
@@ -51,7 +50,8 @@
     "blog": "Encuentra artículos sobre desarrollo web, tecnología, programación, diseño y más.",
     "home": "Bienvenido a mi sitio web",
     "about": "Senior Frontend Developer, apasionado por la programación funcional y el desarrollo web.",
-    "contact": "¿Tienes algo que contarme? ¡Genial! Puedes hacerlo a través de mis redes sociales o completando el siguiente formulario."
+    "contact": "¿Tienes algo que contarme? ¡Genial! Puedes hacerlo a través de mis redes sociales o completando el siguiente formulario.",
+    "not_found": "La página que estás buscando no existe."
   },
   "languages": {
     "en": "Inglés",

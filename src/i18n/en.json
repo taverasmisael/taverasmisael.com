@@ -36,7 +36,6 @@
   },
   "messages": {
     "page_not_found": "Page not found",
-    "page_not_found_description": "The page you are looking for does not exist.",
     "page_not_found_message": "It's possible that the page has moved or only exists in another universe.",
     "server_error": "Server error",
     "server_error_description": "An error occurred while processing your request.",
@@ -51,7 +50,8 @@
     "blog": "Find articles about web development, technology, programming, design and more.",
     "home": "Welcome to my website",
     "about": "Senior Frontend Developer, passionate about functional programming and web development.",
-    "contact": "Do you have something to tell me? Great! You can do it through my social networks or by completing the following form."
+    "contact": "Do you have something to tell me? Great! You can do it through my social networks or by completing the following form.",
+    "not_found": "The page you are looking for does not exist."
   },
   "languages": {
     "en": "English",

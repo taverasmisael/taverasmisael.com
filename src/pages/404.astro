@@ -22,14 +22,14 @@ const canonical = slugToCanonical("/404");
   fullHeight
   canonical={canonical}
   lang={lang}
-  description={t("messages", "page_not_found_description")}
+  description={t("page_descriptions", "not_found")}
   title={t("messages", "page_not_found")}
   class="flex h-full flex-col dark:!bg-slate-900"
 >
   <main class="grid flex-1 place-items-center px-6 py-24 sm:py-32 lg:px-8">
     <div class="text-center">
       <p class="text-xl text-slate-600 dark:text-slate-300 sm:text-4xl">404</p>
-      <h1 class="mb-10 text-4xl font-bold sm:mb-12 sm:text-6xl">{t("messages", "page_not_found_description")}</h1>
+      <h1 class="mb-10 text-4xl font-bold sm:mb-12 sm:text-6xl">{t("page_descriptions", "not_found")}</h1>
       <p class="mb-24 sm:mb-20">{t("messages", "page_not_found_message")}</p>
       <div class="space-x-8">
         <a
