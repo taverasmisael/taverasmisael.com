@@ -10,12 +10,7 @@ export class Logger {
 
   constructor(public packageName: string) {}
   public log(msg: string, prefix = "") {
-    console.log(
-      `%s${this.packageName}:%s ${msg}
-`,
-      prefix,
-      prefix ? this.colors.reset : ""
-    );
+    console.log(`%s${this.packageName}:%s ${msg} `, prefix, prefix ? this.colors.reset : "");
   }
   info(msg: string) {
     this.log(msg);
@@ -24,17 +19,9 @@ export class Logger {
     this.log(msg, this.colors.fg.green);
   }
   warn(msg: string) {
-    this.log(
-      `Skipped!
-${msg}`,
-      this.colors.fg.yellow
-    );
+    this.log(`Skipped! ${msg}`, this.colors.fg.yellow);
   }
   error(msg: string) {
-    this.log(
-      `Failed!
-${msg}`,
-      this.colors.fg.red
-    );
+    this.log(`Failed! ${msg}`, this.colors.fg.red);
   }
 }
