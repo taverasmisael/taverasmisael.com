@@ -12,12 +12,6 @@ import {
   type LocaleDomain,
 } from "@/i18n";
 
-export function getFullLocalizedPath(locale: string) {
-  return (path: string): string => {
-    return `/${locale || DEFAULT_LOCALE}${path}`;
-  };
-}
-
 export function getLangFromUrl<T extends boolean = false>(
   url: URL,
   withFallback?: T

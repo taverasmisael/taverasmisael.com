@@ -1,18 +1,24 @@
 ---
 import { path, split, pipe, filter } from "rambda";
 import Layout from "@/layouts/WithMiniHeader.astro";
-import { DEFAULT_LOCALE, getFullLocalizedPath, isSupportedLang, useTranslation } from "@/utils/i18n";
-import { slugToCanonical } from "@/utils/content";
+import { DEFAULT_LOCALE, getLocalizedPage, isSupportedLang, useTranslation } from "@/utils/i18n";
+import { getBlogEntriesByLang, getEntryURL, slugToCanonical, type BlogEntry } from "@/utils/content";
 
 export const prerender = true;
 
 const search = new URLSearchParams(Astro.url.search).get("from") ?? "";
 const localeFromSearch = pipe(split("/"), filter(Boolean), path("0"))(search) as string;
-
 const lang = isSupportedLang(localeFromSearch) ? localeFromSearch : DEFAULT_LOCALE;
-const getLocalizedPath = getFullLocalizedPath(lang);
-const homeURL = getLocalizedPath("/");
-const luckyURL = getLocalizedPath("/random");
+
+const allPosts = await getBlogEntriesByLang(lang);
+
+// The lucky post is a random post from the same language as the current page.
+// It could be that there are no posts in the current language, so we need to
+// force TypeScript to accept undefined as a possible value.
+const luckyPost = allPosts[Math.floor(Math.random() * allPosts.length)] as BlogEntry | undefined;
+
+const homeURL = getLocalizedPage(lang, "home");
+const luckyURL = luckyPost ? getEntryURL("blog", luckyPost.entry.slug) : getLocalizedPage(lang, "blog");
 
 const t = useTranslation(lang);
 const canonical = slugToCanonical("/404");
@@ -28,7 +34,7 @@ const canonical = slugToCanonical("/404");
 >
   <main class="grid flex-1 place-items-center px-6 py-24 sm:py-32 lg:px-8">
     <div class="text-center">
-      <p class="text-xl text-slate-600 dark:text-slate-300 sm:text-4xl">404</p>
+      <p class="text-xl text-blue-500 dark:text-blue-200 sm:text-4xl">404</p>
       <h1 class="mb-10 text-4xl font-bold sm:mb-12 sm:text-6xl">{t("page_descriptions", "not_found")}</h1>
       <p class="mb-24 sm:mb-20">{t("messages", "page_not_found_message")}</p>
       <div class="space-x-8">
