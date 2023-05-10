@@ -1,0 +1,54 @@
+---
+import { getLocalizedPage, type Language } from "@/utils/i18n";
+
+import HomeLayout from "@/layouts/pages/Home.astro";
+export const prerender = true;
+const lang = "en" satisfies Language;
+
+const urls = {
+  blog: getLocalizedPage(lang, "blog"),
+  about: getLocalizedPage(lang, "about"),
+  contact: getLocalizedPage(lang, "contact"),
+};
+---
+
+<HomeLayout lang={lang} featuredPostSlug="en/entendiendo-los-snapshots-de-jest">
+  <Fragment slot="jumbotron">
+    <h2 class="mb-8 text-5xl tracking-wide md:text-6xl lg:text-8xl">Hello there 👋🏽</h2>
+    <div class="max-w-lg">
+      <p class="mb-6">
+        I'm <strong class="font-semibold text-slate-950 dark:text-white">Misael Taveras</strong>, and I'm a frontend
+        engineer from the Dominican Republic.
+      </p>
+      <p class="mb-12">
+        I enjoy working with <span class="font-semibold">React</span>, <span class="font-semibold">TypeScript</span>,
+        and <span class="font-semibold">Node</span>.
+      </p>
+      <p>
+        You can <a href={urls.about} class="font-semibold text-slate-950 underline dark:text-white" rel="prefetch"
+          >read more about me here
+        </a>
+      </p>
+    </div>
+  </Fragment>
+
+  <Fragment slot="blog">
+    <h2>I also write a blog</h2>
+    <p>
+      There you'll find articles about porgramming, and sowftware, but also soft skilss like communication, productivity
+      and learning.
+    </p>
+    <p>My end goal is to help people learn new things, and I do that by writing about the things I learn.</p>
+  </Fragment>
+
+  <Fragment slot="testimonials">
+    <h2>Testimonials</h2>
+    <p>
+      Working with diferent teams and people, I've had the opportunity to learn a lot from them. Here are some of the
+      things they've said about me.
+    </p>
+    <p>
+      If you are ready to work with me, you can <a href={urls.contact} rel="prefetch">contact me here</a>.
+    </p>
+  </Fragment>
+</HomeLayout>

@@ -1,0 +1,57 @@
+---
+import { getLocalizedPage, type Language } from "@/utils/i18n";
+
+import HomeLayout from "@/layouts/pages/Home.astro";
+export const prerender = true;
+const lang = "es" satisfies Language;
+
+const urls = {
+  blog: getLocalizedPage(lang, "blog"),
+  about: getLocalizedPage(lang, "about"),
+  contact: getLocalizedPage(lang, "contact"),
+};
+---
+
+<HomeLayout lang={lang} featuredPostSlug="es/10-consejos-que-yo-deberia-seguir">
+  <Fragment slot="jumbotron">
+    <h2 class="mb-8 text-5xl tracking-wide md:text-6xl lg:text-8xl">Hola 👋🏽</h2>
+    <div class="max-w-lg">
+      <p class="mb-6">
+        Mi nombre es <strong class="font-semibold text-slate-950 dark:text-white">Misael Taveras</strong>, y soy un
+        ingeniero frontend de República Dominicana.
+      </p>
+      <p class="mb-12">
+        Me encanta trabajar con <span class="font-semibold">React</span>, <span class="font-semibold">TypeScript</span>,
+        y <span class="font-semibold">Node</span>.
+      </p>
+      <p>
+        Puedes saber <a href={urls.about} class="font-semibold text-slate-950 underline dark:text-white" rel="prefetch"
+          >más sobre mi aquí</a
+        >
+      </p>
+    </div>
+  </Fragment>
+
+  <Fragment slot="blog">
+    <h2>Lo que escribo</h2>
+    <p>
+      En el blog podrás encontrar articulos sobre programación y software en general, pero tambien toco temas como la
+      comunicación, productividad y aprendizaje.
+    </p>
+    <p>
+      Mi misión es ayudar a las personas a aprender cosas nuevas de forma interesante. Por eso escribo sobre las cosas
+      que aprendo y mis experiencias.
+    </p>
+  </Fragment>
+
+  <Fragment slot="testimonials">
+    <h2>¿Qué dicen?</h2>
+    <p>
+      Trabajar con diferentes equipos y personas, me ha dado la oportunidad de aprender mucho de ellos, y estoy más que
+      agradgecido por eso. Aquí hay algunas de las cosas que han dicho sobre mi.
+    </p>
+    <p>
+      Si estás listo para trabajar conmigo, puedes <a href={urls.contact} rel="prefetch">contactarme aquí</a>.
+    </p>
+  </Fragment>
+</HomeLayout>
