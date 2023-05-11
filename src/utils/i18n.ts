@@ -27,16 +27,21 @@ const missingTranslationParams = (translation: string, translationId: string) =>
   }
 };
 
-export function useTranslation<TLocale extends Language>(locale: TLocale) {
-  // Future Misael, the trick here is to put TDomain and TKey on the returned function instead of the useTranslation
-  return <
-    TDomain extends LocaleDomain,
-    TKey extends keyof LocaleSet[TLocale][TDomain],
-    Params extends Record<string, string>
-  >(
-    domain: TDomain,
-    key: TKey,
-    params?: Params
+export type UseTranslation<TLocale extends Language> = <
+  TDomain extends LocaleDomain,
+  TKey extends keyof LocaleSet[TLocale][TDomain],
+  Params extends Record<string, string>
+>(
+  domain: TDomain,
+  key: TKey,
+  params?: Params
+) => string;
+
+export function useTranslation<TLocale extends Language>(locale: TLocale): UseTranslation<TLocale> {
+  return (
+    domain,
+    key,
+    params?: Record<string, string>
   ): string => {
     const translationId = `${domain}.${key.toString()}`;
     const translation = pathOr(`TODO: ${translationId}`, [domain, key as string], locales[locale]);
