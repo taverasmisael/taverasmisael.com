@@ -9,7 +9,7 @@ import {
 } from "@/utils/i18n";
 import { slugToCanonical } from "@/utils/content";
 import Layout from "@/layouts/WithHeader.astro";
-import ContactForm from "@/components/forms/ContactForm.astro";
+import ContactForm from "@/components/forms/ContactForm";
 
 interface Props {
   frontmatter: AboutFrontmatter;
@@ -61,12 +61,10 @@ const t = useTranslation(lang);
             </div>
           </div>
         </div>
-        <div class="px-6 py-4 sm:px-8 lg:py-12 xl:px-24" id="contact-form">
-          <ContactForm lang={lang} />
+        <div class="px-6 py-4 sm:px-8 lg:py-12 xl:px-24">
+          <ContactForm client:idle action="/api/contact" lang={lang} />
         </div>
       </div>
     </div>
   </main>
 </Layout>
-
-<style></style>
