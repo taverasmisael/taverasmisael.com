@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "pnpm astro:check && astro build",
-    "preview": "astro preview",
+    "build:local": "pnpm astro:check && LOCAL_BUILD=true astro build",
+    "preview": "LOCAL_BUILD=true astro preview",
     "astro": "astro",
     "astro:check": "astro check && tsc --noEmit",
     "format": "prettier -c .",
@@ -19,6 +20,7 @@
   "dependencies": {
     "@astrojs/mdx": "^0.19.1",
     "@astrojs/netlify": "^2.2.2",
+    "@astrojs/node": "^5.1.2",
     "@astrojs/prefetch": "^0.2.1",
     "@astrojs/rss": "^2.4.1",
     "@astrojs/solid-js": "^2.1.1",
