@@ -1,0 +1,20 @@
+/*
+  DO NOT USE THIS FILE UNLESS IS ABSOLUTELY NECESSARY
+  This file is used to override the default styles of the components when they are
+  too hard to override using tailwind classes. This file should be used as a last
+  resort.
+
+  If you are using this file, please add a comment explaining why you are using it
+  and what you are trying to achieve.
+*/
+
+
+/*
+  As we are using different frameworks, there's not a easy way to override the styles for the select
+  without a lot of repetition and using different strategies (like inline styles and astro scopped styles).
+*/
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%239ea4b0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
