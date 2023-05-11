@@ -12,19 +12,6 @@ import {
   type LocaleDomain,
 } from "@/i18n";
 
-export function getLangFromUrl<T extends boolean = false>(
-  url: URL,
-  withFallback?: T
-): T extends true ? Language : string {
-  const [, lang] = url.pathname.split("/");
-
-  if (withFallback) {
-    return isSupportedLang(lang) ? lang : DEFAULT_LOCALE;
-  }
-
-  return lang as T extends true ? Language : string;
-}
-
 export function isSupportedLang(lang: string): lang is Language {
   return lang in locales;
 }
@@ -55,13 +42,16 @@ export function useTranslation<TLocale extends Language>(locale: TLocale) {
     const translation = pathOr(`TODO: ${translationId}`, [domain, key as string], locales[locale]);
     if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
     if (translation.startsWith("[NOTE]: "))
-      console.error(`Translation ${translationId} is not meant to be used, at least on this locale (${locale})`);
+      console.error(
+        `Translation ${translationId} is not meant to be used, at least on this locale (${locale}).\n ${translation}`
+      );
     if (translation.includes("{{") && !params) missingTranslationParams(translation, `${translationId}`);
 
     if (params) {
-      const processedTranslation = Object.entries(params).reduce((acc, [key, value]) => {
-        return acc.replace(`{{${key}}}`, value);
-      }, translation);
+      const processedTranslation = Object.entries(params).reduce(
+        (acc, [key, value]) => acc.replace(`{{${key}}}`, value),
+        translation
+      );
 
       if (processedTranslation.includes("{{")) missingTranslationParams(processedTranslation, `${translationId}`);
 
