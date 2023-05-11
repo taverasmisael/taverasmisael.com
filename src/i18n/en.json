@@ -33,7 +33,8 @@
     "more_about_me": "Know me more",
     "download_here": "Download here",
     "download": "Download",
-    "view_all_posts": "View all posts"
+    "view_all_posts": "View all posts",
+    "error": "Error"
   },
   "messages": {
     "page_not_found": "Page not found",
@@ -63,7 +64,7 @@
     "blog": "Blog"
   },
   "forms": {
-    "name": "Name", 
+    "name": "Name",
     "email": "Email",
     "reason": "Reason",
     "message": "Message",
@@ -78,6 +79,17 @@
     "reason.question": "I have a question",
     "reason.help": "I need help with something",
     "reason.work": "I want to work with you",
-    "error": "There was an error sending your message. Please try again later."
+    "error": "There was an error sending your message. Please try again later.",
+    "reason.other": "Something else, more interesting"
+  },
+  "validation": {
+    "invalid_type": "Invalid type. Expected {{expected}}, but received \"{{received}}\"",
+    "invalid_literal": "Invalid literal. Expected \"{{expected}}\", but received \"{{received}}\"",
+    "invalid_union": "Invalid value. Expected one of {{expected}}, but received \"{{received}}\"",
+    "invalid_enum_value": "Invalid value. Expected a valid option. Received \"{{received}}\"",
+    "invalid_email": "Invalid email",
+    "too_small": "Must be at least {{minimum}} characters",
+    "too_big": "Only allows {{maximum}} characters",
+    "unknown": "Unknown error"
   }
 }

@@ -33,7 +33,8 @@
     "more_about_me": "Más sobre mí",
     "download": "Descargar",
     "download_here": "Descarga aquí",
-    "view_all_posts": "Ver todos los artículos"
+    "view_all_posts": "Ver todos los artículos",
+    "error": "Error"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
@@ -78,6 +79,17 @@
     "reason.hello": "Pasaba a saludar",
     "reason.question": "Tengo una pregunta",
     "reason.help": "Necesito ayuda",
-    "reason.work": "Quisiera trabajar contigo"
+    "reason.work": "Quisiera trabajar contigo",
+    "reason.other": "Otra cosa más interesante"
+  },
+  "validation": {
+    "invalid_type": "Tipo no permitido. Esperaba {{expected}}, pero recibí \"{{received}}\"",
+    "invalid_literal": "Valor literal no admitido. Esperaba \"{{expected}}\", pero recibí \"{{received}}\"",
+    "invalid_union": "Valor no permitido. Esperaba uno de {{expected}}, pero recibí \"{{received}}\"",
+    "invalid_enum_value": "Valor no permitido. Esperaba una opción valida, pero recibí \"{{received}}\"",
+    "invalid_email": "No es un email válido",
+    "too_small": "Debe tener al menos {{minimum}} caracteres",
+    "too_big": "Solo permite {{maximum}} caracteres",
+    "unknown": "Error desconocido"
   }
 }
