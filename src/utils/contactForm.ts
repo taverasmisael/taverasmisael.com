@@ -10,17 +10,21 @@ export const contactFormScheme = z.object({
   reason: z.enum(validReasons),
   message: z.string().min(10).max(500),
   lang: z.enum(LANGUAGES),
+  nationality: z.undefined(),
 });
 
 export type ContactForm = z.infer<typeof contactFormScheme>;
 
 export class ContactFormError extends Error {
-  errors: Record<string, ZodIssue>;
+  errors: Partial<Record<keyof ContactForm, ZodIssue>>;
   zodError: ZodError;
 
   constructor(errors: ZodError) {
     super("ValidationError");
-    this.errors = errors.errors.reduce((prev, e) => ({ ...prev, [e.path[0]]: e }), {});
+    this.errors = errors.errors.reduce<Partial<Record<keyof ContactForm, ZodIssue>>>(
+      (prev, e) => ({ ...prev, [e.path[0] as keyof ContactForm]: e }),
+      {}
+    );
     this.zodError = errors;
   }
 
@@ -39,5 +43,9 @@ export class ContactFormError extends Error {
           return t("validation", "unknown");
       }
     }, this.errors);
+  }
+
+  getFirstErrorKey(): keyof ContactForm | undefined {
+    return Object.keys(this.errors)[0] as keyof ContactForm;
   }
 }

@@ -1,39 +1,21 @@
-import { contactFormScheme } from "@/utils/contactForm";
+import { ContactFormError, contactFormScheme } from "@/utils/contactForm";
 import type { ZodError } from "zod";
 
 export async function post({ request }: { request: Request }) {
   const body = await request.json();
 
-  const { name, email, reason, message, lang } = contactFormScheme.parse(body);
-
-  try {
-    return new Response(
-      JSON.stringify({
-        name,
-        email,
-        reason,
-        message,
-        lang,
-      }),
-      {
-        status: 201,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  } catch (e) {
-    const error = e as ZodError;
-    return new Response(
-      JSON.stringify({
-        error: error.cause,
-      }),
-      {
-        status: 401,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  const parsedRequest = contactFormScheme.safeParse(body);
+  if (parsedRequest.success) {
+    // TODO: send email
+    return new Response(JSON.stringify(parsedRequest.data), {
+      status: 201,
+      headers: { "Content-Type": "application/json" },
+    });
+  } else {
+    const errors = new ContactFormError(parsedRequest.error);
+    return new Response(JSON.stringify(errors), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }

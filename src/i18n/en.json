@@ -80,7 +80,8 @@
     "reason.help": "I need help with something",
     "reason.work": "I want to work with you",
     "error": "There was an error sending your message. Please try again later.",
-    "reason.other": "Something else, more interesting"
+    "reason.other": "Something else, more interesting",
+    "success.contact": "Thanks for contacting me! I will contact you as soon as possible."
   },
   "validation": {
     "invalid_type": "Invalid type. Expected {{expected}}, but received \"{{received}}\"",

@@ -80,14 +80,15 @@
     "reason.question": "Tengo una pregunta",
     "reason.help": "Necesito ayuda",
     "reason.work": "Quisiera trabajar contigo",
-    "reason.other": "Otra cosa más interesante"
+    "reason.other": "Otra cosa más interesante",
+    "success.contact": "Gracias por contactarme. Me pondré en contacto contigo lo antes posible."
   },
   "validation": {
     "invalid_type": "Tipo no permitido. Esperaba {{expected}}, pero recibí \"{{received}}\"",
     "invalid_literal": "Valor literal no admitido. Esperaba \"{{expected}}\", pero recibí \"{{received}}\"",
     "invalid_union": "Valor no permitido. Esperaba uno de {{expected}}, pero recibí \"{{received}}\"",
     "invalid_enum_value": "Valor no permitido. Esperaba una opción valida, pero recibí \"{{received}}\"",
-    "invalid_email": "No es un email válido",
+    "invalid_email": "Debe ser un email válido",
     "too_small": "Debe tener al menos {{minimum}} caracteres",
     "too_big": "Solo permite {{maximum}} caracteres",
     "unknown": "Error desconocido"
