@@ -21,7 +21,7 @@ export class ContactFormError extends Error {
 
   constructor(errors: ZodError) {
     super("ValidationError");
-    this.errors = errors.errors.reduce<Partial<Record<keyof ContactForm, ZodIssue>>>(
+    this.errors = errors.issues.reduce<Partial<Record<keyof ContactForm, ZodIssue>>>(
       (prev, e) => ({ ...prev, [e.path[0] as keyof ContactForm]: e }),
       {}
     );

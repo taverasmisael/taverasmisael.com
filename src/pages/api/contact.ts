@@ -14,7 +14,7 @@ export async function post({ request }: { request: Request }) {
   } else {
     const errors = new ContactFormError(parsedRequest.error);
     return new Response(JSON.stringify(errors), {
-      status: 400,
+      status: errors.errors.nationality ? 406 : 400,
       headers: { "Content-Type": "application/json" },
     });
   }

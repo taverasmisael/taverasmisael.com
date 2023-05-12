@@ -1,6 +1,7 @@
 import { createStore } from "solid-js/store";
 import { useTranslation, type Language } from "@/utils/i18n";
 import { contactFormScheme, validReasons, ContactFormError, type ContactForm } from "@/utils/contactForm";
+import type { ZodError, ZodIssue } from "zod";
 
 interface Props {
   lang: Language;
@@ -66,7 +67,7 @@ export default function ContactForm(props: Props) {
   };
 
   const onSubmitForm = async (form: HTMLFormElement) => {
-    setFormState({ submitting: true, errors: emptyErrors });
+    setFormState({ submitting: true, errors: emptyErrors, submitError: undefined });
     try {
       const parsedData = contactFormScheme.safeParse(formData);
       if (parsedData.success) {
@@ -85,9 +86,9 @@ export default function ContactForm(props: Props) {
         } else {
           (form.elements.namedItem(e.getFirstErrorKey() as string) as HTMLInputElement).focus();
         }
+      } else {
+        setFormState({ submitError: t("forms", "error.contact") });
       }
-
-      console.error(e);
     } finally {
       setFormState({ submitting: false });
     }
@@ -195,6 +196,7 @@ export default function ContactForm(props: Props) {
         </p>
       </div>
       {formState.submitError && (
+        // This is temporary, I'll replace it with a notification system later
         <p class={errorFormMessageClasses}>
           {t("ui", "error")}: {formState.submitError}
         </p>
@@ -225,13 +227,14 @@ async function submitContactForm(data: ContactForm, action: string) {
   const response = await fetch(action, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...data, nationality: "VAMOOOOO" }),
+    body: JSON.stringify(data),
   });
+  const result = await response.json();
 
-  if (response.ok) {
-    console.log("Success!");
-    return response.json();
+  if (response.ok) return result;
+
+  // This means the formData was invalid (400) or the honeypot was filled (406)
+  if (response.status === 400 || response.status === 406) {
+    throw new ContactFormError((result as ContactFormError).zodError);
   }
-
-  return Promise.reject(response.statusText);
 }
