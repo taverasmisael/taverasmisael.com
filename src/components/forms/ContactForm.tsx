@@ -6,7 +6,7 @@ interface Props {
   lang: Language;
   action: string;
 }
-const labelClassName = "relative mb-4 block font-semibold";
+
 const baseFormControlClasses =
   "w-full rounded-md border bg-white p-4 shadow focus:outline-none focus:ring dark:bg-slate-600";
 const pristineFormControlClasses = "ring-blue-100 border-blue-50 dark:border-slate-800 dark:ring-slate-700";
@@ -73,7 +73,6 @@ export default function ContactForm(props: Props) {
         const response = await submitContactForm(parsedData.data, props.action);
         resetForm(form);
         console.log(t("forms", "success.contact"));
-        console.log({ response });
         return;
       }
       throw new ContactFormError(parsedData.error);
@@ -97,9 +96,14 @@ export default function ContactForm(props: Props) {
     <form id="contact-form" onSubmit={handleSubmit} class="container mx-auto space-y-8">
       <div class="flex w-full flex-col gap-8 md:flex-row">
         <div class="flex-1">
-          <label for="name" class={labelClassName}>
-            {t("forms", "name")}
-          </label>
+          <div class="mb-4 flex items-center gap-3">
+            <label for="name" class="block font-semibold">
+              {t("forms", "name")}
+            </label>
+            <span id="name-error" class={errorFormMessageClasses}>
+              {formState.errors.name && formState.errors.name}
+            </span>
+          </div>
           <input
             required
             aria-describedby="name-error"
@@ -115,14 +119,16 @@ export default function ContactForm(props: Props) {
             }}
             placeholder="Theodore Evelyn Mosby"
           />
-          <p id="name-error" class={errorFormMessageClasses}>
-            {formState.errors.name && formState.errors.name}
-          </p>
         </div>
         <div class="flex-1">
-          <label for="email" class={labelClassName}>
-            {t("forms", "email")}
-          </label>
+          <div class="mb-4 flex items-center gap-3">
+            <label for="email" class="block font-semibold">
+              {t("forms", "email")}
+            </label>
+            <span id="email-error" class={errorFormMessageClasses}>
+              {formState.errors.email && formState.errors.email}
+            </span>
+          </div>
           <input
             required
             aria-describedby="email-error"
@@ -138,15 +144,17 @@ export default function ContactForm(props: Props) {
             }}
             placeholder="tmosby@gnb.com"
           />
-          <p id="email-error" class={errorFormMessageClasses}>
-            {formState.errors.email && formState.errors.email}
-          </p>
         </div>
       </div>
       <div class="block">
-        <label for="reason" class={labelClassName}>
-          {t("forms", "reason")}
-        </label>
+        <div class="mb-4 flex items-center gap-3">
+          <label for="reason" class="block font-semibold">
+            {t("forms", "reason")}
+          </label>
+          <span id="reason-error" class={errorFormMessageClasses}>
+            {formState.errors.reason && formState.errors.reason}
+          </span>
+        </div>
         <select
           required
           aria-describedby="reason-error"
@@ -167,14 +175,16 @@ export default function ContactForm(props: Props) {
             <option value={reason}>{t("forms", `reason.${reason}`)}</option>
           ))}
         </select>
-        <p id="reason-error" class={errorFormMessageClasses}>
-          {formState.errors.reason && formState.errors.reason}
-        </p>
       </div>
       <div class="block">
-        <label for="message" class={labelClassName}>
-          {t("forms", "message")}
-        </label>
+        <div class="mb-4 flex items-center gap-3">
+          <label for="message" class="block font-semibold">
+            {t("forms", "message")}
+          </label>
+          <span id="message-error" class={errorFormMessageClasses}>
+            {formState.errors.message && formState.errors.message}
+          </span>
+        </div>
         <textarea
           required
           aria-describedby="message-error"
@@ -190,9 +200,6 @@ export default function ContactForm(props: Props) {
           rows="8"
           placeholder={t("forms", "message.placeholder")}
         ></textarea>
-        <p id="message-error" class={errorFormMessageClasses}>
-          {formState.errors.message && formState.errors.message}
-        </p>
       </div>
       {formState.submitError && (
         // This is temporary, I'll replace it with a notification system later
