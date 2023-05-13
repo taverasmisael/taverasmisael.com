@@ -1,7 +1,6 @@
 import { createStore } from "solid-js/store";
 import { useTranslation, type Language } from "@/utils/i18n";
 import { contactFormScheme, validReasons, ContactFormError, type ContactForm } from "@/utils/contactForm";
-import type { ZodError, ZodIssue } from "zod";
 
 interface Props {
   lang: Language;
@@ -32,11 +31,11 @@ const emptyErrors = {
 } satisfies Record<keyof ContactForm, string>;
 
 const emptyForm = {
-  name: "so",
-  email: "s@c.com",
+  name: "",
+  email: "",
   // We need to cast here because we know that the empty string is not a valid reason and we want te select to display the placeholder
-  reason: "hello" as const, // as unknown as (typeof validReasons)[number],
-  message: "some message, lets go",
+  reason: "" as unknown as (typeof validReasons)[number],
+  message: "",
 };
 
 export default function ContactForm(props: Props) {
@@ -73,7 +72,7 @@ export default function ContactForm(props: Props) {
       if (parsedData.success) {
         const response = await submitContactForm(parsedData.data, props.action);
         resetForm(form);
-        alert(t("forms", "success.contact"));
+        console.log(t("forms", "success.contact"));
         console.log({ response });
         return;
       }
@@ -237,4 +236,8 @@ async function submitContactForm(data: ContactForm, action: string) {
   if (response.status === 400 || response.status === 406) {
     throw new ContactFormError((result as ContactFormError).zodError);
   }
+
+  // I just throw a generic error here, the backend should handle theses cases
+  // And we don't want the client to know what went wrong
+  throw new Error("Something went wrong");
 }
