@@ -2,6 +2,8 @@ import { ContactFormError, contactFormScheme } from "@/utils/contactForm";
 import { getEnv } from "@/utils/env";
 import { useTranslation } from "@/utils/i18n";
 
+// TODO: Would be nice to also add an entry to some service like Airtable or Google Sheets
+// So we can have a backup of the data and also be able to do some analytics
 export async function post({ request }: { request: Request }) {
   try {
     const { MAILGUN_DOMAIN, MAILGUN_API_KEY, CONTACT_EMAIL } = getEnv();

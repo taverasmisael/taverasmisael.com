@@ -204,7 +204,7 @@ export default function ContactForm(props: Props) {
       <button
         disabled={formState.submitting}
         type="submit"
-        class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-900 dark:focus:bg-slate-900/70 dark:focus:ring-slate-700 enabled:dark:hover:bg-slate-900/70 enabled:dark:active:bg-slate-900"
+        class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-50 dark:text-blue-900 dark:focus:bg-slate-100 dark:focus:ring-slate-400 enabled:dark:hover:bg-slate-100 enabled:dark:active:bg-slate-200"
       >
         {t("forms", formState.submitting ? "submitting" : "submit")}
       </button>
