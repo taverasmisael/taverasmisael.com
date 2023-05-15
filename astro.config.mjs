@@ -8,6 +8,7 @@ import netlify from "@astrojs/netlify/functions";
 import node from "@astrojs/node";
 
 import { sitemap } from "./integrations/sitemap";
+import { algolia } from "./integrations/algolia";
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 
@@ -26,6 +27,12 @@ export default defineConfig({
     prefetch({ selector: "article a:not([href^='/']), a[rel*='prefetch']" }),
     solidjs(),
     sitemap({ name: "sitemap.xml" }),
+    algolia({
+      apiKey: env.ALGOLIA_API_KEY,
+      appId: env.ALGOLIA_APP_ID,
+      indexName: env.ALGOLIA_INDEX_NAME,
+      name: 'algolia.json'
+    }),
   ],
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
   output: "server",
