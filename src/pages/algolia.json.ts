@@ -20,6 +20,7 @@ export async function get() {
   const res = new Response(JSON.stringify(items), {
     headers: {
       "content-type": "application/json",
+      "X-Robots-Tag": "noindex",
     },
     status: 200,
   });
