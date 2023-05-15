@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { AstroIntegration } from "astro";
@@ -23,14 +22,14 @@ const algoliaItemSchema = z.array(
 type AlgoliaIntegrationSettings = z.infer<typeof integrationSettingsSchema>;
 type AlgoliaItem = z.infer<typeof algoliaItemSchema>[number];
 
+export const INTEGRATION_NAME = "@taverasmisael/algolia";
 export function algolia(settings: AlgoliaIntegrationSettings): AstroIntegration {
-  const NAME = "@taverasmisael/algolia";
-  const logger = new Logger(NAME);
+  const logger = new Logger(INTEGRATION_NAME);
 
   let config: AlgoliaIntegrationSettings | undefined;
 
   return {
-    name: NAME,
+    name: INTEGRATION_NAME,
     hooks: {
       "astro:config:setup": () => {
         try {

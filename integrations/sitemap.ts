@@ -1,19 +1,20 @@
 import { anyPass, complement, groupBy, map } from "rambda";
-import { createReadStream, createWriteStream, unlink, copyFile, existsSync } from "fs";
-import { resolve } from "path";
+import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
+import { tmpdir } from "node:os";
+import { Readable } from "node:stream";
+import { createReadStream, createWriteStream, unlink, copyFile, existsSync } from "node:fs";
 import { EnumChangefreq, SitemapStream, XMLToSitemapItemStream, streamToPromise, type SitemapItemLoose } from "sitemap";
-import { tmpdir } from "os";
-import { Readable } from "stream";
 
 type SitemapItem = Pick<SitemapItemLoose, "url" | "lastmod" | "changefreq" | "priority" | "links">;
 import type { AstroConfig, AstroIntegration } from "astro";
 
 import { Logger } from "./utils/logger";
-import { fileURLToPath } from "url";
 
 interface SitemapConfig {
   name: string;
   customPaths?: string[];
+  ignoredPaths?: string[];
 }
 
 // NOTE: This is at least 180% faster than using something like zod
@@ -21,15 +22,18 @@ const ignoreRSS = (page: string) => /rss(-\w{2})?(-\w{2})?.xml/.test(page);
 const ignoreSitemapIndex = (page: string) => /(sitemap-index.xml|sitemap.xml)/.test(page);
 const ignoreImageFolder = (page: string) => /(_image)/.test(page);
 const ignoreStatusPages = (page: string) => /\/[0-9]{3}\/?$/.test(page);
-const sitemapFilters = complement(anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder, ignoreStatusPages]));
+const ignoreAPI = (page: string) => page.startsWith("/api");
+const sitemapFilters = complement(
+  anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder, ignoreStatusPages, ignoreAPI])
+);
 
-export function sitemap({ name, customPaths = [] }: SitemapConfig): AstroIntegration {
+export const INTEGRATION_NAME = "@taverasmisael/sitemaps";
+export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapConfig): AstroIntegration {
   let astroConfig: AstroConfig;
-  const NAME = "@taverasmisael/sitemaps";
-  const logger = new Logger(NAME);
+  const logger = new Logger(INTEGRATION_NAME);
 
   return {
-    name: NAME,
+    name: INTEGRATION_NAME,
     hooks: {
       "astro:config:done": config => {
         astroConfig = config.config;
@@ -43,7 +47,10 @@ export function sitemap({ name, customPaths = [] }: SitemapConfig): AstroIntegra
         logger.info("Generating sitemap...");
         const site = new URL(astroConfig.base, astroConfig.site);
         const routes = config.routes.reduce<string[]>(
-          (acc, r) => [...acc, ...(r.pathname && sitemapFilters(r.pathname) ? [r.pathname] : [])],
+          (acc, r) => [
+            ...acc,
+            ...(r.pathname && sitemapFilters(r.pathname) && !ignoredPaths.includes(r.pathname) ? [r.pathname] : []),
+          ],
           []
         );
         if (routes.length) {

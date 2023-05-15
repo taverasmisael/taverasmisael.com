@@ -17,7 +17,20 @@ const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 const adapter = env.LOCAL_BUILD ? node({ mode: "standalone" }) : netlify();
 console.log("Using adapter:", adapter.name);
 
-// https://astro.build/config
+const algoliaOutputName = "algolia.json";
+// For local builds, we don't want to update the index
+const algoliaIntegration = localBuild =>
+  !localBuild
+    ? [
+        algolia({
+          apiKey: env.ALGOLIA_API_KEY,
+          appId: env.ALGOLIA_APP_ID,
+          indexName: env.ALGOLIA_INDEX_NAME,
+          name: algoliaOutputName,
+        }),
+      ]
+    : [];
+
 export default defineConfig({
   adapter,
   experimental: { assets: true },
@@ -26,13 +39,8 @@ export default defineConfig({
     mdx(),
     prefetch({ selector: "article a:not([href^='/']), a[rel*='prefetch']" }),
     solidjs(),
-    sitemap({ name: "sitemap.xml" }),
-    algolia({
-      apiKey: env.ALGOLIA_API_KEY,
-      appId: env.ALGOLIA_APP_ID,
-      indexName: env.ALGOLIA_INDEX_NAME,
-      name: 'algolia.json'
-    }),
+    sitemap({ name: "sitemap.xml", ignoredPaths: [`/${algoliaOutputName}`] }),
+    ...algoliaIntegration(env.LOCAL_BUILD),
   ],
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
   output: "server",
