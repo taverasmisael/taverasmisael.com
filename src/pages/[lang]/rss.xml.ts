@@ -1,4 +1,4 @@
-import { type Language } from "@/i18n";
+import { type Language } from "@/utils/i18n";
 import { isSupportedLang } from "@/utils/i18n";
 
 import type { APIContext } from "astro";
