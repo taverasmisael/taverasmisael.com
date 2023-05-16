@@ -81,8 +81,8 @@
     "reason.help": "Necesito ayuda",
     "reason.work": "Quisiera trabajar contigo",
     "reason.other": "Otra cosa más interesante",
-    "success.contact": "Gracias por contactarme. Me pondré en contacto contigo lo antes posible.",
-    "error.contact": "¡Ups! Algo salió mal. Por favor, inténtalo de nuevo más tarde."
+    "contact.success": "Gracias por contactarme. Me pondré en contacto contigo lo antes posible.",
+    "contact.error": "¡Ups! Algo salió mal. Por favor, inténtalo de nuevo más tarde."
   },
   "validation": {
     "invalid_type": "Tipo no permitido. Esperaba {{expected}}, pero recibí \"{{received}}\"",

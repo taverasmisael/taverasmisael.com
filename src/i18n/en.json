@@ -81,8 +81,8 @@
     "reason.work": "I want to work with you",
     "error": "There was an error sending your message. Please try again later.",
     "reason.other": "Something else, more interesting",
-    "success.contact": "Thanks for contacting me! I will contact you as soon as possible.",
-    "error.contact": "Something went wrong. Please try again later."
+    "contact.success": "Thanks for contacting me! I will contact you as soon as possible.",
+    "contact.error": "Something went wrong. Please try again later."
   },
   "validation": {
     "invalid_type": "Invalid type. Expected {{expected}}, but received \"{{received}}\"",

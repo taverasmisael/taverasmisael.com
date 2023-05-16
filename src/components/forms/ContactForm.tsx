@@ -1,3 +1,4 @@
+import { For, Show, createSignal, createMemo } from "solid-js";
 import { createStore } from "solid-js/store";
 import { useTranslation, type Language } from "@/utils/i18n";
 import { contactFormScheme, validReasons, ContactFormError, type ContactForm } from "@/utils/contactForm";
@@ -18,7 +19,7 @@ const errorFormMessageClasses = "text-xs text-red-500 dark:text-red-200 mt-1";
 interface FormState {
   errors: Record<keyof ContactForm, string>;
   submitting: boolean;
-  submitError?: string;
+  submitError: boolean;
 }
 
 const emptyErrors = {
@@ -40,14 +41,22 @@ const emptyForm = {
 
 export default function ContactForm(props: Props) {
   const t = useTranslation(props.lang);
-  const [formState, setFormState] = createStore<FormState>({ errors: emptyErrors, submitting: false });
+  const [showSuccess, setShowSuccess] = createSignal(false);
+  const [formState, setFormState] = createStore<FormState>({
+    errors: emptyErrors,
+    submitting: false,
+    submitError: false,
+  });
   const [formData, setFormData] = createStore<ContactForm>({ ...emptyForm, lang: props.lang });
+  const showFormMessage = createMemo(() => showSuccess() || formState.submitError);
+  const formMessageKey = createMemo(() => (showSuccess() ? "contact.success" : "contact.error"));
 
   const onChange = (event: Event) => {
     const input = event.currentTarget as HTMLInputElement;
     const { name, value } = input;
     setFormData({ [name]: value });
     setFormState(s => ({ ...s, errors: { ...s.errors, [name as keyof ContactFormError]: "" } }));
+    setShowSuccess(false);
   };
 
   const resetForm = (form: HTMLFormElement) => {
@@ -66,16 +75,16 @@ export default function ContactForm(props: Props) {
   };
 
   const onSubmitForm = async (form: HTMLFormElement) => {
-    setFormState({ submitting: true, errors: emptyErrors, submitError: undefined });
+    setFormState({ submitting: true, errors: emptyErrors, submitError: false });
+    setShowSuccess(false);
     try {
       const parsedData = contactFormScheme.safeParse(formData);
-      if (parsedData.success) {
-        const response = await submitContactForm(parsedData.data, props.action);
-        resetForm(form);
-        console.log(t("forms", "success.contact"));
-        return;
-      }
-      throw new ContactFormError(parsedData.error);
+
+      if (!parsedData.success) throw new ContactFormError(parsedData.error);
+
+      await submitContactForm(parsedData.data, props.action);
+      resetForm(form);
+      setShowSuccess(true);
     } catch (e) {
       if (e instanceof ContactFormError) {
         setFormState({ errors: e.getMessages(t) });
@@ -85,7 +94,7 @@ export default function ContactForm(props: Props) {
           (form.elements.namedItem(e.getFirstErrorKey() as string) as HTMLInputElement).focus();
         }
       } else {
-        setFormState({ submitError: t("forms", "error.contact") });
+        setFormState({ submitError: true });
       }
     } finally {
       setFormState({ submitting: false });
@@ -93,7 +102,7 @@ export default function ContactForm(props: Props) {
   };
 
   return (
-    <form id="contact-form" onSubmit={handleSubmit} class="container mx-auto space-y-8">
+    <form id="contact-form" onSubmit={handleSubmit} class="container relative mx-auto space-y-8">
       <div class="flex w-full flex-col gap-8 md:flex-row">
         <div class="flex-1">
           <div class="mb-4 flex items-center gap-3">
@@ -171,9 +180,7 @@ export default function ContactForm(props: Props) {
           <option value="" disabled selected>
             {t("forms", "reason.default")}
           </option>
-          {validReasons.map(reason => (
-            <option value={reason}>{t("forms", `reason.${reason}`)}</option>
-          ))}
+          <For each={validReasons}>{reason => <option value={reason}>{t("forms", `reason.${reason}`)}</option>}</For>
         </select>
       </div>
       <div class="block">
@@ -201,21 +208,27 @@ export default function ContactForm(props: Props) {
           placeholder={t("forms", "message.placeholder")}
         ></textarea>
       </div>
-      {formState.submitError && (
-        // This is temporary, I'll replace it with a notification system later
-        <p class={errorFormMessageClasses}>
-          {t("ui", "error")}: {formState.submitError}
-        </p>
-      )}
       <p class="!mt-2 pl-2 text-xs">{t("forms", "disclaimer")}</p>
-      <button
-        disabled={formState.submitting}
-        type="submit"
-        class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-50 dark:text-blue-900 dark:focus:bg-slate-100 dark:focus:ring-slate-400 enabled:dark:hover:bg-slate-100 enabled:dark:active:bg-slate-200"
-      >
-        {t("forms", formState.submitting ? "submitting" : "submit")}
-      </button>
-
+      <div class="flex items-center gap-4">
+        <button
+          disabled={formState.submitting}
+          type="submit"
+          class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-50 dark:text-blue-900 dark:focus:bg-slate-100 dark:focus:ring-slate-400 enabled:dark:hover:bg-slate-100 enabled:dark:active:bg-slate-200"
+        >
+          {t("forms", formState.submitting ? "submitting" : "submit")}
+        </button>
+        <div
+          aria-live="polite"
+          class="text-sm" classList={{
+            "text-blue-950 dark:text-blue-100": showSuccess(),
+            "text-red-500 dark:text-red-200": formState.submitError,
+          }}
+        >
+          <Show when={showFormMessage()}>
+            <p>{t("forms", formMessageKey())}</p>
+          </Show>
+        </div>
+      </div>
       <input
         type="text"
         name="nationality"
