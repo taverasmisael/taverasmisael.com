@@ -13,6 +13,8 @@ export async function get() {
     title: entry.meta.title,
     excerpt: entry.entry.data.description,
     date: entry.entry.data.date,
+    lang: entry.meta.lang,
+    tags: entry.entry.data.tags,
     imageUrl: new URL(entry.entry.data.banner.src, getEnv().SITE).toString(),
     body: sliceStr(removeMD(entry.entry.body, { useImgAltText: false }).replaceAll(/\n\n/g, " "), 0, 8000),
   }));

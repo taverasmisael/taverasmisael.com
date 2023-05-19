@@ -34,7 +34,10 @@
     "download": "Descargar",
     "download_here": "Descarga aquí",
     "view_all_posts": "Ver todos los artículos",
-    "error": "Error"
+    "error": "Error",
+    "commandbar.placeholder": "Buscar o escribir un comando",
+    "commandbar.empty": "No hay resultados",
+    "commandbar.loading": "Cargando..."
   },
   "messages": {
     "page_not_found": "Página no encontrada",

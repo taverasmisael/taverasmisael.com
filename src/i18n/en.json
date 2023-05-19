@@ -34,7 +34,10 @@
     "download_here": "Download here",
     "download": "Download",
     "view_all_posts": "View all posts",
-    "error": "Error"
+    "error": "Error",
+    "commandbar.placeholder": "Search or type a command",
+    "commandbar.empty": "No results",
+    "commandbar.loading": "Loading..."
   },
   "messages": {
     "page_not_found": "Page not found",

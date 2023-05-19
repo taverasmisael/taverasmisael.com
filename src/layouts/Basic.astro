@@ -32,7 +32,7 @@ const {
     <slot name="head" />
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
-    <CommandBar client:only="solid-js" />
+    <CommandBar lang={lang} client:only="solid-js" />
     <slot />
   </body>
 </html>

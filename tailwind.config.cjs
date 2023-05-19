@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      height: {
+        100: "30rem",
+      },
       keyframes: {
         wiggle: {
           "0%, 100%": { transform: "rotate(-6deg)" },
