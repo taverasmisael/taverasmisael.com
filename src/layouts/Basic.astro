@@ -1,7 +1,9 @@
 ---
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
-import './styles.css'
+import "./styles.css";
+import CommandBar from "@/components/command-bar/CommandBar";
+import AstroBar from "@/components/command-bar/AstroBar.astro";
 
 type Props = DefaultLayoutProps;
 
@@ -31,6 +33,13 @@ const {
     <slot name="head" />
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
+    <CommandBar client:only="solid-js" />
     <slot />
   </body>
 </html>
+
+<style>
+  body:has(dialog[open]) {
+    @apply overflow-hidden blur-sm;
+  }
+</style>

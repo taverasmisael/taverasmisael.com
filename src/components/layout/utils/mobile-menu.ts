@@ -1,3 +1,4 @@
+import { setCommandBarSearchMode } from "@/stores/command-bar.store";
 const ScrollDirection = {
   UP: "UP",
   DOWN: "DOWN",
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileMenu = header.querySelector("#mobile-menu") as HTMLElement;
   const menuIcon = menuButton.querySelector("svg") as SVGSVGElement;
   const buttonText = menuButton.querySelector("span.sr-only") as HTMLElement;
+  const searchButton = header.querySelector("#search-button") as HTMLButtonElement;
   /* eslint-enable @typescript-eslint/non-nullable-type-assertion-style */
   const toggleMobileMenu = setMobileMenu({
     button: menuButton,
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   toggleHeaderOnScroll(header, toggleMobileMenu);
   menuButton.addEventListener("click", () => toggleMobileMenu());
+  searchButton.addEventListener("click", setCommandBarSearchMode);
 });
 
 function toggleHeaderOnScroll(header: HTMLElement, closeMobileMenu: (isOpen: boolean) => void, threshold = 100) {
@@ -68,7 +71,7 @@ function setMobileMenu({
     } else {
       button.setAttribute("aria-expanded", "true");
       menu.classList.add("open");
-      menu.querySelector('a')?.focus()
+      menu.querySelector("a")?.focus();
       text.innerHTML = closeText;
       icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`;
     }
