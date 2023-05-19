@@ -7,7 +7,7 @@ import { getEntryURL } from "@/utils/content";
 import { useTranslation, type Language } from "@/utils/i18n";
 
 export default function CommandBar(props: { lang: Language }) {
-  let ref: HTMLDialogElement;
+  let dialogRef: HTMLDialogElement;
   const t = useTranslation(props.lang);
   const [command, setCommand] = createSignal<string>();
   const [results] = createResource(command, fetchSearchResults);
@@ -18,15 +18,13 @@ export default function CommandBar(props: { lang: Language }) {
   }, 1000);
 
   createEffect(() => {
-    // NOTE: There's a reported (by me) issue with Arc Browser, where
-    // the inert attribute causes the page to crash for some reason.
-    // So for now no inert. The good news is that we don't "neeed" it because
-    // we are using a dialog element, which has all the accessibility benefits.
-    if (commandBarState.isVisible) ref.showModal();
-    ref.addEventListener("close", () => {
-      setCommand("");
+    if (commandBarState.isVisible) dialogRef.showModal();
+    dialogRef.addEventListener("close", () => {
+      setCommand(undefined);
       hideCommandBar();
     });
+
+    return () => dialogRef.close();
   });
 
   const icon = createMemo(() =>
@@ -44,9 +42,12 @@ export default function CommandBar(props: { lang: Language }) {
   return (
     <dialog
       aria-hidden="true"
-      ref={c => (ref = c)}
+      ref={c => (dialogRef = c)}
       class="h-100 flex w-full justify-center bg-transparent backdrop:bg-neutral-950/80 md:-top-1/3"
     >
+      <Show when={commandBarState.isVisible}>
+        <div onClick={() => dialogRef.close()} class="fixed inset-0 -z-10" aria-hidden="true" />
+      </Show>
       <div class="container h-fit w-full max-w-4xl rounded border-slate-100 bg-slate-50 p-2 shadow-xl dark:border-slate-900 dark:bg-slate-700 md:p-4">
         <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-50 focus-within:ring-2 dark:bg-slate-600 dark:ring-slate-500">
           <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 dark:text-blue-50 md:pl-4">
@@ -65,6 +66,7 @@ export default function CommandBar(props: { lang: Language }) {
             {t("ui", "search")}
           </label>
           <input
+            autofocus
             id="command-bar-input"
             name="command-bar-input"
             class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-slate-600 dark:text-blue-50 dark:placeholder:text-slate-300 md:p-4"

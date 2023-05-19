@@ -16,8 +16,8 @@ interface CommandBarState {
 }
 
 const initialState: CommandBarState = {
-  isVisible: true,
-  mode: CommandBarMode.Search,
+  isVisible: false,
+  mode: CommandBarMode.Menu,
   lastMode: CommandBarMode.None,
 };
 

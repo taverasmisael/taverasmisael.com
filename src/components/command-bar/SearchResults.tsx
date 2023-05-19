@@ -26,7 +26,7 @@ export default function SearchResults(props: SearchResultsProps) {
         <Match when={!props.items.length}>
           <p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.emptyMessage}</p>
         </Match>
-        <Match when={props.items.length && !props.isLoading && !props.isError}>
+        <Match when={props.items.length}>
           <ul class="m-0 appearance-none divide-y divide-blue-50 dark:divide-slate-800/20">
             <For each={props.items}>
               {item => (

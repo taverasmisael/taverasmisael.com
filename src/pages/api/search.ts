@@ -23,7 +23,7 @@ export async function get({ request }: { request: Request }) {
   const requestURL = new URL(request.url);
   const query = requestURL.searchParams.get("query");
   const lang = getLangFromURL(requestURL);
-  if (!query) return new Response(JSON.stringify({ items: [] }), { status: 401, statusText: "No query provided" });
+  if (!query) return new Response(JSON.stringify({ items: [] }), { status: 400, statusText: "No query provided" });
 
   const index = algoliaclient.initIndex(ALGOLIA_INDEX_NAME);
 
