@@ -1,8 +1,6 @@
 import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
 import { type Language, DEFAULT_LOCALE } from "@/utils/i18n";
-import { getEnv } from "@/utils/env";
-
-const SITE_URL = getEnv().SITE;
+import { getPublicEnv } from "@/utils/env";
 
 const Collections = {
   blog: "blog",
@@ -75,7 +73,7 @@ export function getEntryURL(entryType: CollectionKey, slug: string): string {
   return `/${lang}/${collection}/${rawSlug}`;
 }
 
-export function slugToCanonical(slug: string, base: string = SITE_URL): string {
+export function slugToCanonical(slug: string, base: string = getPublicEnv().SITE): string {
   return new URL(slug, base).toString();
 }
 
@@ -103,4 +101,4 @@ export interface BlogEntryMeta {
 }
 
 // RE-EXPORTS
-export { getCollection }
+export { getCollection };
