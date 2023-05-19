@@ -6,7 +6,7 @@
     "jsxImportSource": "solid-js",
     "importsNotUsedAsValues": "remove",
     "jsx": "preserve",
-    "plugins": [{ "name": "@astrojs/ts-plugin" }],
+    "plugins": [{ "name": "@astrojs/ts-plugin" }, { "name": "typescript-plugin-css-modules" }],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
