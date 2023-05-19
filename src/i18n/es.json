@@ -37,7 +37,8 @@
     "error": "Error",
     "commandbar.placeholder": "Buscar o escribir un comando",
     "commandbar.empty": "No hay resultados",
-    "commandbar.loading": "Cargando..."
+    "commandbar.loading": "Cargando...",
+    "commandbar.error": "Error al cargar los resultados"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
