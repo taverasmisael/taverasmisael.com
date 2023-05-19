@@ -35,7 +35,8 @@
     "download_here": "Descarga aquí",
     "view_all_posts": "Ver todos los artículos",
     "error": "Error",
-    "commandbar.placeholder": "Buscar o escribir un comando",
+    "commandbar.placeholder.search": "Buscar en el blog",
+    "commandbar.placeholder.command": "Escribe un comando",
     "commandbar.empty": "No hay resultados",
     "commandbar.loading": "Cargando...",
     "commandbar.error": "Error al cargar los resultados"

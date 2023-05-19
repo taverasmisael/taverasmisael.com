@@ -7,12 +7,12 @@ export const CommandBarMode = {
   None: "NONE",
 } as const;
 
-type CommandBarMode = (typeof CommandBarMode)[keyof typeof CommandBarMode];
+export type CommandBarMode = (typeof CommandBarMode)[keyof typeof CommandBarMode];
 
 interface CommandBarState {
   isVisible: boolean;
-  mode: (typeof CommandBarMode)[keyof typeof CommandBarMode];
-  lastMode: CommandBarMode;
+  mode: CommandBarMode[keyof CommandBarMode];
+  lastMode: CommandBarMode[keyof CommandBarMode];
 }
 
 const initialState: CommandBarState = {
@@ -27,4 +27,4 @@ export const commandBarState = state;
 export const hideCommandBar = () => setState(s => ({ isVisible: false, mode: CommandBarMode.None, lastMode: s.mode }));
 
 export const setCommandBarSearchMode = () => setState({ isVisible: true, mode: CommandBarMode.Search });
-export const setCommandBarMenuMode = () => setState({ isVisible: true, mode: CommandBarMode.Menu });
+export const setCommandBarCommandsMode = () => setState({ isVisible: true, mode: CommandBarMode.Commands });

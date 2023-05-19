@@ -35,7 +35,8 @@
     "download": "Download",
     "view_all_posts": "View all posts",
     "error": "Error",
-    "commandbar.placeholder": "Search or type a command",
+    "commandbar.placeholder.search": "Search the blog",
+    "commandbar.placeholder.command": "Type a command",
     "commandbar.empty": "No results",
     "commandbar.loading": "Loading...",
     "commandbar.error": "There was an error loading the results"
