@@ -4,6 +4,7 @@ import { debounce } from "@solid-primitives/scheduled";
 import { Show, createEffect, createMemo, createResource, createSignal, onMount } from "solid-js";
 import SearchResults from "./SearchResults";
 import type { CommandBarLinkItem } from "./command-bar-item.type";
+import { getEntryURL } from "@/utils/content/client";
 
 export default function CommandBar(props: { lang: Language }) {
   let dialogRef: HTMLDialogElement;
@@ -115,7 +116,6 @@ export default function CommandBar(props: { lang: Language }) {
 interface SearchResult {
   id: string;
   title: string;
-  href: string;
   matches: { key: string; value: string }[];
 }
 
@@ -141,7 +141,7 @@ async function fetchSearchResults(query: string): Promise<CommandBarLinkItem[]> 
       ({
         id: item.id,
         title: item.title,
-        href: item.href,
+        href: getEntryURL("blog", item.id),
         description: getRelevantMatch(item.matches),
         type: "link",
       } satisfies CommandBarLinkItem)
