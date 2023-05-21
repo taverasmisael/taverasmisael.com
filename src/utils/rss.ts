@@ -1,5 +1,5 @@
 import rss, { type RSSOptions } from "@astrojs/rss";
-import { getEntryURL, type BlogEntry, getBlogEntriesByLang } from "./content";
+import { getEntryURL, type BlogEntry, getBlogEntriesByLang } from "@/utils/content";
 import { useTranslation, type Language } from "./i18n";
 
 export function blogEntryToRSSItems(entries: BlogEntry[]): RSSOptions["items"] {

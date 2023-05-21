@@ -1,16 +1,7 @@
 import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
 import { type Language, DEFAULT_LOCALE } from "@/utils/i18n";
-import { getPublicEnv } from "@/utils/env";
-
-const Collections = {
-  blog: "blog",
-} as const satisfies Record<string, Parameters<typeof getCollection>["0"]>;
-
-export type CollectionKey = keyof typeof Collections;
-export type Entry = BlogEntry;
-export function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKey] {
-  return Collections[key as CollectionKey];
-}
+import type { BlogEntry, BlogEntryMeta, CollectionKey, Entry } from "./types";
+import { getEntryURL, slugToCanonical } from "./client";
 
 export async function blogCollectionToBlogEntry(entry: CollectionEntry<"blog">, slug: string): Promise<BlogEntry> {
   const [lang, rawSlug] = slug.split("/") as [Language, string];
@@ -62,42 +53,6 @@ export function getEntriesByLang(collection: CollectionKey, lang: Language): Pro
     default:
       throw new Error(`Invalid collection name: ${collection as string}`);
   }
-}
-
-export function getEntryURL(entryType: CollectionKey, slug: string): string {
-  const collection = getCollectionName(entryType);
-
-  if (!collection) throw new Error(`Invalid collection name: ${entryType}`);
-
-  const [lang, rawSlug] = slug.split("/") as [Language, string];
-  return `/${lang}/${collection}/${rawSlug}`;
-}
-
-export function slugToCanonical(slug: string, base: string = getPublicEnv().SITE): string {
-  return new URL(slug, base).toString();
-}
-
-export interface BlogEntry {
-  entry: CollectionEntry<"blog">;
-  isOriginal: boolean;
-  meta: BlogEntryMeta;
-  translations: EntryTranslationReference[];
-}
-
-export interface EntryTranslationReference {
-  isOriginal: boolean;
-  lang: Language;
-  slug: string;
-}
-
-export interface BlogEntryMeta {
-  canonical: string;
-  formattedDate: string;
-  description: string;
-  lang: Language;
-  ogTitle: string;
-  ogType: string;
-  title: string;
 }
 
 // RE-EXPORTS
