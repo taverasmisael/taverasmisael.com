@@ -2,7 +2,7 @@
 title: 'JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá. Parte 1'
 date: '2019-08-24'
 description: Todo lo que ha sido añadido al lenguaje desde 2015. Con ejemplos desde ES6 y ES7
-author: Misael Taveras
+author: misael-taveras
 tags: ['JavaScript', 'ES6']
 banner: ../../../assets/posts/banner-javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1.jpg
 redirect_from:

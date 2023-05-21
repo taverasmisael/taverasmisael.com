@@ -2,7 +2,7 @@
 title: Hacktoberfest ya está aquí
 date: '2019-09-28'
 description: Hacktoberfest es el evento de código abierto más esperado del año donde tus contribuciones son recompensadas. Aprende como participar y que beneficios tiene ser parte de este movimiento.
-author: Misael Taveras
+author: misael-taveras
 tags: ['Consejo', 'Evento']
 banner: ../../../assets/posts/banner-hacktoberfest-ya-esta-aqui.jpg
 ---

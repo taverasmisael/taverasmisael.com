@@ -2,7 +2,7 @@
 title: Viviendo con el enemigo en cuarentena
 date: '2020-06-07'
 description: Una carta abierta de mi viaje de exploración diario, en especial ahora en cuarentena.
-author: Misael Taveras
+author: misael-taveras
 tags: ['Personal', 'Historia']
 banner: ../../../assets/posts/baner-viviendo-con-el-enemigo-en-cuarentena.png
 ---

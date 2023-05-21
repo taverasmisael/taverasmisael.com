@@ -2,7 +2,7 @@
 title: Github no es suficiente Portafolio
 date: '2020-06-28'
 description: He preguntado a varios colegas que si tienen algún portafolio y la mayoría me envían un enlace a su Github, lo cual es mejor que nada pero no es optimo. Github no es Behance.
-author: Misael Taveras
+author: misael-taveras
 tags: ['Opinión', 'Recomendación']
 banner: ../../../assets/posts/banner-github-no-es-suficiente-portafolio.png
 ---

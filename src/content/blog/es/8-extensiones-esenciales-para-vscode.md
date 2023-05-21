@@ -2,7 +2,7 @@
 title: 8 Extensiones esenciales para vscode
 date: '2019-08-04'
 description: Una lista de extensiones que uso en visual studio code para facilitar mi desarrollo
-author: Misael Taveras
+author: misael-taveras
 tags: ['VSCode', 'Recomendación']
 banner: ../../../assets/posts/banner-8-extensiones-esenciales-para-vscode.jpg
 ---

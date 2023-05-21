@@ -2,7 +2,7 @@
 title: Venciendo el síndrome de impostor
 date: '2020-10-03'
 description: Muchos en algun punto de nuestra vida hemos sentido que no estámos donde deberíamos o no merecemos lo que hemos logrado o que no somos capaces. Puede que sufras del síndrome de impostor. En este post de digo qué es, cómo diagnosticarlo y combatirlo.
-author: Misael Taveras
+author: misael-taveras
 tags: ['Soft Skills', 'Consejo']
 banner: ../../../assets/posts/banner-el-sindrome-de-impostor.jpg
 ---

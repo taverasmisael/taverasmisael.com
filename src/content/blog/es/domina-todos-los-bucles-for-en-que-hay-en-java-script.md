@@ -2,7 +2,7 @@
 title: Domina todos los bucles for en que hay en JavaScript
 date: '2020-06-21'
 description: ¿Conoces las diferencias y casos de usos entre los 4 bucles for en JavaScript? Si no es el caso, o no sabes bien donde encaja cada uno, dejame mostrarte.
-author: Misael Taveras
+author: misael-taveras
 tags: ['JavaScript', 'Tutorial']
 banner: ../../../assets/posts/banner-domina-todos-los-bucles-for-en-que-hay-en-javascript.jpg
 ---
