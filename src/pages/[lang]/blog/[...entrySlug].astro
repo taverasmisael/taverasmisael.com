@@ -1,24 +1,24 @@
 ---
 import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
-// @ts-expect-error - Astro@2.4.0 broke the "astro:assets" import
 import { Image } from "astro:assets";
 import { getBlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/utils/i18n";
 
-type Params = {
+interface Params {
   lang: Language;
   slug: string;
-};
+}
 
-const post = await getBlogEntry(Object.values(Astro.params as Params).join("/"));
+const post = await getBlogEntry(Object.values(Astro.params as unknown as Params).join("/"));
 
 if (!post) return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 
 const { meta, entry, translations } = post;
 const { Content } = await entry.render();
 
+// eslint-disable-next-line
 const components = { Admonition: Admonition };
 ---
 

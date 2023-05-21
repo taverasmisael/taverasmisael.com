@@ -30,12 +30,11 @@ if (!isSupportedLang(lang)) {
   return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 }
 
+const { origin } = Astro.url;
 const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
   lang: language,
-  slug: getLocalizedPage(language, PAGE),
+  slug: slugToCanonical(getLocalizedPage(language, PAGE), origin),
 }));
-
-const { origin } = Astro.url;
 
 const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
 const t = useTranslation(lang);
@@ -43,17 +42,13 @@ const t = useTranslation(lang);
 
 <Layout lang={lang} canonical={canonical} description={t("page_descriptions", PAGE)} title={t("navigation", PAGE)}>
   <Fragment slot="head">
-    {
-      translations.map(translation => (
-        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
-      ))
-    }
+    {translations.map(translation => <link rel="alternate" href={translation.slug} hreflang={translation.lang} />)}
   </Fragment>
   <main class="h-full min-h-screen">
     <div class="h-full min-h-screen w-full">
       <div class="grid h-full min-h-screen items-center gap-4 lg:grid-cols-2">
         <div class="h-full items-center bg-blue-200 px-6 py-4 dark:bg-slate-950 sm:px-8 lg:py-12 xl:p-32">
-          <div class="prose dark:prose-invert xl:prose-lg grid h-full items-center">
+          <div class="prose grid h-full items-center dark:prose-invert xl:prose-lg">
             <div class="container">
               <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
               <p class="m-0 text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>

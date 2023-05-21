@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/WithHeader.astro";
-import { getLocalizedPage, useTranslation, type Language } from "@/utils/i18n";
+import { getLocalizedPage, useTranslation, type Language, LANGUAGES } from "@/utils/i18n";
 import { getBlogEntry, slugToCanonical } from "@/utils/content";
 import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
@@ -17,11 +17,18 @@ const canonical = slugToCanonical(getLocalizedPage(lang, "home"));
 const featuredPost = await getBlogEntry(featuredPostSlug);
 
 const blogURL = getLocalizedPage(lang, "blog");
+const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
+  lang: language,
+  slug: slugToCanonical(getLocalizedPage(language, "home"), Astro.url.origin),
+}));
 
 const t = useTranslation(lang);
 ---
 
 <Layout canonical={canonical} lang={lang} description={t("page_descriptions", "home")} title={t("navigation", "home")}>
+  <Fragment slot="head">
+    {translations.map(translation => <link rel="alternate" href={translation.slug} hreflang={translation.lang} />)}
+  </Fragment>
   <main class="container mx-auto w-full px-8">
     <FullWidthBlock
       withContainer

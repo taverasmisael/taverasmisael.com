@@ -26,12 +26,11 @@ if (!isSupportedLang(lang)) {
   return Astro.redirect(`/404?from=${Astro.url.pathname}`);
 }
 
+const { origin } = Astro.url;
 const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
   lang: language,
-  slug: getLocalizedPage(language, PAGE),
+  slug: slugToCanonical(getLocalizedPage(language, PAGE), origin),
 }));
-
-const { origin } = Astro.url;
 
 const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
 const t = useTranslation(lang);
@@ -39,11 +38,7 @@ const t = useTranslation(lang);
 
 <Layout lang={lang} canonical={canonical} description={t("page_descriptions", PAGE)} title={t("navigation", PAGE)}>
   <Fragment slot="head">
-    {
-      translations.map(translation => (
-        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
-      ))
-    }
+    {translations.map(translation => <link rel="alternate" href={translation.slug} hreflang={translation.lang} />)}
   </Fragment>
   <main>
     <PageBanner class="!bg-blue-100 dark:!bg-gray-950">
@@ -53,9 +48,7 @@ const t = useTranslation(lang);
       >.
     </PageBanner>
     <div class="container mx-auto w-full">
-      <div
-        class="prose prose-slate dark:prose-invert lg:prose-lg 2xl:prose-xl mx-auto px-4"
-      >
+      <div class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl">
         <slot />
         <FullWidthBlock withContainer class="not-prose">
           <RecentEntries lang={lang} collection="blog" />
