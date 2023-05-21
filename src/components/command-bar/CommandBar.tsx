@@ -1,5 +1,4 @@
 import { CommandBarMode, commandBarState, hideCommandBar } from "@/stores/command-bar.store";
-import { getEntryURL } from "@/utils/content";
 import { useTranslation, type Language } from "@/utils/i18n";
 import { debounce } from "@solid-primitives/scheduled";
 import { Show, createEffect, createMemo, createResource, createSignal, onMount } from "solid-js";
@@ -54,7 +53,6 @@ export default function CommandBar(props: { lang: Language }) {
       classList={{ flex: commandBarState.isVisible, hidden: !commandBarState.isVisible }}
     >
       <Show when={commandBarState.isVisible}>
-
         <div class="container h-fit w-full max-w-4xl rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-slate-900 dark:bg-slate-700 md:p-4">
           <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-100 focus-within:ring-2 dark:bg-slate-600 dark:ring-slate-500">
             <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 dark:text-blue-50 md:pl-4">
@@ -94,8 +92,8 @@ export default function CommandBar(props: { lang: Language }) {
           <button
             type="button"
             onClick={() => dialogRef.close()}
-            class="fixed right-8 top-6 bg-slate-950/30 text-slate-50 p-2 rounded-full"
-            title={t('ui', 'close')}
+            class="fixed right-8 top-6 rounded-full bg-slate-950/30 p-2 text-slate-50"
+            title={t("ui", "close")}
           >
             <svg
               class="w-6"
@@ -105,11 +103,7 @@ export default function CommandBar(props: { lang: Language }) {
               stroke="currentColor"
               aria-hidden="true"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
         </div>
@@ -121,6 +115,7 @@ export default function CommandBar(props: { lang: Language }) {
 interface SearchResult {
   id: string;
   title: string;
+  href: string;
   matches: { key: string; value: string }[];
 }
 
@@ -143,12 +138,12 @@ async function fetchSearchResults(query: string): Promise<CommandBarLinkItem[]> 
   const data = (await response.json()) as SearchResponse;
   return data.items.map(
     item =>
-    ({
-      id: item.id,
-      title: item.title,
-      href: getEntryURL("blog", item.id),
-      description: getRelevantMatch(item.matches),
-      type: "link",
-    } satisfies CommandBarLinkItem)
+      ({
+        id: item.id,
+        title: item.title,
+        href: item.href,
+        description: getRelevantMatch(item.matches),
+        type: "link",
+      } satisfies CommandBarLinkItem)
   );
 }

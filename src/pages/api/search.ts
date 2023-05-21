@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, type Language } from "@/utils/i18n";
 import { getEnv } from "@/utils/env";
 import algoliasearch from "algoliasearch";
 import { isSupportedLang } from "@/utils/i18n";
+import { getEntryURL } from "@/utils/content";
 
 const { PUBLIC_ALGOLIA_SEARCH_KEY, ALGOLIA_APP_ID, ALGOLIA_INDEX_NAME } = getEnv();
 const algoliaclient = algoliasearch(ALGOLIA_APP_ID, PUBLIC_ALGOLIA_SEARCH_KEY);
@@ -39,6 +40,7 @@ export async function get({ request }: { request: Request }) {
     const items = hits.map(hit => ({
       id: hit.objectID,
       title: hit.title,
+      href: getEntryURL("blog", hit.objectID),
       matches: hit._snippetResult
         ? Object.entries(hit._snippetResult).reduce<SearchMatch[]>((prev, [k, v]) => {
             if (v.matchLevel === "none") return prev;
