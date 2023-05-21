@@ -1,6 +1,38 @@
-<!-- TODO: USE the real testimonials -->
-<!-- NOTE: This is also probably gonna be a React/Solid component instead of astro -->
-<blockquote>
+---
+import type { Language } from "@/utils/i18n";
+import { getEntriesByLang } from "@/utils/content";
+
+interface Props {
+  lang: Language;
+}
+const { lang } = Astro.props;
+const testimonials = await getEntriesByLang("testimonial", lang);
+---
+
+<section class="space-y-8">
+  {
+    testimonials.map(t => (
+      <blockquote class="p-4">
+        <p>
+          <em>{t.entry.data.quote}</em>
+        </p>
+        <div class="mt-4 flex items-center space-x-4">
+          <img src={t.entry.data.image} alt="" class="h-12 w-12 rounded-full" width="48" height="48" />
+          <div class="text-sm font-medium not-italic">
+            <span class="block text-gray-900 hover:text-blue-700 hover:underline dark:text-slate-100 dark:hover:text-white">
+              <a href={t.entry.data.link} rel="external nofollow" target="_blank">
+                {t.entry.data.name}
+              </a>
+            </span>
+            <span class="text-gray-500 dark:text-gray-400">{t.entry.data.title}</span>
+          </div>
+        </div>
+      </blockquote>
+    ))
+  }
+</section>
+
+<!-- <blockquote>
   <p>
     <em>
       Misael is a very talented developer. He is a great communicator and is always willing to help. He is very
@@ -18,4 +50,4 @@
       <span class="text-gray-500 dark:text-gray-400">Software Engineer</span>
     </div>
   </div>
-</blockquote>
+</blockquote> -->

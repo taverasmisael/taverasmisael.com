@@ -8,10 +8,7 @@ interface Props {
 const { class: className, ["class:list"]: classList, withContainer } = Astro.props;
 ---
 
-<div
-  class="relative left-[calc(-50vw_+_50%)] w-screen min-w-full px-8 py-12"
-  class:list={[className, classList]}
->
+<section class="relative left-[calc(-50vw_+_50%)] w-screen min-w-full px-8 py-12" class:list={[className, classList]}>
   {
     withContainer ? (
       <div class="container mx-auto w-full">
@@ -21,4 +18,4 @@ const { class: className, ["class:list"]: classList, withContainer } = Astro.pro
       <slot />
     )
   }
-</div>
+</section>

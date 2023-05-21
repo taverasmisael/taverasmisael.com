@@ -1,6 +1,6 @@
 import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
 import { type Language, DEFAULT_LOCALE } from "@/utils/i18n";
-import type { BlogEntry, BlogEntryMeta, CollectionKey, Entry } from "./types";
+import type { BlogEntry, BlogEntryMeta, CollectionKey, Entry, TestimonialEntry } from "./types";
 import { getEntryURL, slugToCanonical } from "./client";
 
 export async function blogCollectionToBlogEntry(entry: CollectionEntry<"blog">, slug: string): Promise<BlogEntry> {
@@ -41,15 +41,47 @@ export async function getBlogEntry(slug: string): Promise<BlogEntry | undefined>
   return blogCollectionToBlogEntry(entry, slug);
 }
 
-export async function getBlogEntriesByLang(lang: Language): Promise<BlogEntry[]> {
+export async function getBlogEntriesByLang(lang: Language): Promise<Entry["blog"][]> {
   const entries = await getCollection("blog", p => p.slug.startsWith(`${lang}/`));
   return Promise.all(entries.map(e => blogCollectionToBlogEntry(e, e.slug)));
 }
 
-export function getEntriesByLang(collection: CollectionKey, lang: Language): Promise<Entry[]> {
+export async function getTestimonialEntriesByLang(lang: Language): Promise<Entry["testimonial"][]> {
+  const entries = await getCollection("testimonial", p => p.id.startsWith(`${lang}/`));
+  return Promise.all(entries.map(e => testimonialCollectionToTestimonialEntry(e, e.id)));
+}
+
+export async function testimonialCollectionToTestimonialEntry(
+  entry: CollectionEntry<"testimonial">,
+  slug: string
+): Promise<TestimonialEntry> {
+  const [lang, rawSlug] = slug.split("/") as [Language, string];
+
+  const translationsEntities = await getCollection("testimonial", p => {
+    const [pLang, pSlug] = p.id.split("/") as [Language, string];
+    return pLang !== lang && pSlug === rawSlug;
+  });
+
+  const translations = translationsEntities.map(p => {
+    const pLang = p.id.split("/")[0] as Language;
+    return { lang: pLang, slug: getEntryURL("testimonial", p.id), isOriginal: pLang === DEFAULT_LOCALE };
+  });
+
+  return {
+    entry,
+    translations,
+  };
+}
+
+export function getEntriesByLang<Key extends CollectionKey, EntryType = Entry[Key]>(
+  collection: Key,
+  lang: Language
+): Promise<EntryType[]> {
   switch (collection) {
     case "blog":
-      return getBlogEntriesByLang(lang);
+      return getBlogEntriesByLang(lang) as Promise<EntryType[]>;
+    case "testimonial":
+      return getTestimonialEntriesByLang(lang) as Promise<EntryType[]>;
     default:
       throw new Error(`Invalid collection name: ${collection as string}`);
   }
