@@ -2,7 +2,7 @@ import { previous, next } from "./store";
 
 export default function TestimonialControls() {
   return (
-    <div id="controls" class="flex flex-1 justify-center">
+    <div class="flex flex-1 justify-center">
       <div class="flex items-center gap-2 text-slate-600 dark:text-blue-50 lg:gap-4">
         <button type="button" aria-label="Previous" onClick={previous}>
           <svg
