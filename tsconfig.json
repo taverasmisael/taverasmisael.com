@@ -3,6 +3,7 @@
   "compilerOptions": {
     "verbatimModuleSyntax": true,
     "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
     "jsxImportSource": "solid-js",
     "importsNotUsedAsValues": "remove",
     "jsx": "preserve",

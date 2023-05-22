@@ -100,17 +100,12 @@ export function togglePlaying() {
 }
 
 function getColorsForTestimonial(testimonial: TestimonialEntry[]): TestimonialColors {
-  const colors = ["red", "orange", "teal", "blue", "indigo", "purple", "pink", "yellow", "green"];
   return testimonial.reduce(
     // TODO: Add support for custom colors
-    (acc, t, idx) => ({
-      ...acc,
-      [t.id]: {
-        background: `bg-${colors[idx]}-500`,
-        active: `text-${colors[idx]}-50`,
-        inactive: `text-${colors[idx]}-950`,
-      } satisfies TestimonialColor,
-    }),
+    (acc, t, idx) => {
+      const colors = COLOR_CLASSES[idx] || DEFAULT_COLORS;
+      return { ...acc, [t.id]: colors };
+    },
     // TypeScript will think that the type is TestimonialEntries if we don't cast it here
     // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter
     {} as TestimonialColors
@@ -147,5 +142,16 @@ function splitToLines(quote: string) {
   return lines;
 }
 
-export const WPM = 300;
+export const WPM = 200;
 export const WORDS_PER_LINE = 6;
+export const COLOR_CLASSES: TestimonialColor[] = [
+  { background: "bg-indigo-500", inactive: "text-indigo-950", active: "text-indigo-50" },
+  { background: "bg-yellow-500", inactive: "text-yellow-950", active: "text-yellow-50" },
+  { background: "bg-red-500", inactive: "text-red-950", active: "text-red-50" },
+  { background: "bg-teal-500", inactive: "text-teal-950", active: "text-teal-50" },
+  { background: "bg-green-500", inactive: "text-green-950", active: "text-green-50" },
+  { background: "bg-orange-500", inactive: "text-orange-950", active: "text-orange-50" },
+  { background: "bg-blue-500", inactive: "text-blue-950", active: "text-blue-50" },
+  { background: "bg-purple-500", inactive: "text-purple-950", active: "text-purple-50" },
+  { background: "bg-pink-500", inactive: "text-pink-950", active: "text-pink-50" },
+];
