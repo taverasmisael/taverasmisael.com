@@ -4,8 +4,8 @@ import { getCurrent } from "./store";
 export default function TestimonialPlayer() {
   return (
     <div class="relative grid grid-cols-3 items-center gap-2 px-2 md:gap-4">
-      <div class="absolute -top-3 left-0 h-1 w-full overflow-hidden rounded bg-slate-400 dark:bg-slate-700">
-        <div class="absolute left-0 top-0 h-1 w-1/2 rounded bg-red-400 dark:bg-red-50"></div>
+      <div class="absolute -top-3 left-0 h-1 w-full overflow-hidden rounded bg-blue-100 dark:bg-slate-600">
+        <div class="absolute left-0 top-0 h-1 w-1/2 rounded bg-blue-300 dark:bg-blue-100"></div>
       </div>
       <div class="col-span-2 inline-flex items-center space-x-2">
         <img src={getCurrent()?.data.image} alt="Avatar of Jonathan" class="h-8 w-8 rounded" />

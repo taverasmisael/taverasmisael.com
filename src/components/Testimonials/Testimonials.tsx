@@ -1,9 +1,9 @@
-import { createEffect, onMount } from "solid-js";
+import { onMount } from "solid-js";
 import type { Language } from "@/utils/i18n";
 import type { TestimonialEntry } from "@/utils/content";
 import TestimonialPlayer from "./Player";
 import TestimonialsLyric from "./Lyrics";
-import { setTestimonials, state } from "./store";
+import { setTestimonials } from "./store";
 
 interface TestimonialsProps {
   items: TestimonialEntry[];
@@ -14,8 +14,6 @@ export default function Testimonials(props: TestimonialsProps) {
   onMount(() => {
     setTestimonials(props.items);
   });
-
-  createEffect(()=> console.log(state))
 
   return (
     <>

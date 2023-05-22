@@ -1,4 +1,5 @@
-import { getCurrent, state } from "./store";
+import { For } from "solid-js";
+import { getCurrentLines, state } from "./store";
 
 export default function TestimonialsLyrics() {
   return (
@@ -8,7 +9,14 @@ export default function TestimonialsLyrics() {
       } p-4`}
     >
       <div class={`m-auto max-w-xl text-2xl font-semibold leading-relaxed ${state.colors.inactive || "text-red-950"}`}>
-        {getCurrent()?.data.quote}
+        <For each={getCurrentLines()}>
+          {(line, i) => (
+            // TODO: Use the real logic for active state (there's also a "previously active" state) WIP
+            <span class="contents" classList={{ [state.colors.active]: i() === 0 }}>
+              {line}{" "}
+            </span>
+          )}
+        </For>
       </div>
     </div>
   );
