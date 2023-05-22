@@ -1,49 +1,52 @@
 import type { TestimonialEntry } from "@/utils/content";
 import { createStore } from "solid-js/store";
 
-interface TestimonialColors {
+interface TestimonialColor {
   background: string;
   active: string;
   inactive: string;
 }
 
 type TestimonialWords = Record<TestimonialEntry["id"], string[]>;
-
-interface TestimonialStore {
+type TestimonialColors = Record<TestimonialEntry["id"], TestimonialColor>;
+type PlayingState = "PAUSED" | "PLAYING";
+interface TestimonialState {
   testimonials: TestimonialEntry[];
   current: number;
-  colors: TestimonialColors;
+  colors?: TestimonialColors;
   lines?: TestimonialWords;
   progress: number;
+  state: PlayingState;
 }
 
-const DEFAULT_COLORS: TestimonialColors = {
+const DEFAULT_COLORS: TestimonialColor = {
   background: "bg-gray-400",
   active: "text-slate-50",
   inactive: "text-slate-950",
 };
 
-const [store, setStore] = createStore<TestimonialStore>({
+const [store, setStore] = createStore<TestimonialState>({
   testimonials: [],
   current: 0,
-  colors: DEFAULT_COLORS,
   progress: 0,
+  state: "PAUSED",
 });
 
 export { store as state };
 
 export function setTestimonials(testimonials: TestimonialEntry[]) {
-  setStore("testimonials", testimonials);
-  setStore("lines", splitWords(testimonials));
+  const state: PlayingState = "PLAYING";
+  const lines = splitWords(testimonials);
+  const colors = getColorsForTestimonial(testimonials);
+  setStore({ testimonials, lines, state, colors });
 }
 
-function setCurrent<T extends TestimonialStore>(store: T, c: number): T {
+function setCurrent<T extends TestimonialState>(store: T, c: number): T {
   let current = c;
   if (!store.testimonials.length || current >= store.testimonials.length) current = 0;
   if (current < 0) current = store.testimonials.length - 1;
-  const colors = getColorsForTestimonial(store.testimonials[current]);
 
-  return { ...store, colors, current, progress: 0 };
+  return { ...store, current, progress: 0 };
 }
 
 export function next() {
@@ -65,9 +68,53 @@ export function getCurrentLines(): string[] {
   return [];
 }
 
-// TODO: Add support for custom colors
-function getColorsForTestimonial(testimonial: TestimonialEntry): TestimonialColors {
-  return { background: "bg-red-500", active: "bg-red-50", inactive: "bg-red-950" };
+export function getCurrentProgress(): number {
+  return store.progress;
+}
+
+export function setCurrentProgress(progress: number) {
+  if (progress === store.progress || getPlayingState() === "PAUSED") return;
+  setStore(store => {
+    const newProgress = Math.min(100, Math.max(0, progress));
+    if (newProgress >= 100) {
+      return setCurrent({ ...store, progress: 0 }, store.current + 1);
+    }
+
+    return { ...store, progress: newProgress };
+  });
+}
+
+export function getColors(): TestimonialColor {
+  const current = getCurrent();
+  if (!current || !store.colors) return DEFAULT_COLORS;
+
+  return store.colors[current.id];
+}
+
+export function getPlayingState(): PlayingState {
+  return store.state;
+}
+
+export function togglePlaying() {
+  setStore("state", store.state === "PAUSED" ? "PLAYING" : "PAUSED");
+}
+
+function getColorsForTestimonial(testimonial: TestimonialEntry[]): TestimonialColors {
+  const colors = ["red", "orange", "teal", "blue", "indigo", "purple", "pink", "yellow", "green"];
+  return testimonial.reduce(
+    // TODO: Add support for custom colors
+    (acc, t, idx) => ({
+      ...acc,
+      [t.id]: {
+        background: `bg-${colors[idx]}-500`,
+        active: `text-${colors[idx]}-50`,
+        inactive: `text-${colors[idx]}-950`,
+      } satisfies TestimonialColor,
+    }),
+    // TypeScript will think that the type is TestimonialEntries if we don't cast it here
+    // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter
+    {} as TestimonialColors
+  );
 }
 
 function splitWords(testimonials: TestimonialEntry[]): TestimonialWords {
@@ -80,13 +127,12 @@ function splitWords(testimonials: TestimonialEntry[]): TestimonialWords {
 }
 
 function splitToLines(quote: string) {
-  const VISIBLE_WORDS = 6;
   const words = quote.trim().split(" ");
-  const { lines } = new Array(Math.ceil(words.length / VISIBLE_WORDS))
+  const { lines } = new Array(Math.ceil(words.length / WORDS_PER_LINE))
     .fill(undefined)
     .reduce<{ lines: string[]; lastIndex: number }>(
       acc => {
-        const newIndex = Math.min(VISIBLE_WORDS + acc.lastIndex, words.length);
+        const newIndex = Math.min(WORDS_PER_LINE + acc.lastIndex, words.length);
         const line = words.slice(acc.lastIndex, newIndex).join(" ");
         return {
           ...acc,
@@ -99,3 +145,6 @@ function splitToLines(quote: string) {
 
   return lines;
 }
+
+export const WPM = 300;
+export const WORDS_PER_LINE = 6;

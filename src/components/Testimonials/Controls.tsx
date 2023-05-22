@@ -1,4 +1,5 @@
-import { previous, next } from "./store";
+import { createMemo } from "solid-js";
+import { previous, next, togglePlaying, getPlayingState } from "./store";
 
 export default function TestimonialControls() {
   const pauseIcon = (
@@ -15,6 +16,9 @@ export default function TestimonialControls() {
       clip-rule="evenodd"
     ></path>
   );
+
+  const icon = createMemo(() => (getPlayingState() === "PLAYING" ? pauseIcon : playIcon));
+
   return (
     <div class="flex flex-1 justify-center">
       <div class="flex items-center gap-2 text-slate-950 dark:text-blue-100 lg:gap-4">
@@ -34,9 +38,9 @@ export default function TestimonialControls() {
             ></path>
           </svg>
         </button>
-        <button type="button" aria-label="Play">
+        <button type="button" aria-label="Play" onClick={togglePlaying}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 lg:w-8">
-            {pauseIcon}
+            {icon()}
           </svg>
         </button>
         <button type="button" aria-label="Next" onClick={next}>
