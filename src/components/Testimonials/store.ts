@@ -128,6 +128,7 @@ function splitWords(testimonials: TestimonialEntry[]): TestimonialWords {
 
 function splitToLines(quote: string) {
   const words = quote.trim().split(" ");
+  // TODO: Find a better way to split the words, this is accurate but is not the natural way to read
   const { lines } = new Array(Math.ceil(words.length / WORDS_PER_LINE))
     .fill(undefined)
     .reduce<{ lines: string[]; lastIndex: number }>(

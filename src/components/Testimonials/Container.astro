@@ -10,11 +10,7 @@ const { lang } = Astro.props;
 const testimonials = await getEntriesByLang("testimonial", lang);
 ---
 
-<section
-  class="testimonial empty:none mx-auto grid h-full max-w-lg bg-white p-4 shadow transition-all hover:shadow-slate-50 dark:bg-black dark:hover:shadow-slate-950"
->
-  <Testimonials items={testimonials} lang={lang} client:only />
-</section>
+<Testimonials items={testimonials} lang={lang} client:idle />
 <noscript>
   <section class="space-y-4">
     {
@@ -39,12 +35,3 @@ const testimonials = await getEntriesByLang("testimonial", lang);
     }
   </section>
 </noscript>
-<style>
-  .testimonial {
-    grid-template-rows: 1fr 50px;
-  }
-
-  .testimonial:has(> *:empty) {
-    display: none;
-  }
-</style>
