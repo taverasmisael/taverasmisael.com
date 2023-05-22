@@ -1,37 +1,42 @@
 ---
 import type { Language } from "@/utils/i18n";
 import { getEntriesByLang } from "@/utils/content";
-import Testimonials from "./Testimonials";
-
 interface Props {
   lang: Language;
 }
 const { lang } = Astro.props;
 const testimonials = await getEntriesByLang("testimonial", lang);
+const rings: string[] = [
+  "ring-indigo-50 hover:ring-indigo-500 focus-within:ring-indigo-500 shadow-indigo-950 dark:ring-indigo-900",
+  "ring-yellow-50 hover:ring-yellow-500 focus-within:ring-yellow-500 shadow-yellow-950 dark:ring-yellow-900",
+  "ring-red-50 hover:ring-red-500 focus-within:ring-red-500 shadow-red-950 dark:ring-red-900",
+  "ring-teal-50 hover:ring-teal-500 focus-within:ring-teal-500 shadow-teal-950 dark:ring-teal-900",
+  "ring-slate-50 hover:ring-slate-500 focus-within:ring-slate-500 shadow-slate-950 dark:ring-slate-900",
+  "ring-blue-50 hover:ring-blue-500 focus-within:ring-blue-500 shadow-blue-950 dark:ring-blue-900",
+  "ring-purple-50 hover:ring-purple-500 focus-within:ring-purple-500 shadow-purple-950 dark:ring-purple-900",
+  "ring-orange-50 hover:ring-orange-500 focus-within:ring-orange-500 shadow-orange-950 dark:ring-orange-900",
+  "ring-pink-50 hover:ring-pink-500 focus-within:ring-pink-500 shadow-pink-950 dark:ring-pink-900",
+];
 ---
 
-<Testimonials items={testimonials} lang={lang} client:idle />
-<noscript>
-  <section class="space-y-4">
-    {
-      testimonials.map(t => (
-        <blockquote class="p-4">
-          <p>
-            <em>{t.data.quote}</em>
+<section class="grid items-start gap-8 md:grid-cols-2 xl:grid-cols-4">
+  {
+    testimonials.map((t, i) => (
+      <blockquote
+        class="mx-auto grid grid-cols-1 rounded bg-slate-50 p-4 shadow ring ring-blue-50 hover:ring-blue-400 dark:bg-slate-950 md:p-8"
+        class:list={[{ "md:col-span-2 xl:order-1 self-stretch": i === 1, "order-1": i !== 1 }, rings[i]]}
+      >
+        <em class="block not-italic leading-normal">{t.data.quote}</em>
+        <div class="mt-8 flex items-center space-x-2">
+          <img src={t.data.image} alt="" class="w-10 rounded" />
+          <p class="text-xs leading-4">
+            <strong class="block text-sm font-semibold text-gray-900 underline-offset-2 hover:underline dark:text-slate-100">
+              <a href={t.data.link}>{t.data.name}</a>
+            </strong>
+            <span class="text-gray-500 dark:text-gray-400">{t.data.title}</span>
           </p>
-          <div class="mt-4 flex items-center space-x-4">
-            <img src={t.data.image} alt="" class="h-12 w-12 rounded-full" width="48" height="48" />
-            <div class="text-sm font-medium not-italic">
-              <span class="block text-gray-900 hover:text-blue-700 hover:underline dark:text-slate-100 dark:hover:text-white">
-                <a href={t.data.link} rel="external nofollow" target="_blank">
-                  {t.data.name}
-                </a>
-              </span>
-              <span class="text-gray-500 dark:text-gray-400">{t.data.title}</span>
-            </div>
-          </div>
-        </blockquote>
-      ))
-    }
-  </section>
-</noscript>
+        </div>
+      </blockquote>
+    ))
+  }
+</section>
