@@ -17,10 +17,9 @@ export interface BlogEntry {
   translations: EntryTranslationReference[];
 }
 
-export interface TestimonialEntry {
-  entry: CollectionEntry<"testimonial">;
-  translations: EntryTranslationReference[];
-}
+// The testimonials are not as complex as post, they don't need 1/1 translations, so we can just
+// use the same type for both instead of having a custom type, like with BlogEntry.
+export type TestimonialEntry = CollectionEntry<"testimonial">
 
 export interface EntryTranslationReference {
   isOriginal: boolean;

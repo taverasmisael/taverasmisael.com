@@ -1,0 +1,50 @@
+---
+import type { Language } from "@/utils/i18n";
+import { getEntriesByLang } from "@/utils/content";
+import Testimonials from "./Testimonials";
+
+interface Props {
+  lang: Language;
+}
+const { lang } = Astro.props;
+const testimonials = await getEntriesByLang("testimonial", lang);
+---
+
+<section
+  class="testimonial empty:none mx-auto grid h-full max-w-md bg-white p-4 shadow-sm ring-2 ring-white dark:bg-black dark:ring-black"
+>
+  <Testimonials items={testimonials} lang={lang} client:only />
+</section>
+<noscript>
+  <section class="space-y-4">
+    {
+      testimonials.map(t => (
+        <blockquote class="p-4">
+          <p>
+            <em>{t.data.quote}</em>
+          </p>
+          <div class="mt-4 flex items-center space-x-4">
+            <img src={t.data.image} alt="" class="h-12 w-12 rounded-full" width="48" height="48" />
+            <div class="text-sm font-medium not-italic">
+              <span class="block text-gray-900 hover:text-blue-700 hover:underline dark:text-slate-100 dark:hover:text-white">
+                <a href={t.data.link} rel="external nofollow" target="_blank">
+                  {t.data.name}
+                </a>
+              </span>
+              <span class="text-gray-500 dark:text-gray-400">{t.data.title}</span>
+            </div>
+          </div>
+        </blockquote>
+      ))
+    }
+  </section>
+</noscript>
+<style>
+  .testimonial {
+    grid-template-rows: 1fr 50px;
+  }
+
+  .testimonial:has(> *:empty) {
+    display: none;
+  }
+</style>
