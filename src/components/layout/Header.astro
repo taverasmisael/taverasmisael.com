@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import logo from "@/assets/brand/logo-REPLACE.svg";
 import Nav from "./Nav.astro";
 import { useTranslation, type Language, getLocalizedPage, DEFAULT_LOCALE } from "@/utils/i18n";
 interface Props {
@@ -34,16 +32,14 @@ const t = useTranslation(lang);
       </div>
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
         <div class="flex shrink-0 items-center">
-          <a href={getLocalizedPage(lang, "home")}>
-            <span class="sr-only">Misael Taveras</span>
-            <Image
-              class="block h-8 w-auto"
-              alt="Misael Taveras Logo"
-              aria-hidden={true}
-              src={logo.src}
-              width={logo.width}
-              height={logo.height}
-            />
+          <a
+            class="font-mono text-lg font-extralight text-slate-600 dark:text-slate-200"
+            href={getLocalizedPage(lang, "home")}
+          >
+            <span aria-hidden="true"
+              >&lt;<span class="text-slate-900 dark:text-blue-100">TaverasMisael</span> /&gt;</span
+            >
+            <span class="sr-only">{t("navigation", "go_home")}</span>
           </a>
         </div>
         <div class="hidden sm:ml-6 sm:block">
