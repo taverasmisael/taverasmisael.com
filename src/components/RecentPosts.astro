@@ -1,16 +1,15 @@
 ---
 import type { Language } from "@/utils/i18n";
-import { getEntriesByLang, type CollectionKey } from "@/utils/content";
+import { getEntriesByLang } from "@/utils/content";
 import CardPost from "./content/CardPost.astro";
 
 interface Props {
-  collection: CollectionKey;
   max?: number;
   lang: Language;
 }
 
-const { lang, collection, max = 4 } = Astro.props;
-const allEntries = await getEntriesByLang(collection, lang);
+const { lang, max = 4 } = Astro.props;
+const allEntries = await getEntriesByLang('blog', lang);
 const entries = allEntries.slice(0, max).sort((a, b) => (a.entry.data.date > b.entry.data.date ? -1 : 1));
 ---
 

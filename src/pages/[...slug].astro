@@ -11,10 +11,10 @@ const [collection, name] = slug.split("/");
 
 const collectionName = getCollectionName(collection);
 
-if (!collectionName) {
+// For now, we don't have a page for other collections
+if (!collectionName || collectionName !== "blog") {
   return Astro.redirect(`/404?from=${slug}`);
 }
-
 const postFound = await getCollection(collectionName, ({ slug }) => slug.includes(name));
 
 return postFound.length

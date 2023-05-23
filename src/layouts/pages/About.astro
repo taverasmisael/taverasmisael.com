@@ -4,7 +4,7 @@ import { slugToCanonical } from "@/utils/content";
 import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 import Layout from "@/layouts/WithHeader.astro";
 import PageBanner from "@/components/PageBanner.astro";
-import RecentEntries from "@/components/RecentEntries.astro";
+import RecentPosts from "@/components/RecentPosts.astro";
 
 interface Props {
   frontmatter: AboutFrontmatter;
@@ -51,7 +51,7 @@ const t = useTranslation(lang);
       <div class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl">
         <slot />
         <FullWidthBlock withContainer class="not-prose">
-          <RecentEntries lang={lang} collection="blog" />
+          <RecentPosts lang={lang} />
         </FullWidthBlock>
       </div>
     </div>

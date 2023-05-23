@@ -66,7 +66,9 @@
   },
   "collections": {
     "all": "All",
-    "blog": "Blog"
+    "blog": "Blog",
+    "author": "Author",
+    "testimonial": "Testimonial"
   },
   "forms": {
     "name": "Name",
