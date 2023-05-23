@@ -51,7 +51,8 @@
     "contact_thanks_description": "I will contact you as soon as possible.",
     "reading_translation_archive": "This {{collection_name}} is originally written in {{original_language}}. To see all the entries, visit the ",
     "incomplete_translation_disclaimer": "This translation may be incomplete. To see the original version, visit the ",
-    "cv_is_available_in": "My resume is available to "
+    "cv_is_available_in": "My resume is available to ",
+    "serch_powered_by": "Search powered by"
   },
   "page_descriptions": {
     "blog": "Find articles about web development, technology, programming, design and more.",
