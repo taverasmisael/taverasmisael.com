@@ -14,22 +14,20 @@ const urls = {
 
 <HomeLayout lang={lang} featuredPostSlug="en/entendiendo-los-snapshots-de-jest">
   <Fragment slot="jumbotron">
-    <h2 class="mb-8 text-5xl tracking-wide md:text-6xl lg:text-8xl">Hello there 👋🏽</h2>
-    <div class="max-w-lg">
-      <p class="mb-6">
-        I'm <strong class="font-semibold text-slate-950 dark:text-white">Misael Taveras</strong>, and I'm a frontend
-        engineer from the Dominican Republic.
-      </p>
-      <p class="mb-12">
-        I enjoy working with <span class="font-semibold">React</span>, <span class="font-semibold">TypeScript</span>,
-        and <span class="font-semibold">Node</span>.
-      </p>
-      <p>
-        You can <a href={urls.about} class="font-semibold text-slate-950 underline dark:text-white" rel="prefetch"
-          >read more about me here
-        </a>.
-      </p>
-    </div>
+    <p class="mb-4 text-3xl tracking-wide md:mb-6 md:text-5xl md:leading-snug">
+      Hi, I'm <span class="text-blue-900 dark:text-blue-50">Misael Taveras</span>
+    </p>
+    <p class="mb-2 md:mb-4">I'm a <span>FrontEnd Engineer</span> from the Dominican Republic.</p>
+    <p class="mb-4 md:mb-6">
+      I enjoy working with <span class="font-semibold">React</span>, <span class="font-semibold">TypeScript</span>, and <span
+        class="font-semibold">Node</span
+      >.
+    </p>
+    <p class="">
+      Read more <a href={urls.about} class="font-semibold text-slate-950 underline dark:text-white" rel="prefetch"
+        >about me here
+      </a>.
+    </p>
   </Fragment>
 
   <Fragment slot="blog">

@@ -1,11 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "@/layouts/WithHeader.astro";
 import { getLocalizedPage, useTranslation, type Language, LANGUAGES } from "@/utils/i18n";
 import { getBlogEntry, slugToCanonical } from "@/utils/content";
 import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
 import FeaturedPost from "@/components/content/FeaturedPost.astro";
 import Testimonials from "@/components/Testimonials/Container.astro";
-
+import ProfilePic from "@/assets/images/profile.jpg";
 interface Props {
   lang: Language;
   featuredPostSlug: string;
@@ -32,10 +33,19 @@ const t = useTranslation(lang);
   <main class="container mx-auto w-full px-8">
     <FullWidthBlock
       withContainer
-      class="bg-gradient-to-tl from-blue-100 to-blue-200 text-xl leading-8 text-slate-800 shadow dark:bg-slate-950 dark:from-slate-900 dark:to-slate-950 dark:text-slate-300 lg:py-64"
+      class="overflow-hidden bg-gradient-to-tl from-blue-100 to-blue-200 text-xl leading-8 text-slate-800 shadow dark:bg-slate-950 dark:from-slate-900 dark:to-slate-950 dark:text-slate-300 lg:py-32"
     >
       <!-- Bootstrap times :D -->
-      <slot name="jumbotron" />
+      <div class="grid items-center gap-8 md:grid-cols-2 md:gap-32 lg:grid-cols-3">
+        <div class="lg:col-span-2"><slot name="jumbotron" /></div>
+        <div class="w-fit justify-self-center rounded-xl bg-blue-800/90 shadow-sm hover:shadow-md">
+          <Image
+            src={ProfilePic}
+            alt=""
+            class="block w-full max-w-sm rotate-3 rounded-md transition-transform hover:rotate-0 hover:scale-95 hover:rounded-lg md:w-full md:max-w-md"
+          />
+        </div>
+      </div>
     </FullWidthBlock>
     <div class="gap-8 py-16 lg:grid lg:grid-cols-2 xl:py-32">
       <div class="prose dark:prose-invert xl:prose-lg prose-a:no-underline">
