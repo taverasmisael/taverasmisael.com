@@ -30,8 +30,8 @@ const t = useTranslation(lang);
           </svg>
         </button>
       </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
-        <div class="flex shrink-0 items-center">
+      <div class="grid flex-1 items-center justify-center sm:grid-cols-3 sm:items-stretch sm:justify-between">
+        <div class="col-start-2 flex shrink-0 items-center sm:col-start-1">
           <a
             class="font-mono text-lg font-extralight text-slate-600 dark:text-slate-200"
             href={getLocalizedPage(lang, "home")}
@@ -45,7 +45,7 @@ const t = useTranslation(lang);
         <div class="hidden sm:ml-6 sm:block">
           <Nav lang={lang} activePage={basePath} />
         </div>
-        <div class="insetr-0 absolute right-1 flex items-center pr-2 sm:relative sm:right-0">
+        <div class="insert-0 absolute right-1 flex items-center justify-self-end pr-2 sm:relative sm:right-0">
           <button
             id="search-button"
             class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white"
