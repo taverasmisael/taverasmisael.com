@@ -1,6 +1,7 @@
 ---
 import type { Language } from "@/utils/i18n";
 import { getEntriesByLang } from "@/utils/content";
+
 interface Props {
   lang: Language;
 }
@@ -23,11 +24,11 @@ const rings: string[] = [
   {
     testimonials.map((t, i) => (
       <blockquote
-        class="mx-auto grid grid-cols-1 rounded bg-slate-50 p-4 shadow ring ring-blue-50 transition-all hover:ring-blue-400 dark:bg-slate-950 md:p-8"
+        class="mx-auto grid gap-8 rounded bg-slate-50 p-4 shadow ring ring-blue-50 transition-all hover:ring-blue-400 dark:bg-slate-950 md:p-8"
         class:list={[{ "md:col-span-2 xl:order-1 self-stretch": i === 1, "order-1": i !== 1 }, rings[i]]}
       >
         <em class="block not-italic leading-normal">{t.data.quote}</em>
-        <div class="mt-8 flex items-center space-x-2">
+        <div class="flex items-center space-x-2 self-end">
           <img src={t.data.image} alt="" class="w-10 rounded" />
           <p class="text-xs leading-4">
             <strong class="block text-sm font-semibold text-gray-900 underline-offset-2 hover:underline dark:text-slate-100">
