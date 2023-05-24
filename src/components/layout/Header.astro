@@ -12,9 +12,9 @@ const t = useTranslation(lang);
 ---
 
 <header class="fixed top-0 z-40 w-full bg-white shadow-md transition-transform dark:bg-slate-950">
-  <div class="mx-auto max-w-7xl px-2 sm:border-none sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl px-2 md:border-none md:px-6 lg:px-8">
     <div class="relative flex h-20 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+      <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
         <button
           type="button"
           class="inline-flex items-center justify-center rounded-md p-2 dark:hover:bg-gray-700"
@@ -30,10 +30,10 @@ const t = useTranslation(lang);
           </svg>
         </button>
       </div>
-      <div class="grid flex-1 items-center justify-center sm:grid-cols-3 sm:items-stretch sm:justify-between">
-        <div class="col-start-2 flex shrink-0 items-center sm:col-start-1">
+      <div class="grid flex-1 items-center justify-center md:grid-cols-6 md:gap-4 lg:grid-cols-4">
+        <div class="col-start-2 flex shrink-0 items-center md:col-span-2 md:col-start-1 lg:col-span-1">
           <a
-            class="font-mono text-lg font-extralight text-slate-600 dark:text-slate-200"
+            class="font-mono text-2xl font-extralight text-slate-600 dark:text-slate-200 md:text-lg xl:text-2xl" 
             href={getLocalizedPage(lang, "home")}
           >
             <span aria-hidden="true"
@@ -42,10 +42,10 @@ const t = useTranslation(lang);
             <span class="sr-only">{t("navigation", "go_home")}</span>
           </a>
         </div>
-        <div class="hidden sm:ml-6 sm:block">
+        <div class="hidden md:col-span-3 md:block lg:col-span-2">
           <Nav lang={lang} activePage={basePath} />
         </div>
-        <div class="insert-0 absolute right-1 flex items-center justify-self-end pr-2 sm:relative sm:right-0">
+        <div class="insert-0 absolute right-1 flex items-center justify-self-end pr-2 md:relative md:right-0">
           <button
             id="search-button"
             class="rounded-full p-2 hover:bg-blue-100/40 dark:hover:bg-gray-700/40 dark:hover:text-white"
@@ -67,7 +67,7 @@ const t = useTranslation(lang);
       </div>
     </div>
   </div>
-  <div class="mobile-menu grid transition-all sm:hidden" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu grid transition-all md:hidden" id="mobile-menu" aria-hidden="true">
     <div class="overflow-hidden"><Nav lang={lang} isMobile activePage={basePath} /></div>
   </div>
 </header>

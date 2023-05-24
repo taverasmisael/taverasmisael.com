@@ -33,7 +33,7 @@ const pages = validPages.map(name => ({
 }));
 ---
 
-<nav role="navigation" class="flex items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
+<nav role="navigation" class="mx-auto flex max-w-md items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
   {
     pages.map(page => (
       <NavLink isMobile={isMobile} isActive={activePage.startsWith(page.path)} href={page.href}>
