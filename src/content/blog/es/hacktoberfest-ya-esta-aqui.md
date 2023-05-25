@@ -4,7 +4,6 @@ date: '2019-09-28'
 description: Hacktoberfest es el evento de código abierto más esperado del año donde tus contribuciones son recompensadas. Aprende como participar y que beneficios tiene ser parte de este movimiento.
 author: misael-taveras
 tags: ['Consejo', 'Evento']
-banner: ../../../assets/posts/banner-hacktoberfest-ya-esta-aqui.jpg
 ---
 
 [Hacktoberfest®](https://hacktoberfest.digitalocean.com/) es un evento patrocinado por DigitalOcean (al que cada año se suman más patrocinadores), en el que se fomenta al código abierto y la participación de la comunidad.

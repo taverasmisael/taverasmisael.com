@@ -4,7 +4,6 @@ date: '2019-12-01'
 description: Jest, created by Facebook, is a testing framework for react that brings with it a powerful but mysterious tool; That is why it is sometimes feared, ignored or misused.
 author: misael-taveras
 tags: ['Test', 'Tutorial']
-banner: ../../../assets/posts/baner-entendiendo-los-snapshots-de-jest.jpg
 translatedBy: [misael-taveras]
 ---
 

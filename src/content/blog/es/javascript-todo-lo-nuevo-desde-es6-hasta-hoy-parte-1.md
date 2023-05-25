@@ -4,10 +4,6 @@ date: '2019-08-24'
 description: Todo lo que ha sido añadido al lenguaje desde 2015. Con ejemplos desde ES6 y ES7
 author: misael-taveras
 tags: ['JavaScript', 'ES6']
-banner: ../../../assets/posts/banner-javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1.jpg
-redirect_from:
-  - /blog/javascript-todo-lo-nuevo-desde-es6-hasta-hoy/
-  - /blog/javascript-todo-lo-nuevo-desde-es6-hasta-hoy
 ---
 
 > Esta es la primera parte de una serie de dos donde hablo de todas las novedades de JavaScript desde el 2015.

@@ -4,7 +4,6 @@ date: '2020-06-15'
 description: Un listado con mis extensiones favoritas para que Visual Studio Code se sienta único. El número tres te sorprenderá.
 author: misael-taveras
 tags: ['VSCode', 'Recomendación']
-banner: ../../../assets/posts/baner-extensiones-y-temas-para-personalizar-vscode.png
 ---
 
 Hola y bienvenid@. Espero que lo estés pasando bien, que si estás en el presente te cuides, y si vienes del futuro felicidades por sobrevivir. Espero que no seas un T-1000 ni nada así (sin ofender a los cyborgs).

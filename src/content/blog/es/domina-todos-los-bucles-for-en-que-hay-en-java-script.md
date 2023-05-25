@@ -4,7 +4,6 @@ date: '2020-06-21'
 description: ¿Conoces las diferencias y casos de usos entre los 4 bucles for en JavaScript? Si no es el caso, o no sabes bien donde encaja cada uno, dejame mostrarte.
 author: misael-taveras
 tags: ['JavaScript', 'Tutorial']
-banner: ../../../assets/posts/banner-domina-todos-los-bucles-for-en-que-hay-en-javascript.jpg
 ---
 
 En JavaScript existen diversas maneras de iterar sobre un arreglo o colección de datos. La más popular (aunque creo que menos sencilla) es el clásico bucle for que existe en todos los lenguajes de programación. Aunque en JavaScript tenemos otras maneras de trabajar con los datos dentro de un array (de hecho tengo un post al respecto que [puedes ver aquí](usar-map-filter-y-reduce-para-olvidarnos-de-los-bucles-for)) es bueno conocer los demás métodos y cómo utilizarlos.

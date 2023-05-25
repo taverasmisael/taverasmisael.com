@@ -4,7 +4,6 @@ date: '2020-06-28'
 description: He preguntado a varios colegas que si tienen algún portafolio y la mayoría me envían un enlace a su Github, lo cual es mejor que nada pero no es optimo. Github no es Behance.
 author: misael-taveras
 tags: ['Opinión', 'Recomendación']
-banner: ../../../assets/posts/banner-github-no-es-suficiente-portafolio.png
 ---
 Hace unos años cada artículo que hablaba de tener un Portafolio como desarrolladores mencionaba tener tu perfil de GitHub inmaculado, bello, lleno de proyectos aunque estos fueran personales o no estuvieran completados. Esto (según nuestros ancestros) daba a los reclutadores y compañías una idea de como trabajabas, de que no estabas vago y que estabas trabajando.
 

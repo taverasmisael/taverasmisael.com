@@ -4,7 +4,6 @@ date: '2020-06-07'
 description: Una carta abierta de mi viaje de exploración diario, en especial ahora en cuarentena.
 author: misael-taveras
 tags: ['Personal', 'Historia']
-banner: ../../../assets/posts/baner-viviendo-con-el-enemigo-en-cuarentena.png
 ---
 Son las 7 y como cada día suena la alarma. Es super temprano, entras a trabajar mucho màs tarde y hay tiempo, pero te propusiste que esta semana sí empezarías con tus metas. La alarma a las 7 no es para trabajar, es para correr y hacer ejercicio por unos 45 minutos, llegar a casa y leer un libro. Luego dedicar tus horas màs productivas a tus proyectos personales para luego darte un baño y ahora si trabajar.
 

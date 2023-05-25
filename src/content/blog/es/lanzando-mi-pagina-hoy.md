@@ -4,7 +4,6 @@ date: '2019-07-31'
 description: A pesar de ser algo que he querido hacer por mucho tiempo nunca había dado el paso completo. Aquí te cuento por qué decidí dar ese paso hoy
 author: misael-taveras
 tags: ["Noticia", "Personal"]
-banner: ../../../assets/posts/banner-lanzando-mi-pagina-hoy.jpg
 ---
 
 Ha sido un largo camino hasta acá; la meta era lograrlo en una semana, la semana se volvieron dos, y si no lanzaba hoy se volverían tres.

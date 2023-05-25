@@ -4,7 +4,6 @@ date: '2020-10-03'
 description: Muchos en algun punto de nuestra vida hemos sentido que no estámos donde deberíamos o no merecemos lo que hemos logrado o que no somos capaces. Puede que sufras del síndrome de impostor. En este post de digo qué es, cómo diagnosticarlo y combatirlo.
 author: misael-taveras
 tags: ['Soft Skills', 'Consejo']
-banner: ../../../assets/posts/banner-el-sindrome-de-impostor.jpg
 ---
 
 Si has tenido conocimiento de algo por mas de 2 días es probable que hayas sentido el síndrome de impostor, aún si no sabes que ese es su nombre. Esto no es algo meramente exclusivo del conocimiento de algún tópico y se puede sufrir en relaciones también.

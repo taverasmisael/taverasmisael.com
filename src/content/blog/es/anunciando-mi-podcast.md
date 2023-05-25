@@ -4,7 +4,6 @@ date: '2020-01-22'
 description: Anuncio de mis planes de crear un podcast donde pueda compartir más de cerca temas varios, orientados a la programación pero más enfocados en el día a día del programador.
 author: misael-taveras
 tags: ['Noticia', 'Personal']
-banner: ../../../assets/posts/banner-anunciando-mi-podcast.jpg
 ---
 
 Hola, espero que el año haya iniciado bien para ti. Y si no fue del todo así, pues descuida, aún quedan días para mejorarlo.
