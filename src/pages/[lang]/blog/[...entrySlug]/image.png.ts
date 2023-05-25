@@ -1,10 +1,15 @@
+import { Resvg } from "@resvg/resvg-js";
 import { getBlogEntry, getCollection } from "@/utils/content";
 import { generateOGImage } from "@/utils/content/open-graph/image";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-export const prerender = true;
+// NOTE: If generating this on the fly is consuming too much resources, we can
+// generate it on build time and store it in the `public` folder.
+// Maybe if that's the case, we can create a script to generate all the images
+// and place them on a bucket so we don't have to generate them on build time.
+// export const prerender = true;
 export async function get({ params }: { params: Record<string, string> }) {
   try {
     console.time("og-image");
@@ -22,16 +27,15 @@ export async function get({ params }: { params: Record<string, string> }) {
       height: HEIGHT,
     });
 
-    // TODO: Transform to PNG.
-    // `@resvg/resvg` is a good candidate for this. But it has some issues with
-    // importing `.node` packages, there's no good way to do this without Vercel atm.
-    // See: https://github.com/yisibl/resvg-js/issues/175
-    // See: https://github.com/etherCorps/sveltekit-og
-    // This is super curious because installing the package and using it without stopping the server works fine.
-    // But if you restart, or build, or deploy, it will crash.
 
     console.timeEnd("og-image");
-    return new Response(svg, { status: 200, headers: { "Content-Type": "image/svg+xml" } });
+
+    console.time("resvg");
+    const resvg = new Resvg(svg, { fitTo: { mode: "width", value: WIDTH } }).render();
+    const png = resvg.asPng();
+    console.timeEnd("resvg");
+
+    return new Response(png, { status: 200, headers: { "Content-Type": "image/png" } });
   } catch (e) {
     console.log(e);
     return new Response("SOMETHING WENT WRONG", { status: 500 });

@@ -45,4 +45,9 @@ export default defineConfig({
   markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
   output: "server",
   site: env.PUBLIC_SITE_URL || "https://localhost:5000",
+  vite: {
+    ssr: {
+      external: ["@resvg/resvg-js"],
+    },
+  },
 });
