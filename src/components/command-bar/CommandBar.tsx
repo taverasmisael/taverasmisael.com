@@ -72,6 +72,7 @@ export default function CommandBar(props: { lang: Language }) {
               {t("ui", "search")}
             </label>
             <input
+              autofocus
               id="command-bar-input"
               name="command-bar-input"
               class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-slate-600 dark:text-blue-50 dark:placeholder:text-slate-300 md:p-4"

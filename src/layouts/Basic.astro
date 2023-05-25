@@ -30,6 +30,9 @@ const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="theme-color" content="hsl(228, 84%, 5%)" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="hsl(0, 0, 100%)" media="(prefers-color-scheme: light)" />
     <meta name="docsearch:language" content={lang} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
