@@ -1,7 +1,6 @@
 ---
 import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
-import { Image } from "astro:assets";
 import { getBlogEntry } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/utils/i18n";
@@ -13,10 +12,13 @@ interface Params {
 
 const post = await getBlogEntry(Object.values(Astro.params as unknown as Params).join("/"));
 
-if (!post) return Astro.redirect(`/404?from=${Astro.url.pathname}`);
+if (!post) {
+  return Astro.redirect(`/404?from=${Astro.url.pathname}`);
+}
 
 const { meta, entry, translations } = post;
 const { Content } = await entry.render();
+const imageURL = Astro.url.pathname + "image.png";
 
 // eslint-disable-next-line
 const components = { Admonition: Admonition };
@@ -30,19 +32,12 @@ const components = { Admonition: Admonition };
   translations={translations}
 >
   <main
-    class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"
+    class="prose prose-slate mx-auto mt-4 px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"
   >
     <div class="not-prose">
       {!!translations.length && <PostTranslations lang={meta.lang} translations={translations} />}
     </div>
     <article>
-      <Image
-        alt={entry.data.title}
-        src={entry.data.banner.src}
-        width={entry.data.banner.width}
-        height={entry.data.banner.height}
-        class:list={{ "!mt-0": !!translations.length }}
-      />
       <h1>{entry.data.title}</h1>
       <Content components={components} />
     </article>
