@@ -13,6 +13,8 @@ const {
   description,
   fullHeight,
   translations,
+  image,
+  ogType,
   lang = DEFAULT_LOCALE,
   class: className,
   ["class:list"]: classList,
@@ -29,6 +31,8 @@ const { origin } = Astro.url;
   class:list={[className, classList]}
   description={description}
   fullHeight={fullHeight}
+  image={image}
+  ogType={ogType}
 >
   <Fragment slot="head">
     {

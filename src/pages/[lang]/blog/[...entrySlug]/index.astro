@@ -1,7 +1,7 @@
 ---
 import Admonition from "@/components/content/Admonition/Admonition.astro";
 import Layout from "@/layouts/Entry.astro";
-import { getBlogEntry } from "@/utils/content";
+import { getBlogEntry, slugToCanonical } from "@/utils/content";
 import PostTranslations from "@/components/PostTranslations.astro";
 import type { Language } from "@/utils/i18n";
 
@@ -18,7 +18,7 @@ if (!post) {
 
 const { meta, entry, translations } = post;
 const { Content } = await entry.render();
-const imageURL = Astro.url.pathname + "image.png";
+const imageURL = slugToCanonical(Astro.url.pathname + "image.svg", Astro.url.origin);
 
 // eslint-disable-next-line
 const components = { Admonition: Admonition };
@@ -30,6 +30,8 @@ const components = { Admonition: Admonition };
   description={meta.description}
   title={meta.title}
   translations={translations}
+  ogType="article"
+  image={imageURL}
 >
   <main
     class="prose prose-slate mx-auto mt-4 px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl prose-img:mx-auto prose-img:rounded-sm prose-img:shadow-sm"

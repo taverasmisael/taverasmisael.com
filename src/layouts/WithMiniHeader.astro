@@ -13,6 +13,8 @@ const {
   description,
   fullHeight,
   canonical,
+  image,
+  ogType,
   lang = DEFAULT_LOCALE,
   class: className,
   ["class:list"]: classList,
@@ -26,6 +28,8 @@ const {
   class:list={[className, classList]}
   description={description}
   fullHeight={fullHeight}
+  image={image}
+  ogType={ogType}
 >
   <Fragment slot="head">
     <slot name="head" />

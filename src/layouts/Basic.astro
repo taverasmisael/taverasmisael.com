@@ -3,18 +3,23 @@ import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
 import "./styles.css";
 import CommandBar from "@/components/command-bar/CommandBar";
+import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 
 type Props = DefaultLayoutProps;
 
 const {
-  title,
+  title: propsTitle,
   description,
   fullHeight,
   canonical,
+  image = "/og-image-bg.png",
+  ogType = "website",
   lang = DEFAULT_LOCALE,
   class: className,
   ["class:list"]: classList,
 } = Astro.props;
+
+const title = `${propsTitle} — Misael Taveras`;
 ---
 
 <!DOCTYPE html>
@@ -25,21 +30,21 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="docsearch:language" content={lang} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} — Misael Taveras</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
     <slot name="head" />
+    <OpenGraphTags title={title} description={description} lang={lang} image={image} url={canonical} type={ogType} />
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
     <CommandBar lang={lang} client:only="solid-js" />
     <slot />
+    <style>
+      body:has(dialog[open]) {
+        @apply overflow-hidden blur-sm;
+      }
+    </style>
+    <script src="./keyboard-shortcuts.ts"></script>
   </body>
 </html>
-
-<style>
-  body:has(dialog[open]) {
-    @apply overflow-hidden blur-sm;
-  }
-</style>
-<script src="./keyboard-shortcuts.ts"></script>

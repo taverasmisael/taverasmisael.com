@@ -1,0 +1,24 @@
+---
+import type { Language } from "@/utils/i18n";
+
+type OGTypes = "website" | "article" | "blog" | "author";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  type: OGTypes;
+  url: string;
+  lang: Language;
+}
+
+const { description, image, lang, title, type, url } = Astro.props;
+---
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:url" content={url} />
+<meta property="og:type" content={type} />
+<meta property="og:locale" content={lang} />
+<meta property="og:site_name" content="Taveras Misael" />
