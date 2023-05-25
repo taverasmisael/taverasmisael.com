@@ -47,6 +47,9 @@ export default function CommandBar(props: { lang: Language }) {
   // The dialog is a pain to interact, the only "benefit" I'm getting is the tab trapping, but
   // I'm not sure it's worth it. There's so much more I want to do with the command bar, and
   // the dialog is just getting in the way.
+
+  // Extra reason to ditch the dialog: there's a bug in Safari where the results are out of bounds
+  // Showing a weird rectangle alongside the list, but if you reszise the window, it fixes itself.
   return (
     <dialog
       ref={c => (dialogRef = c)}
