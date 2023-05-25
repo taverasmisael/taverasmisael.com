@@ -1,7 +1,7 @@
 import satori from "satori";
 import { renderToStringAsync } from "solid-js/web";
 import { html as toStringReactElement } from "satori-html";
-import ImageTemplate from "./open-graph/ImageTemplate";
+import ImageTemplate from "./ImageTemplate";
 
 interface ImageGeneratorConfig {
   title: string;
@@ -28,7 +28,7 @@ export const generateOGImage = async ({ title, description, image, width, height
       writtenTag: "Written by",
     })
   );
-  
+
   // This intermediate step is necessary for debugging purposes
   // If you call `toStringReactElement` directly on the satori function
   // and there's something wrong with the html (like you used "display: block" instead of flex)
