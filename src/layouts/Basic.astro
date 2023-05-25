@@ -4,6 +4,7 @@ import type { DefaultLayoutProps } from "./types";
 import "./styles.css";
 import CommandBar from "@/components/command-bar/CommandBar";
 import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
+import { slugToCanonical } from "@/utils/content";
 
 type Props = DefaultLayoutProps;
 
@@ -12,7 +13,7 @@ const {
   description,
   fullHeight,
   canonical,
-  image = "/og-image-bg.png",
+  image: propsImage,
   ogType = "website",
   lang = DEFAULT_LOCALE,
   class: className,
@@ -20,6 +21,7 @@ const {
 } = Astro.props;
 
 const title = `${propsTitle} — Misael Taveras`;
+const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
 ---
 
 <!DOCTYPE html>
