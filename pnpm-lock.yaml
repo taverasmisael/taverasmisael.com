@@ -37,6 +37,9 @@ dependencies:
   rambda:
     specifier: ^7.5.0
     version: 7.5.0
+  satori-html:
+    specifier: ^0.3.2
+    version: 0.3.2
   solid-js:
     specifier: ^1.7.5
     version: 1.7.5
@@ -5542,6 +5545,12 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /satori-html@0.3.2:
+    resolution: {integrity: sha512-wjTh14iqADFKDK80e51/98MplTGfxz2RmIzh0GqShlf4a67+BooLywF17TvJPD6phO0Hxm7Mf1N5LtRYvdkYRA==}
+    dependencies:
+      ultrahtml: 1.2.0
+    dev: false
+
   /satori@0.9.1:
     resolution: {integrity: sha512-2ggMOiY8O8rIxQ6vywiw3LlBheWHbsOzu5hZdMXTDFKzE9sDHUOtJegGmGE+e9aRSO1ttttgXrcHVsHPKYU2GQ==}
     engines: {node: '>=16'}
@@ -6106,6 +6115,10 @@ packages:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
     hasBin: true
+
+  /ultrahtml@1.2.0:
+    resolution: {integrity: sha512-vxZM2yNvajRmCj/SknRYGNXk2tqiy6kRNvZjJLaleG3zJbSh/aNkOqD1/CVzypw8tyHyhpzYuwQgMMhUB4ZVNQ==}
+    dev: false
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
