@@ -7,20 +7,27 @@ export interface Props {
 }
 
 const { type, class: className } = Astro.props;
+const accent = {
+  [AdmonitionTypes.Alert]: "bg-red-400",
+  [AdmonitionTypes.Disclaimer]: "bg-yellow-400",
+  [AdmonitionTypes.Info]: "bg-green-400",
+  [AdmonitionTypes.Tip]: "bg-blue-400",
+}[type];
 const color = {
-  [AdmonitionTypes.Alert]: "red-400",
-  [AdmonitionTypes.Disclaimer]: "yellow-400",
-  [AdmonitionTypes.Info]: "green-400",
-  [AdmonitionTypes.Tip]: "blue-400",
+  [AdmonitionTypes.Alert]: "bg-red-200 text-red-950",
+  [AdmonitionTypes.Disclaimer]: "bg-yellow-200 text-yellow-950",
+  [AdmonitionTypes.Info]: "bg-green-200 text-green-950",
+  [AdmonitionTypes.Tip]: "bg-blue-200 text-blue-950",
 }[type];
 ---
 
 <div
   class:list={[
-    "prose-p:m-0 relative rounded-sm bg-slate-100/30 p-2 pl-4 shadow-sm dark:bg-slate-900/30 prose-a:font-normal",
+    "prose-p:m-0 relative rounded-sm p-2 pl-4 shadow-sm prose-a:font-normal prose-strong:text-current",
+    color,
     className,
   ]}
 >
-  <div aria-hidden="true" class:list={["absolute inset-0 h-full w-1 rounded-sm", `bg-${color}`]}></div>
+  <div aria-hidden="true" class:list={["absolute inset-0 h-full w-1 rounded-sm", accent]}></div>
   <slot />
 </div>
