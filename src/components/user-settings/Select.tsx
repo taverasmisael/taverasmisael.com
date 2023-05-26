@@ -12,7 +12,7 @@ export function SelectTrigger(props: Select.SelectTriggerProps) {
   return (
     <Select.Trigger
       {...props}
-      class="w-full rounded-md bg-white py-2 pl-4 pr-8 shadow ring-1 ring-blue-50 focus:outline-none focus:ring aria-expanded:ring-2 dark:bg-slate-800 dark:ring-slate-700"
+      class="w-full rounded-md bg-white py-2 pl-4 pr-8 shadow ring-1 ring-blue-50 focus:outline-none focus:ring disabled:opacity-50 aria-expanded:ring-2 dark:bg-slate-800 dark:ring-slate-700"
     />
   );
 }

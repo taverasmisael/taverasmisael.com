@@ -19,8 +19,8 @@ export async function get({ params }: { params: Record<string, string> }) {
     const svg = await generateOGImage({
       title: post.meta.title,
       description: post.meta.description,
-      // TODO: Replace with link inside repo when it's public.
-      // Our version of the image is optimized for the web annd we won't depend on
+      // TODO: P0 - Replace with link inside repo when it's public.
+      // Our version of the image is optimized for the web and we won't depend on
       // external services availability to get it.
       image: "https://cdn.midjourney.com/178abd2b-a069-4921-9450-fea2b1b1d52b/0_2.png",
       width: WIDTH,

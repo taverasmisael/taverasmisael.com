@@ -22,7 +22,7 @@ const allPosts = await getEntriesByLang("blog", lang);
 if (!allPosts.length) {
   return Astro.redirect(`/${DEFAULT_LOCALE}/blog?fromLang=${lang}`);
 }
-// TODO: add featured post. This can be with a prop in the frontmatter, or by date, or by popularity (not sure who to measure that).
+// TODO: P3 - add featured post. This can be with a prop in the frontmatter, or by date, or by popularity (not sure who to measure that).
 const [featuredPost, ...posts] = allPosts.sort((a, b) => (a.entry.data.date > b.entry.data.date ? -1 : 1));
 
 const canonical = slugToCanonical(pathname, origin);

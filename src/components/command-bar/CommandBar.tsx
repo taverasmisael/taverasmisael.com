@@ -8,7 +8,7 @@ import SearchResults from "./SearchResults";
 import type { CommandBarLinkItem } from "./command-bar-item.type";
 
 
-// TODO: Implement keyboard navigation
+// TODO: P1 - Implement keyboard navigation
 export default function CommandBar(props: { lang: Language }) {
   let inputRef: HTMLInputElement | undefined;
   const t = useTranslation(props.lang);

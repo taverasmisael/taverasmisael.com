@@ -26,7 +26,6 @@ export default function TestimonialsLyrics() {
       <div class={`m-auto max-w-xl text-2xl font-semibold leading-relaxed ${colors().inactive}`}>
         <For each={getCurrentLines()}>
           {(line, i) => (
-            // TODO: Use the real logic for active state (there's also a "previously active" state) WIP
             <span
               ref={e => (lineRefs[i()] = e)}
               class="content transition-all"

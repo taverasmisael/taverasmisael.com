@@ -1,3 +1,4 @@
+// TODO: P2 - Optimize this file and the whole i18n module to only load the needed translations
 import { pathOr } from "rambda";
 import {
   locales,
