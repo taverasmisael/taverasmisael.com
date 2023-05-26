@@ -1,11 +1,15 @@
 ---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/red-hat-display";
+import "@fontsource-variable/fira-code";
+
 import { DEFAULT_LOCALE } from "@/utils/i18n";
-import type { DefaultLayoutProps } from "./types";
-import "./styles.css";
 import CommandBar from "@/components/command-bar/CommandBar";
 import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 import { slugToCanonical } from "@/utils/content";
 import Footer from "@/components/layout/Footer.astro";
+import type { DefaultLayoutProps } from "./types";
+import "./styles.css";
 
 type Props = DefaultLayoutProps;
 
@@ -62,7 +66,10 @@ const { origin } = Astro.url;
       }
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 selection:bg-slate-400 selection:text-slate-950 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
+  <body
+    class="bg-slate-50 text-slate-900 selection:bg-slate-400 selection:text-slate-950 dark:bg-gray-800 dark:text-slate-100"
+    class:list={[className, classList]}
+  >
     <slot />
     <Footer lang={lang} translations={translations} />
     <CommandBar lang={lang} client:only="solid-js" />

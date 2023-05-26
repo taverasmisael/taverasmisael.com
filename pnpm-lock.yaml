@@ -25,6 +25,15 @@ dependencies:
   '@astrojs/ts-plugin':
     specifier: ^0.4.5
     version: 0.4.5
+  '@fontsource-variable/fira-code':
+    specifier: ^5.0.1
+    version: 5.0.1
+  '@fontsource-variable/inter':
+    specifier: ^5.0.1
+    version: 5.0.1
+  '@fontsource-variable/red-hat-display':
+    specifier: ^5.0.2
+    version: 5.0.2
   '@kobalte/core':
     specifier: ^0.9.6
     version: 0.9.6(solid-js@1.7.5)
@@ -1122,6 +1131,18 @@ packages:
     resolution: {integrity: sha512-XLwhYV90MxiHDq6S0rzFZj00fnDM+A1R9jhSioZoMsa7G0Q0i+Q4x40ajR8FHSdYDE1bgjG45mIWe6jtv9UPmg==}
     dependencies:
       '@floating-ui/core': 1.2.6
+    dev: false
+
+  /@fontsource-variable/fira-code@5.0.1:
+    resolution: {integrity: sha512-3RzMCKa3vIQJqy54euD9TXDF6d4X9KlfGUkHdDDIqTOAnLvfvcQaDAZOnK0MG8x/5LwFWlWTT7YaHotiNbOSWg==}
+    dev: false
+
+  /@fontsource-variable/inter@5.0.1:
+    resolution: {integrity: sha512-cqBEayOWZqERrWnwDUTyUsClZpN1Pv3w/1+NRxwKV4sRdy3RyyRL9DRIgauq8ySxNtJ5ZkNimxsZzCdoiR2Fcw==}
+    dev: false
+
+  /@fontsource-variable/red-hat-display@5.0.2:
+    resolution: {integrity: sha512-dvATCT8BN+4dkQTe2BJoblQDOuM+wVCdgYORN1D0JU7uj+G9sgnIfaimWwbF4PPVdFw+jJ9z3sSukJxgD4mNjw==}
     dev: false
 
   /@formatjs/ecma402-abstract@1.15.0:
