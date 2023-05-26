@@ -1,4 +1,4 @@
-import { setCommandBarSearchMode } from "@/stores/command-bar.store";
+import { showCommandBar } from "@/stores/command-bar.store";
 const ScrollDirection = {
   UP: "UP",
   DOWN: "DOWN",
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   toggleHeaderOnScroll(header, toggleMobileMenu);
   menuButton.addEventListener("click", () => toggleMobileMenu());
-  searchButton.addEventListener("click", setCommandBarSearchMode);
+  searchButton.addEventListener("click", showCommandBar);
 });
 
 function toggleHeaderOnScroll(header: HTMLElement, closeMobileMenu: (isOpen: boolean) => void, threshold = 100) {

@@ -1,7 +1,7 @@
-import { CommandBarMode, commandBarState, hideCommandBar } from "@/stores/command-bar.store";
+import { commandBarState, hideCommandBar } from "@/stores/command-bar.store";
 import { useTranslation, type Language } from "@/utils/i18n";
 import { debounce } from "@solid-primitives/scheduled";
-import { Show, createEffect, createMemo, createResource, createSignal, onMount } from "solid-js";
+import { Show, createEffect, createResource, createSignal, onMount } from "solid-js";
 import SearchResults from "./SearchResults";
 import type { CommandBarLinkItem } from "./command-bar-item.type";
 import { getEntryURL } from "@/utils/content/client";
@@ -31,18 +31,6 @@ export default function CommandBar(props: { lang: Language }) {
     return () => dialogRef.addEventListener("close", closeDialog);
   });
 
-  const icon = createMemo(() =>
-    commandBarState.mode === CommandBarMode.Search ? (
-      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-    ) : (
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
-      />
-    )
-  );
-
   // I am seriously considering ditching the dialog and just using a div with a backdrop filter.
   // The dialog is a pain to interact, the only "benefit" I'm getting is the tab trapping, but
   // I'm not sure it's worth it. There's so much more I want to do with the command bar, and
@@ -68,7 +56,11 @@ export default function CommandBar(props: { lang: Language }) {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                {icon()}
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
               </svg>
             </div>
             <label for="command-bar-input" class="sr-only">
@@ -98,7 +90,7 @@ export default function CommandBar(props: { lang: Language }) {
               items={results() ?? []}
             />
           </Show>
-          <Show when={command() && commandBarState.mode === CommandBarMode.Search}>
+          <Show when={command()}>
             <div class="flex items-center gap-2 p-4 text-sm text-slate-400 dark:text-slate-50">
               <span>{t("messages", "serch_powered_by")}</span>
               <svg viewBox="0 0 500 500.34" class="w-4 text-[#003dff] dark:text-slate-50">
