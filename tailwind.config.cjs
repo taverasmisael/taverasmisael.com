@@ -5,23 +5,35 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      animation: { wiggle: "wiggle 2500ms ease-in-out infinite" },
       fontFamily: {
         sans: ['"Inter Variable"', ...defaultTheme.fontFamily.sans],
-        display: ['"Red Hat Display Variable"', ...defaultTheme.fontFamily.serif],
+        display: ['"Red Hat Display Variable"', ...defaultTheme.fontFamily.sans],
         mono: ['"Fira Code Variable"', ...defaultTheme.fontFamily.mono],
       },
-      height: {
-        100: "30rem",
-      },
-      keyframes: {
-        wiggle: {
-          "0%, 100%": { transform: "rotate(-6deg)" },
-          "50%": { transform: "rotate(6deg)" },
+      keyframes: { wiggle: { "0%, 100%": { transform: "rotate(-6deg)" }, "50%": { transform: "rotate(6deg)" } } },
+      typography: theme => ({
+        DEFAULT: {
+          css: {
+            blockquote: {
+              fontStyle: "normal",
+            },
+            img: {
+              borderRadius: theme("borderRadius.sm"),
+              boxShadow: theme("boxShadow.md"),
+              marginLeft: theme("margin.auto"),
+              marginRight: theme("margin.auto"),
+            },
+            "pre code": {
+              // FiraCode looks better light
+              fontWeight: "300 !important",
+            },
+            "h1, h2, h3, h4, h5, h6": {
+              fontFamily: theme("fontFamily.display").join(","),
+            },
+          },
         },
-      },
-      animation: {
-        wiggle: "wiggle 2500ms ease-in-out infinite",
-      },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],

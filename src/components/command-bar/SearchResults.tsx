@@ -39,7 +39,7 @@ export default function SearchResults(props: SearchResultsProps) {
                     "
                     >
                       <span class="flex items-center justify-between">
-                        <span>{item.title}</span>
+                        <span class="font-display">{item.title}</span>
                         {item.icon}
                       </span>
                       {item.description && (
