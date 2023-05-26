@@ -12,7 +12,7 @@ type ThemeOption = "theme.dark" | "theme.light" | "theme.auto";
 export default function LanguageSelector(props: Props) {
   const t = useTranslation(props.lang);
 
-  const [value, setValue] = createSignal<ThemeOption>("theme.auto");
+  const [value, setValue] = createSignal<ThemeOption>("theme.light");
 
   onMount(() => {
     setValue(toThemeOption(localStorage.getItem("theme") ?? "auto"));
