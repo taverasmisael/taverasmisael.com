@@ -1,6 +1,6 @@
 import { For, Switch, Match } from "solid-js";
 import type { CommandBarItem } from "./command-bar-item.type";
-import styles from  './CommandBarStyles.module.css'
+import styles from './CommandBarStyles.module.css'
 
 interface SearchResultsProps {
   items: CommandBarItem[];
@@ -34,7 +34,7 @@ export default function SearchResults(props: SearchResultsProps) {
                   {item.type === "link" ? (
                     <a
                       href={item.href}
-                      class="transition-color block rounded p-2 text-sm hover:bg-slate-100 hover:text-blue-700 focus:bg-slate-200 focus:text-blue-700 focus-visible:outline-none active:bg-slate-200 active:text-blue-700 dark:text-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-50 
+                      class="transition-color block rounded p-2 text-sm hover:bg-slate-100 hover:text-blue-700 focus:bg-slate-200 focus:text-blue-700 focus-visible:outline-none active:bg-slate-200 active:text-blue-700 dark:text-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-50
                     dark:focus:bg-slate-800 dark:focus:text-blue-50 dark:active:bg-slate-800 dark:active:text-blue-50 md:p-4 md:text-lg
                     "
                     >
@@ -43,7 +43,7 @@ export default function SearchResults(props: SearchResultsProps) {
                         {item.icon}
                       </span>
                       {item.description && (
-                        <span class={`mt-2 inline-block max-w-3xl truncate text-xs text-slate-400 ${styles.description}`} innerHTML={item.description} />
+                        <span class={`mt-2 inline-block max-w-full truncate text-xs text-slate-400 ${styles.description}`} innerHTML={item.description} />
                       )}
                     </a>
                   ) : (

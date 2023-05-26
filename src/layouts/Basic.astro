@@ -52,18 +52,20 @@ const { origin } = Astro.url;
     <OpenGraphTags title={title} description={description} lang={lang} image={image} url={canonical} type={ogType} />
     <script is:inline>
       // inline this to avoid layout shifting/color flashes
-      const theme=localStorage.getItem("theme")||"auto";if(theme==="dark"){document.documentElement.classList.add("dark")}else if(theme==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.classList.add("dark")}else{document.documentElement.classList.remove("dark")}
+      const theme = localStorage.getItem("theme") || "auto";
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     </script>
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
-    <CommandBar lang={lang} client:only="solid-js" />
     <slot />
-    <style>
-      body:has(dialog[open]) {
-        @apply overflow-hidden blur-sm;
-      }
-    </style>
     <Footer lang={lang} translations={translations} />
+    <CommandBar lang={lang} client:only="solid-js" />
     <script src="./keyboard-shortcuts.ts"></script>
   </body>
 </html>

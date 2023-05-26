@@ -5,7 +5,9 @@ import Header from "@/components/layout/Header.astro";
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
 
-type Props = DefaultLayoutProps;
+interface Props extends DefaultLayoutProps {
+  noHeaderSpacing?: boolean;
+}
 
 const {
   title,
@@ -18,6 +20,7 @@ const {
   lang = DEFAULT_LOCALE,
   class: className,
   ["class:list"]: classList,
+  noHeaderSpacing,
 } = Astro.props;
 ---
 
@@ -37,6 +40,6 @@ const {
   </Fragment>
   <Header lang={lang} />
   <!-- This is a hack to prevent the header from overlapping the content -->
-  <div aria-hidden="true" class="h-20"></div>
+  {!noHeaderSpacing && <div aria-hidden="true" class="h-20" />}
   <slot />
 </Basic>

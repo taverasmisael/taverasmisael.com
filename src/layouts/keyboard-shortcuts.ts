@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
 
     if (e.key === "/" || e.key === "?") {
-      console.log(e.key)
       e.preventDefault();
       showCommandBar();
     }
