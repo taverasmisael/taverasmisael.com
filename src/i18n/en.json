@@ -39,7 +39,10 @@
     "commandbar.placeholder.command": "Type a command",
     "commandbar.empty": "No results",
     "commandbar.loading": "Loading...",
-    "commandbar.error": "There was an error loading the results"
+    "commandbar.error": "There was an error loading the results",
+    "theme.dark": "Dark",
+    "theme.light": "Light",
+    "theme.auto": "System"
   },
   "messages": {
     "page_not_found": "Page not found",

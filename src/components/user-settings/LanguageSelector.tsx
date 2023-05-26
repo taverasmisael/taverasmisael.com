@@ -34,7 +34,7 @@ export default function LanguageSelector(props: Props) {
         itemComponent={p => (
           <Select.Item
             item={p.item}
-            class="cursor-default appearance-none border-none p-2 outline-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-[disabled=false]:hover:bg-slate-900/80"
+            class="cursor-default appearance-none border-none px-6 py-2 outline-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-[disabled=false]:hover:bg-blue-50/80 dark:aria-[disabled=false]:hover:bg-slate-900/80"
           >
             <Select.ItemLabel>{getLanguageName(p.item.rawValue.lang)}</Select.ItemLabel>
           </Select.Item>
@@ -42,7 +42,7 @@ export default function LanguageSelector(props: Props) {
       >
         <Select.Trigger
           aria-label="Change language"
-          class="w-full rounded-md bg-white px-6 py-2 shadow ring-1 ring-slate-700 focus:outline-none focus:ring aria-expanded:ring-2 dark:bg-slate-800"
+          class="w-full rounded-md bg-white py-2 pl-4 pr-8 shadow ring-1 ring-blue-50 focus:outline-none focus:ring aria-expanded:ring-2 dark:bg-slate-800 dark:ring-slate-700"
         >
           <Select.Value<string> class="flex items-center gap-2">
             {getLanguageName(value().lang)}
@@ -65,7 +65,7 @@ export default function LanguageSelector(props: Props) {
         </Select.Trigger>
         <Select.Portal>
           <Select.Content>
-            <Select.Listbox class="w-full overflow-hidden rounded shadow-md outline-none dark:bg-slate-800" />
+          <Select.Listbox class="w-full overflow-hidden rounded bg-slate-50 shadow-md  outline-none ring ring-blue-50 dark:bg-slate-800 dark:ring-slate-700" />
           </Select.Content>
         </Select.Portal>
       </Select.Root>

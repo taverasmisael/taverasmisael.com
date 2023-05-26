@@ -39,7 +39,10 @@
     "commandbar.placeholder.command": "Escribe un comando",
     "commandbar.empty": "No hay resultados",
     "commandbar.loading": "Cargando...",
-    "commandbar.error": "Error al cargar los resultados"
+    "commandbar.error": "Error al cargar los resultados",
+    "theme.dark": "Oscuro",
+    "theme.light": "Claro",
+    "theme.auto": "Sistema"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
