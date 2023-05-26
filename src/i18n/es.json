@@ -24,6 +24,8 @@
     "links": "Enlaces",
     "copyright": "Todos los derechos reservados",
     "translation_available_in": "Traducción disponible en",
+    "translation.not_available": "No hay traducción disponible",
+    "translation.select": "Selecciona un idioma",
     "original": "Original",
     "version": "Versión",
     "dark_mode": "Modo oscuro",
@@ -42,7 +44,8 @@
     "commandbar.error": "Error al cargar los resultados",
     "theme.dark": "Oscuro",
     "theme.light": "Claro",
-    "theme.auto": "Sistema"
+    "theme.auto": "Sistema",
+    "theme.select": "Cambiar tema"
   },
   "messages": {
     "page_not_found": "Página no encontrada",

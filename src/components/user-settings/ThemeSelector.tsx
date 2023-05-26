@@ -2,6 +2,8 @@ import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 import { Select } from "@kobalte/core";
 import { useTranslation, type Language } from "@/utils/i18n";
 
+import { SelectItem, SelectTrigger, SelectValue, SelectListbox } from "./Select";
+
 interface Props {
   lang: Language;
 }
@@ -53,24 +55,18 @@ export default function LanguageSelector(props: Props) {
     <>
       <Select.Root
         value={value()}
-        title={"Select a theme…"}
+        title={t("ui", "theme.select")}
         onChange={setTheme}
         options={options}
-        placeholder="Select a theme…"
+        placeholder={t("ui", "theme.select")}
         itemComponent={p => (
-          <Select.Item
-            item={p.item}
-            class="cursor-default appearance-none border-none px-6 py-2 outline-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-[disabled=false]:hover:bg-blue-50/80 dark:aria-[disabled=false]:hover:bg-slate-900/80"
-          >
+          <SelectItem item={p.item}>
             <Select.ItemLabel>{t("ui", p.item.rawValue)}</Select.ItemLabel>
-          </Select.Item>
+          </SelectItem>
         )}
       >
-        <Select.Trigger
-          aria-label="Change theme"
-          class="w-full rounded-md bg-white py-2 pl-4 pr-8 shadow ring-1 ring-blue-50 focus:outline-none focus:ring aria-expanded:ring-2 dark:bg-slate-800 dark:ring-slate-700"
-        >
-          <Select.Value class="flex items-center gap-4">
+        <SelectTrigger aria-label={t("ui", "theme.select")}>
+          <SelectValue class="flex items-center gap-4">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4">
               {value() === "theme.dark" ? (
                 <path
@@ -83,12 +79,12 @@ export default function LanguageSelector(props: Props) {
               )}
             </svg>
 
-            {t("ui", value())}
-          </Select.Value>
-        </Select.Trigger>
+            <span>{t("ui", value())}</span>
+          </SelectValue>
+        </SelectTrigger>
         <Select.Portal>
           <Select.Content>
-            <Select.Listbox class="w-full overflow-hidden rounded bg-slate-50 shadow-md  outline-none ring ring-blue-50 dark:bg-slate-800 dark:ring-slate-700" />
+            <SelectListbox />
           </Select.Content>
         </Select.Portal>
       </Select.Root>
