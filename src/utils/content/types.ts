@@ -22,7 +22,7 @@ export interface BlogEntry {
 export type TestimonialEntry = CollectionEntry<"testimonial">
 
 export interface EntryTranslationReference {
-  isOriginal: boolean;
+  isOriginal?: boolean;
   lang: Language;
   slug: string;
 }

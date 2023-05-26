@@ -3,13 +3,18 @@ import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
 import RSSFeedLogo from "@/components/logos/RSSFeed.astro";
-import {  useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
+import { useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
+
+import ThemeSelector from "@/components/user-settings/ThemeSelector";
+import LanguageSelector from "@/components/user-settings/LanguageSelector";
+import type { EntryTranslationReference } from "@/utils/content";
 
 interface Props {
   lang: Language;
+  translations: EntryTranslationReference[];
 }
 
-const { lang } = Astro.props;
+const { lang, translations: propTranslations } = Astro.props;
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const social = [
@@ -38,32 +43,41 @@ const social = [
 
 const year = new Date().getFullYear();
 const t = useTranslation(lang);
+
+const currentLanguage: EntryTranslationReference = { slug: Astro.url.toString(), lang };
+const translations = propTranslations.concat(currentLanguage);
 ---
 
 <footer
-  class="mx-auto mt-8 w-full max-w-7xl border-t border-slate-200/50 px-2 py-6 text-center text-xs dark:border-slate-800/50 sm:px-6 sm:text-left"
+  class="mx-auto mt-8 w-full max-w-7xl border-t border-slate-200/50 px-2 py-6 text-center dark:border-slate-700/50 sm:px-6 sm:text-left"
 >
-  <div class="sm:flex sm:items-center sm:justify-between">
-    <h6 class="hidden sm:block">
-      {t("ui", "copyright")} ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
-    </h6>
-    <ul class="flex items-center justify-center gap-4">
-      {
-        social.map(link => (
-          <a href={link.href} target="_blank" class="p-2 hover:text-slate-800 dark:hover:text-blue-50" target="_blank">
-            <span class="sr-only">{link.text}</span>
-            <link.icon class="w-6 sm:w-5" />
-          </a>
-        ))
-      }
-    </ul>
+  <div class="flex items-center justify-between pb-6">
+    <ThemeSelector client:visible />
+    <LanguageSelector lang={lang} options={translations} value={currentLanguage} client:visible />
   </div>
-  <p class="block pt-2 text-slate-700 dark:text-slate-300 sm:hidden">
-    <strong class="font-semibold">Misael Taveras</strong> ©️{year}
-  </p>
-  <!-- TODO: Once we have the command palette, this will be a button to trigger the command palette to select the language
-      <p class="block pt-6 text-slate-700 dark:text-slate-100 sm:hidden">
-        Language set to <span class="border-b border-dotted border-slate-600 text-slate-50">English</span>
-      </p>
-  -->
+  <div class="text-xs">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <h6 class="hidden sm:block">
+        {t("ui", "copyright")} ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
+      </h6>
+      <ul class="flex items-center justify-center gap-4">
+        {
+          social.map(link => (
+            <a
+              href={link.href}
+              target="_blank"
+              class="p-2 hover:text-slate-800 dark:hover:text-blue-50"
+              target="_blank"
+            >
+              <span class="sr-only">{link.text}</span>
+              <link.icon class="w-6 sm:w-5" />
+            </a>
+          ))
+        }
+      </ul>
+    </div>
+    <p class="block pt-2 text-slate-700 dark:text-slate-300 sm:hidden">
+      <strong class="font-semibold">Misael Taveras</strong> ©️{year}
+    </p>
+  </div>
 </footer>
