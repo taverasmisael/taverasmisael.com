@@ -40,10 +40,13 @@ const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
 const t = useTranslation(lang);
 ---
 
-<Layout lang={lang} canonical={canonical} description={t("page_descriptions", PAGE)} title={t("navigation", PAGE)}>
-  <Fragment slot="head">
-    {translations.map(translation => <link rel="alternate" href={translation.slug} hreflang={translation.lang} />)}
-  </Fragment>
+<Layout
+  lang={lang}
+  canonical={canonical}
+  description={t("page_descriptions", PAGE)}
+  title={t("navigation", PAGE)}
+  translations={translations}
+>
   <main class="h-full min-h-screen">
     <div class="h-full min-h-screen w-full">
       <div class="grid h-full min-h-screen items-center gap-4 lg:grid-cols-2">

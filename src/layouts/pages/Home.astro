@@ -26,10 +26,13 @@ const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
 const t = useTranslation(lang);
 ---
 
-<Layout canonical={canonical} lang={lang} description={t("page_descriptions", "home")} title={t("navigation", "home")}>
-  <Fragment slot="head">
-    {translations.map(translation => <link rel="alternate" href={translation.slug} hreflang={translation.lang} />)}
-  </Fragment>
+<Layout
+  canonical={canonical}
+  lang={lang}
+  description={t("page_descriptions", "home")}
+  title={t("navigation", "home")}
+  translations={translations}
+>
   <main class="container mx-auto w-full px-8">
     <FullWidthBlock
       withContainer

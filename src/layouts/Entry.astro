@@ -2,11 +2,9 @@
 import Layout from "./WithHeader.astro";
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
-import { slugToCanonical, type EntryTranslationReference } from "@/utils/content";
+import { slugToCanonical } from "@/utils/content";
 
-interface Props extends DefaultLayoutProps {
-  translations: EntryTranslationReference[];
-}
+type Props = DefaultLayoutProps;
 
 const {
   title,
@@ -33,13 +31,9 @@ const { origin } = Astro.url;
   fullHeight={fullHeight}
   image={image}
   ogType={ogType}
+  translations={translations}
 >
   <Fragment slot="head">
-    {
-      translations.map(translation => (
-        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
-      ))
-    }
     <slot name="head" />
   </Fragment>
   <slot />

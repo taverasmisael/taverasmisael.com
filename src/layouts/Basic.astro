@@ -5,6 +5,7 @@ import "./styles.css";
 import CommandBar from "@/components/command-bar/CommandBar";
 import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 import { slugToCanonical } from "@/utils/content";
+import Footer from "@/components/layout/Footer.astro";
 
 type Props = DefaultLayoutProps;
 
@@ -16,12 +17,14 @@ const {
   image: propsImage,
   ogType = "website",
   lang = DEFAULT_LOCALE,
+  translations = [],
   class: className,
   ["class:list"]: classList,
 } = Astro.props;
 
 const title = `${propsTitle} — Misael Taveras`;
 const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
+const { origin } = Astro.url;
 ---
 
 <!DOCTYPE html>
@@ -40,6 +43,11 @@ const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
+    {
+      translations.map(translation => (
+        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
+      ))
+    }
     <slot name="head" />
     <OpenGraphTags title={title} description={description} lang={lang} image={image} url={canonical} type={ogType} />
   </head>
@@ -51,6 +59,7 @@ const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
         @apply overflow-hidden blur-sm;
       }
     </style>
+    <Footer lang={lang} translations={translations} />
     <script src="./keyboard-shortcuts.ts"></script>
   </body>
 </html>
