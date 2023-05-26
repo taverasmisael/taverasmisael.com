@@ -9,7 +9,7 @@ export const testimonialCollection = defineCollection({
     name: z.string().nonempty(),
     title: z.string().nonempty(),
     link: z.string().url(),
-    image: z.string().url(),
+    image: z.string().nonempty(),
     quote: z.string().nonempty(),
   }),
 });
