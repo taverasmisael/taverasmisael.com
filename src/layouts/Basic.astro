@@ -62,7 +62,7 @@ const { origin } = Astro.url;
       }
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
+  <body class="bg-slate-50 text-slate-900 selection:bg-slate-400 selection:text-slate-950 dark:bg-gray-800 dark:text-slate-100" class:list={[className, classList]}>
     <slot />
     <Footer lang={lang} translations={translations} />
     <CommandBar lang={lang} client:only="solid-js" />
