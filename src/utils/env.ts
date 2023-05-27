@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const publicEnvSchema = z.object({
   SITE: z.string(),
-  PUBLIC_SITE_URL: z.string().nonempty(),
+  PUBLIC_SITE_URL: z.string().optional(),
   PUBLIC_ALGOLIA_SEARCH_KEY: z.string().nonempty(),
 });
 
