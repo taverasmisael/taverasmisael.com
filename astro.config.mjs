@@ -9,6 +9,7 @@ import node from "@astrojs/node";
 
 import { sitemap } from "./integrations/sitemap";
 import { algolia } from "./integrations/algolia";
+import nightOwlTheme from "./integrations/night-owl.theme.json";
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 
@@ -42,7 +43,11 @@ export default defineConfig({
     sitemap({ name: "sitemap.xml", ignoredPaths: [`/${algoliaOutputName}`] }),
     ...algoliaIntegration(env.LOCAL_BUILD),
   ],
-  markdown: { remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" } },
+  markdown: {
+    // TODO: P3 - Add light/dark theme support (css variables)
+    shikiConfig: { theme: nightOwlTheme, wrap: true },
+    remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" },
+  },
   output: "server",
   site: env.PUBLIC_SITE_URL || "https://localhost:5000",
   vite: {
