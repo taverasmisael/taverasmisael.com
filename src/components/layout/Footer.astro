@@ -57,10 +57,10 @@ const translations = propTranslations.concat(currentLanguage);
   </div>
   <div class="text-xs">
     <div class="sm:flex sm:items-center sm:justify-between">
-      <h6 class="hidden sm:block">
+      <p class="hidden sm:block">
         {t("ui", "copyright")} ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
-      </h6>
-      <ul class="flex items-center justify-center gap-4">
+      </p>
+      <div class="flex items-center justify-center gap-4">
         {
           social.map(link => (
             <a
@@ -74,7 +74,7 @@ const translations = propTranslations.concat(currentLanguage);
             </a>
           ))
         }
-      </ul>
+      </div>
     </div>
     <p class="block pt-2 text-slate-700 dark:text-slate-300 sm:hidden">
       <strong class="font-semibold">Misael Taveras</strong> ©️{year}

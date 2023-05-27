@@ -29,7 +29,6 @@ export default function CommandBar(props: { lang: Language }) {
   };
   return (
     <Dialog.Root open={commandBarState.isVisible} onOpenChange={handleOpenChange}>
-      <Dialog.Trigger />
       <Dialog.Portal>
         <Dialog.Overlay class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm" />
         <div class="fixed inset-0 z-50">

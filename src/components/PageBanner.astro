@@ -1,4 +1,6 @@
 ---
+import FullWidthBlock from "./content/FullWidthBlock.astro";
+
 interface Props {
   class?: string;
 }
@@ -6,11 +8,6 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<aside
-  class="relative left-[calc(-50vw_+_50%);] w-screen min-w-full bg-blue-50/50 p-4 text-center text-base shadow-sm dark:bg-slate-950/50"
-  class:list={className}
->
-  <div class="container mx-auto max-w-4xl">
-    <slot />
-  </div>
-</aside>
+<FullWidthBlock withContainer class="!p-4 text-center" class:list={className}>
+  <slot />
+</FullWidthBlock>
