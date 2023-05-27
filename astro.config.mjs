@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import prefetch from "@astrojs/prefetch";
 import solidjs from "@astrojs/solid-js";
-import netlify from "@astrojs/netlify/edge-functions";
+import netlify from "@astrojs/netlify/functions";
 import node from "@astrojs/node";
 
 import { sitemap } from "./integrations/sitemap";
