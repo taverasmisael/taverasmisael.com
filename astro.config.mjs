@@ -16,7 +16,7 @@ const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://loc
 
 // Netlify adapter doesn't support SSR yet, so we use node adapter for local builds
 // This is useful for testing SSR locally
-const adapter = env.LOCAL_BUILD ? node({ mode: "standalone" }) : vercel({ analytics: true });
+const adapter = env.LOCAL_BUILD ? node({ mode: "standalone" }) : vercel();
 console.log("Using adapter:", adapter.name);
 
 const algoliaOutputName = "algolia.json";
