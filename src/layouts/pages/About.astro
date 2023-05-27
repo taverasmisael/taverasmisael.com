@@ -14,13 +14,12 @@ interface AboutFrontmatter {
   lang: Language;
   title: string;
   description: string;
-  cvLink: string;
 }
 
 const PAGE = "about";
 
 const { frontmatter } = Astro.props;
-const { lang, cvLink } = frontmatter;
+const { lang } = frontmatter;
 
 if (!isSupportedLang(lang)) {
   return Astro.redirect(`/404?from=${Astro.url.pathname}`);
@@ -47,8 +46,8 @@ const t = useTranslation(lang);
     <PageBanner class="bg-blue-100 dark:bg-gray-950">
       {t("messages", "cv_is_available_in")}
       {" "}<a
-        href={cvLink}
-        download="/taverasmisael-frontend-engineer-resume.pdf"
+        href="/taverasmisael-frontend-engineer-resume.pdf"
+        download="Misael-Taveras__frontend-engineer--resume.pdf"
         class="underline">{t("ui", "download_here").toLocaleLowerCase()}</a
       >.
     </PageBanner>
