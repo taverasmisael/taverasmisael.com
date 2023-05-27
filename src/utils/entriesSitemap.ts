@@ -1,6 +1,6 @@
 import { getCollection, getEntryURL } from "@/utils/content";
 import { SitemapStream, EnumChangefreq, type SitemapItemLoose, streamToPromise } from "sitemap";
-import { Readable } from "stream";
+import { Readable } from "node:stream";
 import type { Language } from "@/utils/i18n";
 
 export const prerender = true;
