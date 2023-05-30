@@ -11,4 +11,4 @@ Hello
 
 Most of these are standard, but some are specific to this project.
 
-- `LOCAL_BUILD`: Set to `true` to enable local build mode. This will disable Analytics, Algolia, and will use `@astrojs/node` adapter instead of `@astrojs/netlify`. This is useful for testing and debugging.
+- `LOCAL_BUILD`: Set to `true` to enable local build mode. This will disable Analytics, Algolia, and will use `@astrojs/node` adapter instead of the default SSR integration (`@astrojs/vercel`, for now). This is useful for testing and debugging.
