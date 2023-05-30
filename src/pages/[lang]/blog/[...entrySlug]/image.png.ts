@@ -5,11 +5,11 @@ import { generateOGImage } from "@/utils/content/open-graph/image";
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-// NOTE: If generating this on the fly is consuming too much resources, we can
-// generate it on build time and store it in the `public` folder.
-// Maybe if that's the case, we can create a script to generate all the images
-// and place them on a bucket so we don't have to generate them on build time.
-// export const prerender = true;
+// Prerenderingd these not because the SSR is slow, but because OpenGraph
+// images need to be THERE for most services to detect it (like WhatsApp, TG< ).
+// This will potentially be a problem if we have a lot of blog posts, but
+// we can solve it by using a cache.
+export const prerender = true;
 export async function get({ params }: { params: Record<string, string> }) {
   try {
     console.time("og-image");

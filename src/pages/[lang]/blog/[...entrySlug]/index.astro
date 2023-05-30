@@ -18,7 +18,7 @@ if (!post) {
 
 const { meta, entry, translations } = post;
 const { Content } = await entry.render();
-const imageURL = slugToCanonical(Astro.url.pathname + "image.svg", Astro.url.origin);
+const imageURL = slugToCanonical(Astro.url.pathname + "/image.png", Astro.url.origin);
 
 // eslint-disable-next-line
 const components = { Admonition: Admonition };

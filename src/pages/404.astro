@@ -4,8 +4,6 @@ import Layout from "@/layouts/WithMiniHeader.astro";
 import { DEFAULT_LOCALE, getLocalizedPage, isSupportedLang, useTranslation } from "@/utils/i18n";
 import { getBlogEntriesByLang, getEntryURL, slugToCanonical, type BlogEntry } from "@/utils/content";
 
-export const prerender = true;
-
 const search = new URLSearchParams(Astro.url.search).get("from") ?? "";
 const localeFromSearch = pipe(split("/"), filter(Boolean), path("0"))(search) as string;
 const lang = isSupportedLang(localeFromSearch) ? localeFromSearch : DEFAULT_LOCALE;

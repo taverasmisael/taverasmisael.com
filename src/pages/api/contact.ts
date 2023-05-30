@@ -19,7 +19,7 @@ export async function post({ request }: { request: Request }) {
           from: `${data.name} <${data.email}>`,
           text: `${data.message}
 ----------------
-Submitted from "${request.url}" at ${new Date().toLocaleString("es-ES")}.
+Submitted from "${request.headers.get("referer") ?? request.url}" at ${new Date().toLocaleString("es-ES")}.
 ----------------
           `,
         });
