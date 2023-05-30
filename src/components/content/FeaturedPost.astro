@@ -37,13 +37,7 @@ const href = getEntryURL("blog", post.slug);
     <ul class="flex gap-2 text-xs sm:gap-4">
       {
         post.data.tags.map(tag => {
-          return (
-            <li>
-              <a href="##" class="block rounded-sm p-2 hover:underline">
-                {tag}
-              </a>
-            </li>
-          );
+          return <li class="block p-2">#{tag}</li>;
         })
       }
     </ul>
