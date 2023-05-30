@@ -36,7 +36,7 @@ const algoliaIntegration = localBuild =>
 export default defineConfig({
   adapter,
   site,
-  experimental: { assets: true },
+  experimental: { assets: true, inlineStylesheets: 'auto' },
   integrations: [
     tailwind(),
     mdx(),
