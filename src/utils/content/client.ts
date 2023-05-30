@@ -1,8 +1,10 @@
 import { type Language } from "@/utils/i18n";
-import { getPublicEnv } from "@/utils/env";
 import { type CollectionKey, Collections } from "./types";
 
-const env = getPublicEnv();
+// We know SITE is defined because we triple check on build time.
+// The idea behind not using this here is to avoid the need to import zod in the client.
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const SITE: string = import.meta.env.SITE || '';
 
 export function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKey] {
   return Collections[key as CollectionKey];
@@ -17,6 +19,6 @@ export function getEntryURL(entryType: CollectionKey, slug: string): string {
   return `/${lang}/${collection}/${rawSlug}`;
 }
 
-export function slugToCanonical(slug: string, base: string = env.SITE): string {
+export function slugToCanonical(slug: string, base: string = SITE): string {
   return new URL(slug, base).toString();
 }

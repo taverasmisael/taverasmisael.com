@@ -22,7 +22,7 @@ export async function createEntriesSitemap(hostname: string) {
 
     return {
       ...entry,
-      lastmod: entry.date, // TODO: P2 - get lastmod from git
+      lastmod: entry.date, // TODO: P2 - get lastmod from git #8
       changefreq: EnumChangefreq.MONTHLY,
       priority: 0.6,
       links: translationsEntities,

@@ -38,7 +38,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
       "astro:config:done": config => {
         astroConfig = config.config;
       },
-      // TODO: P3 - Split this monstrous function and add tests
+      // TODO: P3 - Split this monstrous function and add tests #4
       "astro:build:done": async config => {
         if (!name) {
           logger.error("No sitemap name found. Skipping...");

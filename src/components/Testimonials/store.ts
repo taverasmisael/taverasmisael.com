@@ -101,7 +101,6 @@ export function togglePlaying() {
 
 function getColorsForTestimonial(testimonial: TestimonialEntry[]): TestimonialColors {
   return testimonial.reduce(
-    // TODO: Add support for custom colors
     (acc, t, idx) => {
       const colors = COLOR_CLASSES[idx] || DEFAULT_COLORS;
       return { ...acc, [t.id]: colors };
@@ -123,7 +122,7 @@ function splitWords(testimonials: TestimonialEntry[]): TestimonialWords {
 
 function splitToLines(quote: string) {
   const words = quote.trim().split(" ");
-  // TODO: Find a better way to split the words, this is accurate but is not the natural way to read
+  // TODO: P4 - Find a better way to split the words, this is accurate but is not the natural way to read #11
   const { lines } = new Array(Math.ceil(words.length / WORDS_PER_LINE))
     .fill(undefined)
     .reduce<{ lines: string[]; lastIndex: number }>(

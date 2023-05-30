@@ -7,7 +7,7 @@ import { Show, createResource, createSignal } from "solid-js";
 import SearchResults from "./SearchResults";
 import type { CommandBarLinkItem } from "./command-bar-item.type";
 
-// TODO: P1 - Implement keyboard navigation
+// TODO: P1 - Implement keyboard navigation #5
 export default function CommandBar(props: { lang: Language }) {
   let inputRef: HTMLInputElement | undefined;
   const t = useTranslation(props.lang);
