@@ -26,6 +26,7 @@ const {
 
 const title = `${propsTitle} — Misael Taveras`;
 const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
+const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
 const { origin } = Astro.url;
 ---
 
@@ -45,7 +46,8 @@ const { origin } = Astro.url;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
-    <style is:inline>:root { --fontsource-display: "swap"; }</style>
+    <link rel="manifest" href={manifest} />
+    <style is:inline> :root { --fontsource-display: "swap"; } </style>
     {
       translations.map(translation => (
         <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
