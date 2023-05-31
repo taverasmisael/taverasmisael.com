@@ -45,7 +45,8 @@
     "theme.dark": "Oscuro",
     "theme.light": "Claro",
     "theme.auto": "Sistema",
-    "theme.select": "Cambiar tema"
+    "theme.select": "Cambiar tema",
+    "go_top": "Ir al principio"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
