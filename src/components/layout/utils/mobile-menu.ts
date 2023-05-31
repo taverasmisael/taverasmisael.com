@@ -1,8 +1,4 @@
 import { showCommandBar } from "@/stores/command-bar.store";
-const ScrollDirection = {
-  UP: "UP",
-  DOWN: "DOWN",
-} as const;
 
 document.addEventListener("DOMContentLoaded", () => {
   /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
@@ -20,33 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     icon: menuIcon,
     text: buttonText,
   });
-  toggleHeaderOnScroll(header, toggleMobileMenu);
+  window.addEventListener("scroll", () => window.scrollY > 30 && toggleMobileMenu(true), { passive: true });
   menuButton.addEventListener("click", () => toggleMobileMenu());
   searchButton.addEventListener("click", showCommandBar);
 });
-
-function toggleHeaderOnScroll(header: HTMLElement, closeMobileMenu: (isOpen: boolean) => void, threshold = 100) {
-  let prevScrollpos = window.pageYOffset;
-  window.addEventListener(
-    "scroll",
-    () => {
-      const currentScrollPos = window.pageYOffset;
-      const scrollDirection = currentScrollPos > prevScrollpos ? ScrollDirection.DOWN : ScrollDirection.UP;
-      const isSignificantScroll = Math.abs(currentScrollPos - prevScrollpos) > threshold;
-
-      if (isSignificantScroll) {
-        prevScrollpos = currentScrollPos;
-        if (scrollDirection === ScrollDirection.DOWN) {
-          header.classList.add("-translate-y-full");
-          closeMobileMenu(true);
-        } else {
-          header.classList.remove("-translate-y-full");
-        }
-      }
-    },
-    { passive: true }
-  );
-}
 
 function setMobileMenu({
   button,

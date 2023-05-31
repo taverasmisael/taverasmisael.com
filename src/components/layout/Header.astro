@@ -12,7 +12,7 @@ const lang = Astro.props.lang ?? DEFAULT_LOCALE;
 const t = useTranslation(lang);
 ---
 
-<header class="top-0 w-full bg-white shadow-md transition-transform dark:bg-slate-950">
+<header id="header" class="top-0 w-full bg-white shadow-md transition-transform dark:bg-slate-950">
   <div class="mx-auto max-w-7xl px-2 md:border-none md:px-6 lg:px-8">
     <div class="relative flex h-20 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
