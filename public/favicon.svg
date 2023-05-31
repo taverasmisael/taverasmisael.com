@@ -1,16 +1,3 @@
 <svg width="70" height="70" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="5" y="5" width="60" height="60" rx="30" class="circle" />
-
-  <style>
-    .circle {
-      fill: #d6e8fd;
-      stroke: #e2e8ef;
-      stroke-width: 2px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .circle {
-      }
-    }
-  </style>
+  <rect x="5" y="5" width="60" height="60" rx="30" class="circle" fill="#d6e8fd" stroke="#e2e8ef" stroke-width="2" />
 </svg>

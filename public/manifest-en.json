@@ -25,13 +25,25 @@
       "name": "Read the blog",
       "short_name": "Blog",
       "url": "/en/blog?manifest=true",
-      "description": "Read the latest blog posts."
+      "description": "Read the latest blog posts.",
+      "icons": [
+        {
+          "sizes": "96x96",
+          "src": "/shortcut-blog.png"
+        }
+      ]
     },
     {
       "name": "Let's talk",
       "short_name": "Contact me",
       "url": "/en/contact?manifest=true",
-      "description": "Send me a message."
+      "description": "Send me a message.",
+      "icons": [
+        {
+          "sizes": "96x96",
+          "src": "/shortcut-contact.png"
+        }
+      ]
     }
   ]
 }

@@ -35,9 +35,9 @@ const { origin } = Astro.url;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
     <meta name="theme-color" content="hsl(228, 84%, 5%)" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="hsl(0, 0, 100%)" media="(prefers-color-scheme: light)" />
     <meta name="docsearch:language" content={lang} />
@@ -47,11 +47,6 @@ const { origin } = Astro.url;
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
     <link rel="manifest" href={manifest} />
-    <style is:inline>
-      :root {
-        --fontsource-display: "swap";
-      }
-    </style>
     {
       translations.map(translation => (
         <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
