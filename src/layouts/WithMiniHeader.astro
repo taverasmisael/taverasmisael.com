@@ -4,6 +4,7 @@ import Basic from "./Basic.astro";
 import Header from "@/components/layout/MinimalHeader.astro";
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import type { DefaultLayoutProps } from "./types";
+import GoToTop from "@/components/layout/GoToTop.astro";
 
 type Props = DefaultLayoutProps;
 
@@ -37,4 +38,5 @@ const {
   </Fragment>
   <Header lang={lang} />
   <slot />
+  <GoToTop lang={lang} />
 </Basic>

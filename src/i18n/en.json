@@ -45,7 +45,8 @@
     "theme.dark": "Dark",
     "theme.light": "Light",
     "theme.auto": "System",
-    "theme.select": "Select a theme"
+    "theme.select": "Select a theme",
+    "go_top": "Go to top"
   },
   "messages": {
     "page_not_found": "Page not found",
