@@ -39,7 +39,5 @@ const {
     <slot name="head" />
   </Fragment>
   <Header lang={lang} />
-  <!-- This is a hack to prevent the header from overlapping the content -->
-  {!noHeaderSpacing && <div aria-hidden="true" class="h-20" />}
   <slot />
 </Basic>
