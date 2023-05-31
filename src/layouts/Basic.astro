@@ -31,10 +31,10 @@ const { origin } = Astro.url;
 ---
 
 <!DOCTYPE html>
-<html lang={lang} class:list={{ "h-screen": fullHeight }} class="scroll-smooth">
+<html lang={lang} class:list={{ "h-screen": fullHeight }} class="overflow-x-hidden scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="alternate icon" type="image/x-icon" href="/favicon.ico?v=2" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
