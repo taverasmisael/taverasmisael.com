@@ -172,6 +172,11 @@ export default function ContactForm(props: Props) {
           onChange={onChange}
           value={formData.reason}
           class={selectClasses}
+          style={{
+            "background-image": `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%239ea4b0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6l4 4 4-4'/%3E%3C/svg%3E")`,
+            "background-repeat": "no-repeat",
+            "background-position": "right 1rem center",
+          }}
           classList={{
             [pristineFormControlClasses]: !formState.errors.reason,
             [errorFormControlClasses]: !!formState.errors.reason,
@@ -219,7 +224,8 @@ export default function ContactForm(props: Props) {
         </button>
         <div
           aria-live="polite"
-          class="text-sm" classList={{
+          class="text-sm"
+          classList={{
             "text-blue-950 dark:text-blue-100": showSuccess(),
             "text-red-500 dark:text-red-200": formState.submitError,
           }}

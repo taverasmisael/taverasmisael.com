@@ -8,8 +8,8 @@ interface Props {
   lang: Language;
 }
 
-const options: ThemeOption[] = ["theme.dark", "theme.light", "theme.auto"];
-type ThemeOption = "theme.dark" | "theme.light" | "theme.auto";
+const options: ThemeOption[] = ["theme.dark", "theme.light"];
+type ThemeOption = "theme.dark" | "theme.light";
 
 export default function LanguageSelector(props: Props) {
   const t = useTranslation(props.lang);
@@ -25,7 +25,6 @@ export default function LanguageSelector(props: Props) {
   });
 
   const changeAutoTheme = (e: MediaQueryListEvent) => {
-    if (value() !== "theme.auto") return void 0;
     if (e.matches) {
       document.documentElement.classList.add("dark");
     } else {
@@ -39,8 +38,6 @@ export default function LanguageSelector(props: Props) {
     setValue(value);
 
     if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
@@ -93,6 +90,6 @@ export default function LanguageSelector(props: Props) {
 }
 
 const toThemeOption = (theme: string): ThemeOption =>
-  theme === "light" || theme === "dark" || theme === "auto" ? `theme.${theme}` : "theme.auto";
+  theme === "light" || theme === "dark" ? `theme.${theme}` : "theme.light";
 
 const themeOptionToString = (theme: ThemeOption): string => theme.split(".")[1];

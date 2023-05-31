@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { Readable } from "node:stream";
-import { createReadStream, createWriteStream, unlink, copyFile, existsSync } from "node:fs";
+import { createReadStream, createWriteStream, copyFileSync, existsSync, unlinkSync } from "node:fs";
 import { EnumChangefreq, SitemapStream, XMLToSitemapItemStream, streamToPromise, type SitemapItemLoose } from "sitemap";
 
 type SitemapItem = Pick<SitemapItemLoose, "url" | "lastmod" | "changefreq" | "priority" | "links">;
@@ -23,8 +23,9 @@ const ignoreSitemapIndex = (page: string) => /(sitemap-index.xml|sitemap.xml)/.t
 const ignoreImageFolder = (page: string) => /(_image)/.test(page);
 const ignoreStatusPages = (page: string) => /\/[0-9]{3}\/?$/.test(page);
 const ignoreAPI = (page: string) => page.startsWith("/api");
+const ignoreRobots = (page: string) => page === "/robots.txt";
 const sitemapFilters = complement(
-  anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder, ignoreStatusPages, ignoreAPI])
+  anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder, ignoreStatusPages, ignoreAPI, ignoreRobots])
 );
 
 export const INTEGRATION_NAME = "@taverasmisael/sitemaps";
@@ -38,7 +39,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
       "astro:config:done": config => {
         astroConfig = config.config;
       },
-      // TODO: P3 - Split this monstrous function and add tests
+      // TODO: P3 - Split this monstrous function and add tests #4
       "astro:build:done": async config => {
         if (!name) {
           logger.error("No sitemap name found. Skipping...");
@@ -54,7 +55,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
           []
         );
         if (routes.length) {
-          logger.success(`Found ${routes.length} route(s) to generate sitemap`);
+          logger.info(`Found ${routes.length} route(s) to generate sitemap`);
           const grouppedRoutes = groupBy(
             pathname => {
               const [, slug] = pathname.split("/").filter(Boolean);
@@ -80,6 +81,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
           }, grouppedRoutes);
 
           const tempPath = resolve(tmpdir(), "sitemap.xml");
+          logger.info(`Writing sitemap to ${tempPath}`);
           const smStream = Readable.from(Object.values(items).flat()).pipe(new SitemapStream(), { end: false });
           const smPath = fileURLToPath(new URL(name, config.dir));
 
@@ -88,23 +90,21 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
             return;
           }
 
-          const existingSiteMap = createReadStream(smPath).pipe(new XMLToSitemapItemStream());
-          existingSiteMap.pipe(smStream).pipe(createWriteStream(tempPath));
+          const existingSiteMap = createReadStream(smPath)
+            .pipe(new XMLToSitemapItemStream())
+            .pipe(smStream)
+            .pipe(createWriteStream(tempPath));
 
           existingSiteMap.on("error", error => logger.error(error.message));
           existingSiteMap.on("finish", () => {
-            copyFile(tempPath, smPath, error => {
-              if (error) {
-                logger.error(error.message);
-              } else {
-                unlink(tempPath, error => {
-                  if (error) logger.error(error.message);
-                });
-                // We successfully updated the sitemap, just haven't deleted the temp file yet, so it's ok to log success
-                logger.success("Sitemap updated successfully");
-              }
-            });
+            logger.info("Sitemap updated successfully");
+            copyFileSync(tempPath, smPath);
+            unlinkSync(tempPath);
           });
+
+          smStream.on("error", error => logger.error(error.message));
+          smStream.on("finish", () => logger.success("SM Sitemap finished successfully"));
+
           await streamToPromise(smStream);
         } else {
           logger.warn("No routes found to generate sitemap. Skipping...");

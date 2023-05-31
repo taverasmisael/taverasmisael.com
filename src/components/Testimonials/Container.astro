@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Language } from "@/utils/i18n";
 import { getEntriesByLang } from "@/utils/content";
 
@@ -29,10 +30,12 @@ const rings: string[] = [
       >
         <em class="block not-italic leading-normal">{t.data.quote}</em>
         <div class="flex items-center space-x-2 self-end">
-          <img src={t.data.image} alt="" class="w-10 rounded" />
+          <Image src={t.data.image} alt="" class="w-10 rounded" width={40} height={40} />
           <p class="text-xs leading-4">
             <strong class="block text-sm font-semibold text-gray-900 underline-offset-2 hover:underline dark:text-slate-100">
-              <a href={t.data.link}>{t.data.name}</a>
+              <a href={t.data.link} rel="nofollow" target="_blank">
+                {t.data.name}
+              </a>
             </strong>
             <span class="text-gray-500 dark:text-gray-400">{t.data.title}</span>
           </p>

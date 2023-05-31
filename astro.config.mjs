@@ -46,7 +46,7 @@ export default defineConfig({
     ...algoliaIntegration(env.LOCAL_BUILD),
   ],
   markdown: {
-    // TODO: P3 - Add light/dark theme support (css variables)
+    // TODO: P3 - Add light/dark theme support (css variables) #10
     shikiConfig: { theme: nightOwlTheme },
     remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" },
   },

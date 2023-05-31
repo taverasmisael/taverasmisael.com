@@ -5,11 +5,12 @@ import { defineCollection, z } from "astro:content";
 // add a link to their profile, and delete this collection.
 export const testimonialCollection = defineCollection({
   type: "data",
-  schema: z.object({
-    name: z.string().nonempty(),
-    title: z.string().nonempty(),
-    link: z.string().url(),
-    image: z.string().nonempty(),
-    quote: z.string().nonempty(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string().nonempty(),
+      title: z.string().nonempty(),
+      link: z.string().url(),
+      image: image(),
+      quote: z.string().nonempty(),
+    }),
 });

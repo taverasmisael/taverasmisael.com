@@ -9,6 +9,7 @@
     "start": "astro dev",
     "build": "pnpm astro:check && astro build",
     "build:local": "pnpm astro:check && LOCAL_BUILD=true astro build",
+    "build:preview": "pnpm build:local && pnpm preview",
     "preview": "LOCAL_BUILD=true astro preview",
     "astro": "astro",
     "astro:check": "astro check && tsc --noEmit",

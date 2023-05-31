@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/web-manifest.json",
+  "name": "TaverasMisael",
+  "short_name": "TaverasMisael",
+  "description": "Ingeniero Frontend. Sitio web personal y blog",
+  "lang": "es",
+  "id": "/es?manifest=true",
+  "start_url": "/es?manifest=true",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "shortcuts": [
+    {
+      "name": "Leer el blog",
+      "short_name": "Blog",
+      "url": "/es/blog?manifest=true",
+      "description": "Lee las últimas entradas del blog."
+    },
+    {
+      "name": "Habla conmigo",
+      "short_name": "Contacto",
+      "url": "/es/contact?manifest=true",
+      "description": "Envíame un mensaje."
+    }
+  ]
+}

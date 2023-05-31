@@ -1,7 +1,6 @@
 ---
 import "@fontsource-variable/inter";
 import "@fontsource-variable/red-hat-display";
-import "@fontsource-variable/fira-code";
 
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import CommandBar from "@/components/command-bar/CommandBar";
@@ -9,7 +8,6 @@ import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 import { slugToCanonical } from "@/utils/content";
 import Footer from "@/components/layout/Footer.astro";
 import type { DefaultLayoutProps } from "./types";
-import "./styles.css";
 
 type Props = DefaultLayoutProps;
 
@@ -28,6 +26,7 @@ const {
 
 const title = `${propsTitle} — Misael Taveras`;
 const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
+const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
 const { origin } = Astro.url;
 ---
 
@@ -47,6 +46,12 @@ const { origin } = Astro.url;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="manifest" href={manifest} />
+    <style is:inline>
+      :root {
+        --fontsource-display: "swap";
+      }
+    </style>
     {
       translations.map(translation => (
         <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
@@ -58,8 +63,6 @@ const { origin } = Astro.url;
       // inline this to avoid layout shifting/color flashes
       const theme = localStorage.getItem("theme") || "auto";
       if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
