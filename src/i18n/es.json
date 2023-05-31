@@ -46,7 +46,8 @@
     "theme.light": "Claro",
     "theme.auto": "Sistema",
     "theme.select": "Cambiar tema",
-    "go_top": "Ir al principio"
+    "go_top": "Ir al principio",
+    "written_by": "Escrito por"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
