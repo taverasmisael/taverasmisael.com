@@ -47,7 +47,11 @@ const { origin } = Astro.url;
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
     <link rel="manifest" href={manifest} />
-    <style is:inline> :root { --fontsource-display: "swap"; } </style>
+    <style is:inline>
+      :root {
+        --fontsource-display: "swap";
+      }
+    </style>
     {
       translations.map(translation => (
         <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
@@ -59,8 +63,6 @@ const { origin } = Astro.url;
       // inline this to avoid layout shifting/color flashes
       const theme = localStorage.getItem("theme") || "auto";
       if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
