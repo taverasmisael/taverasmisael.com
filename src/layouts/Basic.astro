@@ -70,7 +70,7 @@ const { origin } = Astro.url;
   >
     <slot />
     <Footer lang={lang} translations={translations} />
-    <CommandBar lang={lang} client:only="solid-js" />
+    <CommandBar lang={lang} client:idle />
     <script src="./keyboard-shortcuts.ts"></script>
   </body>
 </html>

@@ -237,7 +237,7 @@ delay2s()
 - [for...of](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/for...of)
 - [Generadores](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Generador)
 - [Iteradores e Iterables](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Iterators_and_Generators)
-- Hay muchas otras novedades que no caben en un articulo, o son pequeños ajustes. En el libro de [ExploringJS están todas](https://exploringjs.com/es6/ch_overviews.html?utm_source=taverasmisael)
+- Hay muchas otras novedades que no caben en un artículo, o son pequeños ajustes. En el libro de [ExploringJS están todas](https://exploringjs.com/es6/ch_overviews.html?utm_source=taverasmisael)
 
 ## ES7
 

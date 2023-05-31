@@ -68,7 +68,7 @@ Esto es más allá de no aceptar responsabilidad por nuestras acciones, nada má
 
 ## Como curar el síndrome de impostor
 
-> Ahora que escribo ese titulo, debería ser el nombre del articulo. Mucho mas bait.
+> Ahora que escribo ese titulo, debería ser el nombre del artículo. Mucho mas bait.
 
 Primero lo primero. Quiero que entiendas que este fenómeno psicológico **no dura para siempre** es como un valle momentáneo en donde caemos. Si estás constantemente en el, como dije al principio deberías considerar ayuda profesional.
 

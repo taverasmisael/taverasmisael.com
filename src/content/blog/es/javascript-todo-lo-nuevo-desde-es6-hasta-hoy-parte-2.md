@@ -161,7 +161,7 @@ console.log(SpanishRoom.logId) // '507f1f77bcf86cd799439011'
 
 El futuro de JavaScript se ve más prometedor que nunca, con nuevas iteraciones del lenguaje haciendo la vida del desarrollador más cómoda. Con herramientas como babel y [webpack](https://webpack.js.org/) nos permiten brindar a los usuarios código que no afecte su experiencia en nuestra aplicación o página.
 
-Esto concluye nuestra serie de dos articulos sobre serie “JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá”. Espero que te haya gustado. De ser así compartela con alguien más que sabes que se beneficiará y como siempre no olvides decirme que te pareció.
+Esto concluye nuestra serie de dos artículos sobre serie “JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá”. Espero que te haya gustado. De ser así compartela con alguien más que sabes que se beneficiará y como siempre no olvides decirme que te pareció.
 
 Estaré haciendo guías detalladas de las características que más utilizo, cuando aprueben una nueva o las que me dejen saber que están interesados en [twitter](https://twitter.com/taverasmisael).
 

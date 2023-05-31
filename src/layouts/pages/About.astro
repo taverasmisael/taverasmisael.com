@@ -61,5 +61,23 @@ const t = useTranslation(lang);
     </div>
   </main>
 </Layout>
-
-<style></style>
+<script>
+  import confetti from "canvas-confetti";
+  document.querySelectorAll("[data-confetti-button]").forEach(handler =>
+    handler.addEventListener("click", () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const pos = handler.getClientRects().item(0) ?? { x: width / 2, y: height / 2 };
+      const origin = {
+        x: (pos.x / width) + 0.02,
+        y: (pos.y / height) + 0.2,
+      };
+      confetti({
+        origin,
+        disableForReducedMotion: true,
+        shapes: ["star"],
+        colors:  ["#b91c1c", "#f87171", "#ef4444", "#dc2626", "#7f1d1d"],
+      });
+    })
+  );
+</script>
