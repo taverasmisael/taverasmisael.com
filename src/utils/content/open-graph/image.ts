@@ -9,6 +9,7 @@ interface ImageGeneratorConfig {
   image: string;
   width: number;
   height: number;
+  writtenTag: string;
 }
 
 let displayFont: ArrayBuffer | undefined;
@@ -36,7 +37,7 @@ const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; l
   return { display, body, light };
 };
 
-export const generateOGImage = async ({ title, description, image, width, height }: ImageGeneratorConfig) => {
+export const generateOGImage = async ({ title, description, image, width, height, writtenTag }: ImageGeneratorConfig) => {
   const truncatedDescription = description.split(" ").slice(0, 30).join(" ");
   const fonts = await loadFonts();
 
@@ -49,7 +50,7 @@ export const generateOGImage = async ({ title, description, image, width, height
       image,
       title,
       width: `${width}px`,
-      writtenTag: "Written by",
+      writtenTag,
     })
   );
 

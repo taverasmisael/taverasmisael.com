@@ -1,6 +1,7 @@
 import { Resvg } from "@resvg/resvg-js";
 import { getBlogEntry, getCollection } from "@/utils/content";
 import { generateOGImage } from "@/utils/content/open-graph/image";
+import { useTranslation } from "@/utils/i18n";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -22,6 +23,7 @@ export async function get({ params }: { params: Record<string, string> }) {
       image: "https://raw.githubusercontent.com/taverasmisael/taverasmisael.com/main/public/og-image-bg.png",
       width: WIDTH,
       height: HEIGHT,
+      writtenTag: useTranslation(post.meta.lang)('ui', 'written_by'),
     });
 
 
