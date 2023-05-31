@@ -72,5 +72,6 @@ const { origin } = Astro.url;
     <Footer lang={lang} translations={translations} />
     <CommandBar lang={lang} client:idle />
     <script src="./keyboard-shortcuts.ts"></script>
+    <script is:inline>navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()))</script>
   </body>
 </html>
