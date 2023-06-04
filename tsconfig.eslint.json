@@ -7,9 +7,10 @@
     "./tailwind.config.cjs",
     "./src/**/*.astro",
     "./integrations/**/*.ts",
+    "./uno/**/*.ts",
     "./src/**/*.js",
     "./src/**/*.ts",
     "./src/**/*.tsx",
-    "./src/**/*.json",
-  ],
+    "./src/**/*.json"
+  ]
 }

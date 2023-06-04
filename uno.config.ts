@@ -1,15 +1,6 @@
 import { map, join } from "rambda";
-import defaultTheme from "tailwindcss/defaultTheme";
+import myTypography, { theme } from "./uno/typography";
 import { defineConfig, presetWind, presetTypography } from "unocss";
-
-const theme = {
-  ...defaultTheme,
-  fontFamily: {
-    sans: ['"Inter Variable"', ...defaultTheme.fontFamily.sans],
-    display: ['"Red Hat Display Variable"', ...defaultTheme.fontFamily.sans],
-    mono: ['"Fira Code Variable"', ...defaultTheme.fontFamily.mono],
-  },
-};
 
 export default defineConfig({
   theme: {
@@ -21,27 +12,5 @@ export default defineConfig({
       counts: { wiggle: "infinite" },
     },
   },
-  presets: [
-    presetTypography({
-      cssExtend: {
-        blockquote: {
-          "font-style": "normal",
-        },
-        img: {
-          "border-radius": theme.borderRadius.md,
-          "margin-left": "auto",
-          "margin-right": "auto",
-        },
-        "pre code": {
-          // FiraCode looks better light
-          "font-weight": "300 !important",
-        },
-        "h1, h2, h3, h4, h5, h6": {
-          "font-family": theme.fontFamily.display.join(", "),
-          "text-wrap": "balance",
-        },
-      },
-    }),
-    presetWind({ dark: "class" }),
-  ],
+  presets: [myTypography({ selector: "post", theme }), presetTypography(), presetWind({ dark: "class" })],
 });
