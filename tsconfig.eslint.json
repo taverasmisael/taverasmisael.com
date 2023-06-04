@@ -3,6 +3,7 @@
   "include": [
     "./.eslintrc.cjs",
     "./astro.config.mjs",
+    "./uno.config.ts",
     "./tailwind.config.cjs",
     "./src/**/*.astro",
     "./integrations/**/*.ts",

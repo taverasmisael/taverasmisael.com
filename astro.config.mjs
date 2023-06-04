@@ -1,6 +1,6 @@
 import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import unocss from "unocss/astro";
 import mdx from "@astrojs/mdx";
 import prefetch from "@astrojs/prefetch";
 import solidjs from "@astrojs/solid-js";
@@ -39,7 +39,7 @@ export default defineConfig({
   compressHTML: true,
   experimental: { assets: true, inlineStylesheets: "auto" },
   integrations: [
-    tailwind(),
+    unocss({ injectReset: true }),
     mdx(),
     prefetch({ selector: "article a:not([href^='/']), a[rel*='prefetch']" }),
     solidjs(),
