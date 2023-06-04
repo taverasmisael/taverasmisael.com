@@ -34,10 +34,18 @@ const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; l
 
   displayFont = display;
   bodyFont = body;
+  lightFont = light;
   return { display, body, light };
 };
 
-export const generateOGImage = async ({ title, description, image, width, height, writtenTag }: ImageGeneratorConfig) => {
+export const generateOGImage = async ({
+  title,
+  description,
+  image,
+  width,
+  height,
+  writtenTag,
+}: ImageGeneratorConfig) => {
   const truncatedDescription = description.split(" ").slice(0, 30).join(" ");
   const fonts = await loadFonts();
 
