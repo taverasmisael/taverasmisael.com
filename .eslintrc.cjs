@@ -8,22 +8,13 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:astro/recommended",
-    "plugin:tailwindcss/recommended",
-    "plugin:astro/jsx-a11y-strict",
-    "prettier",
-  ],
+  extends: ["eslint:recommended", "plugin:astro/recommended", "@unocss", "plugin:astro/jsx-a11y-strict", "prettier"],
   parserOptions: {
     project: "./tsconfig.eslint.json",
     tsconfigRootDir: __dirname,
     extraFileExtensions: [".astro"],
   },
   parser: "@typescript-eslint/parser",
-  rules: {
-    "tailwindcss/no-custom-classname": "off",
-  },
   overrides: [
     {
       files: ["*.astro"],
