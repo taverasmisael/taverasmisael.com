@@ -23,9 +23,8 @@ export async function get({ params }: { params: Record<string, string> }) {
       image: "https://raw.githubusercontent.com/taverasmisael/taverasmisael.com/main/public/og-image-bg.png",
       width: WIDTH,
       height: HEIGHT,
-      writtenTag: useTranslation(post.meta.lang)('ui', 'written_by'),
+      writtenTag: useTranslation(post.meta.lang)("ui", "written_by"),
     });
-
 
     console.timeEnd("og-image");
 

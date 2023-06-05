@@ -3,5 +3,5 @@ export const AdmonitionTypes = {
   Info: "info",
   Disclaimer: "disclaimer",
   Alert: "alert",
-  Tip: "tip"
+  Tip: "tip",
 } as const;

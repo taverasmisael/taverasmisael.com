@@ -1,14 +1,14 @@
 ---
 title: Anunciando mi Podcast
-date: '2020-01-22'
+date: "2020-01-22"
 description: Anuncio de mis planes de crear un podcast donde pueda compartir más de cerca temas varios, orientados a la programación pero más enfocados en el día a día del programador.
 author: misael-taveras
-tags: ['Noticia', 'Personal']
+tags: ["Noticia", "Personal"]
 ---
 
 Hola, espero que el año haya iniciado bien para ti. Y si no fue del todo así, pues descuida, aún quedan días para mejorarlo.
 
-Año tras años solemos ponernos metas, que seguimos y completamos mejorando como personas cada año. O puede que, como yo, nunca hayas completado **NINGUNA** de esas metas y sigues debiendo propósitos desde los tiempos de [Trilogy](https://en.wikipedia.org/wiki/Trilogy_(The_Weeknd_album)). Este año decidí tomarlo para cambiar eso, así que en lugar de agregar propósitos nuevos, revisé todos mis cuadernos y anotaciones, y busqué propósitos viejos que seguían siendo relevantes al día de hoy. _(Seamos honestos, tú y yo sabemos que mi oportunidad de ser astronauta pasó hace años)_.
+Año tras años solemos ponernos metas, que seguimos y completamos mejorando como personas cada año. O puede que, como yo, nunca hayas completado **NINGUNA** de esas metas y sigues debiendo propósitos desde los tiempos de [Trilogy](<https://en.wikipedia.org/wiki/Trilogy_(The_Weeknd_album)>). Este año decidí tomarlo para cambiar eso, así que en lugar de agregar propósitos nuevos, revisé todos mis cuadernos y anotaciones, y busqué propósitos viejos que seguían siendo relevantes al día de hoy. _(Seamos honestos, tú y yo sabemos que mi oportunidad de ser astronauta pasó hace años)_.
 
 Entre esos propósitos semi olvidados, me encontré con que quería hacer un Podcast. Desde bien joven mis profesores siempre me animaron a perseguir la carrera de locución y oratoria ¡Qué bien que no les hice caso, adoro lo que hago!
 
@@ -28,7 +28,7 @@ Pero hablar de programación puede extenderse de diferentes maneras, de hecho aq
 
 Por otro lado, hay un punto de vista que solo he compartido hasta ahora con algunos de mis amigos más íntimos, que también son programadores. Este punto de vista es, **EL MIO**. Mis opiniones y experiencia que he adquirido a través de los años y que he compartido con algunos compañeros que vienen a mí con dudas. En ocasiones el mismo día le respondía preguntas similares a dos y tres personas diferentes.
 
-Lo que se me ocurre es hacer eso mismo, pero responderle a varias personas diferentes (*probablemente las mismas dos o tres*) pero hacerlo al mismo tiempo, a través del podcast.
+Lo que se me ocurre es hacer eso mismo, pero responderle a varias personas diferentes (_probablemente las mismas dos o tres_) pero hacerlo al mismo tiempo, a través del podcast.
 
 Así que en resumen, el podcast sería yo compartiendo mis experiencias y opiniones de lo que he aprendido en mi camino, (que siento que apenas empieza), en el mundo del desarrollo, más por la parte web, tanto frontend como backend.
 
@@ -42,7 +42,7 @@ El formato de lanzamiento del podcast va a ser semanal, pero **dividido por temp
 
 ## Necesito tu ayuda
 
-Bien, aunque sé cómo y qué quiero hacer ~~kindda~~  al final del día este contenido va a ser para ti, así que me gustaría saber tu opinión en algunas cosas. Para ello creé un pequeño formulario de Google con 4 preguntas sencillas de selección y significaría el mundo para mí si pudieras tomarte 30 segundos de tu tiempo y llenarlo. Entre las preguntas está una selección de algunos posibles nombres y me gustaría saber cual te gusta más.
+Bien, aunque sé cómo y qué quiero hacer ~~kindda~~ al final del día este contenido va a ser para ti, así que me gustaría saber tu opinión en algunas cosas. Para ello creé un pequeño formulario de Google con 4 preguntas sencillas de selección y significaría el mundo para mí si pudieras tomarte 30 segundos de tu tiempo y llenarlo. Entre las preguntas está una selección de algunos posibles nombres y me gustaría saber cual te gusta más.
 
 ~Aquí el link para el formulario que decidirá el futuro de tu país~ (Gracias a todos los que participaron en la elección del nombre. Release on Fridays fue el nombre ganador).
 

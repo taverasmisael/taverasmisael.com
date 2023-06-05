@@ -1,9 +1,9 @@
 ---
-title: 'JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá. Parte 1'
-date: '2019-08-24'
+title: "JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá. Parte 1"
+date: "2019-08-24"
 description: Todo lo que ha sido añadido al lenguaje desde 2015. Con ejemplos desde ES6 y ES7
 author: misael-taveras
-tags: ['JavaScript', 'ES6']
+tags: ["JavaScript", "ES6"]
 ---
 
 > Esta es la primera parte de una serie de dos donde hablo de todas las novedades de JavaScript desde el 2015.
@@ -82,8 +82,8 @@ console.log(y); // 2
 Por otro lado, `const` nos permite crear un valor que no puede ser redeclarado después de inicializarlo.
 
 ```js
-let a = 'Hola';
-a = 'adios'; // OK
+let a = "Hola";
+a = "adios"; // OK
 
 const b = 10;
 b = 11; // Error
@@ -120,9 +120,9 @@ console.log(one); // 1
 console.log(two); // 2
 
 const person = {
-  name: 'Pedro',
-  lastName: 'Gomez',
-  animal: 'Cat'
+  name: "Pedro",
+  lastName: "Gomez",
+  animal: "Cat",
 };
 
 const { animal } = person;
@@ -137,8 +137,8 @@ Este operador va de la mano con el anterior ya que nos permite asignar el resto 
 
 ```js
 const user = {
-  id: '1234',
-  name: 'Juan'
+  id: "1234",
+  name: "Juan",
 };
 
 const { id, ...userNoId } = user;
@@ -154,16 +154,11 @@ console.log(saludarPersona(user)); // 'Hola, Juan'
 #### Spread
 
 ```js
-const numbersLowerThanFive = [1,2,3,4]
-const numbersGreaterThanFive = [6,7,8,9]
+const numbersLowerThanFive = [1, 2, 3, 4];
+const numbersGreaterThanFive = [6, 7, 8, 9];
 
-const numbersOneToTen = [
-  ...numbersLowerThanFive,
-  5,
-  ...numbersGreaterThanFive,
-  10
-]
-console.log(numbersOneToTen) // 1,2,3,4,5,6,7,8,9,10
+const numbersOneToTen = [...numbersLowerThanFive, 5, ...numbersGreaterThanFive, 10];
+console.log(numbersOneToTen); // 1,2,3,4,5,6,7,8,9,10
 ```
 
 ### Clases
@@ -187,7 +182,7 @@ class Animal {
 
 class Dog extends Animal {
   constructor(name) {
-    super('Dog', name, 'Woof');
+    super("Dog", name, "Woof");
   }
 
   giveLove() {
@@ -196,7 +191,7 @@ class Dog extends Animal {
   }
 }
 
-const firulais = new Dog('Firulaus');
+const firulais = new Dog("Firulaus");
 firulais.doSound(); // 'WOOF!'
 firulais.giveLove(); // 'Soy Firulaus y soy hermoso\nWOOFF!'
 ```
@@ -209,8 +204,8 @@ La forma de crear una promesa es con su constructor `Promise` pasando una funci�
 
 ```js
 const delay2s = new Promise((resolve, reject) => {
-  setTimeout(function() {
-    resolve('Pasaron 2 segundos'); // ¡Todo salió bien!
+  setTimeout(function () {
+    resolve("Pasaron 2 segundos"); // ¡Todo salió bien!
   }, 2000);
 });
 ```
@@ -219,14 +214,14 @@ Una vez que una promesa corre devuelve dos métodos que aceptan una función. El
 
 ```js
 // ... con el código anterior
-console.log('Hola ahora');
+console.log("Hola ahora");
 delay2s()
   .then(() => {
-    console.log('Hola en 2 segundos');
+    console.log("Hola en 2 segundos");
   })
   .catch(() => {
     // Si quieres ver este mensaje, en vez de llamar `resolve` usa `reject` 😉.
-    console.log('Fallé después de 2 segundos');
+    console.log("Fallé después de 2 segundos");
   });
 ```
 
@@ -249,11 +244,11 @@ Una forma sencilla de saber si un array incluye cierto valor. Funciona con primi
 
 ```js
 //Antes
-const numbers=[3,5,7,11]
-const hasTen = numbers.indexOf(10) !== -1
+const numbers = [3, 5, 7, 11];
+const hasTen = numbers.indexOf(10) !== -1;
 
 // Ahora
-const newHasTen = numbers.includes(10)
+const newHasTen = numbers.includes(10);
 ```
 
 ### Operador exponencial
@@ -262,14 +257,14 @@ Ahora podemos hacer operaciones con exponentes de forma sencilla con el doble as
 
 ```js
 // Antes
-const dosAlCuboAntes = 2 * 2 * 2
+const dosAlCuboAntes = 2 * 2 * 2;
 
 // Ahora
 
-const dosAlCuboAhora = 2 ** 3
+const dosAlCuboAhora = 2 ** 3;
 ```
 
-##  Conclusión
+## Conclusión
 
 Esta es solo la primera parte de la serie “JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá” en donde hemos visto ES6 y ES7. Entendemos porqué ES6 es considerada una de las mayores actualizaciones del lenguaje y como el comité de ECMAScript ha mantenido su palabra de mantener a JavaScript actualizado.
 

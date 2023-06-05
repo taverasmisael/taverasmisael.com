@@ -1,9 +1,9 @@
 ---
-title: 'JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá. Parte 2'
-date: '2019-08-25'
+title: "JavaScript: Todo lo nuevo desde ES6 hasta hoy y más allá. Parte 2"
+date: "2019-08-25"
 description: Todo lo que ha sido añadido al lenguaje desde 2015. Con ejemplos desde ES8, ES9 que viene a continuación
 author: misael-taveras
-tags: ['JavaScript', 'ES6']
+tags: ["JavaScript", "ES6"]
 ---
 
 > Esta es la segunda parte de una serie de dos donde hablo de todas las novedades de JavaScript desde el 2015.
@@ -21,31 +21,34 @@ Esta versión introduce algunos cambios mayores y unos menores pero que vienen a
 
 ### Async/Await
 
-Ya vimos como funcionan las [promesas](javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1#promesas), pero estas, al igual que los `callbacks`, pueden volverse un poco enredadas y difíciles de seguir. Para ayudarnos con esto esta el `async/await` como una forma de escribir código asíncrono como si fuese síncrono. La forma de utilizarlo es envolviendo nuestras llamadas asíncronas en una función especial que usa el *keyword* `async` y en cada llamada asíncrona anteponer el keyword `await` para decirle que **espere** a que esa llamada termine. Solo es posible usar `await` dentro de una función que tenga `async` [por ahora](#mas-alla)
+Ya vimos como funcionan las [promesas](javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1#promesas), pero estas, al igual que los `callbacks`, pueden volverse un poco enredadas y difíciles de seguir. Para ayudarnos con esto esta el `async/await` como una forma de escribir código asíncrono como si fuese síncrono. La forma de utilizarlo es envolviendo nuestras llamadas asíncronas en una función especial que usa el _keyword_ `async` y en cada llamada asíncrona anteponer el keyword `await` para decirle que **espere** a que esa llamada termine. Solo es posible usar `await` dentro de una función que tenga `async` [por ahora](#mas-alla)
 
 ```js
-const waitSeconds = seconds => new Promise((resolve, reject) => {
-  setTimeout(function() {
-    resolve(`Pasaron ${seconds} segundos`); // ¡Todo salió bien!
-  }, seconds * 1000);
-})
+const waitSeconds = seconds =>
+  new Promise((resolve, reject) => {
+    setTimeout(function () {
+      resolve(`Pasaron ${seconds} segundos`); // ¡Todo salió bien!
+    }, seconds * 1000);
+  });
 
 async function wait3Seconds() {
-  await waitSeconds(1)
-  await waitSeconds(2)
-  console.log('Despues de 3 segundos aqui estoy')
+  await waitSeconds(1);
+  await waitSeconds(2);
+  console.log("Despues de 3 segundos aqui estoy");
 }
 
 // Para funciones flecha
 const wait2Seconds = async () => {
-  const response = await waitSeconds(2)
-  console.log(response)
-  return '¿Qué hacer ahora?'
-}
+  const response = await waitSeconds(2);
+  console.log(response);
+  return "¿Qué hacer ahora?";
+};
 
-wait3Seconds()
+wait3Seconds();
 // Esto devuelve una promesa
-wait2Seconds().then(response => { console.log(response) })
+wait2Seconds().then(response => {
+  console.log(response);
+});
 ```
 
 > Para capturar excepciones en el código con async/await debemos utilizar un clasico `try...catch`.
@@ -61,13 +64,13 @@ Nos devuelve en un array de pares los keys del objeto que le pasemos junto con s
 
 ```js
 const person = {
-  name: 'Misael',
-  lastName: 'Taveras',
-  age: '???'
-}
+  name: "Misael",
+  lastName: "Taveras",
+  age: "???",
+};
 
- // [ [ 'name', 'Misael' ], [ 'lastName', 'Taveras' ], [ 'age', '???' ] ]
-console.log(Object.entries(person))
+// [ [ 'name', 'Misael' ], [ 'lastName', 'Taveras' ], [ 'age', '???' ] ]
+console.log(Object.entries(person));
 ```
 
 ### Object.values
@@ -76,13 +79,13 @@ Nos devuelve en un array solo con los valores que tenga el objeto
 
 ```js
 const person = {
-  name: 'Misael',
-  lastName: 'Taveras',
-  age: '???'
-}
+  name: "Misael",
+  lastName: "Taveras",
+  age: "???",
+};
 
 // [ 'Misael', 'Taveras', '???' ]
-console.log(Object.values(person))
+console.log(Object.values(person));
 ```
 
 #### Otras novedades de ES8
@@ -91,7 +94,7 @@ console.log(Object.values(person))
 
 ## ES9
 
-Esta es la ultima versión *"activa"* de JavaScript; lanzada oficialmente el año pasado esta incluye mejoras a las cosas que ya estaban. Aquí una lista:
+Esta es la ultima versión _"activa"_ de JavaScript; lanzada oficialmente el año pasado esta incluye mejoras a las cosas que ya estaban. Aquí una lista:
 
 - [Iteradores Asíncronos](https://jakearchibald.com/2017/async-iterators-and-generators/): Si alguna vez te preguntaste como serían los bebes de los generadores (no los detallamos, pero dejamos enlace arriba) y los operadores async/await, estas de suerte porque es justamente eso.
 - [Operador Rest en Objetos](https://v8.dev/features/object-rest-spread): Ahora es posible usar el spread en objetos para unirlos creando uno nuevo (ver [spread](#spread)).
@@ -113,16 +116,16 @@ Entre las propuestas más posibles y las que más espero se encuentran:
 
 ### Optional Chaining
 
-Si como yo te encuentras a cada momento que tienes objetos dentro de objetos devolviendo errores como `Cannot read property 'X' of undefined` o haciendo muchas validaciones, esta característica te encantará. Con el encadenamiento opcional (espero que le cambien el nombre en español) podrás  acceder a valores anidados sin preocuparte por errores de `undefined`. Se planea agregar un nuevo operador `.?` (punto más signo de interrogación) que servirá para acceder de forma segura a propiedades dentro de objetos por más profundas que estén.
+Si como yo te encuentras a cada momento que tienes objetos dentro de objetos devolviendo errores como `Cannot read property 'X' of undefined` o haciendo muchas validaciones, esta característica te encantará. Con el encadenamiento opcional (espero que le cambien el nombre en español) podrás acceder a valores anidados sin preocuparte por errores de `undefined`. Se planea agregar un nuevo operador `.?` (punto más signo de interrogación) que servirá para acceder de forma segura a propiedades dentro de objetos por más profundas que estén.
 
 ```js
 const person = {
-  name: 'Marcos',
-  friends: [{ name: 'Elvis', friends: [] }]
-}
-console.log(person.friends[0].friends[0].name) // `Cannot read property 'name' of undefined`
+  name: "Marcos",
+  friends: [{ name: "Elvis", friends: [] }],
+};
+console.log(person.friends[0].friends[0].name); // `Cannot read property 'name' of undefined`
 
-console.log(person.friends[0].friends[0]?.name) // `undefined`
+console.log(person.friends[0].friends[0]?.name); // `undefined`
 ```
 
 ### Métodos estáticos y valores privados en clases
@@ -132,20 +135,20 @@ El poder inicializar miembros de la clase directamente fuera del constructor o a
 ```js
 class Classroom {
   // Es privado y no se puede acceder fuera de la clase
-  #id = '507f1f77bcf86cd799439011'
+  #id = "507f1f77bcf86cd799439011";
 
   // Puede accederse sin instancia
-  static roomType = 'classroom'
+  static roomType = "classroom";
 
   // Como es una función flecha, `this` es la
   // instancia actual de la clase.
-  logId = ()=> this.#id
+  logId = () => this.#id;
 }
 
-console.log(Classroom.roomType) // 'classroom'
-const SpanishRoom = new Classroom()
-console.log(SpanishRoom.#id) // Arroja `SyntaxError`
-console.log(SpanishRoom.logId) // '507f1f77bcf86cd799439011'
+console.log(Classroom.roomType); // 'classroom'
+const SpanishRoom = new Classroom();
+console.log(SpanishRoom.#id); // Arroja `SyntaxError`
+console.log(SpanishRoom.logId); // '507f1f77bcf86cd799439011'
 ```
 
 #### Otras cosas para el futuro de JavaScript
@@ -157,7 +160,7 @@ console.log(SpanishRoom.logId) // '507f1f77bcf86cd799439011'
 - [Promise.any](https://github.com/tc39/proposal-promise-any): Recibe un array de Promesas y devuelve al momento que la primera se resuelva o se rechace.
 - [globalThis](https://github.com/tc39/proposal-global): Una forma de acceder al objeto global al momento de ejecución. En los navegadores es `window` en los workers es `self` y en node es `global`. Con `globalThis` solo será globalThis y es todo.
 
-##  Conclusión
+## Conclusión
 
 El futuro de JavaScript se ve más prometedor que nunca, con nuevas iteraciones del lenguaje haciendo la vida del desarrollador más cómoda. Con herramientas como babel y [webpack](https://webpack.js.org/) nos permiten brindar a los usuarios código que no afecte su experiencia en nuestra aplicación o página.
 

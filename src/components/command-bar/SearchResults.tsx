@@ -1,6 +1,6 @@
 import { For, Switch, Match } from "solid-js";
 import type { CommandBarItem } from "./command-bar-item.type";
-import styles from './CommandBarStyles.module.css'
+import styles from "./CommandBarStyles.module.css";
 
 interface SearchResultsProps {
   items: CommandBarItem[];
@@ -43,7 +43,10 @@ export default function SearchResults(props: SearchResultsProps) {
                         {item.icon}
                       </span>
                       {item.description && (
-                        <span class={`mt-2 inline-block max-w-full truncate text-xs text-slate-400 ${styles.description}`} innerHTML={item.description} />
+                        <span
+                          class={`mt-2 inline-block max-w-full truncate text-xs text-slate-400 ${styles.description}`}
+                          innerHTML={item.description}
+                        />
                       )}
                     </a>
                   ) : (

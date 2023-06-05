@@ -1,9 +1,9 @@
 ---
 title: Domina todos los bucles for en que hay en JavaScript
-date: '2020-06-21'
+date: "2020-06-21"
 description: ¿Conoces las diferencias y casos de usos entre los 4 bucles for en JavaScript? Si no es el caso, o no sabes bien donde encaja cada uno, dejame mostrarte.
 author: misael-taveras
-tags: ['JavaScript', 'Tutorial']
+tags: ["JavaScript", "Tutorial"]
 ---
 
 En JavaScript existen diversas maneras de iterar sobre un arreglo o colección de datos. La más popular (aunque creo que menos sencilla) es el clásico bucle for que existe en todos los lenguajes de programación. Aunque en JavaScript tenemos otras maneras de trabajar con los datos dentro de un array (de hecho tengo un post al respecto que [puedes ver aquí](usar-map-filter-y-reduce-para-olvidarnos-de-los-bucles-for)) es bueno conocer los demás métodos y cómo utilizarlos.
@@ -18,10 +18,10 @@ Lo que hace a esta estructura tan versátil y poderosa es que **NO ITERA SOBRE E
 
 ```js
 // for ([expresión-inicial]; [condición]; [expresión-final])sentencia
-const arr = [{ name: 'Abel' }, { name: 'Lana' }, { name: 'Drake' }]
+const arr = [{ name: "Abel" }, { name: "Lana" }, { name: "Drake" }];
 // algunos prefieren usar i++ en vez de i += 1
 for (let i = 0; i < arr.length; i += 1) {
-  console.log(arr[i].name) // Abel, Lana, Drake
+  console.log(arr[i].name); // Abel, Lana, Drake
 }
 ```
 
@@ -41,14 +41,14 @@ Aunque estos errores son fáciles de identificar (principalmente en nuestros eje
 
 El bucle `for...in` se podría decir que es una versión muy mejorada del clásico bucle for, y remplaza la flexibilidad de un contador de cualquier cosa por un bucle que itera sobre objetos con `keys`. Recordemos que los arrays son objetos con keys númericas, o índices.
 
-Veamos su sintaxis  usando el mismo ejemplo anterior.
+Veamos su sintaxis usando el mismo ejemplo anterior.
 
 ```js
 // for([variable índice] in [iterable]) sentencia
-const arr = [{ name: 'Abel' }, { name: 'Lana' }, { name: 'Drake' }]
+const arr = [{ name: "Abel" }, { name: "Lana" }, { name: "Drake" }];
 
 for (let i in arr) {
-  console.log(arr[i].name) // Abel, Lana, Drake
+  console.log(arr[i].name); // Abel, Lana, Drake
 }
 ```
 
@@ -60,14 +60,14 @@ Una de las ventajas es que podemos observar una menor cantidad de código y lóg
 
 Una gran diferencia es que mientras el bucle for itera sobre un rango de `integer` el `for...in` itera sobre los `key de un objeto`. ¿Qué significa esto? Dos cosas principales:
 
-* En el ejemplo del clásico bucle for `i` era una variable contador de tipo `integer`, mientras que acá es un `string` (ya que todas las llaves en JS son strings aunque parezcan integers).
-* Éste es el más interesante, puedes iterar sobre objetos. Como esto itera sobre los keys, los objetos son pares de `key: value` podemos obtener todos los keys y valores de un objeto de la siguiente manera:
+- En el ejemplo del clásico bucle for `i` era una variable contador de tipo `integer`, mientras que acá es un `string` (ya que todas las llaves en JS son strings aunque parezcan integers).
+- Éste es el más interesante, puedes iterar sobre objetos. Como esto itera sobre los keys, los objetos son pares de `key: value` podemos obtener todos los keys y valores de un objeto de la siguiente manera:
 
 ```js
-const obj = {name: 'Pedro', salary: 3000, }
+const obj = { name: "Pedro", salary: 3000 };
 
 for (let key in obj) {
-  console.log(`${key}: ${obj[key]}`) // name: Pedro, salary: 3000
+  console.log(`${key}: ${obj[key]}`); // name: Pedro, salary: 3000
 }
 ```
 
@@ -83,10 +83,10 @@ Veamos un ejemplo.
 
 ```js
 // for([variable índice] of [iterable])
-const arr = [{ name: 'Abel' }, { name: 'Lana' }, { name: 'Drake' }]
+const arr = [{ name: "Abel" }, { name: "Lana" }, { name: "Drake" }];
 
 for (let value of arr) {
-  console.log(value.name) // Abel, Lana, Drake
+  console.log(value.name); // Abel, Lana, Drake
 }
 ```
 
@@ -101,21 +101,21 @@ Pero, ¿qué pasa con los objetos? Bueno, si estamos usando un `for...in` con un
 Es que a diferencia de su hermano `for...in` este solo funciona en **iterables**. Los itereables son objetos especiales en JavaScript con un método `@@iterator` en un key `[Symbol.iterator]`, los Array, Set y Map vienen con este método implementado, pero los Object no, así que no son válidos para el bucle `for...of` aunque esto tiene una solución.
 
 ```js
-const obj = {name: 'Pedro', salary: 3000, }
+const obj = { name: "Pedro", salary: 3000 };
 
 for (let pair of Object.entries(obj)) {
-  console.log(pair) // ['name', 'Pedro'], ['salary', 3000]
+  console.log(pair); // ['name', 'Pedro'], ['salary', 3000]
 }
 
 // Si queremos ponernos interesantes podemos hacer
 for (let [key, value] of Object.entries(obj)) {
-  console.log(`${key}: ${value}`) // name: Pedro, salary: 3000
+  console.log(`${key}: ${value}`); // name: Pedro, salary: 3000
 }
 ```
 
-> Si aún no te sientes cómodo utilizando el Object Destructuring te recomiendo [leer mi post](javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1#destructuring "ES6 en adelante") sobre las ~~no tan~~  nuevas características de ES6.
+> Si aún no te sientes cómodo utilizando el Object Destructuring te recomiendo [leer mi post](javascript-todo-lo-nuevo-desde-es6-hasta-hoy-parte-1#destructuring "ES6 en adelante") sobre las ~~no tan~~ nuevas características de ES6.
 
-El método `Object.entries([cualquier objeto])` devuelve un array  de arrays con los pares de key y value tipo `[key, value]` dado a que los arrays son iterables podemos utilizarlos dentro de nuestro bucle `for...of`.
+El método `Object.entries([cualquier objeto])` devuelve un array de arrays con los pares de key y value tipo `[key, value]` dado a que los arrays son iterables podemos utilizarlos dentro de nuestro bucle `for...of`.
 
 Así mismo podemos usar `Object.keys` u `Object.values` si solo nos interesan o una cosa o la otra.
 
@@ -129,8 +129,8 @@ Una vez dicho esto, vemos la sintaxis que es muy parecida a las de map y filter.
 
 ```js
 // for(cb(value, iter, arr))
-const arr = [{ name: 'Abel' }, { name: 'Lana' }, { name: 'Drake' }]
-arr.forEach(value => console.log(value.name)) // Abel, Lana, Drake
+const arr = [{ name: "Abel" }, { name: "Lana" }, { name: "Drake" }];
+arr.forEach(value => console.log(value.name)); // Abel, Lana, Drake
 ```
 
 El `callback` que le pasamos recibe como primer argumento el valor, luego el índice y por último el array completo (igual que map y filter). Ninguno de los parámetros son requeridos por lo que podemos hacer como queramos con él.
@@ -142,19 +142,19 @@ Algunas cosas en JavaScript son _array-like_ (se comportan muy similar a los arr
 Por ejemplo
 
 ```js
-const nodes = document.querySelectorAll('a')
-const nodesarray = Array.from(nodes) // Convertir el NodeList a un Array
+const nodes = document.querySelectorAll("a");
+const nodesarray = Array.from(nodes); // Convertir el NodeList a un Array
 // [Imprime todos las URLs de los enlaces en la pagina]
-Array.from(nodes).forEach(a => console.log(a.href))
+Array.from(nodes).forEach(a => console.log(a.href));
 ```
 
 ## Conclusión
 
 La pregunta final es ¿cuándo usar cada una de estas estructuras? No hay una regla dorada para nada en la programación y esa es una regla dorada. Pero la fórmula que me gusta seguir es la siguiente.
 
-* Usar el **forEach** cuando queremos iterar en un _array_ pero crear side-effects. Si queremos usar un array y no causar side-effects, `map/filter/reduce` son una mejor opción.
-* Usar el **for...of** si queremos acceder directamente a los valores de iterables; en especial si estamos trabajando con `Set` o `Map` ya que estos no se pueden iterar con ninguno de los otros bucles.
-* Usar el **for...in** si el `key` de lo que vamos a iterar es importante o si queremos iterar sobre un objeto sin tener que llamar a `Object.entries()`.
-* Usar el **clásico for** cuando queramos traer destrucción sobre las almas de nuestros seres queridos y desatar la desgracia sobre la faz de la tierra... o si necesitamos un contador o tener un control más granular y menos lineal sobre lo que estamos iterando. (Pero en serio, que sea la última opción).
+- Usar el **forEach** cuando queremos iterar en un _array_ pero crear side-effects. Si queremos usar un array y no causar side-effects, `map/filter/reduce` son una mejor opción.
+- Usar el **for...of** si queremos acceder directamente a los valores de iterables; en especial si estamos trabajando con `Set` o `Map` ya que estos no se pueden iterar con ninguno de los otros bucles.
+- Usar el **for...in** si el `key` de lo que vamos a iterar es importante o si queremos iterar sobre un objeto sin tener que llamar a `Object.entries()`.
+- Usar el **clásico for** cuando queramos traer destrucción sobre las almas de nuestros seres queridos y desatar la desgracia sobre la faz de la tierra... o si necesitamos un contador o tener un control más granular y menos lineal sobre lo que estamos iterando. (Pero en serio, que sea la última opción).
 
 Usar [**Twitter**](https://twitter.com/taverasmisael "Mi twitter") para comunicarte conmigo sobre cualquier opinión o discusión de este tema o cualquier otro.

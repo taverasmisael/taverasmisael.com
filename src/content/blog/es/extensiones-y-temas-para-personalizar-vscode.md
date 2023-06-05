@@ -1,9 +1,9 @@
 ---
 title: Extensiones y temas para personalizar Visual Studio Code
-date: '2020-06-15'
+date: "2020-06-15"
 description: Un listado con mis extensiones favoritas para que Visual Studio Code se sienta único. El número tres te sorprenderá.
 author: misael-taveras
-tags: ['VSCode', 'Recomendación']
+tags: ["VSCode", "Recomendación"]
 ---
 
 Hola y bienvenid@. Espero que lo estés pasando bien, que si estás en el presente te cuides, y si vienes del futuro felicidades por sobrevivir. Espero que no seas un T-1000 ni nada así (sin ofender a los cyborgs).
@@ -22,10 +22,10 @@ Como mencionaba anteriormente, y como todos sabemos, no se pueden tener varios t
 
 Este es un tema interesante, se podría decir monocromo donde el morado es el rey. Aunque parezca súper estilo [Wesbos](https://wesbos.com/) el tema está desarrollado por un entusiasta de Visual Studio Code quien siempre lo tiene actualizado.
 
-* Syntax Highlight: 10/10
-* Actualizaciones: 10/10
-* Mood: Alegre
-* Esquema: Oscuro y brillante
+- Syntax Highlight: 10/10
+- Actualizaciones: 10/10
+- Mood: Alegre
+- Esquema: Oscuro y brillante
 
 [Ver en el marketplace][ShadesOfPurple]
 
@@ -37,11 +37,11 @@ Si has estado desarrollando un tiempo es muy posible que hayas visto este tema. 
 
 > Este tema es tan estándar que yo lo considero el monokai de la nueva generación. Tiene ports **Oficiales** para todos los editores y terminales (incluso para Slack).
 
-* Fama: 10/10
-* Syntax Highlight: 9/10
-* Mood: El que quieras es super personalizadle
-* Customization: 8/10
-* Combina con: Material Icons &==&
+- Fama: 10/10
+- Syntax Highlight: 9/10
+- Mood: El que quieras es super personalizadle
+- Customization: 8/10
+- Combina con: Material Icons &==&
 
 [Ver en el marketplace][MaterialTheme]
 
@@ -51,10 +51,10 @@ Si has estado desarrollando un tiempo es muy posible que hayas visto este tema. 
 
 Creado por la poderosísima [Sarah Drasner](https://twitter.com/sarah_edo) es un tema hermoso y sencillo que a pesar de tener NIGHT en el nombre brinda una versión clara y una oscura que se ven bien donde el Azul es el color dominante.
 
-* Recomendado: 9/10
-* Syntax Highlight: 10/10
-* Mood: Dark como la noche
-* Personalización: 5/10
+- Recomendado: 9/10
+- Syntax Highlight: 10/10
+- Mood: Dark como la noche
+- Personalización: 5/10
 
 [Ver en el marketplace][NightOwl]
 
@@ -65,10 +65,10 @@ Creado por la poderosísima [Sarah Drasner](https://twitter.com/sarah_edo) es un
 Los que son OGs del blog puede que les resulte familiar este tema, y es porque era el que utilizaba para los snippets de código en el blog.
 Fue mi favorito un buen tiempo, el contraste, los colores de atardecer, bello todo. Y aunque ocupa un lugar en mi corazón (el segundo para ser precisos), me quedo con el que viene a continuación.
 
-* Kawaii: 9/10
-* Syntax: 10/10
-* Mood: Feliz :3
-* Te enamora: si/si
+- Kawaii: 9/10
+- Syntax: 10/10
+- Mood: Feliz :3
+- Te enamora: si/si
 
 [Ver en el marketplace][HorizonTheme]
 
@@ -80,10 +80,10 @@ Hay una frase: _"Es más barato por docena"_ y este tema lo lleva a la perfecci�
 
 Mi "sabor" favorito es Uva. Combina los colores tardiurnos de Horizon con los morados de Shades of Purple.
 
-* Combo: 10/10
-* Estilo: Todos/Algunos
-* Recomendado: 10/10
-* Bueno para: las personas que no saben CUAL tema quieren, ahi tienen uno para probar.
+- Combo: 10/10
+- Estilo: Todos/Algunos
+- Recomendado: 10/10
+- Bueno para: las personas que no saben CUAL tema quieren, ahi tienen uno para probar.
 
 [Ver en el marketplace][Noctis]
 
@@ -93,10 +93,10 @@ Mi "sabor" favorito es Uva. Combina los colores tardiurnos de Horizon con los mo
 
 Honestamente no sé qué decir. Es un tema en blanco o negro **sin NINGUN OTRO COLOR**, por eso el nombre es mono. Duré como tres meses enamorado de él. Es bueno para enfocarse en el trabajo con pocas distracciones.
 
-* Blanco: 1/1
-* Negro: 1/1
-* Colores: 2/1000000000+
-* Concentración: 10/10
+- Blanco: 1/1
+- Negro: 1/1
+- Colores: 2/1000000000+
+- Concentración: 10/10
 
 [Ver en el marketplace][Mono]
 
@@ -145,7 +145,7 @@ Esto tiene sus puntos fuertes y débiles como que solo está en Windows si eres 
 
 ### BONUS: Iconos, iconos y más iconos
 
-Saben que me encanta agregar partes de bono a estas compilaciones y cuando hablamos de personalización no podemos dejar fuera los iconos. 
+Saben que me encanta agregar partes de bono a estas compilaciones y cuando hablamos de personalización no podemos dejar fuera los iconos.
 Como son tantos los voy alternando igual (aunque con menor regularidad) que los temas, los agruparé todos aquí con un breve resumen sin ningún orden particular y con imágenes de como se ven.
 
 #### Material Icon Theme

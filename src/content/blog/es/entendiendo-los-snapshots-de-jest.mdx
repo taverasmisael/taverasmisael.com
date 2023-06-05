@@ -1,9 +1,9 @@
 ---
 title: Entendiendo los snapshots de Jest
-date: '2019-12-01'
+date: "2019-12-01"
 description: Escribes tests que te den confianza en tu código antes de lanzarlo a producción aprovechando al máximo los snapshots de Jest. Aprende a usarlos de la forma correcta.
 author: misael-taveras
-tags: ['Test', 'Tutorial']
+tags: ["Test", "Tutorial"]
 ---
 
 Jest, creado por Facebook, es un framework de testing para react que trae consigo una herramienta poderosa pero misteriosa; por eso a veces es temida, ignorada o mal usada.
@@ -41,43 +41,44 @@ Los snapshots son capturas de un momento o estado especifico en nuestro aplicaci
 Una forma común de probar el resultado de un reducer de [Redux](https://redux.js.org/) es haciendo varios checks en los diferentes valores del estado. Tomando de ejemplo que tenemos un simple estado con `isLoading`, `error` y `data`; queremos que al llamar la acción `DO_REQUEST` se reinicíe la `data` a un array vacío, `error` sea una cadena en blanco e `isLoading` sea `true`. El test podría parecer algo como:
 
 ```js
-import reducer from './reducer'
+import reducer from "./reducer";
 
 // Se usa `describe` para agrupar tests similares
-describe('REDUCER', () => {
+describe("REDUCER", () => {
   // Los bloques `it` representan 1 test y aunque pueden
   // tener varios `expect` es recomendable que sea un solo
   // o que al menos todos los `expects` esten relacionados
   // como es este caso
   it('should set the right state on "DO_REQUEST"', () => {
-    const newState = reducer(undefined, { type: 'DO_REQUEST' })
-    expect(newState.error).toBe('')
-    expect(newState.data).toEqual([])
-    expect(newState.isLoading).toBe(true)
-  })
-})
+    const newState = reducer(undefined, { type: "DO_REQUEST" });
+    expect(newState.error).toBe("");
+    expect(newState.data).toEqual([]);
+    expect(newState.isLoading).toBe(true);
+  });
+});
 ```
 
-
 <Admonition type="info" class="text-sm">
-  **Breve repaso de Redux:** La función `reducer` toma un estado (en este caso undefined para que use el valor por defecto) y un objeto con un key `type` donde especificamos la operación que se va a realizar en dicho estado. La función `reducer` entonces devuelve un nuevo estado modificado en base al `type` que especificamos.
+  **Breve repaso de Redux:** La función `reducer` toma un estado (en este caso undefined para que use el valor por
+  defecto) y un objeto con un key `type` donde especificamos la operación que se va a realizar en dicho estado. La
+  función `reducer` entonces devuelve un nuevo estado modificado en base al `type` que especificamos.
 </Admonition>
 
-Usando este método no solo tenemos que recordar cada pieza de estado que es relevante para asegurarnos que la función haga su trabajo correctamente, sino que también, debido a la naturaleza de JavaScript tenemos que usar 2 matchers diferentes, `toBe` y `toEqual`. (_¿Sabes por qué tuvimos que usar dos? [Descúbrelo aquí](/series/guia-de-javascript/operadores-logicos-aritmeticos-y-de-comparacion#operadores-igualitarios 'Guía de JavaScript capitulo 4')_).
+Usando este método no solo tenemos que recordar cada pieza de estado que es relevante para asegurarnos que la función haga su trabajo correctamente, sino que también, debido a la naturaleza de JavaScript tenemos que usar 2 matchers diferentes, `toBe` y `toEqual`. (_¿Sabes por qué tuvimos que usar dos? [Descúbrelo aquí](/series/guia-de-javascript/operadores-logicos-aritmeticos-y-de-comparacion#operadores-igualitarios "Guía de JavaScript capitulo 4")_).
 
 Ahora veamos el mismo test, con el mismo resultado pero usando snapshots.
 
 ```js
-import reducer from './reducer'
+import reducer from "./reducer";
 
-describe('REDUCER', () => {
+describe("REDUCER", () => {
   it('should set the right state on "DO_REQUEST"', () => {
-    const newState = reducer(undefined, { type: 'DO_REQUEST' })
+    const newState = reducer(undefined, { type: "DO_REQUEST" });
     // El matcher `toMatchSnapshot` no recibe ningu parametro
     // En la siguiente sección veremos porqué es así
-    expect(newState).toMatchSnapshot()
-  })
-})
+    expect(newState).toMatchSnapshot();
+  });
+});
 ```
 
 Más simple, más conciso y creo que podemos apreciar el valor que aporta desde ya hasta si tuviéramos un estado más complejo con más que solo 3 keys, o un componente que renderiza una lista, es solo un snapshot y listo.
@@ -103,9 +104,9 @@ Cada vez que corre el test jest verifica que exista un archivo del mismo nombre 
 Es similar al anterior solo que el snapshot en vez de ser creado, leído y modificado de un archivo jest lo inyecta dentro de la llamada a la función `toMatchInlineSnapshot`.
 
 ```js
-expect(2 + 2).toMatchInlineSnapshot()
+expect(2 + 2).toMatchInlineSnapshot();
 // se convierte en...
-expect(2 + 2).toMatchInlineSnapshot('4')
+expect(2 + 2).toMatchInlineSnapshot("4");
 ```
 
 ### Como se ve un archivo .snap
@@ -119,11 +120,12 @@ Object {
   "error": "",
   "isLoading": true,
 }
-`
+`;
 ```
 
 <Admonition type="tip" class="text-sm">
-_Agrega al export un key con el nombre resultante de la combinación del nombre de: **el bloque describe, más el bloque it seguido de un número incremental.**_
+  _Agrega al export un key con el nombre resultante de la combinación del nombre de: **el bloque describe, más el bloque
+  it seguido de un número incremental.**_
 </Admonition>
 
 ## Buenas y no tan buenas prácticas para usar snapshots
@@ -141,21 +143,21 @@ Si bien es cierto que los snpashots son rápidos y ligeros, hacer snapshots de t
 Otra desventaja de usar snapshots cuando podríamos usar cualquier otro matcher está en que los tests dejan de tener sentido sin ver el snapshot, haciendo que a futuros desarrolladores (uno mismo incluido) se le haga difícil entender la intención del test.
 
 ```js
-import { render, simulate } from 'test-library-for-react'
-import Component from './Component'
+import { render, simulate } from "test-library-for-react";
+import Component from "./Component";
 
-describe('my obscure test', () => {
+describe("my obscure test", () => {
   // Este test no añade ningun valor a pesar de que pasa
   //  y probablemente cumpla con el requisito de cobertura de código.
-  it('should work', () => {
-    const component = render(<Component />)
-    simulate.click(component.find('button'))
+  it("should work", () => {
+    const component = render(<Component />);
+    simulate.click(component.find("button"));
     // ¡Queeeee! No idea que se supone que hizo el click
     // O como reaccionó. Siempre debemos elegir
     // legibilidad por encima de comodidad.
-    expect(component).toMatchSnapshot()
-  })
-})
+    expect(component).toMatchSnapshot();
+  });
+});
 ```
 
 ### Los snapshots son excelentes en estructuras complejas

@@ -1,14 +1,14 @@
 ---
 title: Hacktoberfest ya está aquí
-date: '2019-09-28'
+date: "2019-09-28"
 description: Hacktoberfest es el evento de código abierto más esperado del año donde tus contribuciones son recompensadas. Aprende como participar y que beneficios tiene ser parte de este movimiento.
 author: misael-taveras
-tags: ['Consejo', 'Evento']
+tags: ["Consejo", "Evento"]
 ---
 
 [Hacktoberfest®](https://hacktoberfest.digitalocean.com/) es un evento patrocinado por DigitalOcean (al que cada año se suman más patrocinadores), en el que se fomenta al código abierto y la participación de la comunidad.
 
-Básicamente durante todo el mes de Octubre debes hacer Pull Request a cualquier repo pùblico alojado en GitHub y al **completar 5 PRs** (no importa que no se hayan mergeado)  ya eres elegible entre los participantes para ganar un asombroso T-Shirt de edición limitada del evento.
+Básicamente durante todo el mes de Octubre debes hacer Pull Request a cualquier repo pùblico alojado en GitHub y al **completar 5 PRs** (no importa que no se hayan mergeado) ya eres elegible entre los participantes para ganar un asombroso T-Shirt de edición limitada del evento.
 
 ## Beneficios de participar en el evento
 
@@ -66,7 +66,7 @@ Aquí te dejo una lista con algunos lugares para encontrar buenos issues o a los
 1. El listado de repos ofrecidos en la página de [Hacktoberfest®](https://hacktoberfest.digitalocean.com/) (algunos incluso enfocados al cambio climático)
 2. Todos los **issues abiertos con el label de** [**hacktoberfest**](https://github.com/search?q=label%3Ahacktoberfest+state%3Aopen&type=Issues) (son más de 23k en más de 8 lenguajes diferentes)
 3. Todos los **issues abiertos con la etiqueta de** [**help wanted**](https://github.com/search?utf8=%E2%9C%93&q=label%3A%22help+wanted%22&type=Issues&ref=advsearch&l=&l=) o [**good first issue**](https://github.com/search?utf8=%E2%9C%93&q=label%3A%22good+first+issue%22&type=Issues&ref=advsearch&l=&l=).
-4. Busca *una librería o programa que uses* y busca entre sus issues directamente.
+4. Busca _una librería o programa que uses_ y busca entre sus issues directamente.
 5. ¿He mencionado que [este blog es Open Source](la-historia-detras-del-blog#para-los-desarrolladores)? 🚀 Estaré haciendo issues para **Hacktoberfest®**, así que [atentos](https://github.com/taverasmisael/taverasmisael/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
 6. Un amigo tiene una librería de CSS muy interesante a la que le vendría [bien ayuda](https://github.com/Efraa/eFrolic).
 

@@ -16,3 +16,6 @@ npm-debug.log
 
 # Ignore public folder
 public
+dist
+.vercel
+.netlify

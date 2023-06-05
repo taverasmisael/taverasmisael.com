@@ -39,11 +39,7 @@ export type UseTranslation<TLocale extends Language> = <
 ) => string;
 
 export function useTranslation<TLocale extends Language>(locale: TLocale): UseTranslation<TLocale> {
-  return (
-    domain,
-    key,
-    params?: Record<string, string>
-  ): string => {
+  return (domain, key, params?: Record<string, string>): string => {
     const translationId = `${domain}.${key.toString()}`;
     const translation = pathOr(`TODO: ${translationId}`, [domain, key as string], locales[locale]);
     if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
