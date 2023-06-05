@@ -9,15 +9,15 @@ interface Props {
 const { lang } = Astro.props;
 const testimonials = await getEntriesByLang("testimonial", lang);
 const rings: string[] = [
-  "ring-indigo-50 hover:ring-indigo-500 focus-within:ring-indigo-500 shadow-indigo-950 dark:ring-indigo-900",
-  "ring-yellow-50 hover:ring-yellow-500 focus-within:ring-yellow-500 shadow-yellow-950 dark:ring-yellow-900",
-  "ring-red-50 hover:ring-red-500 focus-within:ring-red-500 shadow-red-950 dark:ring-red-900",
-  "ring-teal-50 hover:ring-teal-500 focus-within:ring-teal-500 shadow-teal-950 dark:ring-teal-900",
-  "ring-slate-50 hover:ring-slate-500 focus-within:ring-slate-500 shadow-slate-950 dark:ring-slate-900",
-  "ring-blue-50 hover:ring-blue-500 focus-within:ring-blue-500 shadow-blue-950 dark:ring-blue-900",
-  "ring-purple-50 hover:ring-purple-500 focus-within:ring-purple-500 shadow-purple-950 dark:ring-purple-900",
-  "ring-orange-50 hover:ring-orange-500 focus-within:ring-orange-500 shadow-orange-950 dark:ring-orange-900",
-  "ring-pink-50 hover:ring-pink-500 focus-within:ring-pink-500 shadow-pink-950 dark:ring-pink-900",
+  "ring-indigo-50 hover:ring-indigo-500 focus-within:ring-indigo-500 dark:ring-indigo-900",
+  "ring-yellow-50 hover:ring-yellow-500 focus-within:ring-yellow-500 dark:ring-yellow-900",
+  "ring-red-50 hover:ring-red-400 focus-within:ring-red-400 dark:ring-red-900",
+  "ring-teal-50 hover:ring-teal-500 focus-within:ring-teal-500 dark:ring-teal-900",
+  "ring-slate-50 hover:ring-slate-400 focus-within:ring-slate-400 dark:ring-slate-800",
+  "ring-blue-50 hover:ring-blue-500 focus-within:ring-blue-500 dark:ring-blue-900",
+  "ring-purple-50 hover:ring-purple-500 focus-within:ring-purple-500 dark:ring-purple-900",
+  "ring-orange-50 hover:ring-orange-500 focus-within:ring-orange-500 dark:ring-orange-900",
+  "ring-pink-50 hover:ring-pink-500 focus-within:ring-pink-500 dark:ring-pink-900",
 ];
 ---
 
@@ -25,14 +25,14 @@ const rings: string[] = [
   {
     testimonials.map((t, i) => (
       <blockquote
-        class="mx-auto grid gap-8 rounded bg-slate-50 p-4 shadow ring ring-blue-50 transition-all hover:ring-blue-400 dark:bg-slate-950 md:p-8"
+        class="grid mx-auto gap-8 rounded bg-slate-50 p-4 shadow ring-3 transition-all dark:bg-slate-950 md:p-8"
         class:list={[{ "md:col-span-2 xl:order-1 self-stretch": i === 1, "order-1": i !== 1 }, rings[i]]}
       >
-        <em class="block not-italic leading-normal">{t.data.quote}</em>
-        <div class="flex items-center space-x-2 self-end">
+        <em class="block leading-normal not-italic">{t.data.quote}</em>
+        <div class="flex items-center self-end space-x-2">
           <Image src={t.data.image} alt="" class="w-10 rounded" width={40} height={40} />
           <p class="text-xs leading-4">
-            <strong class="block text-sm font-semibold text-gray-900 underline-offset-2 hover:underline dark:text-slate-100">
+            <strong class="block text-sm font-semibold text-gray-900 underline-offset-2 dark:text-slate-100 hover:underline">
               <a href={t.data.link} rel="nofollow" target="_blank">
                 {t.data.name}
               </a>
