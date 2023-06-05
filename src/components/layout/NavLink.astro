@@ -9,7 +9,7 @@ const { href, isActive, isMobile } = Astro.props;
 
 <a
   href={href}
-  class="rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 active:bg-blue-100 active:text-blue-800 sm:text-base"
+  class="rounded-md px-3 py-2 text-sm font-medium transition-colors active:bg-blue-100 hover:bg-blue-50 sm:text-base active:text-blue-800 hover:text-blue-600"
   class:list={[
     { "bg-blue-100 font-medium text-blue-800 shadow-sm dark:bg-slate-50 dark:text-blue-800": isActive },
     { block: isMobile },

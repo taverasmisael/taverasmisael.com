@@ -51,8 +51,8 @@ const t = useTranslation(lang);
         class="underline">{t("ui", "download_here").toLocaleLowerCase()}</a
       >.
     </PageBanner>
-    <div class="container mx-auto w-full">
-      <div class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl">
+    <div class="mx-auto w-full container">
+      <div class="prose mx-auto px-4 dark:prose-invert 2xl:prose-xl lg:prose-lg">
         <slot />
         <FullWidthBlock withContainer class="not-prose">
           <RecentPosts lang={lang} />

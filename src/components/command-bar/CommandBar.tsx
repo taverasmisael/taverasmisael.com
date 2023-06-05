@@ -45,9 +45,9 @@ export default function CommandBar(props: { lang: Language }) {
               <Dialog.Description>{t("ui", "commandbar.placeholder.search")}</Dialog.Description>
             </div>
             <div class="p-4">
-              <div class="container mx-auto h-fit w-full max-w-4xl translate-y-32 rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-slate-900 dark:bg-slate-700 md:p-4">
-                <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-100 focus-within:ring-2 dark:bg-slate-600 dark:ring-slate-500">
-                  <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 dark:text-blue-50 md:pl-4">
+              <div class="mx-auto h-fit max-w-4xl w-full translate-y-32 border-slate-100 rounded bg-blue-50 p-2 shadow-xl container dark:border-slate-900 dark:bg-slate-700 md:p-4">
+                <div class="relative w-full flex overflow-hidden rounded bg-white ring-blue-100 dark:bg-slate-600 focus-within:ring-2 dark:ring-slate-500">
+                  <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 md:pl-4 dark:text-blue-50">
                     <svg
                       class="w-6"
                       fill="none"
@@ -71,7 +71,7 @@ export default function CommandBar(props: { lang: Language }) {
                     ref={r => (inputRef = r)}
                     id="command-bar-input"
                     name="command-bar-input"
-                    class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-slate-600 dark:text-blue-50 dark:placeholder:text-slate-300 md:p-4"
+                    class="flex-1 appearance-none bg-white p-2 text-slate-900 dark:bg-slate-600 md:p-4 dark:text-blue-50 placeholder:text-slate-400 focus:outline-none dark:placeholder:text-slate-300"
                     placeholder={t("ui", "commandbar.placeholder.search")}
                     autocomplete="off"
                     autoCapitalize="none"

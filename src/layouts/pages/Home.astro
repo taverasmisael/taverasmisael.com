@@ -33,13 +33,13 @@ const t = useTranslation(lang);
   title={t("navigation", "home")}
   translations={translations}
 >
-  <main class="container mx-auto w-full px-8">
+  <main class="mx-auto w-full px-8 container">
     <FullWidthBlock
       withContainer
-      class="overflow-hidden bg-gradient-to-tl from-blue-100 to-blue-200 text-xl leading-8 text-slate-800 shadow dark:bg-slate-950 dark:from-slate-900 dark:to-slate-950 dark:text-slate-300 lg:py-32"
+      class="overflow-hidden from-blue-100 to-blue-200 bg-gradient-to-tl text-xl leading-8 text-slate-800 shadow dark:bg-slate-950 dark:from-slate-900 dark:to-slate-950 lg:py-32 dark:text-slate-300"
     >
       <!-- Bootstrap times :D -->
-      <div class="grid items-center gap-8 md:grid-cols-2 md:gap-32 lg:grid-cols-3">
+      <div class="grid items-center gap-8 lg:grid-cols-3 md:grid-cols-2 md:gap-32">
         <div class="lg:col-span-2"><slot name="jumbotron" /></div>
         <div class="w-fit justify-self-center rounded-xl bg-blue-800/90 shadow-sm hover:shadow-md">
           <Image
@@ -48,17 +48,17 @@ const t = useTranslation(lang);
             width={500}
             height={500}
             loading="eager"
-            class="md:max-full block w-52 max-w-full rotate-3 rounded-md transition-transform hover:rotate-0 hover:scale-95 hover:rounded-lg sm:w-72 md:w-96"
+            class="md:max-full block max-w-full w-52 rotate-3 rounded-md transition-transform md:w-96 sm:w-72 hover:rotate-0 hover:scale-95 hover:rounded-lg"
           />
         </div>
       </div>
     </FullWidthBlock>
     <div class="gap-8 py-16 lg:grid lg:grid-cols-2 xl:py-32">
-      <div class="prose dark:prose-invert xl:prose-lg prose-a:no-underline">
+      <div class="prose prose-a:no-underline dark:prose-invert xl:prose-lg">
         <slot name="blog" />
         <a
           href={blogURL}
-          class="mt-12 hidden rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-700 dark:ring-slate-800 dark:ring-offset-slate-800 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:active:bg-slate-900/80 lg:inline-block"
+          class="mt-12 hidden rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all lg:inline-block active:bg-blue-200/80 dark:bg-slate-700 hover:bg-blue-200 dark:ring-slate-800 hover:ring-blue-100 dark:ring-offset-slate-800 dark:active:bg-slate-900/80 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50"
           rel="prefetch">{t("ui", "view_all_posts")}</a
         >
       </div>
@@ -66,7 +66,7 @@ const t = useTranslation(lang);
         {featuredPost && <FeaturedPost post={featuredPost.entry} meta={featuredPost.meta} />}
         <a
           href={blogURL}
-          class="mt-12 block rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-700 dark:ring-slate-800 dark:ring-offset-slate-800 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:active:bg-slate-900/80 lg:hidden"
+          class="mt-12 block rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all lg:hidden active:bg-blue-200/80 dark:bg-slate-700 hover:bg-blue-200 dark:ring-slate-800 hover:ring-blue-100 dark:ring-offset-slate-800 dark:active:bg-slate-900/80 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50"
           rel="prefetch">{t("ui", "view_all_posts")}</a
         >
       </div>

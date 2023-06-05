@@ -51,7 +51,7 @@ const t = useTranslation(lang);
   <main class="h-full min-h-screen">
     <div class="h-full min-h-screen w-full">
       <div class="grid h-full min-h-screen items-center gap-4 lg:grid-cols-2">
-        <div class="h-full items-center bg-blue-200 px-6 py-4 dark:bg-slate-950 sm:px-8 lg:py-12 xl:p-32">
+        <div class="h-full items-center bg-blue-200 px-6 py-4 dark:bg-slate-950 xl:p-32 lg:py-12 sm:px-8">
           <div class="prose grid h-full items-center dark:prose-invert xl:prose-lg">
             <div class="container">
               <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
@@ -60,7 +60,7 @@ const t = useTranslation(lang);
             </div>
           </div>
         </div>
-        <div class="px-6 py-4 sm:px-8 lg:mt-20 lg:py-12 xl:mt-0 xl:px-24">
+        <div class="px-6 py-4 lg:mt-20 xl:mt-0 lg:py-12 sm:px-8 xl:px-24">
           <ContactForm client:idle action="/api/contact" lang={lang} />
         </div>
       </div>

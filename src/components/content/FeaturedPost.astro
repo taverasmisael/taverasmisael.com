@@ -12,19 +12,19 @@ const href = getEntryURL("blog", post.slug);
 ---
 
 <div
-  class="relative flex h-full flex-col justify-between rounded-md bg-white p-4 py-6 shadow-lg transition-colors dark:bg-slate-950 sm:p-8"
+  class="relative h-full flex flex-col justify-between rounded-md bg-white p-4 py-6 shadow-lg transition-colors dark:bg-slate-950 sm:p-8"
 >
   <div
-    class="absolute inset-3 -z-10 -rotate-6 rounded-sm bg-purple-400/50 blur-xl motion-safe:animate-pulse dark:bg-green-700/50"
+    class="absolute inset-3 rounded-sm bg-purple-400/50 blur-xl -z-10 -rotate-6 motion-safe:animate-pulse dark:bg-green-700/50"
   >
   </div>
   <div
-    class="absolute inset-3 -z-10 rounded-full bg-blue-400/30 blur-xl motion-safe:animate-wiggle dark:bg-blue-700/30"
+    class="absolute inset-3 rounded-full bg-blue-400/30 blur-xl -z-10 motion-safe:animate-wiggle dark:bg-blue-700/30"
   >
   </div>
   <div>
     <h2
-      class="mb-6 mt-3 max-w-md text-2xl font-semibold text-blue-900 hover:underline dark:text-blue-50 sm:mb-8 sm:text-4xl"
+      class="mb-6 mt-3 max-w-md text-2xl font-semibold text-blue-900 sm:mb-8 sm:text-4xl dark:text-blue-50 hover:underline"
     >
       <a href={href}>{meta.title}</a>
     </h2>

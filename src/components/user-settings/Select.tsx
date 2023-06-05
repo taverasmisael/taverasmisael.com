@@ -12,7 +12,7 @@ export function SelectTrigger(props: Select.SelectTriggerProps) {
   return (
     <Select.Trigger
       {...props}
-      class="w-full rounded-md bg-white py-2 pl-4 pr-8 shadow ring-1 ring-blue-50 focus:outline-none focus:ring disabled:opacity-50 aria-expanded:ring-2 dark:bg-slate-800 dark:ring-slate-700"
+      class="w-full rounded-md bg-white py-2 pl-4 pr-8 shadow ring-1 ring-blue-50 dark:bg-slate-800 disabled:opacity-50 focus:outline-none aria-expanded:ring-2 focus:ring dark:ring-slate-700"
     />
   );
 }
@@ -25,7 +25,7 @@ export function SelectListbox<T, U>(props: Select.SelectListboxProps<T, U>) {
   return (
     <Select.Listbox
       {...props}
-      class="w-full overflow-hidden rounded bg-slate-50 shadow-md  outline-none ring ring-blue-50 dark:bg-slate-800 dark:ring-slate-700"
+      class="w-full overflow-hidden rounded bg-slate-50 shadow-md outline-none ring ring-blue-50 dark:bg-slate-800 dark:ring-slate-700"
     />
   );
 }

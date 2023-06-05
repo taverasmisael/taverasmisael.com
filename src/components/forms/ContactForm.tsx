@@ -102,8 +102,8 @@ export default function ContactForm(props: Props) {
   };
 
   return (
-    <form id="contact-form" onSubmit={handleSubmit} class="container relative mx-auto space-y-8">
-      <div class="flex w-full flex-col gap-8 md:flex-row">
+    <form id="contact-form" onSubmit={handleSubmit} class="relative mx-auto container space-y-8">
+      <div class="w-full flex flex-col gap-8 md:flex-row">
         <div class="flex-1">
           <div class="mb-4 flex items-center gap-3">
             <label for="name" class="block font-semibold">
@@ -213,12 +213,12 @@ export default function ContactForm(props: Props) {
           placeholder={t("forms", "message.placeholder")}
         ></textarea>
       </div>
-      <p class="!mt-2 pl-2 text-xs">{t("forms", "disclaimer")}</p>
+      <p class="pl-2 text-xs !mt-2">{t("forms", "disclaimer")}</p>
       <div class="flex items-center gap-4">
         <button
           disabled={formState.submitting}
           type="submit"
-          class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-50 dark:text-blue-900 dark:focus:bg-slate-100 dark:focus:ring-slate-400 enabled:dark:hover:bg-slate-100 enabled:dark:active:bg-slate-200"
+          class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors disabled:cursor-not-allowed dark:bg-slate-50 focus:bg-blue-200/80 dark:text-blue-900 disabled:opacity-80 focus:outline-none focus:ring focus:ring-blue-200 dark:focus:bg-slate-100 enabled:active:bg-blue-300/50 enabled:hover:bg-blue-200/80 dark:focus:ring-slate-400 enabled:dark:active:bg-slate-200 enabled:dark:hover:bg-slate-100"
         >
           {t("forms", formState.submitting ? "submitting" : "submit")}
         </button>
