@@ -1,36 +1,36 @@
 import type { Theme } from "../theme";
-import { getStyles } from "./sizes";
+import { getStyles, type Size } from "./sizes";
 
-const getCSS = ({ selectorName, theme }: { theme: Theme; selectorName: string }): string => {
-  const styles = getStyles(theme)
-  let css = `
-    ${selectorName} {
-      ${Object.entries(styles.base)
-        .map(([k, v]) => `${k}:${v}`)
-        .join(";")}
-    }
-  `;
-
-  css += extractCSSFromObject({ selectorName, object: styles.components });
-
-  return css;
-};
-
-function extractCSSFromObject({
-  selectorName,
-  object,
-}: {
+interface GetCSSOptions {
+  size: Size;
+  notSelector: string;
+  theme: Theme;
   selectorName: string;
-  object: Record<string, Record<string, string | number>>;
-}): string {
+}
+
+interface GetSizePreflightOptions {
+  notSelector: string;
+  size?: Size;
+  theme: Theme;
+  selector: string;
+}
+
+export const getSizePreflight = ({ size = "base", selector, theme, notSelector }: GetSizePreflightOptions) =>
+  getCSS({ selectorName: selector, theme, size, notSelector });
+
+function getCSS({ selectorName, theme, size, notSelector }: GetCSSOptions): string {
+  const styles = getStyles(theme, size);
   let css = "";
   const selectorAsClass = `.${selectorName}`;
-  for (const [selector, value] of Object.entries(object)) {
-    const notProseSelector = `:not(:where(.not-${selectorName},.not-${selectorName} *))`;
-
+  for (const [selector, value] of Object.entries(styles)) {
     const pseudoCSSMatchArray = selector
       .split(",")
       .map(s => {
+        if (s.startsWith(">")) {
+          s = s.replace(">", `${selectorAsClass} >`);
+          return `${selectorAsClass} :where(${s})${notSelector}`;
+        }
+
         // pseudo class & pseudo elements matcher
         // matches :, ::, -, (), numbers and words
         const match = s.match(/::?(?:[():\-\d\w]+)$/g);
@@ -38,7 +38,7 @@ function extractCSSFromObject({
         if (match) {
           const matchStr = match[0];
           s = s.replace(matchStr, "");
-          return `${selectorAsClass} :where(${s})${notProseSelector}${matchStr}`;
+          return `${selectorAsClass} :where(${s})${notSelector}${matchStr}`;
         }
         return null;
       })
@@ -50,7 +50,7 @@ function extractCSSFromObject({
       css += pseudoCSSMatchArray.join(",");
     } else {
       // directly from css declaration
-      css += `${selectorAsClass} :where(${selector})${notProseSelector}`;
+      css += `${selectorAsClass} :where(${selector})${notSelector}`;
     }
 
     css += `{${Object.entries(value)
@@ -60,6 +60,3 @@ function extractCSSFromObject({
 
   return css;
 }
-
-export const getSizePreflight = ({ size, selector, theme }: { size?: string; theme: Theme; selector: string }) =>
-  getCSS({ selectorName: selector, theme });
