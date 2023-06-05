@@ -39,7 +39,7 @@ export default defineConfig({
   compressHTML: true,
   experimental: { assets: true, inlineStylesheets: "auto" },
   integrations: [
-    unocss({ injectReset: true }),
+    unocss({ injectReset: true, mode: "dist-chunk", injectEntry: import.meta.env.DEV, warn: true }),
     mdx(),
     prefetch({ selector: "article a:not([href^='/']), a[rel*='prefetch']" }),
     solidjs(),

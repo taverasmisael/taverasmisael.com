@@ -81,7 +81,6 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
           }, grouppedRoutes);
 
           const tempPath = resolve(tmpdir(), "sitemap.xml");
-          logger.info(`Writing sitemap to ${tempPath}`);
           const smStream = Readable.from(Object.values(items).flat()).pipe(new SitemapStream(), { end: false });
           const smPath = fileURLToPath(new URL(name, config.dir));
 
@@ -103,7 +102,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
           });
 
           smStream.on("error", error => logger.error(error.message));
-          smStream.on("finish", () => logger.success("SM Sitemap finished successfully"));
+          smStream.on("finish", () => logger.success("Sitemap finished successfully"));
 
           await streamToPromise(smStream);
         } else {
