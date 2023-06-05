@@ -157,4 +157,4 @@ La pregunta final es ¿cuándo usar cada una de estas estructuras? No hay una re
 * Usar el **for...in** si el `key` de lo que vamos a iterar es importante o si queremos iterar sobre un objeto sin tener que llamar a `Object.entries()`.
 * Usar el **clásico for** cuando queramos traer destrucción sobre las almas de nuestros seres queridos y desatar la desgracia sobre la faz de la tierra... o si necesitamos un contador o tener un control más granular y menos lineal sobre lo que estamos iterando. (Pero en serio, que sea la última opción).
 
-Usar [**Twitter**](https://twitter.com/taverasmisael "Mi twitter") para comunicarte conmigo sobre cualquier opinión o discusión de este tema o [cualquier otro]().
+Usar [**Twitter**](https://twitter.com/taverasmisael "Mi twitter") para comunicarte conmigo sobre cualquier opinión o discusión de este tema o cualquier otro.
