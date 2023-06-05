@@ -1,5 +1,5 @@
 import type { Theme } from "../theme";
-import { getStyles, type Size } from "./sizes";
+import { getStyles} from "./sizes";
 
 interface GetCSSOptions {
   notSelector: string;

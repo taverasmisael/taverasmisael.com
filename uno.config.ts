@@ -1,6 +1,6 @@
 import { map, join } from "rambda";
-import myTypography, { theme } from "./uno/typography";
-import { defineConfig, presetWind, presetTypography } from "unocss";
+import presetTypography, { theme } from "./uno/typography";
+import { defineConfig, presetWind } from "unocss";
 
 export default defineConfig({
   theme: {
@@ -12,5 +12,5 @@ export default defineConfig({
       counts: { wiggle: "infinite" },
     },
   },
-  presets: [myTypography({ selector: "post", theme }), presetTypography(), presetWind({ dark: "class" })],
+  presets: [presetTypography(), presetWind({ dark: "class" })],
 });
