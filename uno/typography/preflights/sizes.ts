@@ -1,5 +1,6 @@
 import { mergeDeep } from "unocss";
 import type { Theme } from "../theme";
+import { colors } from "./colors";
 import { getDefaultStyles } from "./default-styles";
 
 export const SIZES = ["base", "lg", "xl"] as const;
@@ -147,7 +148,14 @@ export const getStyles = (theme: Theme): Styles => mergeDeep(getDefaultStyles(th
 export const getBaseStyle = (size: Size) => baseStyles[size];
 
 const baseStyles: Record<Size, Record<string, string | number>> = {
-  base: { "font-size": "0.875rem", "line-height": 1.7142857, "--un-typography-factor": 1 },
+  base: {
+    "--un-typography-factor": 1,
+    color: "var(--un-prose-body)",
+    "font-size": "0.875rem",
+    "line-height": 1.7142857,
+    "max-width": "65ch",
+    ...colors,
+  },
   lg: { "font-size": "1.125rem", "line-height": 1.7777778, "--un-typography-factor": 1.1851852 },
   xl: { "font-size": "1.25rem", "line-height": 1.8, "--un-typography-factor": 1.25 },
 };

@@ -1,5 +1,5 @@
 import type { Theme } from "../theme";
-import { getStyles } from "./sizes";
+import { getBaseStyle, getStyles } from "./sizes";
 
 interface GetCSSOptions {
   notSelector: string;
@@ -18,8 +18,11 @@ export const getSizePreflight = ({ selector, theme, notSelector }: GetSizePrefli
 
 function getCSS({ selectorName, theme, notSelector }: GetCSSOptions): string {
   const styles = getStyles(theme);
-  let css = "";
+  const baseStyles = getBaseStyle("base");
   const selectorAsClass = `.${selectorName}`;
+  let css = `${selectorAsClass} {${Object.entries(baseStyles)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}}`;
   for (const [selector, value] of Object.entries(styles)) {
     const pseudoCSSMatchArray = selector
       .split(",")

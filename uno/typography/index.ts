@@ -7,27 +7,27 @@
 import { escapeSelector, type Preset } from "unocss";
 
 import { theme } from "./theme";
-import { colors, invertColors } from "./preflights/colors";
+import { invertColors } from "./preflights/colors";
 import { getSizePreflight } from "./preflights";
 import { getBaseStyle, isSize } from "./preflights/sizes";
 
-const layerName = "typography";
-const layerLevel = -20;
+const layer = "typography";
 
 export default function myTypography(): Preset {
   const selector = "prose";
+  const selectorRegex = new RegExp(`^${selector}$`);
   const notSelector = `:not(:where([class~="not-${selector}"] *))`;
   const invertSelector = `${selector}-invert`;
   const selectorSizesRg = new RegExp(`^${selector}-(base|lg|xl)$`);
   const selectorVariantsRg = new RegExp(`^${selector}-(.+):(.+)$`);
   return {
     name: "@taverasmisael/typography",
-    layers: { [layerName]: layerLevel },
+    layers: { [layer]: -20 },
     theme,
     rules: [
-      [selector, { color: "var(--un-prose-body)", "max-width": "65ch", ...colors }, { layer: layerName }],
-      [invertSelector, { color: "var(--un-prose-invert-body)", ...invertColors }, { layer: layerName }],
-      [selectorSizesRg, ([, size]) => (isSize(size) ? getBaseStyle(size) : undefined), { layer: layerName }],
+      [selectorRegex, () => getSizePreflight({ selector, theme, notSelector }), { layer }],
+      [invertSelector, { color: "var(--un-prose-invert-body)", ...invertColors }, { layer }],
+      [selectorSizesRg, ([, size]) => (isSize(size) ? getBaseStyle(size) : undefined), { layer }],
       [
         selectorVariantsRg,
         async ([, target, modifier], { rawSelector, generator }) => {
@@ -43,14 +43,8 @@ export default function myTypography(): Preset {
             return undefined;
           }
         },
-        { layer: "typography" },
+        { layer },
       ],
-    ],
-    preflights: [
-      {
-        getCSS: () => getSizePreflight({ selector, theme, notSelector }),
-        layer: layerName,
-      },
     ],
   };
 }
