@@ -1,5 +1,4 @@
 import type { Theme } from "../theme";
-import { em } from "../utils";
 import type { Styles } from "./sizes";
 
 export const getDefaultStyles = (theme: Theme): Styles => ({
@@ -187,8 +186,8 @@ export const getDefaultStyles = (theme: Theme): Styles => ({
     width: "100%",
     "table-layout": "auto",
     "text-align": "left",
-    marginTop: em(32, 16),
-    marginBottom: em(32, 16),
+    marginTop: "2em",
+    marginBottom: "2em",
   },
   thead: {
     "border-bottom-width": "1px",

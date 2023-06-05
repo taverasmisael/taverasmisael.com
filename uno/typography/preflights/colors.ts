@@ -30,7 +30,7 @@ export const colors = {
   "--un-prose-invert-captions": twColors.slate[400],
   "--un-prose-invert-code": twColors.white,
   "--un-prose-invert-pre-code": twColors.slate[300],
-  "--un-prose-invert-pre-bg": "rgb(0 0 0 / 50%)",
+  "--un-prose-invert-pre-bg": twColors.slate[950],
   "--un-prose-invert-th-borders": twColors.slate[600],
   "--un-prose-invert-td-borders": twColors.slate[700],
 };
