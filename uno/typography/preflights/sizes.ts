@@ -3,6 +3,7 @@ import type { Theme } from "../theme";
 import { getDefaultStyles } from "./default-styles";
 
 export const SIZES = ["base", "lg", "xl"] as const;
+export const isSize = (x: string): x is Size => SIZES.includes(x);
 export type Size = (typeof SIZES)[number];
 export type Styles = Record<string, Record<string, string | number>>;
 

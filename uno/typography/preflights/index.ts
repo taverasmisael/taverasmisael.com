@@ -2,7 +2,6 @@ import type { Theme } from "../theme";
 import { getStyles, type Size } from "./sizes";
 
 interface GetCSSOptions {
-  size: Size;
   notSelector: string;
   theme: Theme;
   selectorName: string;
@@ -10,16 +9,15 @@ interface GetCSSOptions {
 
 interface GetSizePreflightOptions {
   notSelector: string;
-  size?: Size;
   theme: Theme;
   selector: string;
 }
 
-export const getSizePreflight = ({ size = "base", selector, theme, notSelector }: GetSizePreflightOptions) =>
-  getCSS({ selectorName: selector, theme, size, notSelector });
+export const getSizePreflight = ({ selector, theme, notSelector }: GetSizePreflightOptions) =>
+  getCSS({ selectorName: selector, theme, notSelector });
 
-function getCSS({ selectorName, theme, size, notSelector }: GetCSSOptions): string {
-  const styles = getStyles(theme, size);
+function getCSS({ selectorName, theme, notSelector }: GetCSSOptions): string {
+  const styles = getStyles(theme);
   let css = "";
   const selectorAsClass = `.${selectorName}`;
   for (const [selector, value] of Object.entries(styles)) {
