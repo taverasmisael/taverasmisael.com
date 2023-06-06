@@ -34,6 +34,7 @@ const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; l
 
   displayFont = display;
   bodyFont = body;
+  lightFont = light;
   return { display, body, light };
 };
 
