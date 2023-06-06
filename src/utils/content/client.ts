@@ -4,7 +4,7 @@ import { type CollectionKey, Collections } from "./types";
 // We know SITE is defined because we triple check on build time.
 // The idea behind not using this here is to avoid the need to import zod in the client.
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const SITE: string = import.meta.env.SITE || '';
+const SITE: string = import.meta.env.SITE || "";
 
 export function getCollectionName(key: string): undefined | (typeof Collections)[CollectionKey] {
   return Collections[key as CollectionKey];

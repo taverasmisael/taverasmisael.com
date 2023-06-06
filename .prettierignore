@@ -14,5 +14,9 @@ npm-debug.log
 **/.hg
 **/node_modules
 
-# Ignore public folder
-public
+# build output
+dist/
+.output/
+.netlify/
+.astro
+.vercel

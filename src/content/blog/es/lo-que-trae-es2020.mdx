@@ -1,9 +1,9 @@
 ---
 title: Lo nuevo que trae ES2020
-date: '2020-08-10'
+date: "2020-08-10"
 description: Son 10 consejos que yo he aprendido a lo largo de mi corta vida pero que me falta ponerlas en práctica y que creo que podrían beneficiarte también y así me sirven a mi también de recordatorio.
 author: misael-taveras
-tags: ['JavaScript', 'ES6']
+tags: ["JavaScript", "ES6"]
 ---
 
 En este blog amamos JavaScript y es por eso que he dedicado toda una miniserie a los features que han sido introducidos desde ES6 en adelante.
@@ -22,15 +22,15 @@ Veamos esta lista, mezclando entre más y menos interesantes.
 
 JavaScript y los números no se llevan bien. Por eso hay tantas librerías que se encargan de hacer las matemáticas pesadas en JavaScript. Los BigInts pretenden solucionar esto.
 
-El límite teórico de los valores enteros en JavaScript es `9007199254740991` (obtenido con `Number.MAX_SAFE_INTEGER`)  cualquier número que sumemos o restemos de aquí es tan confiable como las promesas de tu ex. Aquí es donde entra el nuevo tipo de dato BigInt. 
+El límite teórico de los valores enteros en JavaScript es `9007199254740991` (obtenido con `Number.MAX_SAFE_INTEGER`) cualquier número que sumemos o restemos de aquí es tan confiable como las promesas de tu ex. Aquí es donde entra el nuevo tipo de dato BigInt.
 
 Agregando una `n` al final de nuestros valores enteros los convertimos de Int a BigInt.
 
 ```js
-const int = 9007199254740992
-const bigint = 9007199254740992n // Mismo número pero convertido en BigInt
-console.log(int === int + 1) // true 😳
-console.log(bigint === bigint + 1n) // false 😌
+const int = 9007199254740992;
+const bigint = 9007199254740992n; // Mismo número pero convertido en BigInt
+console.log(int === int + 1); // true 😳
+console.log(bigint === bigint + 1n); // false 😌
 ```
 
 ## Dynamic Imports
@@ -40,19 +40,21 @@ Bueno, esto ha estado hace un tiempo ya, gracias a Babel y webpack (y el hermoso
 Sin rodeos y para quien no conocía lo de importar módulos de forma dinámica, **es una forma de importar los módulos que queremos solo en las situaciones que los necesitamos.** En un ejemplo (súper hipotético) de una calculadora súper científica en la que mayormente solo se hacen divisiones y no sumas, podríamos, gracias a los dynamic imports, tener algo como esto.
 
 ```js
-import divide from './operations/division' // Se importa siempre
+import divide from "./operations/division"; // Se importa siempre
 
 async function Calculate(a, b, op) {
   // ... Cosas científicas
-  if (op === 'sum') {
-    const sum = await import('./operations/sum') // Se importa solo cuando se hace suma
-    sum(a, b)
+  if (op === "sum") {
+    const sum = await import("./operations/sum"); // Se importa solo cuando se hace suma
+    sum(a, b);
   }
 }
 ```
 
 <Admonition type="info">
-  **¿Esto no importaría el módulo cada vez que sumemos?** Buena pregunta, pero la respuesta es no. Primero se revisa si el módulo ya se había importado antes, de ser así se utiliza el que está en caché y así no se hacen múltiples peticiones a la red. La forma de saber si el módulo ya ha sido importado o no es a través de la metadata del módulo.
+  **¿Esto no importaría el módulo cada vez que sumemos?** Buena pregunta, pero la respuesta es no. Primero se revisa si
+  el módulo ya se había importado antes, de ser así se utiliza el que está en caché y así no se hacen múltiples
+  peticiones a la red. La forma de saber si el módulo ya ha sido importado o no es a través de la metadata del módulo.
 </Admonition>
 
 ## Module metadata
@@ -63,18 +65,18 @@ Directo al punto. Ahora los módulos al importarlos exponen un key `meta` que ha
 
 ## Module namespace export
 
-Para cerrar el apartado sobre los módulos tenemos este otro pequeño pero muy apreciado. Y es que JavaScript **nos permitía importar todo el contenido de un módulo usando el asterisco (*) y asignándole un nombre**, pero no podíamos hacer lo mismo para exportarlo; debíamos exportar directamente parte por parte o agregar un `export object` especificando lo que se exportaba. Ahora podemos hacer lo siguiente:
+Para cerrar el apartado sobre los módulos tenemos este otro pequeño pero muy apreciado. Y es que JavaScript **nos permitía importar todo el contenido de un módulo usando el asterisco (\*) y asignándole un nombre**, pero no podíamos hacer lo mismo para exportarlo; debíamos exportar directamente parte por parte o agregar un `export object` especificando lo que se exportaba. Ahora podemos hacer lo siguiente:
 
 ```js
 // Lo que siempre hemos podido hacer
-import * as operations from './operations'
+import * as operations from "./operations";
 
 // Como se debía exportar antes
-import * as sum from './sum'
-export { sum }
+import * as sum from "./sum";
+export { sum };
 
 // Como se puede exportar ahora
-export * as sum from './sum'
+export * as sum from "./sum";
 ```
 
 ## Nullish Coalescing
@@ -86,32 +88,31 @@ Este es una de mis características favoritas y más esperadas de esta iteració
 Veamos un ejemplo de como esto nos puede ayudar a simplificar nuestro código en ciertos escenarios.
 
 ```js
-const showValue = (val) => console.log(`El valor es ${val || 'NO VALOR'}`)
+const showValue = val => console.log(`El valor es ${val || "NO VALOR"}`);
 
 // El valor es NO VALOR
-showValue()
-showValue(0)
-showValue(false)
-showValue('')
-showValue(NaN)
+showValue();
+showValue(0);
+showValue(false);
+showValue("");
+showValue(NaN);
 
 // El siguiente código si funciona, pero el syntax highlighter todavía no conoce esta sintaxis.
 
-const showValueIfNotNull = (val) => console.log(`El valor es ${val ?? 'NO VALOR'}`)
+const showValueIfNotNull = val => console.log(`El valor es ${val ?? "NO VALOR"}`);
 
 // Una forma de hacer esto antes era
-const oldShowValueIfNotNull = (val) => {
+const oldShowValueIfNotNull = val => {
   // Revisar explicitamente por valores null o undefined
-  const value = val === null || val === undefined ? 'NO VALOR' : val
-  console.log(`El valor es ${value}`)
-}
+  const value = val === null || val === undefined ? "NO VALOR" : val;
+  console.log(`El valor es ${value}`);
+};
 
-showValueIfNotNull() // El valor es NO VALOR
-showValueIfNotNull(0) // El valor es 0
-showValueIfNotNull(false) // El valor es NO false
-showValueIfNotNull('') // El valor es
-showValueIfNotNull(NaN) // El valor es NaN
-
+showValueIfNotNull(); // El valor es NO VALOR
+showValueIfNotNull(0); // El valor es 0
+showValueIfNotNull(false); // El valor es NO false
+showValueIfNotNull(""); // El valor es
+showValueIfNotNull(NaN); // El valor es NaN
 ```
 
 ## Promise.allSettled
@@ -123,20 +124,18 @@ Aún así, cuando empezamos a implementarlas solo podíamos hacerlo de una a la 
 Para ejecutar varias promesas a la vez hay varios métodos: `Promise.race` `Promise.all` y ahora `Promise.allSettled` que a diferencia de Promise.all, que se completa cuando **todas se completan y falla si al menos una falla,** este se completa cuando todas **terminan** independientemente si fallaron o no.
 
 ```js
-const promises = [
-  Promise.reject(100),
-  Promise.resolve('Juanito'),
-  Promise.reject(new Error('E')),
-]
+const promises = [Promise.reject(100), Promise.resolve("Juanito"), Promise.reject(new Error("E"))];
 
 Promise.allSettled(promises).then(r => {
-  console.log(r.map((p) => p.status)) // ['rejected'', 'fullfilled', 'rejected']
-})
+  console.log(r.map(p => p.status)); // ['rejected'', 'fullfilled', 'rejected']
+});
 
 // Comparada con Promise.all
 Promise.all(promises)
-  .then(_ => {/* Esto nunca se llama */})
-  .catch(e => console.log(e)) // 100 -> al primer reject se detiene
+  .then(_ => {
+    /* Esto nunca se llama */
+  })
+  .catch(e => console.log(e)); // 100 -> al primer reject se detiene
 ```
 
 ## Optional Chaining
@@ -147,12 +146,12 @@ Este, de mis favoritos también y lo llegué a mencionar en el post de [ES6 y m�
 
 ```js
 // The virgin property check
-if(user && user.profile && user.profile.personalInfo && user.personalInfo.name) {
-  console.log(user.profile.personalInfo.name)
+if (user && user.profile && user.profile.personalInfo && user.personalInfo.name) {
+  console.log(user.profile.personalInfo.name);
 }
 
 // The Chad property check
-console.log(user?.profile?.personalInfo?.name) //`undefined` o el nombre del usuario
+console.log(user?.profile?.personalInfo?.name); //`undefined` o el nombre del usuario
 ```
 
 ## Regexp y otras cosas

@@ -4,7 +4,7 @@ interface CommandBarBaseItem {
   title: string;
   description?: string;
   icon?: string;
-  type: CommandBarItemType
+  type: CommandBarItemType;
 }
 
 export interface CommandBarSearchItem extends CommandBarBaseItem {

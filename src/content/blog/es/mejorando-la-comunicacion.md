@@ -1,10 +1,11 @@
 ---
 title: Consejos para mejorar la comunicación
-date: '2019-08-07'
+date: "2019-08-07"
 description: Como comunicarse de forma efectiva. Hacer llegar nuestro mensaje de forma clara y obteniendo respuestas positivas.
 author: misael-taveras
 tags: ["Consejo", "Soft Skills"]
 ---
+
 Ser programador no se limita a escribir código. Hay un conjunto de
 habilidades que nos ayudan a mejorar como desarrolladores y de estas la
 que más destaca es **la Comunicación**.
@@ -19,8 +20,8 @@ mejor mis ideas y que espero te sirvan también.
 
 En la televisión vendieron una idea sumamente herrada de como era un
 programador. El típico **solitario en el sótano**, que no tenia que
-hacer nada mas que escribir “algoritmos”, “scripts” y *“entrar al
-sistema”*. Todos temían hablar con el ya que su vida de recluido lo
+hacer nada mas que escribir “algoritmos”, “scripts” y _“entrar al
+sistema”_. Todos temían hablar con el ya que su vida de recluido lo
 hacia menos amigable que el resto.
 
 ![Richmond - The IT Crowd](../../../assets/posts/it-crowd-richmond.jpg)
@@ -31,7 +32,7 @@ habitación de luz con otras personas con las que debes hablar y
 comunicarte para alcanzar las metas más rápido y mejor.
 
 En este equipo tendrás líderes, compañeros y en ocasiones personas a las
-que deberás guiar *(aunque no esperes guiar a nadie con pobres habilidades de comunicación)*.
+que deberás guiar _(aunque no esperes guiar a nadie con pobres habilidades de comunicación)_.
 Por esto es por lo que hay que saber dirigirse correctamente a estos grupos de personas,
 donde cada cual tiene su propia forma de comunicarse y de entender.
 
@@ -59,8 +60,8 @@ explicarle a tu amigo, pareja, desconocido, un [pato de
 goma](https://es.wikipedia.org/wiki/M%C3%A9todo_de_depuraci%C3%B3n_del_patito_de_goma)
 sobre lo que estás haciendo e intenta que entienda.
 
-Se empático. La empatía se resume en *intentar ponerse en los zapatos
-del otro de forma objetiva*. No vayas directo al punto, sino que
+Se empático. La empatía se resume en _intentar ponerse en los zapatos
+del otro de forma objetiva_. No vayas directo al punto, sino que
 intentes ver como se siente la otra persona y entender su punto de vista
 con respecto al tema y en base a esto dirigirnos.
 
@@ -84,7 +85,7 @@ Ya sea a la hora de almuerzo, en un evento donde haya otros compañeros
 en los que no seas el centro de la conversación.
 
 Pregunta todo lo que se te ocurra. **Las preguntas son buena forma de iniciar una conversación sobre cualquier cosa**. No tengas miedo de preguntar cosas que no sabes, eso demostrará en ti interés.
-Al preguntar, dejas la “*parte pesada*” de la conversación a quien contesta y allí es cuando debes escuchar.
+Al preguntar, dejas la “_parte pesada_” de la conversación a quien contesta y allí es cuando debes escuchar.
 
 Una **parte esencial de la comunicación es escuchar**, y escuchar
 activamente es la mejor forma de hacer entender a la otra persona que
@@ -121,7 +122,7 @@ Pero en toda seriedad: servirás como puente para esas personas que aún
 no dominan la comunicación efectiva, podrás ayudarlos y créeme, se
 sentirá bien.
 
-##  Conclusión
+## Conclusión
 
 Tener una buena comunicación **es una habilidad no técnica** que debe
 estar en tu top de prioridades para aprender o mejorar, si es el caso,

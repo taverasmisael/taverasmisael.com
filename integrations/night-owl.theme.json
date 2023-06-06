@@ -1,16 +1,11 @@
 {
-  "name": "Night Owl",
+  "name": "night-owl",
   "type": "dark",
   "semanticHighlighting": false,
   "tokenColors": [
     {
       "name": "Changed",
-      "scope": [
-        "markup.changed",
-        "meta.diff.header.git",
-        "meta.diff.header.from-file",
-        "meta.diff.header.to-file"
-      ],
+      "scope": ["markup.changed", "meta.diff.header.git", "meta.diff.header.from-file", "meta.diff.header.to-file"],
       "settings": {
         "foreground": "#a2bffc",
         "fontStyle": "italic"
@@ -78,11 +73,7 @@
     },
     {
       "name": "Built-in constant",
-      "scope": [
-        "constant.language",
-        "punctuation.definition.constant",
-        "variable.other.constant"
-      ],
+      "scope": ["constant.language", "punctuation.definition.constant", "variable.other.constant"],
       "settings": {
         "foreground": "#82AAFF"
       }
@@ -766,11 +757,7 @@
     },
     {
       "name": "C# Region",
-      "scope": [
-        "punctuation.separator.hash.cs",
-        "keyword.preprocessor.region.cs",
-        "keyword.preprocessor.endregion.cs"
-      ],
+      "scope": ["punctuation.separator.hash.cs", "keyword.preprocessor.region.cs", "keyword.preprocessor.endregion.cs"],
       "settings": {
         "foreground": "#ffcb8b",
         "fontStyle": "bold"
@@ -792,10 +779,7 @@
     },
     {
       "name": "Dart String",
-      "scope": [
-        "string.interpolated.single.dart",
-        "string.interpolated.double.dart"
-      ],
+      "scope": ["string.interpolated.single.dart", "string.interpolated.double.dart"],
       "settings": {
         "foreground": "#FFCB8B"
       }
@@ -841,20 +825,14 @@
     },
     {
       "name": "Attribute Name for CSS",
-      "scope": [
-        "meta.attribute-selector.css entity.other.attribute-name.attribute",
-        "variable.other.readwrite.js"
-      ],
+      "scope": ["meta.attribute-selector.css entity.other.attribute-name.attribute", "variable.other.readwrite.js"],
       "settings": {
         "foreground": "#F78C6C"
       }
     },
     {
       "name": "Elixir Classes",
-      "scope": [
-        "source.elixir support.type.elixir",
-        "source.elixir meta.module.elixir entity.name.class.elixir"
-      ],
+      "scope": ["source.elixir support.type.elixir", "source.elixir meta.module.elixir entity.name.class.elixir"],
       "settings": {
         "foreground": "#82AAFF"
       }
@@ -868,10 +846,7 @@
     },
     {
       "name": "Elixir Constants",
-      "scope": [
-        "source.elixir constant.other.symbol.elixir",
-        "source.elixir constant.other.keywords.elixir"
-      ],
+      "scope": ["source.elixir constant.other.symbol.elixir", "source.elixir constant.other.keywords.elixir"],
       "settings": {
         "foreground": "#82AAFF"
       }
@@ -937,20 +912,14 @@
     },
     {
       "name": "Go Constants e.g. nil, string format (%s, %d, etc.)",
-      "scope": [
-        "source.go constant.language.go",
-        "source.go constant.other.placeholder.go"
-      ],
+      "scope": ["source.go constant.language.go", "source.go constant.other.placeholder.go"],
       "settings": {
         "foreground": "#ff5874"
       }
     },
     {
       "name": "C++ Functions",
-      "scope": [
-        "entity.name.function.preprocessor.cpp",
-        "entity.scope.name.cpp"
-      ],
+      "scope": ["entity.name.function.preprocessor.cpp", "entity.scope.name.cpp"],
       "settings": {
         "foreground": "#7fdbcaff"
       }
@@ -1049,10 +1018,7 @@
     },
     {
       "name": "Entity Names in Code Documentations",
-      "scope": [
-        "entity.name.type.instance.jsdoc",
-        "entity.name.type.instance.phpdoc"
-      ],
+      "scope": ["entity.name.type.instance.jsdoc", "entity.name.type.instance.phpdoc"],
       "settings": {
         "foreground": "#5f7e97"
       }
@@ -1211,11 +1177,7 @@
     },
     {
       "name": "Markdown Headings",
-      "scope": [
-        "markup.heading.markdown",
-        "markup.heading.setext.1.markdown",
-        "markup.heading.setext.2.markdown"
-      ],
+      "scope": ["markup.heading.markdown", "markup.heading.setext.1.markdown", "markup.heading.setext.2.markdown"],
       "settings": {
         "foreground": "#82b1ff"
       }
@@ -1253,20 +1215,14 @@
     },
     {
       "name": "Markdown Links",
-      "scope": [
-        "markup.underline.link.markdown",
-        "markup.underline.link.image.markdown"
-      ],
+      "scope": ["markup.underline.link.markdown", "markup.underline.link.image.markdown"],
       "settings": {
         "foreground": "#ff869a"
       }
     },
     {
       "name": "Markdown Link Title and Description",
-      "scope": [
-        "string.other.link.title.markdown",
-        "string.other.link.description.markdown"
-      ],
+      "scope": ["string.other.link.title.markdown", "string.other.link.description.markdown"],
       "settings": {
         "foreground": "#d6deeb"
       }
@@ -1348,20 +1304,14 @@
     },
     {
       "name": "Python Function Parameter and Arguments",
-      "scope": [
-        "variable.parameter.function.python",
-        "meta.function-call.arguments.python"
-      ],
+      "scope": ["variable.parameter.function.python", "meta.function-call.arguments.python"],
       "settings": {
         "foreground": "#82AAFF"
       }
     },
     {
       "name": "Python Function Call",
-      "scope": [
-        "meta.function-call.python",
-        "meta.function-call.generic.python"
-      ],
+      "scope": ["meta.function-call.python", "meta.function-call.generic.python"],
       "settings": {
         "foreground": "#B2CCD6"
       }
@@ -1397,32 +1347,21 @@
     },
     {
       "name": "SCSS Variable",
-      "scope": [
-        "variable.scss",
-        "variable.sass",
-        "variable.parameter.url.scss",
-        "variable.parameter.url.sass"
-      ],
+      "scope": ["variable.scss", "variable.sass", "variable.parameter.url.scss", "variable.parameter.url.sass"],
       "settings": {
         "foreground": "#c5e478"
       }
     },
     {
       "name": "Variables in SASS At-Rules",
-      "scope": [
-        "source.css.scss meta.at-rule variable",
-        "source.css.sass meta.at-rule variable"
-      ],
+      "scope": ["source.css.scss meta.at-rule variable", "source.css.sass meta.at-rule variable"],
       "settings": {
         "foreground": "#82AAFF"
       }
     },
     {
       "name": "Variables in SASS At-Rules",
-      "scope": [
-        "source.css.scss meta.at-rule variable",
-        "source.css.sass meta.at-rule variable"
-      ],
+      "scope": ["source.css.scss meta.at-rule variable", "source.css.sass meta.at-rule variable"],
       "settings": {
         "foreground": "#bec5d4"
       }
@@ -1487,10 +1426,7 @@
     },
     {
       "name": "TypeScript[React] Entity Name Types as Parameters",
-      "scope": [
-        "meta.type.parameters.ts entity.name.type",
-        "meta.type.parameters.tsx entity.name.type"
-      ],
+      "scope": ["meta.type.parameters.ts entity.name.type", "meta.type.parameters.tsx entity.name.type"],
       "settings": {
         "foreground": "#5f7e97"
       }
@@ -1509,10 +1445,7 @@
     },
     {
       "name": "TypeScript[React] Punctuation Decorators",
-      "scope": [
-        "meta.decorator punctuation.decorator.ts",
-        "meta.decorator punctuation.decorator.tsx"
-      ],
+      "scope": ["meta.decorator punctuation.decorator.ts", "meta.decorator punctuation.decorator.tsx"],
       "settings": {
         "foreground": "#82AAFF"
       }
@@ -1548,11 +1481,7 @@
     },
     {
       "name": "Text nested in React tags",
-      "scope": [
-        "meta.jsx.children",
-        "meta.jsx.children.js",
-        "meta.jsx.children.tsx"
-      ],
+      "scope": ["meta.jsx.children", "meta.jsx.children.js", "meta.jsx.children.tsx"],
       "settings": {
         "foreground": "#d6deeb"
       }
@@ -1573,20 +1502,14 @@
     },
     {
       "name": "TypeScript Class Variable Keyword",
-      "scope": [
-        "meta.class.ts meta.var.expr.ts storage.type.ts",
-        "meta.class.tsx meta.var.expr.tsx storage.type.tsx"
-      ],
+      "scope": ["meta.class.ts meta.var.expr.ts storage.type.ts", "meta.class.tsx meta.var.expr.tsx storage.type.tsx"],
       "settings": {
         "foreground": "#C792EA"
       }
     },
     {
       "name": "TypeScript Method Declaration e.g. `constructor`",
-      "scope": [
-        "meta.method.declaration storage.type.ts",
-        "meta.method.declaration storage.type.tsx"
-      ],
+      "scope": ["meta.method.declaration storage.type.ts", "meta.method.declaration storage.type.tsx"],
       "settings": {
         "foreground": "#82AAFF"
       }

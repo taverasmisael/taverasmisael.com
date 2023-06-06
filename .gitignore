@@ -3,6 +3,7 @@ dist/
 .output/
 .netlify/
 .astro
+.vercel
 
 # dependencies
 node_modules/

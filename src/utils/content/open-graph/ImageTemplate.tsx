@@ -20,13 +20,10 @@ export default function ImageTemplate(props: Props) {
         <p class="mb-8 text-xl text-slate-800">
           TaverasMisael <span class="font-semibold text-blue-800">Blog</span>
         </p>
-        <h1 class="mb-6 text-5xl font-semibold">
-          {props.title}
-        </h1>
+        <h1 class="mb-6 text-5xl font-semibold">{props.title}</h1>
         <p class="mb-6 text-xl">{props.description}</p>
         <p>
-          <span class="font-light">{props.writtenTag}</span>{" "}
-          <strong class="ml-2 font-semibold">{props.author}</strong>
+          <span class="font-light">{props.writtenTag}</span> <strong class="ml-2 font-semibold">{props.author}</strong>
         </p>
       </div>
     </div>
