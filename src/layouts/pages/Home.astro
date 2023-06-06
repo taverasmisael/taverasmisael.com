@@ -41,14 +41,14 @@ const t = useTranslation(lang);
       <!-- Bootstrap times :D -->
       <div class="grid items-center gap-8 md:grid-cols-2 md:gap-32 lg:grid-cols-3">
         <div class="lg:col-span-2"><slot name="jumbotron" /></div>
-        <div class="w-fit justify-self-center rounded-xl bg-blue-800/90 shadow-sm hover:shadow-md">
-          <Image
+        <div class="w-fit justify-self-center rounded-xl bg-blue-800/90 hover:bg-blue-800 shadow-sm hover:shadow-md">
+          <img
             alt=""
-            src={ProfilePic}
+            src={ProfilePic.src}
             width={500}
             height={500}
             loading="eager"
-            class="md:max-full block w-52 max-w-full rotate-3 rounded-md transition-transform hover:rotate-0 hover:scale-95 hover:rounded-lg sm:w-72 md:w-96"
+            class="md:max-full block w-52 max-w-full rotate-3 rounded-md transition-transform hover:rotate-0 hover:scale-95 hover:rounded-none sm:w-72 md:w-96"
           />
         </div>
       </div>
