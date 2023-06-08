@@ -5,6 +5,7 @@ import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 import { slugToCanonical } from "@/utils/content";
 import Footer from "@/components/layout/Footer.astro";
 import type { DefaultLayoutProps } from "./types";
+import './styles.css'
 
 type Props = DefaultLayoutProps;
 
@@ -44,12 +45,6 @@ const { origin } = Astro.url;
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
     <link rel="manifest" href={manifest} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@200..800&family=Red+Hat+Display:wght@400..800&display=swap"
-      rel="stylesheet"
-    />
     {
       translations.map(translation => (
         <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
