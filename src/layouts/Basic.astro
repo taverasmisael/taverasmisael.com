@@ -1,7 +1,4 @@
 ---
-import "@fontsource-variable/inter";
-import "@fontsource-variable/red-hat-display";
-
 import { DEFAULT_LOCALE } from "@/utils/i18n";
 import CommandBar from "@/components/command-bar/CommandBar";
 import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
@@ -47,6 +44,12 @@ const { origin } = Astro.url;
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
     <link rel="manifest" href={manifest} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200..800&family=Red+Hat+Display:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
     {
       translations.map(translation => (
         <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
@@ -72,6 +75,8 @@ const { origin } = Astro.url;
     <Footer lang={lang} translations={translations} />
     <CommandBar lang={lang} client:idle />
     <script src="./keyboard-shortcuts.ts"></script>
-    <script is:inline>navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()))</script>
+    <script is:inline>
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+    </script>
   </body>
 </html>
