@@ -36,8 +36,9 @@ const algoliaIntegration = localBuild =>
 export default defineConfig({
   adapter,
   site,
+  build: { inlineStylesheets: "always" },
   compressHTML: true,
-  experimental: { assets: true, inlineStylesheets: "auto" },
+  experimental: { assets: true },
   integrations: [
     tailwind(),
     mdx(),
@@ -53,16 +54,8 @@ export default defineConfig({
   },
   output: "server",
   vite: {
-    ssr: {
-      external: ["@resvg/resvg-js"],
-    },
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
-    build: {
-      rollupOptions: {
-        external: ["@resvg/resvg-js"],
-      },
-    },
+    ssr: { external: ["@resvg/resvg-js"] },
+    optimizeDeps: { exclude: ["@resvg/resvg-js"] },
+    build: { rollupOptions: { external: ["@resvg/resvg-js"] } },
   },
 });

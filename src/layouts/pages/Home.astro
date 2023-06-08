@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "@/layouts/WithHeader.astro";
 import { getLocalizedPage, useTranslation, type Language, LANGUAGES } from "@/utils/i18n";
 import { getBlogEntry, slugToCanonical } from "@/utils/content";
@@ -41,7 +40,7 @@ const t = useTranslation(lang);
       <!-- Bootstrap times :D -->
       <div class="grid items-center gap-8 md:grid-cols-2 md:gap-32 lg:grid-cols-3">
         <div class="lg:col-span-2"><slot name="jumbotron" /></div>
-        <div class="w-fit justify-self-center rounded-xl bg-blue-800/90 hover:bg-blue-800 shadow-sm hover:shadow-md">
+        <div class="w-fit justify-self-center rounded-xl bg-blue-800/90 shadow-sm hover:bg-blue-800 hover:shadow-md">
           <img
             alt=""
             src={ProfilePic.src}
