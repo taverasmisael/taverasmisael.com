@@ -31,7 +31,7 @@ Este es un tema interesante, se podría decir monocromo donde el morado es el re
 
 ### 2. Material Theme
 
-![Tema Material Design](https://material-theme.site/screens.038aa268.jpg)
+![Tema Material Design](https://material-theme-website.vercel.app/images/palenight.png)
 
 Si has estado desarrollando un tiempo es muy posible que hayas visto este tema. No está en mi top porque personalmente lo veo más como un tipo Flat UI en vez de Material Design, pero cada quien su invierno.
 
@@ -122,7 +122,7 @@ Para los que andamos escribiendo colores en diferentes formatos y lenguajes, est
 
 ### 3. Peacock
 
-![Extension Peacock](https://github.com/johnpapa/vscode-peacock/raw/master/resources/hero.png "Imagen sin sombra")
+![Extension Peacock](https://raw.githubusercontent.com/johnpapa/vscode-peacock/main/resources/hero.png)
 
 Esta hermosísima extensión creada por nada y más y nada menos que John Papa es imprescindible cuando se estan manejando diferentes proyectos a la vez. Te permite colorear tus espacios de trabajo como un pavo real agregando colores de acento a las diferentes barras de herramientas y demás del editor.
 

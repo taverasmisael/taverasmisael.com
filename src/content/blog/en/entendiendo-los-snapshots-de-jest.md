@@ -85,7 +85,7 @@ When we create the snapshots we do it through a Jest _matcher_ called toMatchSna
 
 ### **Using toMatchSnapshot**
 
-Every time you run our tests, Jest verify that there is a file of the same name as the one where the test is, but with the extension .snap inside the folder ****snapshots****: (`reduce.test.js -> __snapshots __ / reduce.test.js.snap`)
+Every time you run our tests, Jest verify that there is a file of the same name as the one where the test is, but with the extension .snap inside the folder \***\*snapshots\*\***: (`reduce.test.js -> __snapshots __ / reduce.test.js.snap`)
 
 - The first time, as the file does not exist, Jest will create it for us and use it as the defacto snapshot, running our tests against it.
 
