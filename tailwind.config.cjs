@@ -31,9 +31,9 @@ module.exports = {
             "h1, h2, h3, h4, h5, h6": {
               fontFamily: theme("fontFamily.display").join(","),
             },
-            'h1, h2, h3, h4': {
+            "h1, h2, h3, h4": {
               textWrap: "balance",
-            }
+            },
           },
         },
       }),
@@ -43,7 +43,7 @@ module.exports = {
     require("@tailwindcss/typography"),
     plugin(({ addBase }) => {
       addBase({
-        '.text-balance': { textWrap: "balance" },
+        ".text-balance": { textWrap: "balance" },
       });
     }),
   ],
