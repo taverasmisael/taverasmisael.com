@@ -64,7 +64,7 @@ const { G_TAG_ID } = getEnv();
       }
     </script>
     <script async type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`}></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
