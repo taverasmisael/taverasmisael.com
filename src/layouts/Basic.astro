@@ -63,12 +63,17 @@ const { G_TAG_ID } = getEnv();
         document.documentElement.classList.remove("dark");
       }
     </script>
-    <script async type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`}></script>
-    <script data-ga-id={G_TAG_ID}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag("js", new Date());
-      gtag("config", document.currentScript.dataset.gaId);
+    {G_TAG_ID && <script async type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`} />}
+    <script async data-ga-id={G_TAG_ID}>
+      if (document.currentScript && document.currentScript.dataset.gaId) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+
+        gtag("js", new Date());
+        gtag("config", document.currentScript.dataset.gaId);
+      }
     </script>
   </head>
   <body
