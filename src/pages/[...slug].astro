@@ -18,6 +18,6 @@ if (!collectionName || collectionName !== "blog") {
 const postFound = await getCollection(collectionName, ({ slug }) => slug.includes(name));
 
 return postFound.length
-  ? Astro.redirect(getEntryURL(collectionName, postFound[0].slug))
+  ? Astro.redirect(getEntryURL(collectionName, postFound[0].slug), 301 /* Moved Permanently */)
   : Astro.redirect(`/404?from=${slug}`);
 ---
