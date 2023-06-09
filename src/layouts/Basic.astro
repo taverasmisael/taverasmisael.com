@@ -27,7 +27,7 @@ const title = `${propsTitle} — Misael Taveras`;
 const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
 const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
 const { origin } = Astro.url;
-const { G_TAG_ID } = getEnv();
+const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
 ---
 
 <!DOCTYPE html>
@@ -42,6 +42,7 @@ const { G_TAG_ID } = getEnv();
     <meta name="theme-color" content="hsl(0, 0, 100%)" />
     <meta name="docsearch:language" content={lang} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="build" content={COMMIT_SHA.slice(0, 7)} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
