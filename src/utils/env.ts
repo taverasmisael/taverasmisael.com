@@ -4,6 +4,7 @@ const publicEnvSchema = z.object({
   SITE: z.string(),
   PUBLIC_SITE_URL: z.string().optional(),
   PUBLIC_ALGOLIA_SEARCH_KEY: z.string().nonempty(),
+  G_TAG_ID: z.string().optional(),
 });
 
 const envSchema = publicEnvSchema.merge(
@@ -14,6 +15,7 @@ const envSchema = publicEnvSchema.merge(
     ALGOLIA_APP_ID: z.string().nonempty(),
     ALGOLIA_API_KEY: z.string().nonempty(),
     ALGOLIA_INDEX_NAME: z.string().nonempty(),
+    VERCEL_GIT_COMMIT_SHA: z.string().optional().default("DEVMODE"),
   })
 );
 

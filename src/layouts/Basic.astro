@@ -5,7 +5,8 @@ import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 import { slugToCanonical } from "@/utils/content";
 import Footer from "@/components/layout/Footer.astro";
 import type { DefaultLayoutProps } from "./types";
-import './styles.css'
+import "./styles.css";
+import { getEnv } from "@/utils/env";
 
 type Props = DefaultLayoutProps;
 
@@ -26,6 +27,7 @@ const title = `${propsTitle} — Misael Taveras`;
 const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
 const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
 const { origin } = Astro.url;
+const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
 ---
 
 <!DOCTYPE html>
@@ -40,6 +42,7 @@ const { origin } = Astro.url;
     <meta name="theme-color" content="hsl(0, 0, 100%)" />
     <meta name="docsearch:language" content={lang} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="build" content={COMMIT_SHA.slice(0, 7)} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -59,6 +62,18 @@ const { origin } = Astro.url;
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
+      }
+    </script>
+    {G_TAG_ID && <script async type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`} />}
+    <script async data-ga-id={G_TAG_ID}>
+      if (document.currentScript && document.currentScript.dataset.gaId) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+
+        gtag("js", new Date());
+        gtag("config", document.currentScript.dataset.gaId);
       }
     </script>
   </head>
