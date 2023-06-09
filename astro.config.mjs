@@ -6,19 +6,16 @@ import prefetch from "@astrojs/prefetch";
 import solidjs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
 import node from "@astrojs/node";
-
 import { sitemap } from "./integrations/sitemap";
 import { algolia } from "./integrations/algolia";
 import nightOwlTheme from "./integrations/night-owl.theme.json";
-
+import partytown from "@astrojs/partytown";
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://localhost:3000/";
 
 // Netlify adapter doesn't support SSR yet, so we use node adapter for local builds
 // This is useful for testing SSR locally
 const adapter = env.LOCAL_BUILD ? node({ mode: "standalone" }) : vercel();
-console.log("Using adapter:", adapter.name);
-
 const algoliaOutputName = "algolia.json";
 // For local builds, we don't want to update the index
 const algoliaIntegration = localBuild =>
@@ -46,11 +43,11 @@ export default defineConfig({
     solidjs(),
     sitemap({ name: "sitemap.xml", ignoredPaths: [`/${algoliaOutputName}`] }),
     ...algoliaIntegration(env.LOCAL_BUILD),
+    partytown({ config: { forward: ["dataLayer.push"] } }),
   ],
   markdown: {
     // TODO: P3 - Add light/dark theme support (css variables) #10
     shikiConfig: { theme: nightOwlTheme },
-    remarkRehype: { footnoteLabel: "Footnotes", footnoteBackLabel: "Back to content" },
   },
   output: "server",
   vite: {

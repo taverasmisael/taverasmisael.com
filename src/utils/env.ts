@@ -4,6 +4,7 @@ const publicEnvSchema = z.object({
   SITE: z.string(),
   PUBLIC_SITE_URL: z.string().optional(),
   PUBLIC_ALGOLIA_SEARCH_KEY: z.string().nonempty(),
+  G_TAG_ID: z.string().nonempty(),
 });
 
 const envSchema = publicEnvSchema.merge(
