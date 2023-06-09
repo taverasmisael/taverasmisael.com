@@ -64,12 +64,11 @@ const { G_TAG_ID } = getEnv();
       }
     </script>
     <script async type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`}></script>
-    <script is:inline>
+    <script data-ga-id={G_TAG_ID}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
-
-      gtag("config", G_TAG_ID, );
+      gtag("config", document.currentScript.dataset.gaId);
     </script>
   </head>
   <body
