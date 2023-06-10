@@ -15,7 +15,7 @@ export const locales = {
   en: English,
 } as const satisfies LocaleSet;
 
-export const PAGE_NAMES = ["home", "blog", "about", "contact", "feed"] as const;
+export const PAGE_NAMES = ["home", "about", "blog", "contact", "feed"] as const;
 export type PageName = (typeof PAGE_NAMES)[number];
 type PageURL = Record<PageName, Readonly<string>>;
 
