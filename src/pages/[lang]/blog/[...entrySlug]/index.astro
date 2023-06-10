@@ -30,11 +30,11 @@ const components = { Admonition: Admonition };
   description={meta.description}
   title={meta.title}
   translations={translations}
-  ogType="article"
   image={imageURL}
+  ogType="article"
 >
   <main
-    class="prose prose-slate mx-auto mt-4 px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl"
+    class="prose prose-gray mx-auto mb-12 mt-4 px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl"
   >
     <div class="not-prose">
       {!!translations.length && <PostTranslations lang={meta.lang} translations={translations} />}

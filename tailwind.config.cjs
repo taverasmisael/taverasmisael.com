@@ -24,6 +24,9 @@ module.exports = {
               marginLeft: theme("margin.auto"),
               marginRight: theme("margin.auto"),
             },
+            pre: {
+              backgroundColor: "var(--tw-prose-pre-bg)!important",
+            },
             "pre code": {
               // FiraCode looks better light
               fontWeight: "300 !important",
@@ -41,9 +44,15 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    plugin(({ addBase }) => {
+    plugin(({ addBase, theme }) => {
       addBase({
         ".text-balance": { textWrap: "balance" },
+        ".gradient-gray-slate": {
+          "--tw-gradient-stops": `${theme("colors.gray.950")} 60%, ${theme("colors.slate.950")}`,
+        },
+        ".gradient-slate-slate": {
+          "--tw-gradient-stops": `${theme("colors.slate.50")} 60%, ${theme("colors.slate.200")}`,
+        },
       });
     }),
   ],

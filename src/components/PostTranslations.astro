@@ -13,7 +13,7 @@ const { translations, class: className } = Astro.props;
 const t = useTranslation(Astro.props.lang);
 ---
 
-<aside class="my-4 rounded-sm bg-blue-100 p-4 text-sm dark:bg-slate-700" class:list={className}>
+<aside class="my-6 rounded-sm bg-blue-100 p-4 text-sm dark:bg-slate-900" class:list={className}>
   <div class="container mx-auto max-w-4xl">
     <p>
       {t("ui", "translation_available_in")}:
