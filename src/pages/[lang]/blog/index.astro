@@ -42,7 +42,6 @@ const t = useTranslation(lang);
   translations={translations}
   title={t("navigation", "blog")}
   description={t("page_descriptions", "blog")}
-  class="dark:!bg-gray-900"
 >
   <TranslationArchiveBanner lang={lang} type="blog" />
   <main>
@@ -60,7 +59,7 @@ const t = useTranslation(lang);
       </div>
     </div>
     <!-- Rest of the posts -->
-    <div class="bg-white dark:bg-gray-800">
+    <div class="bg-white dark:bg-gray-900">
       <div class="container mx-auto w-full px-8 py-12">
         <div class="grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
           {posts.slice(2).map(post => <CardPost meta={post.meta} post={post.entry} />)}

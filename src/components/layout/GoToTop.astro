@@ -12,13 +12,13 @@ const label = t("ui", "go_top");
 <a
   id="gtt"
   href="#header"
-  class="fixed bottom-4 right-4 z-40 inline-block rounded-md bg-blue-50 p-1 shadow-md transition-transform dark:bg-slate-700"
+  class="fixed bottom-4 right-4 z-40 inline-block rounded-md bg-blue-50 p-2 shadow-md transition-transform dark:bg-gray-900"
 >
   <span class="sr-only">{label}</span>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6">
     <path
       fill-rule="evenodd"
-      d="M12 20.25a.75.75 0 01-.75-.75V6.31l-5.47 5.47a.75.75 0 01-1.06-1.06l6.75-6.75a.75.75 0 011.06 0l6.75 6.75a.75.75 0 11-1.06 1.06l-5.47-5.47V19.5a.75.75 0 01-.75.75z"
+      d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"
       clip-rule="evenodd"></path>
   </svg>
 </a>
@@ -26,8 +26,6 @@ const label = t("ui", "go_top");
   const goTotop = document.getElementById("gtt") as HTMLLinkElement;
   goTotop.classList.add("scale-0");
   window.addEventListener("scroll", () => {
-    return window.scrollY > window.innerHeight
-      ? goTotop.classList.remove("scale-0")
-      : goTotop.classList.add("scale-0");
+    return window.scrollY > window.innerHeight ? goTotop.classList.remove("scale-0") : goTotop.classList.add("scale-0");
   });
 </script>

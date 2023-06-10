@@ -24,6 +24,9 @@ module.exports = {
               marginLeft: theme("margin.auto"),
               marginRight: theme("margin.auto"),
             },
+            pre: {
+              backgroundColor: "var(--tw-prose-pre-bg)!important",
+            },
             "pre code": {
               // FiraCode looks better light
               fontWeight: "300 !important",
