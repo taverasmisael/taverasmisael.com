@@ -13,7 +13,7 @@ const t = useTranslation(lang);
 
 {
   lang !== DEFAULT_LOCALE && (
-    <PageBanner class="!bg-blue-950">
+    <PageBanner class="bg-blue-950 dark:bg-slate-900">
       <p class="text-xs text-blue-200">
         {t("messages", "reading_translation_archive", {
           collection_name: t("collections", type).toLocaleLowerCase(),
