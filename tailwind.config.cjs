@@ -44,9 +44,15 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    plugin(({ addBase }) => {
+    plugin(({ addBase, theme }) => {
       addBase({
         ".text-balance": { textWrap: "balance" },
+        ".bg-gradient-gray-slate": {
+          backgroundImage: `linear-gradient(180deg, ${theme("colors.gray.950")} 60%, ${theme("colors.slate.950")})`,
+        },
+        ".bg-gradient-gray-slate-light": {
+          backgroundImage: `linear-gradient(180deg, ${theme("colors.slate.50")} 60%, ${theme("colors.slate.200")})`,
+        },
       });
     }),
   ],

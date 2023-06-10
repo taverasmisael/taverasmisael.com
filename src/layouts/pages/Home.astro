@@ -53,25 +53,27 @@ const t = useTranslation(lang);
         </div>
       </div>
     </FullWidthBlock>
-    <div class="gap-8 py-16 lg:grid lg:grid-cols-2 xl:py-32">
-      <div class="prose dark:prose-invert xl:prose-lg prose-a:no-underline">
-        <slot name="blog" />
-        <a
-          href={blogURL}
-          class="mt-12 hidden rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-700 dark:ring-slate-800 dark:ring-offset-slate-800 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:active:bg-slate-900/80 lg:inline-block"
-          rel="prefetch">{t("ui", "view_all_posts")}</a
-        >
+    <FullWidthBlock withContainer class="bg-gradient-gray-slate-light dark:bg-gradient-gray-slate">
+      <div class="gap-8 py-16 lg:grid lg:grid-cols-2 xl:py-32">
+        <div class="prose dark:prose-invert xl:prose-lg prose-a:no-underline">
+          <slot name="blog" />
+          <a
+            href={blogURL}
+            class="mt-12 hidden rounded-md bg-white px-6 py-3 text-center font-semibold shadow outline-none ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 focus:bg-blue-200 focus:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-950 dark:ring-slate-900 dark:ring-offset-slate-950 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:focus:bg-slate-900 dark:focus:ring-slate-950/50 dark:active:bg-slate-900/80 lg:inline-block"
+            rel="prefetch">{t("ui", "view_all_posts")}</a
+          >
+        </div>
+        <div class="mt-8 lg:mt-0">
+          {featuredPost && <FeaturedPost post={featuredPost.entry} meta={featuredPost.meta} />}
+          <a
+            href={blogURL}
+            class="mt-12 block rounded-md bg-white p-4 text-center font-semibold shadow outline-none ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 focus:bg-blue-200 focus:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-950 dark:ring-slate-900 dark:ring-offset-slate-950 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:focus:bg-slate-900 dark:focus:ring-slate-950/50 dark:active:bg-slate-900/80 lg:hidden"
+            rel="prefetch">{t("ui", "view_all_posts")}</a
+          >
+        </div>
       </div>
-      <div class="mt-8 lg:mt-0">
-        {featuredPost && <FeaturedPost post={featuredPost.entry} meta={featuredPost.meta} />}
-        <a
-          href={blogURL}
-          class="mt-12 block rounded-md bg-white px-6 py-3 text-center font-semibold shadow ring ring-slate-100 transition-all hover:bg-blue-200 hover:ring-blue-100 active:bg-blue-200/80 dark:bg-slate-700 dark:ring-slate-800 dark:ring-offset-slate-800 dark:hover:bg-slate-900 dark:hover:ring-slate-950/50 dark:active:bg-slate-900/80 lg:hidden"
-          rel="prefetch">{t("ui", "view_all_posts")}</a
-        >
-      </div>
-    </div>
-    <FullWidthBlock withContainer class="bg-slate-200 py-16 dark:bg-slate-900 xl:py-32">
+    </FullWidthBlock>
+    <FullWidthBlock withContainer class="bg-slate-200 py-16 dark:bg-slate-950 xl:py-32">
       <div class="space-y-8 md:space-y-12">
         <div class="prose mx-auto dark:prose-invert xl:prose-lg">
           <slot name="testimonials" />
