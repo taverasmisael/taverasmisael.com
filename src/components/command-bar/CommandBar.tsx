@@ -30,7 +30,7 @@ export default function CommandBar(props: { lang: Language }) {
   return (
     <Dialog.Root open={commandBarState.isVisible} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm" />
+        <Dialog.Overlay class="fixed inset-0 z-50 bg-gray-950/70 backdrop-blur-sm" />
         <div class="fixed inset-0 z-50">
           <Dialog.Content
             onOpenAutoFocus={e => {
@@ -45,8 +45,8 @@ export default function CommandBar(props: { lang: Language }) {
               <Dialog.Description>{t("ui", "commandbar.placeholder.search")}</Dialog.Description>
             </div>
             <div class="p-4">
-              <div class="container mx-auto h-fit w-full max-w-4xl translate-y-32 rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-slate-900 dark:bg-slate-700 md:p-4">
-                <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-100 focus-within:ring-2 dark:bg-slate-600 dark:ring-slate-500">
+              <div class="container mx-auto h-fit w-full max-w-4xl translate-y-32 rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-gray-900 dark:bg-gray-950 md:p-4">
+                <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-100 focus-within:ring-2 dark:bg-gray-900 dark:ring-gray-800">
                   <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 dark:text-blue-50 md:pl-4">
                     <svg
                       class="w-6"
@@ -71,7 +71,7 @@ export default function CommandBar(props: { lang: Language }) {
                     ref={r => (inputRef = r)}
                     id="command-bar-input"
                     name="command-bar-input"
-                    class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-slate-600 dark:text-blue-50 dark:placeholder:text-slate-300 md:p-4"
+                    class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-transparent dark:text-blue-50 dark:placeholder:text-gray-300 md:p-4"
                     placeholder={t("ui", "commandbar.placeholder.search")}
                     autocomplete="off"
                     autoCapitalize="none"
