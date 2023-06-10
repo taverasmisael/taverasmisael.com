@@ -9,7 +9,7 @@ interface Props {
 }
 
 const baseFormControlClasses =
-  "w-full rounded-md border bg-white p-4 shadow focus:outline-none focus:ring dark:bg-slate-600";
+  "w-full rounded-md border bg-white p-4 shadow focus:outline-none focus:ring dark:bg-gray-900";
 const pristineFormControlClasses = "ring-blue-100 border-blue-50 dark:border-slate-800 dark:ring-slate-700";
 const errorFormControlClasses = "ring-red-100 border-red-50 dark:border-red-500 dark:ring-red-500";
 const textareaClasses = `${baseFormControlClasses} resize-none scroll-m-6`;
@@ -218,7 +218,7 @@ export default function ContactForm(props: Props) {
         <button
           disabled={formState.submitting}
           type="submit"
-          class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-50 dark:text-blue-900 dark:focus:bg-slate-100 dark:focus:ring-slate-400 enabled:dark:hover:bg-slate-100 enabled:dark:active:bg-slate-200"
+          class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-700 dark:focus:ring-slate-600 enabled:dark:hover:bg-slate-800/80 enabled:dark:active:bg-slate-700"
         >
           {t("forms", formState.submitting ? "submitting" : "submit")}
         </button>
