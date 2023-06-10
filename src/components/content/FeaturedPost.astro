@@ -12,34 +12,36 @@ const href = getEntryURL("blog", post.slug);
 ---
 
 <div
-  class="relative flex h-full flex-col justify-between rounded-md bg-white p-4 py-6 shadow-lg transition-colors dark:bg-slate-950 sm:p-8"
+  class="relative"
 >
   <div
-    class="absolute inset-3 -z-10 -rotate-6 rounded-sm bg-purple-400/50 blur-xl motion-safe:animate-pulse dark:bg-green-700/50"
+    class="absolute inset-3  -rotate-6 rounded-sm bg-purple-400/50 blur-xl motion-safe:animate-pulse dark:bg-green-700/50"
   >
   </div>
   <div
-    class="absolute inset-3 -z-10 rounded-full bg-blue-400/30 blur-xl motion-safe:animate-wiggle dark:bg-blue-700/30"
+    class="absolute inset-3  rounded-full bg-blue-400/30 blur-xl motion-safe:animate-wiggle dark:bg-blue-700/30"
   >
   </div>
-  <div>
-    <h2
-      class="mb-6 text-balance mt-3 max-w-md text-2xl font-semibold text-blue-900 hover:underline dark:text-blue-50 sm:mb-8 sm:text-4xl"
-    >
-      <a href={href}>{meta.title}</a>
-    </h2>
-    <p class="mb-4 font-light sm:mb-8 md:text-lg">{meta.description}</p>
-  </div>
-  <div class="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-900 sm:pt-6">
-    <time datetime={post.data.date.toISOString()} class="block flex-1 text-sm text-slate-800 dark:text-slate-300"
-      >{meta.formattedDate}</time
-    >
-    <ul class="flex gap-2 text-xs sm:gap-4">
-      {
-        post.data.tags.map(tag => {
-          return <li class="block p-2">#{tag}</li>;
-        })
-      }
-    </ul>
+  <div class="relative  flex h-full flex-col justify-between rounded-md bg-white p-4 py-6 shadow-lg transition-colors dark:bg-slate-950 sm:p-8">
+    <div>
+      <h2
+        class="text-balance mb-6 mt-3 max-w-md text-2xl font-semibold text-blue-900 hover:underline dark:text-blue-50 sm:mb-8 sm:text-4xl"
+      >
+        <a href={href}>{meta.title}</a>
+      </h2>
+      <p class="mb-4 font-light sm:mb-8 md:text-lg">{meta.description}</p>
+    </div>
+    <div class="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-900 sm:pt-6">
+      <time datetime={post.data.date.toISOString()} class="block flex-1 text-sm text-slate-800 dark:text-slate-300"
+        >{meta.formattedDate}</time
+      >
+      <ul class="flex gap-2 text-xs sm:gap-4">
+        {
+          post.data.tags.map(tag => {
+            return <li class="block p-2">#{tag}</li>;
+          })
+        }
+      </ul>
+    </div>
   </div>
 </div>
