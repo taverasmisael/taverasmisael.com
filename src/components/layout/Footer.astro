@@ -18,26 +18,10 @@ const { lang, translations: propTranslations } = Astro.props;
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const social = [
-  {
-    href: "https://twitter.com/taverasmisael",
-    text: "Twitter",
-    icon: TwitterLogo,
-  },
-  {
-    href: "https://www.linkedin.com/in/taverasmisael/",
-    text: "LinkedIn",
-    icon: LinkedInLogo,
-  },
-  {
-    href: "https://github.com/taverasmisael",
-    text: "GitHub",
-    icon: GitHubLogo,
-  },
-  {
-    href: getLocalizedPage(lang, "feed"),
-    text: "RSS",
-    icon: RSSFeedLogo,
-  },
+  { href: "https://twitter.com/taverasmisael", text: "Twitter", icon: TwitterLogo },
+  { href: "https://www.linkedin.com/in/taverasmisael/", text: "LinkedIn", icon: LinkedInLogo },
+  { href: "https://github.com/taverasmisael", text: "GitHub", icon: GitHubLogo },
+  { href: getLocalizedPage(lang, "feed"), text: "RSS", icon: RSSFeedLogo },
 ];
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 
@@ -45,7 +29,9 @@ const year = new Date().getFullYear();
 const t = useTranslation(lang);
 
 const currentLanguage: EntryTranslationReference = { slug: Astro.url.toString(), lang };
-const translations = propTranslations.concat(currentLanguage);
+const translations = propTranslations
+  .concat(currentLanguage)
+  .filter(({ lang: translationLang }) => translationLang !== ("x-default" as unknown as Language));
 ---
 
 <footer

@@ -73,7 +73,10 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
                   priority: 0.5,
                   links: pages.map(alternate => {
                     const [lang] = alternate.split("/").filter(Boolean);
-                    return { lang: lang || "es", url: new URL(alternate, site).toString() };
+                    return {
+                      lang: lang || "x-default",
+                      url: new URL(alternate, site).toString(),
+                    };
                   }) satisfies SitemapItem[],
                 } satisfies SitemapItem),
               pages
