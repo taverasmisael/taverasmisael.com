@@ -3,15 +3,16 @@ import type { AstroBuiltinAttributes } from "astro";
 interface Props {
   withContainer?: boolean;
   class?: string;
+  containerClass?: AstroBuiltinAttributes["class:list"];
   "class:list"?: AstroBuiltinAttributes["class:list"];
 }
-const { class: className, ["class:list"]: classList, withContainer } = Astro.props;
+const { class: className, ["class:list"]: classList, withContainer, containerClass } = Astro.props;
 ---
 
 <section class="relative left-[calc(-50vw_+_50%)] w-screen min-w-full px-8 py-12" class:list={[className, classList]}>
   {
     withContainer ? (
-      <div class="container mx-auto w-full">
+      <div class="container mx-auto" class:list={containerClass}>
         <slot />
       </div>
     ) : (

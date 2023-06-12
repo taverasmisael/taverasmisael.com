@@ -53,6 +53,9 @@ module.exports = {
         ".gradient-slate-slate": {
           "--tw-gradient-stops": `${theme("colors.slate.50")} 60%, ${theme("colors.slate.200")}`,
         },
+        ".gradient-blue-transparent": {
+          "--tw-gradient-stops": `${theme("colors.blue.200")} 50%, transparent 0%`,
+        }
       });
     }),
   ],
