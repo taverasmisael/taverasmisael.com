@@ -55,16 +55,13 @@ const t = useTranslation(lang);
     <div class="container mx-auto h-full min-h-screen">
       <div class="h-full min-h-screen w-full">
         <div class="h-full min-h-screen items-center gap-4 lg:grid lg:grid-cols-2">
-          <div class="hidden px-6 py-4 sm:px-8 lg:block lg:bg-transparent lg:py-12 xl:p-32 xl:pt-0">
-            <div class="prose grid h-full items-center dark:prose-invert xl:prose-lg">
-              <div class="container">
-                <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
-                <p class="m-0 text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>
-                <slot />
-              </div>
-            </div>
-          </div>
-          <FullWidthBlock withContainer containerClass="h-full" class="h-full items-center bg-blue-200 dark:bg-transparent lg:hidden">
+          <div class="hidden px-6 py-4 sm:px-8 lg:bg-transparent lg:py-12 xl:p-32 xl:pt-0"></div>
+          <FullWidthBlock
+            withContainer
+            containerClass="h-full"
+            class="h-full items-center bg-blue-200 dark:bg-transparent"
+            resetAt="lg"
+          >
             <div class="prose grid h-full items-center dark:prose-invert xl:prose-lg">
               <div class="container">
                 <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
