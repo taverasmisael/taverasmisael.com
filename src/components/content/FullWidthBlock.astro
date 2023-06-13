@@ -8,11 +8,11 @@ interface Props {
   resetAt?: "sm" | "md" | "lg" | "xl" | "2xl";
 }
 const { class: className, ["class:list"]: classList, withContainer, containerClass, resetAt } = Astro.props;
-const smClassReset = "sm:static sm:left-auto sm:w-auto sm:min-w-auto";
-const mdClassReset = "md:static md:left-auto md:w-auto md:min-w-auto";
-const lgClassReset = "lg:static lg:left-auto lg:w-auto lg:min-w-auto";
-const xlClassReset = "xl:static xl:left-auto xl:w-auto xl:min-w-auto";
-const xxlClassReset = "2xl:static 2xl:left-auto 2xl:w-auto 2xl:min-w-auto";
+const smClassReset = "sm:static sm:left-auto sm:w-full sm:min-w-fit";
+const mdClassReset = "md:static md:left-auto md:w-full md:min-w-fit";
+const lgClassReset = "lg:static lg:left-auto lg:w-full lg:min-w-fit";
+const xlClassReset = "xl:static xl:left-auto xl:w-full xl:min-w-fit";
+const xxlClassReset = "2xl:static 2xl:left-auto 2xl:w-full 2xl:min-w-fit";
 
 const resets = {
   [smClassReset]: resetAt === "sm",

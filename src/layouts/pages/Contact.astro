@@ -59,11 +59,11 @@ const t = useTranslation(lang);
           <FullWidthBlock
             withContainer
             containerClass="h-full"
-            class="h-full items-center bg-blue-200 dark:bg-transparent"
+            class="h-full items-center bg-blue-200 dark:bg-transparent lg:bg-transparent"
             resetAt="lg"
           >
             <div class="prose grid h-full items-center dark:prose-invert xl:prose-lg">
-              <div class="container">
+              <div>
                 <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
                 <p class="m-0 text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>
                 <slot />
