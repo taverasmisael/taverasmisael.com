@@ -69,7 +69,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
               page =>
                 ({
                   url: new URL(page, site).toString(),
-                  changefreq: EnumChangefreq.MONTHLY,
+                  changefreq: EnumChangefreq.WEEKLY,
                   priority: 0.5,
                   links: pages.map(alternate => {
                     const [lang] = alternate.split("/").filter(Boolean);
