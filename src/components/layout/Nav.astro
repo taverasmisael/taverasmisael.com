@@ -1,12 +1,6 @@
 ---
 import NavLink from "./NavLink.astro";
-import {
-  getLocalizedPage,
-  PAGE_NAMES,
-  type PageName,
-  useTranslation,
-  type Language,
-} from "@/utils/i18n";
+import { getLocalizedPage, PAGE_NAMES, type PageName, useTranslation, type Language } from "@/utils/i18n";
 
 interface Props {
   activePage: string;
@@ -33,7 +27,11 @@ const pages = validPages.map(name => ({
 }));
 ---
 
-<nav role="navigation" class="mx-auto flex max-w-md items-center justify-between gap-1 sm:gap-4" class:list={{ "p-2 pb-3": isMobile }}>
+<nav
+  role="navigation"
+  class="container mx-auto flex items-center justify-between gap-1 sm:gap-4"
+  class:list={{ "p-2 pb-3": isMobile }}
+>
   {
     pages.map(page => (
       <NavLink isMobile={isMobile} isActive={activePage.startsWith(page.path)} href={page.href}>

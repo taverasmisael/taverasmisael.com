@@ -15,30 +15,8 @@ const t = useTranslation(lang);
 <header id="header" class="top-0 w-full bg-white shadow-lg transition-transform dark:bg-slate-950/80">
   <div class="container mx-auto px-2 md:border-none md:px-6 lg:px-8">
     <div class="relative flex h-20 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
-        <label
-          for="mobile-menu-trigger"
-          class="inline-flex items-center justify-center rounded-md p-2 focus-within:ring-1 dark:hover:bg-gray-700"
-        >
-          <span class="sr-only" data-open-text={t("ui", "open_menu")} data-close-text={t("ui", "close_menu")}
-            >{t("ui", "open_menu")}</span
-          >
-          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            ></path>
-          </svg>
-          <input
-            type="checkbox"
-            class="absolute left-0 top-0 h-0 w-0 opacity-0"
-            id="mobile-menu-trigger"
-            name="mobile-menu-trigger"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-          />
-        </label>
-      </div>
-      <div class="grid flex-1 items-center justify-center md:grid-cols-6 md:gap-4 lg:grid-cols-4">
-        <div class="col-start-2 flex shrink-0 items-center md:col-span-2 md:col-start-1 lg:col-span-1">
+      <div class="grid flex-1 items-center md:grid-cols-6 md:gap-4 lg:grid-cols-4">
+        <div class="flex shrink-0 items-center md:col-span-2 md:col-start-1 lg:col-span-1">
           <a
             class="inline-block focus:outline-none focus:ring-1"
             href={getLocalizedPage(lang, "home")}
@@ -83,14 +61,3 @@ const t = useTranslation(lang);
     <div class="overflow-hidden"><Nav lang={lang} isMobile activePage={basePath} /></div>
   </div>
 </header>
-
-<script src="./utils/mobile-menu.ts"></script>
-<style>
-  .mobile-menu {
-    grid-template-rows: 0fr;
-  }
-
-  #header:has(#mobile-menu-trigger:checked) .mobile-menu {
-    grid-template-rows: 1fr;
-  }
-</style>
