@@ -72,10 +72,9 @@ const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         window.dataLayer.push(arguments);
-
-        gtag("js", new Date());
-        gtag("config", document.currentScript.dataset.gaId);
       }
+      gtag("js", new Date());
+      gtag("config", document.currentScript.dataset.gaId);
     </script>
   </head>
   <body
