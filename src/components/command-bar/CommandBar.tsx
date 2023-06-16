@@ -146,9 +146,12 @@ function getRelevantMatch(matches: { key: string; value: string }[]): string {
 }
 
 async function fetchSearchResults(query: string): Promise<CommandBarLinkItem[]> {
+  const gtag = window.gtag;
+  if (gtag) gtag("event", "search", { search_term: query });
   const response = await fetch(`/api/search?query=${query}`);
   if (!response.ok) throw new Error("Something went wrong");
   const data = (await response.json()) as SearchResponse;
+  if (gtag) gtag("event", "search_results", { items: data.items.length });
   return data.items.map(
     item =>
       ({

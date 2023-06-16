@@ -14,4 +14,5 @@ declare module "*.module.scss" {
 
 interface Window {
   dataLayer: unknown[];
+  gtag?: (...args: unknown[]) => void;
 }
