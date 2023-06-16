@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
   // We know these elements exist, so we can safely disable this rule
   const header = document.querySelector("header") as HTMLElement;
-  const menuButton = header.querySelector('button[aria-controls="mobile-menu"]') as HTMLElement;
   const mobileMenu = header.querySelector("#mobile-menu") as HTMLElement;
-  const menuIcon = menuButton.querySelector("svg") as SVGSVGElement;
-  const buttonText = menuButton.querySelector("span.sr-only") as HTMLElement;
+  const triggerContainer = header.querySelector('[for="mobile-menu-trigger"]') as HTMLLabelElement;
+  const menuButton = triggerContainer.querySelector("input") as HTMLInputElement;
+  const menuIcon = triggerContainer.querySelector("svg") as SVGSVGElement;
+  const buttonText = triggerContainer.querySelector("span.sr-only") as HTMLElement;
   const searchButton = header.querySelector("#search-button") as HTMLButtonElement;
   /* eslint-enable @typescript-eslint/non-nullable-type-assertion-style */
   const toggleMobileMenu = setMobileMenu({
-    button: menuButton,
+    trigger: menuButton,
     menu: mobileMenu,
     icon: menuIcon,
     text: buttonText,
@@ -22,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setMobileMenu({
-  button,
+  trigger,
   menu,
   icon,
   text,
 }: {
-  button: HTMLElement;
+  trigger: HTMLInputElement;
   menu: HTMLElement;
   icon: SVGSVGElement;
   text: HTMLElement;
@@ -35,15 +36,14 @@ function setMobileMenu({
   const openText = text.dataset.openText || "Abrir menú principal";
   const closeText = text.dataset.closeText || "Cerrar menú principal";
   return (isOpen?: boolean) => {
-    const expanded = isOpen ?? button.getAttribute("aria-expanded") === "true";
+    const expanded = isOpen ?? !trigger.checked;
     if (expanded) {
-      button.setAttribute("aria-expanded", "false");
-      menu.classList.remove("open");
+      trigger.setAttribute("aria-expanded", "false");
+      if (trigger.checked) trigger.checked = false;
       text.innerHTML = openText;
       icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />`;
     } else {
-      button.setAttribute("aria-expanded", "true");
-      menu.classList.add("open");
+      trigger.setAttribute("aria-expanded", "true");
       menu.querySelector("a")?.focus();
       text.innerHTML = closeText;
       icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`;
