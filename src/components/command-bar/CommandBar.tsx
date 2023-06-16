@@ -1,5 +1,6 @@
 import { commandBarState, hideCommandBar, showCommandBar } from "@/stores/command-bar.store";
 import { getEntryURL } from "@/utils/content/client";
+import { gTag } from "@/utils/analytics";
 import { useTranslation, type Language } from "@/utils/i18n";
 import { Dialog } from "@kobalte/core";
 import { debounce } from "@solid-primitives/scheduled";
@@ -146,30 +147,35 @@ function getRelevantMatch(matches: { key: string; value: string }[]): string {
 }
 
 async function fetchSearchResults(query: string): Promise<CommandBarLinkItem[]> {
-  const gtag = window.gtag;
-  if (gtag) gtag("event", "search", { search_term: query });
+  gTag("event", "search", { search_term: query });
   const response = await fetch(`/api/search?query=${query}`);
   if (!response.ok) throw new Error("Something went wrong");
   const data = (await response.json()) as SearchResponse;
-  if (gtag) gtag("event", "search_results", { items: data.items.length });
-  return data.items.map(
-    item =>
-      ({
-        id: item.id,
-        title: item.title,
-        href: item.matches.length
-          ? `${getEntryURL("blog", item.id)}#:~:text=${cleanMatch(item.matches[0].value)}`
-          : getEntryURL("blog", item.id),
-        description: getRelevantMatch(item.matches),
-        type: "link",
-      } satisfies CommandBarLinkItem)
-  );
+  gTag("event", "search_results", { items: data.items.length });
+  return data.items.map(item => {
+    console.log(item.matches);
+    const relevantMatch = getRelevantMatch(item.matches);
+    const link = getEntryURL("blog", item.id);
+    const result: CommandBarLinkItem = {
+      type: "link",
+      id: item.id,
+      title: item.title,
+      href: relevantMatch ? `${link}#:~:text=${matchToTextFragment(relevantMatch)}` : link,
+      description: relevantMatch,
+    };
+    return result;
+  });
 }
 
 // Remove ellipsis and highlight tags
-function cleanMatch(value: string): string {
-  return value
-    .replace(/<mark>|<\/mark>/g, "")
-    .replace(/…/g, "")
-    .trim();
+function matchToTextFragment(value: string) {
+  const cleanMatch = value.replace(/…/g, "").trim();
+  const words = cleanMatch.split(" ").filter(Boolean);
+
+  const matchIdx = words.findIndex(w => w.includes("<mark>"));
+  const start = encodeURIComponent(words[matchIdx - 1].replace(/<(\/)?mark>/g, ""));
+  const match = encodeURIComponent(words[matchIdx].replace(/<(\/)?mark>/g, ""));
+  const end = encodeURIComponent(words[matchIdx + 1].replace(/<(\/)?mark>/g, ""));
+
+  return `${start}-,${match},-${end}`;
 }
