@@ -1,4 +1,4 @@
-import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
 import { Select } from "@kobalte/core";
 import { useTranslation, type Language } from "@/utils/i18n";
 
@@ -45,10 +45,6 @@ export default function LanguageSelector(props: Props) {
       document.documentElement.classList.remove("dark");
     }
   };
-
-  createEffect(() => {
-    console.log(value());
-  });
 
   return (
     <>

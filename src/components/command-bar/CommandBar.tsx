@@ -1,19 +1,24 @@
-import { commandBarState, hideCommandBar, showCommandBar } from "@/stores/command-bar.store";
-import { getEntryURL } from "@/utils/content/client";
-import { gTag } from "@/utils/analytics";
-import { useTranslation, type Language } from "@/utils/i18n";
 import { Dialog } from "@kobalte/core";
 import { debounce } from "@solid-primitives/scheduled";
-import { Show, createResource, createSignal } from "solid-js";
+import { Show, createResource, createSignal, onCleanup, createEffect } from "solid-js";
+import { commandBarState, hideCommandBar, showCommandBar } from "@/stores/command-bar.store";
+import { getEntryURL } from "@/utils/content/client";
+import { useTranslation, type Language } from "@/utils/i18n";
 import SearchResults from "./SearchResults";
-import type { CommandBarLinkItem } from "./command-bar-item.type";
+import type { CommandBarItem, CommandBarLinkItem } from "./command-bar-item.type";
+import { createComboboxStore } from "@/stores/combobox";
+import { gTag } from "@/utils/analytics";
 
-// TODO: P1 - Implement keyboard navigation #5
 export default function CommandBar(props: { lang: Language }) {
   let inputRef: HTMLInputElement | undefined;
+  let contentRef: HTMLDivElement | undefined;
   const t = useTranslation(props.lang);
   const [command, setCommand] = createSignal<string>();
   const [results] = createResource(command, fetchSearchResults);
+
+  const comboboxStore = createComboboxStore<CommandBarItem>([]);
+
+  createEffect(() => comboboxStore.setItems(results() ?? []));
 
   const onCommandChange = debounce((e: Event) => {
     const target = e.target as HTMLInputElement;
@@ -28,18 +33,56 @@ export default function CommandBar(props: { lang: Language }) {
       setCommand(undefined);
     }
   };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    switch (e.key) {
+      case "Down":
+      case "ArrowDown":
+        e.preventDefault();
+        comboboxStore.selectNext();
+        break;
+      case "Up":
+      case "ArrowUp":
+        e.preventDefault();
+        comboboxStore.selectPrevious();
+        break;
+      case "Enter":
+        e.preventDefault();
+        handleSelection(comboboxStore.getSelectedItem());
+        break;
+    }
+  };
+
+  const handleSelection = (item: CommandBarItem | undefined) => {
+    if (!item) return;
+    if (item.type === "link") {
+      if (item.href.startsWith(location.pathname)) {
+        return location.reload();
+      }
+      const href = new URL(item.href, window.location.origin).toString();
+      gTag("event", "commandbar", "link", href);
+      window.location.href = href;
+    }
+  };
+
+  const onOpenAutoFocus = (e: Event) => {
+    e.preventDefault();
+    inputRef?.focus();
+
+    // This can't be onMount nor onOpen because the dialog is not yet in the DOM
+    if (contentRef) contentRef.addEventListener("keydown", handleKeyDown);
+    onCleanup(() => {
+      console.log("cleanup");
+      if (contentRef) contentRef.removeEventListener("keydown", handleKeyDown);
+    });
+  };
+
   return (
     <Dialog.Root open={commandBarState.isVisible} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay class="fixed inset-0 z-50 bg-gray-950/70 backdrop-blur-sm" />
         <div class="fixed inset-0 z-50">
-          <Dialog.Content
-            onOpenAutoFocus={e => {
-              e.preventDefault();
-              inputRef?.focus();
-            }}
-            class="contents"
-          >
+          <Dialog.Content ref={e => (contentRef = e)} onOpenAutoFocus={onOpenAutoFocus} class="contents">
             <Dialog.CloseButton />
             <div class="sr-only">
               <Dialog.Title>{t("ui", "search")}</Dialog.Title>
@@ -64,16 +107,18 @@ export default function CommandBar(props: { lang: Language }) {
                       ></path>
                     </svg>
                   </div>
-                  <label for="command-bar-input" class="sr-only">
-                    {t("ui", "search")}
-                  </label>
                   <input
                     autofocus
                     ref={r => (inputRef = r)}
+                    aria-label={t("ui", "search")}
                     id="command-bar-input"
                     name="command-bar-input"
                     class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-transparent dark:text-blue-50 dark:placeholder:text-gray-300 md:p-4"
                     placeholder={t("ui", "commandbar.placeholder.search")}
+                    role="combobox"
+                    aria-activeDescendant={comboboxStore.getSelectedItem()?.id}
+                    aria-controls="search-results"
+                    aria-autocomplete="list"
                     autocomplete="off"
                     autoCapitalize="none"
                     autocorrect="off"
@@ -84,6 +129,7 @@ export default function CommandBar(props: { lang: Language }) {
                 </div>
                 <Show when={command()}>
                   <SearchResults
+                    selected={comboboxStore.getSelectedItem}
                     isLoading={results.loading}
                     isError={!!results.error}
                     errorMessage={t("ui", "commandbar.error")}
@@ -152,13 +198,13 @@ async function fetchSearchResults(query: string): Promise<CommandBarLinkItem[]> 
   if (!response.ok) throw new Error("Something went wrong");
   const data = (await response.json()) as SearchResponse;
   gTag("event", "search_results", { items: data.items.length });
+
   return data.items.map(item => {
-    console.log(item.matches);
     const relevantMatch = getRelevantMatch(item.matches);
     const link = getEntryURL("blog", item.id);
     const result: CommandBarLinkItem = {
       type: "link",
-      id: item.id,
+      id: item.id.replaceAll("/", "-"),
       title: item.title,
       href: relevantMatch ? `${link}#:~:text=${matchToTextFragment(relevantMatch)}` : link,
       description: relevantMatch,
