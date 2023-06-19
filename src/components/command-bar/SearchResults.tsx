@@ -24,7 +24,7 @@ export default function SearchResults(props: SearchResultsProps) {
   });
 
   return (
-    <div ref={r => (containerRef = r)} class="max-h-72 overflow-auto p-2 md:py-4">
+    <div ref={r => (containerRef = r)} class="mt-2 max-h-72 overflow-auto md:mt-4">
       <Switch
         fallback={<p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.errorMessage}</p>}
       >
@@ -38,11 +38,7 @@ export default function SearchResults(props: SearchResultsProps) {
           <p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.emptyMessage}</p>
         </Match>
         <Match when={props.items.length}>
-          <ul
-            id="search-results"
-            role="listbox"
-            class="m-0 appearance-none divide-y divide-blue-50 dark:divide-slate-800/20"
-          >
+          <ul id="search-results" role="listbox" class="divide-y divide-blue-50 p-1 dark:divide-slate-800/20">
             <For each={props.items}>
               {item => (
                 <li
