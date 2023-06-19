@@ -23,9 +23,9 @@ export default function CommandBar(props: { lang: Language }) {
   const requestURL = createMemo(() => (command() ? `/api/search?query=${command()!}` : undefined));
 
   const [results, { abort }] = createFetch<CommandBarItem[]>(requestURL, { ...fetcher }, [
-    withMapper(mapSearchResponse),
-    withAbort(),
     withCatchAll(),
+    withAbort(),
+    withMapper(mapSearchResponse),
   ]);
 
   createEffect(() => gTag("event", "search", { search_term: command() }));
