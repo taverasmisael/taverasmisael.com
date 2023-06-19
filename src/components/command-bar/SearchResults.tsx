@@ -1,9 +1,10 @@
-import { For, Switch, Match } from "solid-js";
+import { For, Switch, Match, type Accessor, createEffect } from "solid-js";
 import type { CommandBarItem } from "./command-bar-item.type";
 import styles from "./CommandBarStyles.module.css";
 
 interface SearchResultsProps {
   items: CommandBarItem[];
+  selected: Accessor<CommandBarItem | undefined>;
   emptyMessage: string;
   isLoading: boolean;
   loadingMessage: string;
@@ -12,8 +13,18 @@ interface SearchResultsProps {
 }
 
 export default function SearchResults(props: SearchResultsProps) {
+  let containerRef: HTMLDivElement | undefined;
+
+  createEffect(() => {
+    if (containerRef) {
+      if (props.selected())
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we check for undefined above
+        containerRef.querySelector(`#${props.selected()!.id}`)?.scrollIntoView({ block: "nearest" });
+    }
+  });
+
   return (
-    <div class="mt-2 max-h-72 overflow-auto md:mt-4">
+    <div ref={r => (containerRef = r)} class="mt-2 max-h-72 overflow-auto md:mt-4">
       <Switch
         fallback={<p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.errorMessage}</p>}
       >
@@ -27,23 +38,33 @@ export default function SearchResults(props: SearchResultsProps) {
           <p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.emptyMessage}</p>
         </Match>
         <Match when={props.items.length}>
-          <ul class="m-0 appearance-none divide-y divide-blue-50 dark:divide-slate-800/20">
+          <ul id="search-results" role="listbox" class="divide-y divide-blue-50 p-1 dark:divide-slate-800/20">
             <For each={props.items}>
               {item => (
-                <li>
+                <li
+                  id={item.id}
+                  role="option"
+                  aria-selected={false} // We don't need to select, just highlight.
+                  class="group"
+                  aria-labelledby={`${item.id}-desc`}
+                >
                   {item.type === "link" ? (
                     <a
                       href={item.href}
-                      class="transition-color block rounded p-2 text-sm hover:bg-slate-100 hover:text-blue-700 focus:bg-slate-200 focus:text-blue-700 focus-visible:outline-none active:bg-slate-200 active:text-blue-700 dark:text-slate-100 dark:hover:bg-gray-900 dark:hover:text-blue-50
-                    dark:focus:bg-gray-900 dark:focus:text-blue-50 dark:active:bg-gray-900 dark:active:text-blue-50 md:p-4 md:text-lg
+                      class="transition-color aria-selected-visible:outline-none block rounded p-2 text-sm hover:bg-slate-100 hover:text-blue-700 active:bg-slate-200 active:text-blue-700 dark:text-slate-100 dark:hover:bg-gray-900 dark:hover:text-blue-50
+                    dark:active:bg-gray-900 dark:active:text-blue-50  md:p-4 md:text-lg
                     "
+                      classList={{
+                        "bg-slate-200 text-blue-700 dark:bg-gray-900 dark:text-blue-50":
+                          props.selected()?.id === item.id,
+                      }}
                     >
-                      <span class="flex items-center justify-between">
+                      <div id={`${item.id}-desc`} class="flex items-center justify-between">
                         <span class="font-display">{item.title}</span>
                         {item.icon}
-                      </span>
+                      </div>
                       {item.description && (
-                        <span
+                        <div
                           class={`mt-2 inline-block max-w-full truncate text-xs text-slate-400 ${styles.description}`}
                           innerHTML={item.description}
                         />

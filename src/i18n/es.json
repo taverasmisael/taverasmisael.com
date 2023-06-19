@@ -47,7 +47,8 @@
     "theme.auto": "Sistema",
     "theme.select": "Cambiar tema",
     "go_top": "Ir al principio",
-    "written_by": "Escrito por"
+    "written_by": "Escrito por",
+    "cancel": "Cancelar"
   },
   "messages": {
     "page_not_found": "Página no encontrada",
