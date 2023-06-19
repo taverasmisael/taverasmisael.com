@@ -35,12 +35,11 @@ const t = useTranslation(lang);
         <div class="hidden md:col-span-3 md:block lg:col-span-2">
           <Nav lang={lang} activePage={basePath} />
         </div>
-        <div class="insert-0 absolute right-1 flex items-center justify-self-end pr-2 md:relative md:right-0">
+        <div class="insert-0 absolute right-1 flex items-center justify-self-end pr-2 md:relative md:right-0 lg:w-full">
           <button
             id="search-trigger"
-            class="rounded-md p-2 hover:bg-blue-100/40 focus:outline-none focus:ring-1 dark:hover:bg-gray-700/40 dark:hover:text-white"
+            class="bg-slate ml-auto items-center gap-4 rounded-md p-2 hover:bg-blue-100/40 focus:outline-none focus:ring-1 dark:hover:bg-gray-700/60 dark:hover:text-white lg:grid lg:w-3/4 lg:grid-cols-[1.5rem,_repeat(2,_minmax(0,_1fr))] lg:bg-slate-50 lg:px-4 lg:dark:bg-gray-700/40"
           >
-            <span class="sr-only">{t("ui", "search")}</span>
             <svg
               class="h-6 w-6"
               fill="none"
@@ -52,6 +51,8 @@ const t = useTranslation(lang);
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               ></path>
             </svg>
+            <span class="sr-only lg:not-sr-only">{t("ui", "search")}...</span>
+            <kbd class="hidden justify-self-end text-xs font-semibold lg:inline-block">/</kbd>
           </button>
         </div>
       </div>

@@ -28,9 +28,11 @@ export default function CommandBar(props: { lang: Language }) {
   const handleOpenChange = (v: boolean) => {
     if (v) {
       showCommandBar();
+      gTag("event", "commandbar", "open");
     } else {
       hideCommandBar();
       setCommand(undefined);
+      gTag("event", "commandbar", "close");
     }
   };
 
