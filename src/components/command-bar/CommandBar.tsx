@@ -34,7 +34,7 @@ export default function CommandBar(props: { lang: Language }) {
 
   createEffect(() => comboboxStore.setItems(results() ?? []));
 
-  const setCommandDebounced = debounce((v?: string) => setCommand(v), 1000);
+  const setCommandDebounced = debounce((v?: string) => setCommand(v), 500);
 
   const onCommandChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
