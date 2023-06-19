@@ -31,7 +31,7 @@ const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
 ---
 
 <!DOCTYPE html>
-<html lang={lang} class:list={{ "h-screen": fullHeight }} class="overflow-x-hidden scroll-smooth">
+<html lang={lang} class:list={{ "h-screen": fullHeight }} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,7 +78,7 @@ const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
     </script>
   </head>
   <body
-    class="bg-slate-50 text-slate-900 selection:bg-slate-400 selection:text-slate-950 dark:bg-gray-950 dark:text-slate-100"
+    class="overflow-x-hidden bg-slate-50 text-slate-900 selection:bg-slate-400 selection:text-slate-950 dark:bg-gray-950 dark:text-slate-100"
     class:list={[className, classList]}
   >
     <slot />
