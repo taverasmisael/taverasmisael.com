@@ -116,18 +116,19 @@ export default function CommandBar(props: { lang: Language }) {
                     autofocus
                     ref={r => (inputRef = r)}
                     aria-label={t("ui", "search")}
+                    placeholder={t("ui", "commandbar.placeholder.search")}
+                    aria-activeDescendant={comboboxStore.getSelectedItem()?.id}
+                    enterkeyhint="go"
+                    spellcheck={false}
                     id="command-bar-input"
                     name="command-bar-input"
                     class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-transparent dark:text-blue-50 dark:placeholder:text-gray-300 md:p-4"
-                    placeholder={t("ui", "commandbar.placeholder.search")}
                     role="combobox"
-                    aria-activeDescendant={comboboxStore.getSelectedItem()?.id}
                     aria-controls="search-results"
                     aria-autocomplete="list"
                     autocomplete="off"
                     autoCapitalize="none"
                     autocorrect="off"
-                    spellcheck={false}
                     type="text"
                     onInput={onCommandChange}
                   />
