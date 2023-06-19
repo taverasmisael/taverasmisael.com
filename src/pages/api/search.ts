@@ -22,33 +22,36 @@ const validKeys = ["body", "excerpt", "title"];
 export async function get({ request }: { request: Request }) {
   const requestURL = new URL(request.url);
   const query = requestURL.searchParams.get("query");
-  const lang = getLangFromURL(requestURL);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- We checked on the ternary
+  const lang = getLangFromURL(request.headers.get("referer") ? new URL(request.headers.get("referer")!) : requestURL);
   if (!query) return new Response(JSON.stringify({ items: [] }), { status: 400, statusText: "No query provided" });
 
   const index = algoliaclient.initIndex(ALGOLIA_INDEX_NAME);
-
+  console.log(lang);
   try {
     const { hits } = await index.search<SearchHit>(query, {
-      facetFilters: [`lang:${lang}`],
+      facetFilters: [[`lang:${lang}`]],
       attributesToRetrieve: ["title", "body", "excerpt"],
-      attributesToSnippet: ["*:20"],
+      attributesToSnippet: ["*:10"],
       highlightPreTag: "<mark>",
       highlightPostTag: "</mark>",
     });
 
-    const items = hits.map(hit => ({
-      id: hit.objectID,
-      title: hit.title,
-      matches: hit._snippetResult
-        ? Object.entries(hit._snippetResult).reduce<SearchMatch[]>((prev, [k, v]) => {
-            if (v.matchLevel === "none") return prev;
-            if (!validKeys.includes(k)) return prev;
-            return [...prev, { key: k, value: v.value }];
-          }, [])
-        : [],
-    }));
+    const items = hits
+      .filter(h => h._highlightResult && Object.values(h._highlightResult).some(v => v.matchLevel !== "none"))
+      .map(hit => ({
+        id: hit.objectID,
+        title: hit.title,
+        matches: hit._snippetResult
+          ? Object.entries(hit._snippetResult).reduce<SearchMatch[]>((prev, [k, v]) => {
+              if (v.matchLevel === "none") return prev;
+              if (!validKeys.includes(k)) return prev;
+              return [...prev, { key: k, value: v.value }];
+            }, [])
+          : [],
+      }));
 
-    return new Response(JSON.stringify({ items }), {
+    return new Response(JSON.stringify({ items, hits }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

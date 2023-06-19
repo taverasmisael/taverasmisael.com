@@ -56,12 +56,16 @@ export default function CommandBar(props: { lang: Language }) {
   const handleSelection = (item: CommandBarItem | undefined) => {
     if (!item) return;
     if (item.type === "link") {
-      if (item.href.startsWith(location.pathname)) {
-        return location.reload();
+      const href = new URL(item.href, window.location.origin);
+
+      window.location.href = href.toString();
+      if (href.pathname === window.location.pathname) {
+        hideCommandBar();
+        setCommand(undefined);
+        gTag("event", "commandbar", "refresh", href);
+      } else {
+        gTag("event", "commandbar", "link", href);
       }
-      const href = new URL(item.href, window.location.origin).toString();
-      gTag("event", "commandbar", "link", href);
-      window.location.href = href;
     }
   };
 
@@ -72,7 +76,6 @@ export default function CommandBar(props: { lang: Language }) {
     // This can't be onMount nor onOpen because the dialog is not yet in the DOM
     if (contentRef) contentRef.addEventListener("keydown", handleKeyDown);
     onCleanup(() => {
-      console.log("cleanup");
       if (contentRef) contentRef.removeEventListener("keydown", handleKeyDown);
     });
   };
@@ -219,9 +222,11 @@ function matchToTextFragment(value: string) {
   const words = cleanMatch.split(" ").filter(Boolean);
 
   const matchIdx = words.findIndex(w => w.includes("<mark>"));
-  const start = encodeURIComponent(words[matchIdx - 1].replace(/<(\/)?mark>/g, ""));
+  const startIdx = Math.max(0, matchIdx - 1);
+  const endIdx = Math.min(words.length - 1, matchIdx + 1);
+  const start = encodeURIComponent(words[startIdx].replace(/<(\/)?mark>/g, ""));
   const match = encodeURIComponent(words[matchIdx].replace(/<(\/)?mark>/g, ""));
-  const end = encodeURIComponent(words[matchIdx + 1].replace(/<(\/)?mark>/g, ""));
+  const end = encodeURIComponent(words[endIdx].replace(/<(\/)?mark>/g, ""));
 
   return `${start}-,${match},-${end}`;
 }
