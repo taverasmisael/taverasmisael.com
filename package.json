@@ -33,6 +33,7 @@
     "@fontsource-variable/inter": "^5.0.2",
     "@fontsource-variable/red-hat-display": "^5.0.3",
     "@kobalte/core": "^0.9.6",
+    "@solid-primitives/fetch": "^2.4.6",
     "@solid-primitives/scheduled": "^1.3.2",
     "algoliasearch": "^4.17.1",
     "astro": "^2.6.1",
