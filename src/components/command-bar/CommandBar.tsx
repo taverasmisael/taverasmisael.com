@@ -1,6 +1,7 @@
 import { Dialog } from "@kobalte/core";
 import { debounce } from "@solid-primitives/scheduled";
-import { Show, createResource, createSignal, onCleanup, createEffect } from "solid-js";
+import { createFetch, withAbort, withCatchAll, fetchRequest } from "@solid-primitives/fetch";
+import { Show, createSignal, onCleanup, createEffect, createMemo } from "solid-js";
 import { commandBarState, hideCommandBar, showCommandBar } from "@/stores/command-bar.store";
 import { getEntryURL } from "@/utils/content/client";
 import { useTranslation, type Language } from "@/utils/i18n";
@@ -8,13 +9,26 @@ import SearchResults from "./SearchResults";
 import type { CommandBarItem, CommandBarLinkItem } from "./command-bar-item.type";
 import { createComboboxStore } from "@/stores/combobox";
 import { gTag } from "@/utils/analytics";
+import { withMapper } from "./withMapper";
+
+const fetcher = fetchRequest();
 
 export default function CommandBar(props: { lang: Language }) {
   let inputRef: HTMLInputElement | undefined;
   let contentRef: HTMLDivElement | undefined;
   const t = useTranslation(props.lang);
   const [command, setCommand] = createSignal<string>();
-  const [results] = createResource(command, fetchSearchResults);
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we check for undefined in the ternary
+  const requestURL = createMemo(() => (command() ? `/api/search?query=${command()!}` : undefined));
+
+  const [results, { abort }] = createFetch<CommandBarItem[]>(requestURL, { ...fetcher }, [
+    withMapper(mapSearchResponse),
+    withAbort(),
+    withCatchAll(),
+  ]);
+
+  createEffect(() => gTag("event", "search", { search_term: command() }));
 
   const comboboxStore = createComboboxStore<CommandBarItem>([]);
 
@@ -32,6 +46,7 @@ export default function CommandBar(props: { lang: Language }) {
       showCommandBar();
       gTag("event", "commandbar", "open");
     } else {
+      if (abort) abort();
       hideCommandBar();
       setCommandDebounced();
       gTag("event", "commandbar", "close");
@@ -202,14 +217,9 @@ function getRelevantMatch(matches: { key: string; value: string }[]): string {
   })[0].value;
 }
 
-async function fetchSearchResults(query: string): Promise<CommandBarLinkItem[]> {
-  gTag("event", "search", { search_term: query });
-  const response = await fetch(`/api/search?query=${query}`);
-  if (!response.ok) throw new Error("Something went wrong");
-  const data = (await response.json()) as SearchResponse;
-  gTag("event", "search_results", { items: data.items.length });
-
-  return data.items.map(item => {
+function mapSearchResponse(results: SearchResponse): CommandBarLinkItem[] {
+  // I'm strongly considering moving this to the server
+  return results.items.map(item => {
     const relevantMatch = getRelevantMatch(item.matches);
     const link = getEntryURL("blog", item.id);
     const result: CommandBarLinkItem = {
