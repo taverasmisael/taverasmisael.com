@@ -20,10 +20,12 @@ export default function CommandBar(props: { lang: Language }) {
 
   createEffect(() => comboboxStore.setItems(results() ?? []));
 
-  const onCommandChange = debounce((e: Event) => {
+  const setCommandDebounced = debounce((v?: string) => setCommand(v), 1000);
+
+  const onCommandChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    setCommand(target.value.length >= 3 ? target.value : undefined);
-  }, 1000);
+    setCommandDebounced(target.value.length >= 3 ? target.value : undefined);
+  };
 
   const handleOpenChange = (v: boolean) => {
     if (v) {
@@ -31,7 +33,7 @@ export default function CommandBar(props: { lang: Language }) {
       gTag("event", "commandbar", "open");
     } else {
       hideCommandBar();
-      setCommand(undefined);
+      setCommandDebounced();
       gTag("event", "commandbar", "close");
     }
   };
@@ -88,13 +90,12 @@ export default function CommandBar(props: { lang: Language }) {
         <Dialog.Overlay class="fixed inset-0 z-50 bg-gray-950/70 backdrop-blur-sm" />
         <div class="fixed inset-0 z-50">
           <Dialog.Content ref={e => (contentRef = e)} onOpenAutoFocus={onOpenAutoFocus} class="contents">
-            <Dialog.CloseButton />
             <div class="sr-only">
               <Dialog.Title>{t("ui", "search")}</Dialog.Title>
               <Dialog.Description>{t("ui", "commandbar.placeholder.search")}</Dialog.Description>
             </div>
-            <div class="p-4">
-              <div class="container mx-auto h-fit w-full max-w-4xl translate-y-32 rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-gray-900 dark:bg-gray-950 md:p-4">
+            <div class="p-4 md:translate-y-32">
+              <div class="container mx-auto h-fit w-full max-w-4xl rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-gray-900 dark:bg-gray-950 md:p-4">
                 <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-100 focus-within:ring-2 dark:bg-gray-900 dark:ring-gray-800">
                   <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 dark:text-blue-50 md:pl-4">
                     <svg
@@ -132,6 +133,9 @@ export default function CommandBar(props: { lang: Language }) {
                     type="text"
                     onInput={onCommandChange}
                   />
+                  <Dialog.CloseButton class="inline-block bg-blue-100 p-2 md:hidden">
+                    {t("ui", "cancel")}
+                  </Dialog.CloseButton>
                 </div>
                 <Show when={command()}>
                   <SearchResults
@@ -158,8 +162,8 @@ export default function CommandBar(props: { lang: Language }) {
               </div>
             </div>
             <Dialog.CloseButton
-              class="fixed right-8 top-6 rounded-full bg-slate-950/30 p-2 text-slate-50"
-              title={t("ui", "close")}
+              class="fixed right-8 top-6 hidden rounded-full bg-slate-950/30 p-2 text-slate-50 md:block"
+              aria-label={t("ui", "close")}
             >
               <svg
                 class="w-6"
