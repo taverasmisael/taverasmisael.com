@@ -9,7 +9,6 @@ import node from "@astrojs/node";
 import { sitemap } from "./integrations/sitemap";
 import { algolia } from "./integrations/algolia";
 import nightOwlTheme from "./integrations/night-owl.theme.json";
-import partytown from "@astrojs/partytown";
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://localhost:3000/";
 
@@ -43,7 +42,6 @@ export default defineConfig({
     solidjs(),
     sitemap({ name: "sitemap.xml", ignoredPaths: [`/${algoliaOutputName}`] }),
     ...algoliaIntegration(env.LOCAL_BUILD),
-    partytown({ config: { forward: ["dataLayer.push"] } }),
   ],
   markdown: {
     // TODO: P3 - Add light/dark theme support (css variables) #10
