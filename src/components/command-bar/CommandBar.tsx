@@ -148,7 +148,7 @@ export default function CommandBar(props: { lang: Language }) {
                     type="text"
                     onInput={onCommandChange}
                   />
-                  <Dialog.CloseButton class="inline-block bg-blue-100 p-2 md:hidden">
+                  <Dialog.CloseButton class="inline-block bg-blue-100 p-2 px-3 font-light dark:bg-gray-800 md:hidden">
                     {t("ui", "cancel")}
                   </Dialog.CloseButton>
                 </div>
