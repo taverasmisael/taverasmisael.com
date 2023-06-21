@@ -1,9 +1,7 @@
-const matcher = "/analytics";
 export const config = {
   // Only run the middleware on the admin route
-  matcher,
+  matcher: "/analytics",
 };
-
 export default async function middleware(request) {
   const { search, pathname } = new URL(request.url);
   // You can retrieve IP location or cookies here.
