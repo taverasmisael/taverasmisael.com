@@ -24,14 +24,6 @@ export default function LanguageSelector(props: Props) {
     });
   });
 
-  const changeAutoTheme = (e: MediaQueryListEvent) => {
-    if (e.matches) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
   const setTheme = (value: ThemeOption) => {
     const theme = themeOptionToString(value);
     localStorage.setItem("theme", theme);
@@ -91,3 +83,6 @@ const toThemeOption = (theme: string): ThemeOption =>
   theme === "light" || theme === "dark" || theme === "auto" ? `theme.${theme}` : "theme.auto";
 
 const themeOptionToString = (theme: ThemeOption): string => theme.split(".")[1];
+
+const changeAutoTheme = (e: MediaQueryListEvent) =>
+  e.matches ? document.documentElement.classList.add("dark") : document.documentElement.classList.remove("dark");
