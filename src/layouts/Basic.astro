@@ -68,8 +68,8 @@ const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
       }
     </script>
     <!-- Google tag (gtag.js) -->
-    {G_TAG_ID && <script async src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`} />}
-    <script data-ga-id={G_TAG_ID}>
+    {G_TAG_ID && <script type="text/partytown" async src={`/analytics.js?id=${G_TAG_ID}`} />}
+    <script type="text/partytown" data-ga-id={G_TAG_ID}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         window.dataLayer.push(arguments);
