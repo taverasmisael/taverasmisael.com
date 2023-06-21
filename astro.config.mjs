@@ -8,7 +8,7 @@ import vercel from "@astrojs/vercel/serverless";
 import node from "@astrojs/node";
 import { sitemap } from "./integrations/sitemap";
 import { algolia } from "./integrations/algolia";
-import nightOwlTheme from "./integrations/night-owl.theme.json";
+
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://localhost:3000/";
 
@@ -45,7 +45,7 @@ export default defineConfig({
   ],
   markdown: {
     // TODO: P3 - Add light/dark theme support (css variables) #10
-    shikiConfig: { theme: nightOwlTheme },
+    shikiConfig: { theme: 'css-variables' },
   },
   output: "server",
   vite: {

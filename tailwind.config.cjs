@@ -1,5 +1,6 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -24,12 +25,9 @@ module.exports = {
               marginLeft: theme("margin.auto"),
               marginRight: theme("margin.auto"),
             },
-            pre: {
-              backgroundColor: "var(--tw-prose-pre-bg)!important",
-            },
             "pre code": {
               // FiraCode looks better light
-              fontWeight: "300 !important",
+              fontWeight: "300",
             },
             "h1, h2, h3, h4, h5, h6": {
               fontFamily: theme("fontFamily.display").join(","),
@@ -55,7 +53,7 @@ module.exports = {
         },
         ".gradient-blue-transparent": {
           "--tw-gradient-stops": `${theme("colors.blue.200")} 50%, transparent 0%`,
-        }
+        },
       });
     }),
   ],

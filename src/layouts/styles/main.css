@@ -1,0 +1,55 @@
+/*
+  DO NOT USE THIS FILE UNLESS IS ABSOLUTELY NECESSARY
+  This file is used to override the default styles of the components when they are
+  too hard to override using tailwind classes. This file should be used as a last
+  resort.
+
+  If you are using this file, please add a comment explaining why you are using it
+  and what you are trying to achieve.
+
+  Don't forget to import it on the `./Basic` layout.
+*/
+
+:root {
+  --astro-code-color-text: #111827;
+  --astro-code-color-background: #fff;
+  --astro-code-token-constant: #000;
+  --astro-code-token-string: #1f2937;
+  --astro-code-token-comment: #64748b;
+  --astro-code-token-keyword: #0f172a;
+  --astro-code-token-parameter: #111827;
+  --astro-code-token-function: #002bff;
+  --astro-code-token-string-expression: #172554;
+  --astro-code-token-punctuation: #111827;
+  --astro-code-token-link: #3b82f6;
+}
+
+:root:is(.dark) {
+  --astro-code-color-text: #e5e7eb;
+  --astro-code-color-background: #111827;
+  --astro-code-token-constant: #fff;
+  --astro-code-token-string: #1f2937;
+  --astro-code-token-comment: #90acc8;
+  --astro-code-token-keyword: #e2e8f0;
+  --astro-code-token-parameter: #e5e7eb;
+  --astro-code-token-function: #60a5fa;
+  --astro-code-token-string-expression: #bfdbfe;
+  --astro-code-token-punctuation: #e5e7eb;
+  --astro-code-token-link: #3b82f6;
+}
+[style*="color:var(--astro-code-token-function)"],
+[style*="color:var(--astro-code-token-comment)"] {
+  font-style: italic;
+}
+
+[style*="color:var(--astro-code-token-keyword)"] {
+  font-weight: 600;
+}
+
+.astro-code {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+}
+:is(.dark) .astro-code {
+  /* box-shadow: 0 1px 3px 0 #020617, 0 1px 2px -1px #020617; */
+  box-shadow: 0 0 0 2px rgb(100 116 139 / 30%)
+}
