@@ -1,6 +1,6 @@
 export const config = {
   // Only run the middleware on the admin route
-  matcher: "/analytics",
+  matcher: "/analytics.js",
 };
 export default async function middleware(request) {
   const { search, pathname } = new URL(request.url);
