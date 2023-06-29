@@ -28,7 +28,7 @@ const title = `${propsTitle} — Misael Taveras`;
 const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
 const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
 const { origin } = Astro.url;
-const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
+const { VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
 ---
 
 <!DOCTYPE html>
@@ -67,16 +67,6 @@ const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
         document.documentElement.classList.remove("dark");
       }
     </script>
-    <!-- Google tag (gtag.js) -->
-    {G_TAG_ID && <script type="text/partytown" async src={`/analytics.js?id=${G_TAG_ID}`} />}
-    <script type="text/partytown" data-ga-id={G_TAG_ID}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", document.currentScript.dataset.gaId);
-    </script>
   </head>
   <body
     class="overflow-x-hidden bg-slate-50 text-slate-900 selection:bg-slate-400 selection:text-slate-950 dark:bg-gray-950 dark:text-slate-100"
@@ -85,6 +75,7 @@ const { G_TAG_ID, VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
     <slot />
     <Footer lang={lang} translations={translations} />
     <CommandBar lang={lang} client:idle />
+    <slot name="post-footer" />
     <script src="./keyboard-shortcuts.ts"></script>
     <script is:inline>
       navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
