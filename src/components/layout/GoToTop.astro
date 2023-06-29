@@ -24,6 +24,10 @@ const label = t("ui", "go_top");
 </a>
 <script>
   const goTotop = document.getElementById("gtt") as HTMLLinkElement;
+  goTotop.addEventListener("click", e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
   if (window.scrollY < window.innerHeight) goTotop.classList.add("scale-0");
   window.addEventListener("scroll", () => {
     return window.scrollY > window.innerHeight ? goTotop.classList.remove("scale-0") : goTotop.classList.add("scale-0");
