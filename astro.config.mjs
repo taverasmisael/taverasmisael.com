@@ -6,7 +6,6 @@ import prefetch from "@astrojs/prefetch";
 import solidjs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
 import node from "@astrojs/node";
-import partytown from "@astrojs/partytown";
 import { sitemap } from "./integrations/sitemap";
 import { algolia } from "./integrations/algolia";
 
@@ -43,7 +42,6 @@ export default defineConfig({
     solidjs(),
     sitemap({ name: "sitemap.xml", ignoredPaths: [`/${algoliaOutputName}`] }),
     ...algoliaIntegration(env.LOCAL_BUILD),
-    partytown({ config: { forward: ["dataLayer.push"] } }),
   ],
   markdown: {
     // TODO: P3 - Add light/dark theme support (css variables) #10
