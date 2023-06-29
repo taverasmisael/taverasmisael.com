@@ -39,7 +39,7 @@ export default function LanguageSelector(props: Props) {
   return (
     <label
       for="theme-selector"
-      class="relative rounded-md bg-white shadow ring-1 ring-blue-50 focus-within:outline-none focus-within:ring disabled:opacity-50 aria-expanded:ring-2 dark:bg-gray-950 dark:ring-gray-900"
+      class="relative rounded-md bg-white shadow ring-1 ring-blue-50 focus-within:outline-none focus-within:ring dark:bg-gray-950 dark:ring-gray-900"
     >
       <span class="sr-only">{t("ui", "theme.select")}</span>
       <svg
@@ -73,7 +73,7 @@ export default function LanguageSelector(props: Props) {
         name="theme-selector"
         id="theme-selector"
         onChange={setTheme}
-        class="w-full  appearance-none bg-transparent px-4 py-2 pl-10 focus:outline-none"
+        class="w-full appearance-none bg-transparent px-4 py-2 pl-10 focus:outline-none disabled:opacity-50 aria-expanded:ring-2"
       >
         <For each={options}>
           {option => (
