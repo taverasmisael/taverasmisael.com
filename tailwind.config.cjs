@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       animation: { wiggle: "wiggle 2500ms ease-in-out infinite" },
       fontFamily: {
-        sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
-        display: ['"Red Hat Display"', ...defaultTheme.fontFamily.sans],
-        mono: ['"Fira Code"', ...defaultTheme.fontFamily.mono],
+        sans: ['"Inter Variable"', ...defaultTheme.fontFamily.sans],
+        display: ['"Red Hat Display Variable"', ...defaultTheme.fontFamily.sans],
+        mono: ['"Fira Code Variable"', ...defaultTheme.fontFamily.mono],
       },
       keyframes: { wiggle: { "0%, 100%": { transform: "rotate(-6deg)" }, "50%": { transform: "rotate(6deg)" } } },
       typography: theme => ({
