@@ -19,15 +19,15 @@ export default function LanguageSelector(props: Props) {
 
   return (
     <label
-      for="theme-selector"
+      for="lang-selector"
       class="relative rounded-md bg-white shadow ring-1 ring-blue-50 focus-within:outline-none focus-within:ring dark:bg-gray-950 dark:ring-gray-900"
     >
       <span class="sr-only">
         {shouldDisable() ? t("ui", "translation.not_available") : t("ui", "translation.select")}
       </span>
       <select
-        name="theme-selector"
-        id="theme-selector"
+        name="lang-selector"
+        id="lang-selector"
         onChange={setValue}
         title={shouldDisable() ? t("ui", "translation.not_available") : t("ui", "translation.select")}
         disabled={shouldDisable()}
