@@ -15,7 +15,7 @@ const envSchema = publicEnvSchema.merge(
     ALGOLIA_API_KEY: z.string().nonempty(),
     ALGOLIA_INDEX_NAME: z.string().nonempty(),
     VERCEL_GIT_COMMIT_SHA: z.string().optional().default("DEVMODE"),
-  })
+  }),
 );
 
 export type Env = z.infer<typeof envSchema>;

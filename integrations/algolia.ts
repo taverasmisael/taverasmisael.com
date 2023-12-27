@@ -16,7 +16,7 @@ const algoliaItemSchema = z.array(
   z.object({
     objectID: z.string().nonempty(),
     title: z.string().nonempty(),
-  })
+  }),
 );
 
 type AlgoliaIntegrationSettings = z.infer<typeof integrationSettingsSchema>;
@@ -40,7 +40,7 @@ export function algolia(settings: AlgoliaIntegrationSettings): AstroIntegration 
             logger.error(
               `Invalid settings. One or more config keys is missing or invalid. Check: ${Object.keys(e.format())
                 .filter(k => k !== "_errors")
-                .toLocaleString()}`
+                .toLocaleString()}`,
             );
           }
         }

@@ -25,7 +25,7 @@ const ignoreStatusPages = (page: string) => /\/[0-9]{3}\/?$/.test(page);
 const ignoreAPI = (page: string) => page.startsWith("/api");
 const ignoreRobots = (page: string) => page === "/robots.txt";
 const sitemapFilters = complement(
-  anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder, ignoreStatusPages, ignoreAPI, ignoreRobots])
+  anyPass([ignoreRSS, ignoreSitemapIndex, ignoreImageFolder, ignoreStatusPages, ignoreAPI, ignoreRobots]),
 );
 
 export const INTEGRATION_NAME = "@taverasmisael/sitemaps";
@@ -52,7 +52,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
             ...acc,
             ...(r.pathname && sitemapFilters(r.pathname) && !ignoredPaths.includes(r.pathname) ? [r.pathname] : []),
           ],
-          []
+          [],
         );
         if (routes.length) {
           logger.info(`Found ${routes.length} route(s) to generate sitemap`);
@@ -61,7 +61,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
               const [, slug] = pathname.split("/").filter(Boolean);
               return slug;
             },
-            [...routes, ...customPaths]
+            [...routes, ...customPaths],
           );
 
           const items: Record<string, SitemapItem[]> = map(pages => {
@@ -78,8 +78,8 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
                       url: new URL(alternate, site).toString(),
                     };
                   }) satisfies SitemapItem[],
-                } satisfies SitemapItem),
-              pages
+                }) satisfies SitemapItem,
+              pages,
             );
           }, grouppedRoutes);
 

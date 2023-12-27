@@ -17,12 +17,12 @@
     "format:save": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format:fix": "pnpm format:save && npm run lint:fix"
+    "format:fix": "pnpm format:save && pnpm run lint:fix"
   },
   "dependencies": {
+    "@astrojs/check": "^0.3.4",
     "@astrojs/mdx": "^2.0.2",
     "@astrojs/node": "^7.0.2",
-    "@astrojs/prefetch": "^0.4.1",
     "@astrojs/rss": "^4.0.1",
     "@astrojs/solid-js": "^3.0.2",
     "@astrojs/tailwind": "^5.0.4",

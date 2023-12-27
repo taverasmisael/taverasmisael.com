@@ -12,8 +12,8 @@ export const authorCollection = defineCollection({
     bio: z.object(
       LANGUAGES.reduce(
         (acc, lang) => ({ ...acc, [lang]: lang !== DEFAULT_LOCALE ? z.string().optional() : z.string() }),
-        {}
-      )
+        {},
+      ),
     ),
     link: z.string().url(),
   }),

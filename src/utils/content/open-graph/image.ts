@@ -59,7 +59,7 @@ export const generateOGImage = async ({
       title,
       width: `${width}px`,
       writtenTag,
-    })
+    }),
   );
 
   // This intermediate step is necessary for debugging purposes
