@@ -7,10 +7,10 @@ export const testimonialCollection = defineCollection({
   type: "data",
   schema: ({ image }) =>
     z.object({
-      name: z.string().nonempty(),
-      title: z.string().nonempty(),
+      name: z.string().min(1),
+      title: z.string().min(1),
       link: z.string().url(),
       image: image(),
-      quote: z.string().nonempty(),
+      quote: z.string().min(1),
     }),
 });

@@ -7,15 +7,15 @@ import { Logger } from "./utils/logger";
 
 const integrationSettingsSchema = z.object({
   apiKey: z.string().min(32),
-  appId: z.string().nonempty(),
-  name: z.string().nonempty(),
-  indexName: z.string().nonempty(),
+  appId: z.string().min(1),
+  name: z.string().min(1),
+  indexName: z.string().min(1),
 });
 
 const algoliaItemSchema = z.array(
   z.object({
-    objectID: z.string().nonempty(),
-    title: z.string().nonempty(),
+    objectID: z.string().min(1),
+    title: z.string().min(1),
   }),
 );
 
