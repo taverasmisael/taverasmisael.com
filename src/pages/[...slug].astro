@@ -16,8 +16,8 @@ if (!collectionName || collectionName !== "blog") {
   return Astro.redirect(`/404?from=${slug}`);
 }
 const postFound = await getCollection(collectionName, ({ slug }) => slug.includes(name));
-
-return postFound.length
-  ? Astro.redirect(getEntryURL(collectionName, postFound[0].slug), 301 /* Moved Permanently */)
-  : Astro.redirect(`/404?from=${slug}`);
+const knownPostURL = postFound.length ? getEntryURL(collectionName, postFound[0].slug) : null;
+// KI: To supress `astro:check` warning -- https://github.com/withastro/language-tools/issues/476
+console.log(`knownPostURL: ${knownPostURL}`);
+return knownPostURL ? Astro.redirect(knownPostURL, 301 /* Moved Permanently */) : Astro.redirect(`/404?from=${slug}`);
 ---
