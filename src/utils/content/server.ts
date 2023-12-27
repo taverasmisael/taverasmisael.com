@@ -52,7 +52,7 @@ export async function getTestimonialEntriesByLang(lang: Language): Promise<Entry
 
 export function getEntriesByLang<Key extends CollectionKey, EntryType = Entry[Key]>(
   collection: Key,
-  lang: Language
+  lang: Language,
 ): Promise<EntryType[]> {
   switch (collection) {
     case "blog":

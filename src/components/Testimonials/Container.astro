@@ -25,7 +25,7 @@ const rings: string[] = [
   {
     testimonials.map((t, i) => (
       <blockquote
-        class="mx-auto grid gap-8 rounded bg-white p-4 shadow ring transition-all dark:bg-black/90 md:p-8"
+        class="mx-auto grid gap-8 rounded bg-white p-4 shadow ring transition-all md:p-8 dark:bg-black/90"
         class:list={[{ "md:col-span-2 xl:order-1 self-stretch": i === 1, "order-1": i !== 1 }, rings[i]]}
       >
         <em class="block not-italic leading-normal">{t.data.quote}</em>

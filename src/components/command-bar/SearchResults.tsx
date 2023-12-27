@@ -26,16 +26,16 @@ export default function SearchResults(props: SearchResultsProps) {
   return (
     <div ref={r => (containerRef = r)} class="mt-2 max-h-72 overflow-auto md:mt-4">
       <Switch
-        fallback={<p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.errorMessage}</p>}
+        fallback={<p class="p-2 text-center text-lg text-slate-950 md:p-4 dark:text-blue-50">{props.errorMessage}</p>}
       >
         <Match when={props.isError}>
-          <p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.errorMessage}</p>
+          <p class="p-2 text-center text-lg text-slate-950 md:p-4 dark:text-blue-50">{props.errorMessage}</p>
         </Match>
         <Match when={props.isLoading}>
-          <p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.loadingMessage}</p>
+          <p class="p-2 text-center text-lg text-slate-950 md:p-4 dark:text-blue-50">{props.loadingMessage}</p>
         </Match>
         <Match when={!props.items.length}>
-          <p class="p-2 text-center text-lg text-slate-950 dark:text-blue-50 md:p-4">{props.emptyMessage}</p>
+          <p class="p-2 text-center text-lg text-slate-950 md:p-4 dark:text-blue-50">{props.emptyMessage}</p>
         </Match>
         <Match when={props.items.length}>
           <ul id="search-results" role="listbox" class="divide-y divide-blue-50 p-1 dark:divide-slate-800/20">
@@ -51,8 +51,8 @@ export default function SearchResults(props: SearchResultsProps) {
                   {item.type === "link" ? (
                     <a
                       href={item.href}
-                      class="transition-color aria-selected-visible:outline-none block rounded p-2 text-sm hover:bg-slate-100 hover:text-blue-700 active:bg-slate-200 active:text-blue-700 dark:text-slate-100 dark:hover:bg-gray-900 dark:hover:text-blue-50
-                    dark:active:bg-gray-900 dark:active:text-blue-50  md:p-4 md:text-lg
+                      class="transition-color aria-selected-visible:outline-none block rounded p-2 text-sm hover:bg-slate-100 hover:text-blue-700 active:bg-slate-200 active:text-blue-700 md:p-4 md:text-lg dark:text-slate-100
+                    dark:hover:bg-gray-900 dark:hover:text-blue-50  dark:active:bg-gray-900 dark:active:text-blue-50
                     "
                       classList={{
                         "bg-slate-200 text-blue-700 dark:bg-gray-900 dark:text-blue-50":

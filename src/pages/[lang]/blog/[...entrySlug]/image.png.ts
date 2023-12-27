@@ -11,7 +11,7 @@ const HEIGHT = 630;
 // This will potentially be a problem if we have a lot of blog posts, but
 // we can solve it by using a cache.
 export const prerender = true;
-export async function get({ params }: { params: Record<string, string> }) {
+export async function GET({ params }: { params: Record<string, string> }) {
   try {
     console.time("og-image");
     const post = await getBlogEntry(Object.values(params).join("/"));

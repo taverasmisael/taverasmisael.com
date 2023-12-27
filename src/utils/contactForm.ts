@@ -23,7 +23,7 @@ export class ContactFormError extends Error {
     super("ValidationError");
     this.errors = errors.issues.reduce<Partial<Record<keyof ContactForm, ZodIssue>>>(
       (prev, e) => ({ ...prev, [e.path[0] as keyof ContactForm]: e }),
-      {}
+      {},
     );
     this.zodError = errors;
   }

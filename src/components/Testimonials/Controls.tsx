@@ -21,7 +21,7 @@ export default function TestimonialControls() {
 
   return (
     <div class="flex flex-1 justify-center">
-      <div class="flex items-center gap-2 text-slate-950 dark:text-blue-100 lg:gap-4">
+      <div class="flex items-center gap-2 text-slate-950 lg:gap-4 dark:text-blue-100">
         <button type="button" aria-label="Previous" onClick={previous}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

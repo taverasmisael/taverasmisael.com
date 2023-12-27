@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { lang, max = 4 } = Astro.props;
-const allEntries = await getEntriesByLang('blog', lang);
+const allEntries = await getEntriesByLang("blog", lang);
 const entries = allEntries.slice(0, max).sort((a, b) => (a.entry.data.date > b.entry.data.date ? -1 : 1));
 ---
 

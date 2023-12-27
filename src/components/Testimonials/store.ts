@@ -107,7 +107,7 @@ function getColorsForTestimonial(testimonial: TestimonialEntry[]): TestimonialCo
     },
     // TypeScript will think that the type is TestimonialEntries if we don't cast it here
     // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter
-    {} as TestimonialColors
+    {} as TestimonialColors,
   );
 }
 
@@ -116,7 +116,7 @@ function splitWords(testimonials: TestimonialEntry[]): TestimonialWords {
     (acc, t) => ({ ...acc, [t.id]: splitToLines(t.data.quote) }),
     // TypeScript will think that the type is TestimonialEntries if we don't cast it here
     // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter
-    {} as TestimonialWords
+    {} as TestimonialWords,
   );
 }
 
@@ -135,7 +135,7 @@ function splitToLines(quote: string) {
           lines: acc.lines.concat(line),
         };
       },
-      { lines: [], lastIndex: 0 }
+      { lines: [], lastIndex: 0 },
     );
 
   return lines;

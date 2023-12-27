@@ -31,11 +31,11 @@ const missingTranslationParams = (translation: string, translationId: string) =>
 export type UseTranslation<TLocale extends Language> = <
   TDomain extends LocaleDomain,
   TKey extends keyof LocaleSet[TLocale][TDomain],
-  Params extends Record<string, string>
+  Params extends Record<string, string>,
 >(
   domain: TDomain,
   key: TKey,
-  params?: Params
+  params?: Params,
 ) => string;
 
 export function useTranslation<TLocale extends Language>(locale: TLocale): UseTranslation<TLocale> {
@@ -45,14 +45,14 @@ export function useTranslation<TLocale extends Language>(locale: TLocale): UseTr
     if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
     if (translation.startsWith("[NOTE]: "))
       console.error(
-        `Translation ${translationId} is not meant to be used, at least on this locale (${locale}).\n ${translation}`
+        `Translation ${translationId} is not meant to be used, at least on this locale (${locale}).\n ${translation}`,
       );
     if (translation.includes("{{") && !params) missingTranslationParams(translation, `${translationId}`);
 
     if (params) {
       const processedTranslation = Object.entries(params).reduce(
         (acc, [key, value]) => acc.replace(`{{${key}}}`, value),
-        translation
+        translation,
       );
 
       if (processedTranslation.includes("{{")) missingTranslationParams(processedTranslation, `${translationId}`);

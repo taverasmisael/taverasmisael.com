@@ -6,9 +6,9 @@ import { slugToCanonical } from "@/utils/content";
 import Footer from "@/components/layout/Footer.astro";
 import type { DefaultLayoutProps } from "./types";
 // import "./styles/fonts.css";
-import '@fontsource-variable/inter'
+import "@fontsource-variable/inter";
 
-import "@fontsource-variable/red-hat-display"
+import "@fontsource-variable/red-hat-display";
 import "./styles/main.css";
 import { getEnv } from "@/utils/env";
 
@@ -34,7 +34,7 @@ const { origin } = Astro.url;
 const { VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={lang} class:list={{ "h-screen": fullHeight }} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />

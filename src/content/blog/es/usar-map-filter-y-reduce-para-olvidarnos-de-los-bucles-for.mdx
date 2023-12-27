@@ -212,7 +212,7 @@ const totals = orders.reduce(
     Object.assign({}, previous, {
       [order.product]: (previous[order.product] || 0) + order.total,
     }),
-  {}
+  {},
 );
 ```
 
