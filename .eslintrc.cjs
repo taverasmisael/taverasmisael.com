@@ -27,21 +27,7 @@ module.exports = {
   overrides: [
     {
       files: ["*.astro"],
-      env: {
-        browser: true,
-        es2020: true,
-        "astro/astro": true,
-      },
-      extends: [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:@typescript-eslint/strict",
-      ],
-      plugins: ["@typescript-eslint"],
-      // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
-      // Parse the script in `.astro` as TypeScript by adding the following configuration.
-      // It's the setting you need when using TypeScript.
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
