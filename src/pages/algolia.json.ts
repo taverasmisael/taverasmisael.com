@@ -4,7 +4,7 @@ import { getEntriesByLang, getEntryURL, slugToCanonical } from "@/utils/content"
 import { LANGUAGES } from "@/utils/i18n";
 
 export const prerender = true;
-export async function get() {
+export async function GET() {
   const entries = (await Promise.all(LANGUAGES.map(l => getEntriesByLang("blog", l)))).flat();
 
   const items = entries.map(({ entry, meta }) => ({

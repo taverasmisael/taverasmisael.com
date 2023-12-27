@@ -4,7 +4,7 @@ import { useTranslation } from "@/utils/i18n";
 
 // TODO: P3 - Would be nice to also add an entry to some service like Airtable or Google Sheets
 // So we can have a backup of the data and also be able to do some analytics #7
-export async function post({ request }: { request: Request }) {
+export async function POST({ request }: { request: Request }) {
   try {
     const { MAILGUN_DOMAIN, MAILGUN_API_KEY, CONTACT_EMAIL } = getEnv();
     try {

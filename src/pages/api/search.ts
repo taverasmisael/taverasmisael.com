@@ -19,7 +19,7 @@ interface SearchMatch {
 
 const validKeys = ["body", "excerpt", "title"];
 
-export async function get({ request }: { request: Request }) {
+export async function GET({ request }: { request: Request }) {
   const requestURL = new URL(request.url);
   const query = requestURL.searchParams.get("query");
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- We checked on the ternary

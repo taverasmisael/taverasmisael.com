@@ -2,7 +2,6 @@ import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
 import solidjs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
 import node from "@astrojs/node";
@@ -34,11 +33,10 @@ export default defineConfig({
   site,
   build: { inlineStylesheets: "auto" },
   compressHTML: true,
-  experimental: { assets: true },
+  prefetch: true,
   integrations: [
     tailwind(),
     mdx(),
-    prefetch({ selector: "article a:not([href^='/']), a[rel*='prefetch']" }),
     solidjs(),
     sitemap({ name: "sitemap.xml", ignoredPaths: [`/${algoliaOutputName}`] }),
     ...algoliaIntegration(env.LOCAL_BUILD),
