@@ -1,11 +1,25 @@
 import { For, Show, createSignal, createMemo } from "solid-js";
 import { createStore } from "solid-js/store";
-import { useTranslation, type Language } from "@/utils/i18n";
+import type { Language } from "@/utils/i18n";
 import { contactFormScheme, validReasons, ContactFormError, type ContactForm } from "@/utils/contactForm";
 
 interface Props {
   lang: Language;
   action: string;
+  localeString: {
+    defaultReason: string;
+    disclaimer: string;
+    email: string;
+    error: string;
+    message: string;
+    messagePlaceholder: string;
+    name: string;
+    reason: string;
+    reasonOptions: Record<(typeof validReasons)[number], string>;
+    submit: string;
+    submitting: string;
+    success: string;
+  };
 }
 
 const baseFormControlClasses =
@@ -40,7 +54,7 @@ const emptyForm = {
 };
 
 export default function ContactForm(props: Props) {
-  const t = useTranslation(props.lang);
+  // const t = useTranslation(props.lang);
   const [showSuccess, setShowSuccess] = createSignal(false);
   const [formState, setFormState] = createStore<FormState>({
     errors: emptyErrors,
@@ -87,6 +101,8 @@ export default function ContactForm(props: Props) {
       setShowSuccess(true);
     } catch (e) {
       if (e instanceof ContactFormError) {
+        const useTranslation = await import("@/utils/i18n").then(({ useTranslation }) => useTranslation);
+        const t = useTranslation(props.lang);
         setFormState({ errors: e.getMessages(t) });
         if (e.errors.nationality) {
           resetForm(form);
@@ -107,7 +123,7 @@ export default function ContactForm(props: Props) {
         <div class="flex-1">
           <div class="mb-4 flex items-center gap-3">
             <label for="name" class="block font-semibold">
-              {t("forms", "name")}
+              {props.localeString.name}
             </label>
             <span id="name-error" class={errorFormMessageClasses}>
               {formState.errors.name && formState.errors.name}
@@ -132,7 +148,7 @@ export default function ContactForm(props: Props) {
         <div class="flex-1">
           <div class="mb-4 flex items-center gap-3">
             <label for="email" class="block font-semibold">
-              {t("forms", "email")}
+              {props.localeString.email}
             </label>
             <span id="email-error" class={errorFormMessageClasses}>
               {formState.errors.email && formState.errors.email}
@@ -158,7 +174,7 @@ export default function ContactForm(props: Props) {
       <div class="block">
         <div class="mb-4 flex items-center gap-3">
           <label for="reason" class="block font-semibold">
-            {t("forms", "reason")}
+            {props.localeString.reason}
           </label>
           <span id="reason-error" class={errorFormMessageClasses}>
             {formState.errors.reason && formState.errors.reason}
@@ -183,15 +199,17 @@ export default function ContactForm(props: Props) {
           }}
         >
           <option value="" disabled selected>
-            {t("forms", "reason.default")}
+            {props.localeString.defaultReason}
           </option>
-          <For each={validReasons}>{reason => <option value={reason}>{t("forms", `reason.${reason}`)}</option>}</For>
+          <For each={validReasons}>
+            {reason => <option value={reason}>{props.localeString.reasonOptions[reason]}</option>}
+          </For>
         </select>
       </div>
       <div class="block">
         <div class="mb-4 flex items-center gap-3">
           <label for="message" class="block font-semibold">
-            {t("forms", "message")}
+            {props.localeString.message}
           </label>
           <span id="message-error" class={errorFormMessageClasses}>
             {formState.errors.message && formState.errors.message}
@@ -210,17 +228,17 @@ export default function ContactForm(props: Props) {
             [errorFormControlClasses]: !!formState.errors.message,
           }}
           rows="8"
-          placeholder={t("forms", "message.placeholder")}
+          placeholder={props.localeString.messagePlaceholder}
         ></textarea>
       </div>
-      <p class="!mt-2 pl-2 text-xs">{t("forms", "disclaimer")}</p>
+      <p class="!mt-2 pl-2 text-xs">{props.localeString.disclaimer}</p>
       <div class="flex items-center gap-4">
         <button
           disabled={formState.submitting}
           type="submit"
           class="block rounded-md bg-blue-200 px-6 py-3 font-semibold shadow transition-colors focus:bg-blue-200/80 focus:outline-none focus:ring focus:ring-blue-200 enabled:hover:bg-blue-200/80 enabled:active:bg-blue-300/50 disabled:cursor-not-allowed disabled:opacity-80 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-700 dark:focus:ring-slate-600 enabled:dark:hover:bg-slate-800/80 enabled:dark:active:bg-slate-700"
         >
-          {t("forms", formState.submitting ? "submitting" : "submit")}
+          {formState.submitting ? props.localeString.submitting : props.localeString.submit}
         </button>
         <div
           aria-live="polite"
@@ -231,7 +249,7 @@ export default function ContactForm(props: Props) {
           }}
         >
           <Show when={showFormMessage()}>
-            <p>{t("forms", formMessageKey())}</p>
+            <p>{formMessageKey().includes("success") ? props.localeString.success : props.localeString.error}</p>
           </Show>
         </div>
       </div>

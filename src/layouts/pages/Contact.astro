@@ -39,6 +39,29 @@ const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
 
 const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
 const t = useTranslation(lang);
+
+const copyText = {
+  form: {
+    defaultReason: t("forms", "reason.default"),
+    disclaimer: t("forms", "disclaimer"),
+    email: t("forms", "email"),
+    error: t("forms", "contact.error"),
+    message: t("forms", "message"),
+    messagePlaceholder: t("forms", "message.placeholder"),
+    name: t("forms", "name"),
+    reason: t("forms", "reason"),
+    reasonOptions: {
+      hello: t("forms", "reason.hello"),
+      help: t("forms", "reason.help"),
+      other: t("forms", "reason.other"),
+      question: t("forms", "reason.question"),
+      work: t("forms", "reason.work"),
+    },
+    submit: t("forms", "submit"),
+    submitting: t("forms", "submitting"),
+    success: t("forms", "contact.success"),
+  },
+};
 ---
 
 <Layout
@@ -70,7 +93,7 @@ const t = useTranslation(lang);
             </div>
           </FullWidthBlock>
           <div class="px-6 py-4 sm:px-8 lg:mt-20 lg:py-12 xl:mt-0 xl:px-24">
-            <ContactForm client:idle action="/api/contact" lang={lang} />
+            <ContactForm client:idle action="/api/contact" localeString={copyText.form} lang={lang} />
           </div>
         </div>
       </div>

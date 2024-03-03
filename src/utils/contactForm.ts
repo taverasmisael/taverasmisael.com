@@ -1,6 +1,6 @@
 import { map } from "rambda";
 import { z, type ZodError, type ZodIssue } from "zod";
-import { LANGUAGES, type Language, type UseTranslation } from "@/utils/i18n";
+import type { Language, UseTranslation } from "@/utils/i18n";
 
 export const validReasons = ["hello", "question", "help", "work", "other"] as const;
 
@@ -9,7 +9,7 @@ export const contactFormScheme = z.object({
   email: z.string().email(),
   reason: z.enum(validReasons),
   message: z.string().min(10).max(500),
-  lang: z.enum(LANGUAGES),
+  lang: z.enum(["en", "es"]),
   nationality: z.undefined(),
 });
 
