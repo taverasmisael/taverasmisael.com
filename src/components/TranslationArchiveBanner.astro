@@ -8,7 +8,7 @@ export interface Props {
   type: CollectionKey;
 }
 const { lang, type } = Astro.props;
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 ---
 
 {

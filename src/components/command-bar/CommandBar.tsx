@@ -27,7 +27,6 @@ type CommandBarProps = {
 export default function CommandBar(props: CommandBarProps) {
   let inputRef: HTMLInputElement;
   let contentRef: HTMLDivElement;
-  // const t = useTranslation(props.lang);
   const [command, setCommand] = createSignal<string>();
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we check for undefined in the ternary

@@ -32,7 +32,7 @@ const translations = LANGUAGES.filter(l => l !== lang).map(l => ({
   lang: l,
   isOriginal: l === DEFAULT_LOCALE,
 }));
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 ---
 
 <Layout

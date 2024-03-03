@@ -15,15 +15,15 @@ export async function GET({ params }: { params: Record<string, string> }) {
   try {
     console.time("og-image");
     const post = await getBlogEntry(Object.values(params).join("/"));
-
     if (!post) return new Response("NOT FOUND", { status: 404 });
+    const t = await useTranslation(post.meta.lang);
     const svg = await generateOGImage({
       title: post.meta.title,
       description: post.meta.description,
       image: "https://raw.githubusercontent.com/taverasmisael/taverasmisael.com/main/public/og-image-bg.png",
       width: WIDTH,
       height: HEIGHT,
-      writtenTag: useTranslation(post.meta.lang)("ui", "written_by"),
+      writtenTag: t("ui", "written_by"),
     });
 
     console.timeEnd("og-image");

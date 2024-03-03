@@ -54,7 +54,6 @@ const emptyForm = {
 };
 
 export default function ContactForm(props: Props) {
-  // const t = useTranslation(props.lang);
   const [showSuccess, setShowSuccess] = createSignal(false);
   const [formState, setFormState] = createStore<FormState>({
     errors: emptyErrors,
@@ -102,7 +101,7 @@ export default function ContactForm(props: Props) {
     } catch (e) {
       if (e instanceof ContactFormError) {
         const useTranslation = await import("@/utils/i18n").then(({ useTranslation }) => useTranslation);
-        const t = useTranslation(props.lang);
+        const t = await useTranslation(props.lang);
         setFormState({ errors: e.getMessages(t) });
         if (e.errors.nationality) {
           resetForm(form);

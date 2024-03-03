@@ -6,7 +6,7 @@ interface Props {
 }
 
 const lang = Astro.props.lang ?? DEFAULT_LOCALE;
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 ---
 
 <header id="header" class="relative top-0 w-full bg-transparent">

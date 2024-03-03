@@ -5,7 +5,7 @@ interface Props {
   lang: Language;
 }
 
-const t = useTranslation(Astro.props.lang);
+const t = await useTranslation(Astro.props.lang);
 const label = t("ui", "go_top");
 ---
 

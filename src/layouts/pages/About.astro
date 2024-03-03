@@ -32,7 +32,7 @@ const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
 }));
 
 const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 
 const copyText = {
   layout: { description: t("page_descriptions", PAGE), title: t("navigation", PAGE) },

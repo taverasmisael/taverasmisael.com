@@ -26,7 +26,7 @@ const social = [
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 
 const year = new Date().getFullYear();
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 
 const currentLanguage: EntryTranslationReference = { slug: Astro.url.toString(), lang };
 const translations = propTranslations
