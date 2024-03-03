@@ -1,5 +1,5 @@
 import { type CollectionEntry, getCollection } from "astro:content";
-import { type Language } from "@/utils/i18n";
+import type { Language } from "@/utils/i18n";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type CollectionNames = typeof getCollection extends (name: infer T, ...args: any[]) => any ? T : never;

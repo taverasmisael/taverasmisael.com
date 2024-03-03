@@ -1,7 +1,6 @@
 // TODO: P2 - Optimize this file and the whole i18n module to only load the needed translations #9
 import { pathOr } from "rambda";
 import {
-  locales,
   LANGUAGES,
   DEFAULT_LOCALE,
   PAGE_URLS,
@@ -11,10 +10,11 @@ import {
   type PageName,
   type Language,
   type LocaleDomain,
+  type BaseLocale,
 } from "@/i18n";
 
 export function isSupportedLang(lang: string): lang is Language {
-  return lang in locales;
+  return LANGUAGES.includes(lang);
 }
 
 export function getLocalizedPage(locale: Language, page: PageName) {
@@ -38,29 +38,38 @@ export type UseTranslation<TLocale extends Language> = <
   params?: Params,
 ) => string;
 
-export function useTranslation<TLocale extends Language>(locale: TLocale): UseTranslation<TLocale> {
-  return (domain, key, params?: Record<string, string>): string => {
-    const translationId = `${domain}.${key.toString()}`;
-    const translation = pathOr(`TODO: ${translationId}`, [domain, key as string], locales[locale]);
-    if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
-    if (translation.startsWith("[NOTE]: "))
-      console.error(
-        `Translation ${translationId} is not meant to be used, at least on this locale (${locale}).\n ${translation}`,
-      );
-    if (translation.includes("{{") && !params) missingTranslationParams(translation, `${translationId}`);
+export async function useTranslation<TLocale extends Language>(locale: TLocale): Promise<UseTranslation<TLocale>> {
+  try {
+    if (!isSupportedLang(locale)) throw new Error(`Language ${locale} is not supported`);
+    const translations = (await import(`../i18n/${locale}.json`)) as BaseLocale;
+    return (domain, key, params?: Record<string, string>): string => {
+      const strKey = key.toString();
+      const translationId = `${domain}.${strKey}`;
+      const translation = pathOr(`TODO: ${translationId}`, [domain, strKey], translations);
+      if (translation.startsWith("TODO")) console.warn(`Missing translation for ${translationId}`);
+      if (translation.startsWith("[NOTE]: "))
+        console.error(
+          `Translation ${translationId} is not meant to be used, at least on this locale (${locale}).\n ${translation}`,
+        );
+      if (translation.includes("{{") && !params) missingTranslationParams(translation, `${translationId}`);
 
-    if (params) {
-      const processedTranslation = Object.entries(params).reduce(
-        (acc, [key, value]) => acc.replace(`{{${key}}}`, value),
-        translation,
-      );
+      if (params) {
+        const processedTranslation = Object.entries(params).reduce(
+          (acc, [k, v]) => acc.replace(`{{${k}}}`, v),
+          translation,
+        );
 
-      if (processedTranslation.includes("{{")) missingTranslationParams(processedTranslation, `${translationId}`);
+        if (processedTranslation.includes("{{")) missingTranslationParams(processedTranslation, `${translationId}`);
 
-      return processedTranslation;
-    }
-    return translation;
-  };
+        return processedTranslation;
+      }
+      return translation;
+    };
+  } catch (e) {
+    console.error("There was an error importing the translation", e);
+
+    return (domain, key) => `E-${domain}.${key.toString()}`;
+  }
 }
 
 export function getLanguageName(lang: Language): string {

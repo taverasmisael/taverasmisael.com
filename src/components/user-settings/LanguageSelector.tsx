@@ -1,20 +1,11 @@
 import { For, createMemo, createSignal } from "solid-js";
-import { type EntryTranslationReference } from "@/utils/content";
-import { useTranslation, type Language, getLanguageName } from "@/utils/i18n";
+import type { LanguageSelectorProps } from "./interfaces";
 
-interface Props {
-  lang: Language;
-  options: EntryTranslationReference[];
-  value: EntryTranslationReference;
-}
-
-export default function LanguageSelector(props: Props) {
-  const t = useTranslation(props.lang);
-
+export default function LanguageSelector(props: LanguageSelectorProps) {
   // We do not need to set the value, because we navigate to translated page
   const [value] = createSignal(props.value);
   const shouldDisable = createMemo(() => props.options.length <= 1);
-
+  const title = shouldDisable() ? props.localeStrings.unavailable : props.localeStrings.selectLanguage;
   const setValue = (e: Event) => (window.location.href = (e.currentTarget as HTMLSelectElement).value);
 
   return (
@@ -22,22 +13,20 @@ export default function LanguageSelector(props: Props) {
       for="lang-selector"
       class="relative rounded-md bg-white shadow ring-1 ring-blue-50 focus-within:outline-none focus-within:ring dark:bg-gray-950 dark:ring-gray-900"
     >
-      <span class="sr-only">
-        {shouldDisable() ? t("ui", "translation.not_available") : t("ui", "translation.select")}
-      </span>
+      <span class="sr-only">{title}</span>
       <select
         name="lang-selector"
         id="lang-selector"
         onChange={setValue}
-        title={shouldDisable() ? t("ui", "translation.not_available") : t("ui", "translation.select")}
+        title={title}
         disabled={shouldDisable()}
         value={value().slug}
         class="w-full appearance-none bg-transparent px-4 py-2 pr-10 focus:outline-none disabled:opacity-50 aria-expanded:ring-2"
       >
         <For each={props.options}>
           {option => (
-            <option value={option.slug} disabled={option.lang === props.lang} selected={value() === option}>
-              {getLanguageName(option.lang)}
+            <option value={option.slug} disabled={option.lang === props.lang} selected={value().lang === option.lang}>
+              {option.name}
             </option>
           )}
         </For>

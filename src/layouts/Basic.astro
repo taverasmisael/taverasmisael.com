@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_LOCALE } from "@/utils/i18n";
+import { DEFAULT_LOCALE, useTranslation } from "@/utils/i18n";
 import CommandBar from "@/components/command-bar/CommandBar";
 import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
 import { slugToCanonical } from "@/utils/content";
@@ -31,6 +31,21 @@ const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
 const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
 const { origin } = Astro.url;
 const { VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
+
+const t = await useTranslation(lang);
+
+const copyText = {
+  commandBar: {
+    close: t("ui", "close"),
+    search: t("ui", "search"),
+    cancel: t("ui", "cancel"),
+    searchPlaceholder: t("ui", "commandbar.placeholder.search"),
+    error: t("ui", "commandbar.error"),
+    loading: t("ui", "commandbar.loading"),
+    empty: t("ui", "commandbar.empty"),
+    searchPoweredBy: t("messages", "search_powered_by"),
+  },
+};
 ---
 
 <!doctype html>
@@ -76,7 +91,7 @@ const { VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
   >
     <slot />
     <Footer lang={lang} translations={translations} />
-    <CommandBar lang={lang} client:idle />
+    <CommandBar localeStrings={copyText.commandBar} client:idle />
     <slot name="post-footer" />
     <script src="./keyboard-shortcuts.ts"></script>
     <script is:inline>

@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
   if (!isSupportedLang(lang)) {
     return context.redirect("/rss.xml");
   }
-  const t = useTranslation(lang);
+  const t = await useTranslation(lang);
   const site = (context.site ?? "").toString();
 
   return generateRSSFeed({

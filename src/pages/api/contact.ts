@@ -12,7 +12,7 @@ export async function POST({ request }: { request: Request }) {
       const parsedRequest = contactFormScheme.safeParse(requestData);
       if (parsedRequest.success) {
         const { data } = parsedRequest;
-        const t = useTranslation(data.lang);
+        const t = await useTranslation(data.lang);
         const body = new URLSearchParams({
           to: CONTACT_EMAIL,
           subject: `${data.name} wants you for "${t("forms", `reason.${data.reason}`)}"`,

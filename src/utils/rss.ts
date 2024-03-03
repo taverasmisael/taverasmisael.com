@@ -13,16 +13,14 @@ export function blogEntryToRSSItems(entries: BlogEntry[]): RSSOptions["items"] {
   }));
 }
 
-export function getRSSCustomData(lang: Language) {
-  const t = useTranslation(lang);
-
+export function getRSSCustomData(lang: Language, copyright: string) {
   return `
     <language>${lang}</language>
     <ttl>60</ttl>
     <category>Web Development</category>
     <category>Software Development</category>
     <category>Programming</category>
-    <copyright>${t("ui", "copyright")} ©️${new Date().getFullYear()} Misael Taveras</copyright>
+    <copyright>${copyright} ©️${new Date().getFullYear()} Misael Taveras</copyright>
   `;
 }
 
@@ -35,12 +33,12 @@ interface RSSConfig {
 export async function generateRSSFeed({ site, description, lang }: RSSConfig) {
   const entries = await getBlogEntriesByLang(lang);
   const items = blogEntryToRSSItems(entries);
-
+  const t = await useTranslation(lang);
   return rss({
     site,
     items,
     description,
     title: "Misael Taveras Blog",
-    customData: getRSSCustomData(lang),
+    customData: getRSSCustomData(lang, t("ui", "copyright")),
   });
 }

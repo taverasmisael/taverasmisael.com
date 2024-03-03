@@ -31,7 +31,7 @@ const translations = LANGUAGES.filter(l => l !== lang)
     },
   ]);
 
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 ---
 
 <Layout

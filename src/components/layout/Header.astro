@@ -9,7 +9,7 @@ interface Props {
 const basePath = Astro.url.pathname;
 
 const lang = Astro.props.lang ?? DEFAULT_LOCALE;
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 ---
 
 <header id="header" class="top-0 w-full bg-white shadow-lg transition-transform dark:bg-slate-950/80">

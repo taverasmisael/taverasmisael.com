@@ -32,23 +32,31 @@ const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
 }));
 
 const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
+
+const copyText = {
+  layout: { description: t("page_descriptions", PAGE), title: t("navigation", PAGE) },
+  body: {
+    csvAvailable: t("messages", "cv_is_available_in"),
+    downloadHere: t("ui", "download_here").toLocaleLowerCase(),
+  },
+};
 ---
 
 <Layout
   lang={lang}
   canonical={canonical}
-  description={t("page_descriptions", PAGE)}
-  title={t("navigation", PAGE)}
+  description={copyText.layout.description}
+  title={copyText.layout.title}
   translations={translations}
 >
   <main>
     <PageBanner class="bg-blue-100 dark:bg-gray-950">
-      {t("messages", "cv_is_available_in")}
+      {copyText.body.csvAvailable}
       {" "}<a
         href="/taverasmisael-frontend-engineer-resume.pdf"
         download="Misael-Taveras__frontend-engineer--resume.pdf"
-        class="underline">{t("ui", "download_here").toLocaleLowerCase()}</a
+        class="underline">{copyText.body.downloadHere}</a
       >.
     </PageBanner>
     <div class="container mx-auto w-full">

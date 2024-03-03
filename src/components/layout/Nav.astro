@@ -19,7 +19,7 @@ function isIgnoredPage(n: PageName): n is ValidPageName {
 
 const validPages: ValidPageName[] = PAGE_NAMES.filter(isIgnoredPage);
 const localizePage = (page: PageName) => getLocalizedPage(lang, page);
-const t = useTranslation(lang);
+const t = await useTranslation(lang);
 const pages = validPages.map(name => ({
   name: t("navigation", name),
   path: localizePage(name),
