@@ -61,7 +61,7 @@
     "reading_translation_archive": "[NOTE]: esta KEY no se usa en español, porque es el lenguaje original",
     "incomplete_translation_disclaimer": "[NOTE]: esta KEY no se usa en español, porque es el lenguaje original",
     "cv_is_available_in": "Mi cv (en inglés) está disponible para",
-    "serch_powered_by": "Resultados gracias a "
+    "search_powered_by": "Resultados gracias a "
   },
   "page_descriptions": {
     "blog": "Encuentra artículos sobre desarrollo web, tecnología, programación, diseño y más.",
