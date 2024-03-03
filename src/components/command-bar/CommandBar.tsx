@@ -110,9 +110,9 @@ export default function CommandBar(props: { lang: Language }) {
               <Dialog.Description>{t("ui", "commandbar.placeholder.search")}</Dialog.Description>
             </div>
             <div class="p-4 md:translate-y-32">
-              <div class="container mx-auto h-fit w-full max-w-4xl rounded border-slate-100 bg-blue-50 p-2 shadow-xl md:p-4 dark:border-gray-900 dark:bg-gray-950">
+              <div class="container mx-auto h-fit w-full max-w-4xl rounded border-slate-100 bg-blue-50 p-2 shadow-xl dark:border-gray-900 dark:bg-gray-950 md:p-4">
                 <div class="relative flex w-full overflow-hidden rounded bg-white ring-blue-100 focus-within:ring-2 dark:bg-gray-900 dark:ring-gray-800">
-                  <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 md:pl-4 dark:text-blue-50">
+                  <div class="flex items-center justify-center pl-2 pr-0 text-slate-600 dark:text-blue-50 md:pl-4">
                     <svg
                       class="w-6"
                       fill="none"
@@ -138,7 +138,7 @@ export default function CommandBar(props: { lang: Language }) {
                     spellcheck={false}
                     id="command-bar-input"
                     name="command-bar-input"
-                    class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none md:p-4 dark:bg-transparent dark:text-blue-50 dark:placeholder:text-gray-300"
+                    class="flex-1 appearance-none bg-white p-2 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:bg-transparent dark:text-blue-50 dark:placeholder:text-gray-300 md:p-4"
                     role="combobox"
                     aria-controls="search-results"
                     aria-autocomplete="list"
@@ -148,7 +148,7 @@ export default function CommandBar(props: { lang: Language }) {
                     type="text"
                     onInput={onCommandChange}
                   />
-                  <Dialog.CloseButton class="inline-block bg-blue-100 p-2 px-3 font-light md:hidden dark:bg-gray-800">
+                  <Dialog.CloseButton class="inline-block bg-blue-100 p-2 px-3 font-light dark:bg-gray-800 md:hidden">
                     {t("ui", "cancel")}
                   </Dialog.CloseButton>
                 </div>
