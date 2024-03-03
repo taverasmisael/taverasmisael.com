@@ -1,4 +1,4 @@
-import { type Language } from "@/utils/i18n";
+import type { Language } from "@/utils/i18n";
 import { type CollectionKey, Collections } from "./types";
 
 // We know SITE is defined because we triple check on build time.
