@@ -3,7 +3,7 @@ import TwitterLogo from "@/components/logos/Twitter.astro";
 import GitHubLogo from "@/components/logos/GitHub.astro";
 import LinkedInLogo from "@/components/logos/LinkedIn.astro";
 import RSSFeedLogo from "@/components/logos/RSSFeed.astro";
-import { useTranslation, type Language, getLocalizedPage } from "@/utils/i18n";
+import { useTranslation, type Language, getLocalizedPage, getLanguageName } from "@/utils/i18n";
 
 import ThemeSelector from "@/components/user-settings/ThemeSelector";
 import LanguageSelector from "@/components/user-settings/LanguageSelector";
@@ -31,20 +31,43 @@ const t = useTranslation(lang);
 const currentLanguage: EntryTranslationReference = { slug: Astro.url.toString(), lang };
 const translations = propTranslations
   .concat(currentLanguage)
-  .filter(({ lang: translationLang }) => translationLang !== ("x-default" as unknown as Language));
+  .filter(({ lang: translationLang }) => translationLang !== ("x-default" as unknown as Language))
+  .map(({ lang, ...rest }) => ({ ...rest, lang, name: getLanguageName(lang) }));
+
+const copyText = {
+  copyright: t("ui", "copyright"),
+  themeSelector: {
+    selectTheme: t("ui", "theme.select"),
+    themes: {
+      light: t("ui", "theme.light"),
+      dark: t("ui", "theme.dark"),
+      auto: t("ui", "theme.auto"),
+    },
+  },
+  languageSelector: {
+    selectLanguage: t("ui", "translation.select"),
+    unavailable: t("ui", "translation.not_available"),
+  },
+};
 ---
 
 <footer
   class="container mx-auto border-t border-slate-200/50 px-2 py-6 text-center dark:border-slate-700/50 sm:px-6 sm:text-left"
 >
   <div class="flex items-center justify-center gap-4 pb-6 sm:justify-between">
-    <ThemeSelector lang={lang} client:visible />
-    <LanguageSelector lang={lang} options={translations} value={currentLanguage} client:visible />
+    <ThemeSelector localeStrings={copyText.themeSelector} client:visible />
+    <LanguageSelector
+      localeStrings={copyText.languageSelector}
+      lang={lang}
+      options={translations}
+      value={currentLanguage}
+      client:visible
+    />
   </div>
   <div class="text-xs">
     <div class="sm:flex sm:items-center sm:justify-between">
       <p class="hidden sm:block">
-        {t("ui", "copyright")} ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
+        {copyText.copyright} ©️{year} - <strong class="font-semibold">Misael Taveras</strong>
       </p>
       <div class="flex items-center justify-center gap-4">
         {
