@@ -49,19 +49,19 @@ const t = useTranslation(lang);
   translations={translations}
 >
   <main
-    class="bg-gradient-to-b lg:gradient-blue-transparent dark:gradient-gray-slate lg:bg-gradient-to-r dark:bg-gradient-to-t dark:lg:bg-gradient-to-t"
+    class="bg-gradient-to-b dark:gradient-gray-slate lg:gradient-blue-transparent dark:bg-gradient-to-t lg:bg-gradient-to-r dark:lg:bg-gradient-to-t"
   >
     <div class="container mx-auto h-full min-h-screen">
-      <div class="h-full min-h-screen w-full">
+      <div class="size-full min-h-screen">
         <div class="h-full min-h-screen items-center gap-4 lg:grid lg:grid-cols-2">
           <div class="hidden px-6 py-4 sm:px-8 lg:bg-transparent lg:py-12 xl:p-32 xl:pt-0"></div>
           <FullWidthBlock
             withContainer
             containerClass="h-full"
-            class="h-full items-center bg-blue-200 lg:bg-transparent dark:bg-transparent"
+            class="h-full items-center bg-blue-200 dark:bg-transparent lg:bg-transparent"
             resetAt="lg"
           >
-            <div class="prose grid h-full items-center xl:prose-lg dark:prose-invert">
+            <div class="prose grid h-full items-center dark:prose-invert xl:prose-lg">
               <div>
                 <h1 class="text-5xl text-blue-800 dark:text-blue-100">{frontmatter.title}</h1>
                 <p class="m-0 text-xl text-slate-600 dark:text-slate-400">{frontmatter.description}</p>

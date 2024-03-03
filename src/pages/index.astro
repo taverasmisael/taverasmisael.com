@@ -7,7 +7,7 @@ if (headerLang) {
   const browserLang = headerLang.split(",")[0].split("-")[0];
   const lang = isSupportedLang(browserLang) ? browserLang : DEFAULT_LOCALE;
   // KI: To supress `astro:check` warning -- https://github.com/withastro/language-tools/issues/476
-  console.log(`Redirecting to ${lang}`)
+  console.log(`Redirecting to ${lang}`);
   return Astro.redirect(`/${lang}`);
 }
 

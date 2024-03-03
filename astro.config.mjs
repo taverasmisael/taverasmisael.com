@@ -9,9 +9,9 @@ import { sitemap } from "./integrations/sitemap";
 import { algolia } from "./integrations/algolia";
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
-const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://localhost:3000/";
+const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://localhost:4321/";
 
-// Netlify adapter doesn't support SSR yet, so we use node adapter for local builds
+// Vercel adapter doesn't support SSR yet, so we use node adapter for local builds
 // This is useful for testing SSR locally
 const adapter = env.LOCAL_BUILD ? node({ mode: "standalone" }) : vercel();
 const algoliaOutputName = "algolia.json";
