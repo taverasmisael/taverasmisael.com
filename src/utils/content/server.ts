@@ -1,4 +1,4 @@
-import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import { type Language, DEFAULT_LOCALE } from "@/utils/i18n";
 import type { BlogEntry, BlogEntryMeta, CollectionKey, Entry } from "./types";
 import { getEntryURL, slugToCanonical } from "./client";
@@ -35,7 +35,7 @@ export async function blogCollectionToBlogEntry(entry: CollectionEntry<"blog">, 
 }
 
 export async function getBlogEntry(slug: string): Promise<BlogEntry | undefined> {
-  const entry = await getEntryBySlug("blog", slug);
+  const entry = await getEntry("blog", slug);
 
   if (!entry) return;
   return blogCollectionToBlogEntry(entry, slug);
