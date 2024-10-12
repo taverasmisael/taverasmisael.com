@@ -28,7 +28,7 @@ const [featuredPost, ...posts] = allPosts.sort((a, b) => (a.entry.data.date > b.
 const canonical = slugToCanonical(pathname, origin);
 
 const translations = LANGUAGES.filter(l => l !== lang).map(l => ({
-  slug: getLocalizedPage(l, "blog"),
+  id: getLocalizedPage(l, "blog"),
   lang: l,
   isOriginal: l === DEFAULT_LOCALE,
 }));

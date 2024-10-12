@@ -58,8 +58,8 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
           logger.info(`Found ${routes.length} route(s) to generate sitemap`);
           const grouppedRoutes = groupBy(
             pathname => {
-              const [, slug] = pathname.split("/").filter(Boolean);
-              return slug;
+              const [, id] = pathname.split("/").filter(Boolean);
+              return id;
             },
             [...routes, ...customPaths],
           );

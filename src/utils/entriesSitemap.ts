@@ -14,14 +14,14 @@ export async function createEntriesSitemap(hostname: string) {
   const sitemapStream = new SitemapStream({ hostname });
   const blogCollection = await getCollection("blog");
   const blogEntries = blogCollection.map(e => {
-    const [lang, slug] = e.slug.split("/") as [Language, string];
-    return { id: e.id, lang, slug, url: getEntryURL("blog", e.slug), date: e.data.date.toISOString() };
+    const [lang] = e.id.split("/") as [Language, string];
+    return { id: e.id, lang, url: getEntryURL("blog", e.id), date: e.data.date.toISOString() };
   });
 
   const blogItems = blogEntries.map<SitemapItem>(entry => {
-    const { lang, slug } = entry;
+    const { lang, id } = entry;
     const fileStats = statSync(resolve(ContentDIR, "blog", entry.id));
-    const translationsEntities = blogEntries.filter(e => e.lang !== lang && e.slug === slug);
+    const translationsEntities = blogEntries.filter(e => e.lang !== lang && e.id === id);
 
     return {
       ...entry,

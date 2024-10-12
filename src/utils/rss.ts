@@ -6,8 +6,8 @@ export function blogEntryToRSSItems(entries: BlogEntry[]): RSSOptions["items"] {
   return entries.map(entry => ({
     title: entry.meta.title,
     description: entry.meta.description,
-    link: getEntryURL("blog", entry.entry.slug),
-    guid: getEntryURL("blog", entry.entry.slug),
+    link: getEntryURL("blog", entry.entry.id),
+    guid: getEntryURL("blog", entry.entry.id),
     pubDate: entry.entry.data.date,
     categories: entry.entry.data.tags,
   }));

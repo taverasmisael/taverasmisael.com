@@ -68,7 +68,7 @@ const copyText = {
     <link rel="manifest" href={manifest} />
     {
       translations.map(translation => (
-        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
+        <link rel="alternate" href={slugToCanonical(translation.id, origin)} hreflang={translation.lang} />
       ))
     }
     <slot name="head" />

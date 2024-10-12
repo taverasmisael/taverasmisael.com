@@ -28,7 +28,7 @@ if (!isSupportedLang(lang)) {
 const { origin } = Astro.url;
 const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
   lang: language,
-  slug: slugToCanonical(getLocalizedPage(language, PAGE), origin),
+  id: slugToCanonical(getLocalizedPage(language, PAGE), origin),
 }));
 
 const canonical = slugToCanonical(getLocalizedPage(lang, PAGE), origin);

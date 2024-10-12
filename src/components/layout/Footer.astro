@@ -28,7 +28,7 @@ const social = [
 const year = new Date().getFullYear();
 const t = await useTranslation(lang);
 
-const currentLanguage: EntryTranslationReference = { slug: Astro.url.toString(), lang };
+const currentLanguage: EntryTranslationReference = { id: Astro.url.toString(), lang };
 const translations = propTranslations
   .concat(currentLanguage)
   .filter(({ lang: translationLang }) => translationLang !== ("x-default" as unknown as Language))

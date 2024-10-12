@@ -43,7 +43,7 @@ export async function GET({ params }: { params: Record<string, string> }) {
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map(post => {
-    const [lang, entrySlug] = post.slug.split("/");
+    const [lang, entrySlug] = post.id.split("/");
     return {
       params: { lang, entrySlug },
     };
