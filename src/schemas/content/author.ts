@@ -1,8 +1,9 @@
 import { defineCollection, z } from "astro:content";
 import { LANGUAGES, DEFAULT_LOCALE } from "@/utils/i18n";
+import { glob } from "astro/loaders";
 
 export const authorCollection = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "**/[^_]*.json", base: "./src/content/author" }),
   schema: z.object({
     name: z.string(),
     type: z.enum(["OWNER", "PRIMARY", "GUEST"]),
