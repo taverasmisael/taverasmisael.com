@@ -12,6 +12,7 @@ interface Params {
   pid: string
 }
 
+console.log({ params: Astro.params})
 const post = await getBlogEntry(Object.values(Astro.params as unknown as Params).join('/'))
 if (!post) {
   return Astro.redirect(`/404?from=${Astro.url.pathname}`)

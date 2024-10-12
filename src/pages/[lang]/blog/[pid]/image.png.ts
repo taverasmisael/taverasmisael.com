@@ -12,6 +12,7 @@ const HEIGHT = 630;
 // we can solve it by using a cache.
 export const prerender = true;
 export async function GET({ params }: { params: Record<string, string> }) {
+  console.log("hitting");
   try {
     console.time("og-image");
     const post = await getBlogEntry(Object.values(params).join("/"));
@@ -29,8 +30,8 @@ export async function GET({ params }: { params: Record<string, string> }) {
     console.timeEnd("og-image");
 
     console.time("resvg");
-    const resvg = new Resvg(svg, { fitTo: { mode: "width", value: WIDTH } }).render();
-    const png = resvg.asPng();
+    const resvg = new Resvg(svg, { fitTo: { mode: "width", value: WIDTH } });
+    const png = resvg.render().asPng();
     console.timeEnd("resvg");
 
     return new Response(png, { status: 200, headers: { "Content-Type": "image/png" } });
@@ -43,9 +44,7 @@ export async function GET({ params }: { params: Record<string, string> }) {
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map(post => {
-    const [lang, entrySlug] = post.id.split("/");
-    return {
-      params: { lang, entrySlug },
-    };
+    const [lang, pid] = post.id.split("/");
+    return { params: { lang, pid } };
   });
 }
