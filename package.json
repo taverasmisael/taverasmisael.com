@@ -1,11 +1,11 @@
 {
   "name": "taverasmisael-website",
   "type": "module",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "private": true,
   "packageManager": "pnpm@9.12.1",
   "engines": {
-    "node": ">=21.0"
+    "node": ">=20.0"
   },
   "scripts": {
     "dev": "astro dev",
