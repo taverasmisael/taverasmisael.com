@@ -42,7 +42,6 @@ export default defineConfig({
     ...algoliaIntegration(env.LOCAL_BUILD),
   ],
   markdown: {
-    // TODO: P3 - Add light/dark theme support (css variables) #10
     shikiConfig: { theme: "css-variables" },
   },
   output: "server",
