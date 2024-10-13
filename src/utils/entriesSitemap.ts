@@ -1,4 +1,3 @@
-import { statSync } from "node:fs";
 import { getCollection, getEntryURL } from "@/utils/content";
 import { SitemapStream, EnumChangefreq, type SitemapItemLoose, streamToPromise } from "sitemap";
 import { Readable } from "stream";
@@ -18,19 +17,15 @@ export async function createEntriesSitemap(hostname: string) {
       lang,
       url: getEntryURL("blog", e.id),
       date: e.data.date.toISOString(),
-      // @ts-ignore -- the type definition is wrong
-      path: e.filePath,
     };
   });
 
   const blogItems = blogEntries.map<SitemapItem>(entry => {
     const { lang, id } = entry;
-    const fileStats = statSync(entry.path);
     const translationsEntities = blogEntries.filter(e => e.lang !== lang && e.id === id);
 
     return {
       ...entry,
-      lastmod: fileStats.mtime.toISOString(),
       changefreq: EnumChangefreq.MONTHLY,
       priority: 0.6,
       links: translationsEntities,
