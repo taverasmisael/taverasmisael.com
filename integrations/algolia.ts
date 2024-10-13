@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { AstroIntegration } from "astro";
 import { ZodError, z } from "zod";
-import algoliasearch from "algoliasearch";
+import {algoliasearch} from "algoliasearch";
 import { Logger } from "./utils/logger";
 
 const integrationSettingsSchema = z.object({
@@ -67,9 +67,11 @@ export function algolia(settings: AlgoliaIntegrationSettings): AstroIntegration 
 
           try {
             const client = algoliasearch(config.appId, config.apiKey);
-            const index = client.initIndex(config.indexName);
             logger.info(`Uploading ${algoliaItems.length} items to Algolia index ${config.indexName}...`);
-            await index.saveObjects(algoliaItems);
+            await client.saveObjects({
+              indexName: config.indexName,
+              objects: algoliaItems,
+            });
             logger.success(`Items uploaded to Algolia index "${config.indexName}" successfully!`);
           } catch (e) {
             logger.error(`Error while uploading items to Algolia. Check console.`);

@@ -8,13 +8,13 @@ export async function GET() {
   const entries = (await Promise.all(LANGUAGES.map(l => getEntriesByLang("blog", l)))).flat();
 
   const items = entries.map(({ entry, meta }) => ({
-    objectID: entry.slug,
+    objectID: entry.id,
     title: meta.title,
     excerpt: entry.data.description,
     date: entry.data.date,
     lang: meta.lang,
     tags: entry.data.tags,
-    imageUrl: slugToCanonical(getEntryURL("blog", `${entry.slug}/image.png`)),
+    imageUrl: slugToCanonical(getEntryURL("blog", `${entry.id}/image.png`)),
     body: sliceStr(removeMD(entry.body, { useImgAltText: false }).replaceAll(/\n\n/g, " "), 0, 8000),
   }));
 

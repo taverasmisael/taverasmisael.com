@@ -9,7 +9,7 @@ export interface Props {
 
 const { post, meta } = Astro.props;
 
-const href = getEntryURL("blog", post.slug);
+const href = getEntryURL("blog", post.id);
 ---
 
 <div

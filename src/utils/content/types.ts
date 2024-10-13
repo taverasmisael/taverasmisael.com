@@ -1,13 +1,11 @@
-import { type CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import type { Language } from "@/utils/i18n";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type CollectionNames = typeof getCollection extends (name: infer T, ...args: any[]) => any ? T : never;
 export const Collections = {
   blog: "blog",
   testimonial: "testimonial",
   author: "author",
-} as const satisfies Record<string, CollectionNames>;
+} as const;
 
 export type CollectionKey = keyof typeof Collections;
 export interface BlogEntry {
@@ -24,7 +22,7 @@ export type TestimonialEntry = CollectionEntry<"testimonial">;
 export interface EntryTranslationReference {
   isOriginal?: boolean;
   lang: Language;
-  slug: string;
+  id: string;
 }
 
 export interface BlogEntryMeta {

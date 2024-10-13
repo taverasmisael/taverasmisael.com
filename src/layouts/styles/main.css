@@ -11,8 +11,8 @@
 */
 
 :root {
-  --astro-code-color-text: #111827;
-  --astro-code-color-background: #fff;
+  --astro-code-foreground: #111827;
+  --astro-code-background: #fff;
   --astro-code-token-constant: #000;
   --astro-code-token-string: #1f2937;
   --astro-code-token-comment: #64748b;
@@ -25,8 +25,8 @@
 }
 
 :root:is(.dark) {
-  --astro-code-color-text: #e5e7eb;
-  --astro-code-color-background: #111827;
+  --astro-code-foreground: #e5e7eb;
+  --astro-code-background: #111827;
   --astro-code-token-constant: #fff;
   --astro-code-token-string: #1f2937;
   --astro-code-token-comment: #90acc8;

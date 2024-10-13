@@ -20,12 +20,12 @@ export default function LanguageSelector(props: LanguageSelectorProps) {
         onChange={setValue}
         title={title}
         disabled={shouldDisable()}
-        value={value().slug}
+        value={value().id}
         class="w-full appearance-none bg-transparent px-4 py-2 pr-10 focus:outline-none disabled:opacity-50 aria-expanded:ring-2"
       >
         <For each={props.options}>
           {option => (
-            <option value={option.slug} disabled={option.lang === props.lang} selected={value().lang === option.lang}>
+            <option value={option.id} disabled={option.lang === props.lang} selected={value().lang === option.lang}>
               {option.name}
             </option>
           )}

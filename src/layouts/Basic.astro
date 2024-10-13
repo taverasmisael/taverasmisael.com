@@ -1,17 +1,17 @@
 ---
-import { DEFAULT_LOCALE, useTranslation } from "@/utils/i18n";
-import CommandBar from "@/components/command-bar/CommandBar";
-import OpenGraphTags from "@/components/layout/OpenGraphTags.astro";
-import { slugToCanonical } from "@/utils/content";
-import Footer from "@/components/layout/Footer.astro";
-import type { DefaultLayoutProps } from "./types";
-import "@fontsource-variable/inter";
+import { VERCEL_GIT_COMMIT_SHA as COMMIT_SHA } from 'astro:env/server'
+import { DEFAULT_LOCALE, useTranslation } from '@/utils/i18n'
+import CommandBar from '@/components/command-bar/CommandBar'
+import OpenGraphTags from '@/components/layout/OpenGraphTags.astro'
+import { slugToCanonical } from '@/utils/content'
+import Footer from '@/components/layout/Footer.astro'
+import type { DefaultLayoutProps } from './types'
+import '@fontsource-variable/inter'
 
-import "@fontsource-variable/red-hat-display";
-import "./styles/main.css";
-import { getEnv } from "@/utils/env";
+import '@fontsource-variable/red-hat-display'
+import './styles/main.css'
 
-type Props = DefaultLayoutProps;
+type Props = DefaultLayoutProps
 
 const {
   title: propsTitle,
@@ -19,37 +19,36 @@ const {
   fullHeight,
   canonical,
   image: propsImage,
-  ogType = "website",
+  ogType = 'website',
   lang = DEFAULT_LOCALE,
   translations = [],
   class: className,
-  ["class:list"]: classList,
-} = Astro.props;
+  ['class:list']: classList,
+} = Astro.props
 
-const title = `${propsTitle} — Misael Taveras`;
-const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`);
-const manifest = lang === "es" ? "/manifest.json" : `/manifest-${lang}.json`;
-const { origin } = Astro.url;
-const { VERCEL_GIT_COMMIT_SHA: COMMIT_SHA } = getEnv();
+const title = `${propsTitle} — Misael Taveras`
+const image = propsImage ?? slugToCanonical(`/default-og-${lang}.png`)
+const manifest = lang === 'es' ? '/manifest.json' : `/manifest-${lang}.json`
+const { origin } = Astro.url
 
-const t = await useTranslation(lang);
+const t = await useTranslation(lang)
 
 const copyText = {
   commandBar: {
-    close: t("ui", "close"),
-    search: t("ui", "search"),
-    cancel: t("ui", "cancel"),
-    searchPlaceholder: t("ui", "commandbar.placeholder.search"),
-    error: t("ui", "commandbar.error"),
-    loading: t("ui", "commandbar.loading"),
-    empty: t("ui", "commandbar.empty"),
-    searchPoweredBy: t("messages", "search_powered_by"),
+    close: t('ui', 'close'),
+    search: t('ui', 'search'),
+    cancel: t('ui', 'cancel'),
+    searchPlaceholder: t('ui', 'commandbar.placeholder.search'),
+    error: t('ui', 'commandbar.error'),
+    loading: t('ui', 'commandbar.loading'),
+    empty: t('ui', 'commandbar.empty'),
+    searchPoweredBy: t('messages', 'search_powered_by'),
   },
-};
+}
 ---
 
 <!doctype html>
-<html lang={lang} class:list={{ "h-screen": fullHeight }} class="scroll-smooth">
+<html lang={lang} class:list={{ 'h-screen': fullHeight }} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,20 +67,20 @@ const copyText = {
     <link rel="manifest" href={manifest} />
     {
       translations.map(translation => (
-        <link rel="alternate" href={slugToCanonical(translation.slug, origin)} hreflang={translation.lang} />
+        <link rel="alternate" href={slugToCanonical(translation.id, origin)} hreflang={translation.lang} />
       ))
     }
     <slot name="head" />
     <OpenGraphTags title={title} description={description} lang={lang} image={image} url={canonical} type={ogType} />
     <script is:inline>
       // inline this to avoid layout shifting/color flashes
-      const theme = localStorage.getItem("theme") || "auto";
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.classList.add("dark");
+      const theme = localStorage.getItem('theme') || 'auto'
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
       } else {
-        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.remove('dark')
       }
     </script>
   </head>
@@ -95,7 +94,7 @@ const copyText = {
     <slot name="post-footer" />
     <script src="./keyboard-shortcuts.ts"></script>
     <script is:inline>
-      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()))
     </script>
   </body>
 </html>

@@ -21,13 +21,13 @@ const blogURL = getLocalizedPage(lang, "blog");
 const translations = LANGUAGES.filter(l => l !== lang)
   .map(language => ({
     lang: language,
-    slug: slugToCanonical(getLocalizedPage(language, "home"), Astro.url.origin),
+    id: slugToCanonical(getLocalizedPage(language, "home"), Astro.url.origin),
   }))
   .concat([
     {
       // Added to the sitemap, but not linked to from the page
       lang: "x-default" as unknown as Language,
-      slug: slugToCanonical("/", Astro.url.origin),
+      id: slugToCanonical("/", Astro.url.origin),
     },
   ]);
 

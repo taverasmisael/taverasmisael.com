@@ -10,15 +10,15 @@ export function getCollectionName(key: string): undefined | (typeof Collections)
   return Collections[key as CollectionKey];
 }
 
-export function getEntryURL(entryType: CollectionKey, slug: string): string {
+export function getEntryURL(entryType: CollectionKey, id: string): string {
   const collection = getCollectionName(entryType);
 
   if (!collection) throw new Error(`Invalid collection name: ${entryType}`);
 
-  const [lang, rawSlug] = slug.split("/") as [Language, string];
+  const [lang, rawSlug] = id.split("/") as [Language, string];
   return `/${lang}/${collection}/${rawSlug}`;
 }
 
-export function slugToCanonical(slug: string, base: string = SITE): string {
-  return new URL(slug, base).toString();
+export function slugToCanonical(id: string, base: string = SITE): string {
+  return new URL(id, base).toString();
 }

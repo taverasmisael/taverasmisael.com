@@ -18,10 +18,8 @@ let lightFont: ArrayBuffer | undefined;
 
 const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; light: ArrayBuffer }> => {
   if (displayFont && bodyFont && lightFont) {
-    console.log("Fonts already loaded");
     return { display: displayFont, body: bodyFont, light: lightFont };
   }
-  console.log("Loading fonts");
   // The project decided to stop publishing otf files. A kind samaritan uploaded them to a CDN
   // Thinking about hosting them myself, maybe in the future.
   // ISSUE: https://github.com/rsms/inter/issues/631

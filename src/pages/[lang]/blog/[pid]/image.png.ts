@@ -13,7 +13,6 @@ const HEIGHT = 630;
 export const prerender = true;
 export async function GET({ params }: { params: Record<string, string> }) {
   try {
-    console.time("og-image");
     const post = await getBlogEntry(Object.values(params).join("/"));
     if (!post) return new Response("NOT FOUND", { status: 404 });
     const t = await useTranslation(post.meta.lang);
@@ -26,12 +25,8 @@ export async function GET({ params }: { params: Record<string, string> }) {
       writtenTag: t("ui", "written_by"),
     });
 
-    console.timeEnd("og-image");
-
-    console.time("resvg");
-    const resvg = new Resvg(svg, { fitTo: { mode: "width", value: WIDTH } }).render();
-    const png = resvg.asPng();
-    console.timeEnd("resvg");
+    const resvg = new Resvg(svg, { fitTo: { mode: "width", value: WIDTH } });
+    const png = resvg.render().asPng();
 
     return new Response(png, { status: 200, headers: { "Content-Type": "image/png" } });
   } catch (e) {
@@ -43,9 +38,7 @@ export async function GET({ params }: { params: Record<string, string> }) {
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map(post => {
-    const [lang, entrySlug] = post.slug.split("/");
-    return {
-      params: { lang, entrySlug },
-    };
+    const [lang, pid] = post.id.split("/");
+    return { params: { lang, pid } };
   });
 }

@@ -16,7 +16,7 @@ const allPosts = await getBlogEntriesByLang(lang);
 const luckyPost = allPosts[Math.floor(Math.random() * allPosts.length)] as BlogEntry | undefined;
 
 const homeURL = getLocalizedPage(lang, "home");
-const luckyURL = luckyPost ? getEntryURL("blog", luckyPost.entry.slug) : getLocalizedPage(lang, "blog");
+const luckyURL = luckyPost ? getEntryURL("blog", luckyPost.entry.id) : getLocalizedPage(lang, "blog");
 
 const t = await useTranslation(lang);
 const canonical = slugToCanonical("/404");

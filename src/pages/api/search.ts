@@ -1,9 +1,9 @@
+import { ALGOLIA_APP_ID, ALGOLIA_INDEX_NAME } from "astro:env/server";
 import { DEFAULT_LOCALE, type Language } from "@/utils/i18n";
-import { getEnv } from "@/utils/env";
-import algoliasearch from "algoliasearch";
+import { PUBLIC_ALGOLIA_SEARCH_KEY } from "astro:env/client";
+import { algoliasearch, type HighlightResultOption, type SnippetResultOption } from "algoliasearch";
 import { isSupportedLang } from "@/utils/i18n";
 
-const { PUBLIC_ALGOLIA_SEARCH_KEY, ALGOLIA_APP_ID, ALGOLIA_INDEX_NAME } = getEnv();
 const algoliaclient = algoliasearch(ALGOLIA_APP_ID, PUBLIC_ALGOLIA_SEARCH_KEY);
 
 interface SearchHit {
@@ -26,27 +26,34 @@ export async function GET({ request }: { request: Request }) {
   const lang = getLangFromURL(request.headers.get("referer") ? new URL(request.headers.get("referer")!) : requestURL);
   if (!query) return new Response(JSON.stringify({ items: [] }), { status: 400, statusText: "No query provided" });
 
-  const index = algoliaclient.initIndex(ALGOLIA_INDEX_NAME);
-  console.log(lang);
   try {
-    const { hits } = await index.search<SearchHit>(query, {
-      facetFilters: [[`lang:${lang}`]],
-      attributesToRetrieve: ["title", "body", "excerpt"],
-      attributesToSnippet: ["*:10"],
-      highlightPreTag: "<mark>",
-      highlightPostTag: "</mark>",
+    const { hits } = await algoliaclient.searchSingleIndex<SearchHit>({
+      indexName: ALGOLIA_INDEX_NAME,
+      searchParams: {
+        query,
+        facetFilters: [[`lang:${lang}`]],
+        attributesToRetrieve: ["title", "body", "excerpt"],
+        attributesToSnippet: ["*:10"],
+        highlightPreTag: "<mark>",
+        highlightPostTag: "</mark>",
+      },
     });
 
     const items = hits
-      .filter(h => h._highlightResult && Object.values(h._highlightResult).some(v => v.matchLevel !== "none"))
+      .filter(
+        h =>
+          h._highlightResult &&
+          Object.values(h._highlightResult).some(v => (v as HighlightResultOption).matchLevel !== "none"),
+      )
       .map(hit => ({
         id: hit.objectID,
         title: hit.title,
         matches: hit._snippetResult
           ? Object.entries(hit._snippetResult).reduce<SearchMatch[]>((prev, [k, v]) => {
-              if (v.matchLevel === "none") return prev;
+              const value = v as SnippetResultOption;
+              if (value.matchLevel === "none") return prev;
               if (!validKeys.includes(k)) return prev;
-              return [...prev, { key: k, value: v.value }];
+              return [...prev, { key: k, value: value.value }];
             }, [])
           : [],
       }));
