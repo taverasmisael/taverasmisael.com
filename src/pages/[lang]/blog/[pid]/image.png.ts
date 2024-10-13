@@ -12,9 +12,7 @@ const HEIGHT = 630;
 // we can solve it by using a cache.
 export const prerender = true;
 export async function GET({ params }: { params: Record<string, string> }) {
-  console.log("hitting");
   try {
-    console.time("og-image");
     const post = await getBlogEntry(Object.values(params).join("/"));
     if (!post) return new Response("NOT FOUND", { status: 404 });
     const t = await useTranslation(post.meta.lang);
@@ -27,12 +25,8 @@ export async function GET({ params }: { params: Record<string, string> }) {
       writtenTag: t("ui", "written_by"),
     });
 
-    console.timeEnd("og-image");
-
-    console.time("resvg");
     const resvg = new Resvg(svg, { fitTo: { mode: "width", value: WIDTH } });
     const png = resvg.render().asPng();
-    console.timeEnd("resvg");
 
     return new Response(png, { status: 200, headers: { "Content-Type": "image/png" } });
   } catch (e) {

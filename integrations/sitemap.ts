@@ -1,13 +1,12 @@
 import { anyPass, complement, groupBy, map } from "rambda";
 import { fileURLToPath } from "node:url";
-import { resolve } from "node:path";
-import { tmpdir } from "node:os";
 import { Readable } from "node:stream";
-import { createReadStream, createWriteStream, copyFileSync, existsSync, unlinkSync } from "node:fs";
-import { EnumChangefreq, SitemapStream, XMLToSitemapItemStream, streamToPromise, type SitemapItemLoose } from "sitemap";
+import { existsSync, writeFileSync } from "node:fs";
+import { writeFile } from "node:fs/promises";
+import { EnumChangefreq, SitemapStream, streamToPromise, type SitemapItemLoose } from "sitemap";
+import type { AstroConfig, AstroIntegration } from "astro";
 
 type SitemapItem = Pick<SitemapItemLoose, "url" | "lastmod" | "changefreq" | "priority" | "links">;
-import type { AstroConfig, AstroIntegration } from "astro";
 
 import { Logger } from "./utils/logger";
 
@@ -42,7 +41,7 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
       // TODO: P3 - Split this monstrous function and add tests #4
       "astro:build:done": async config => {
         if (!name) {
-          logger.error("No sitemap name found. Skipping...");
+          logger.error("No sitemap name given. Skipping...");
           return;
         }
         logger.info("Generating sitemap...");
@@ -83,32 +82,19 @@ export function sitemap({ name, customPaths = [], ignoredPaths = [] }: SitemapCo
             );
           }, grouppedRoutes);
 
-          const tempPath = resolve(tmpdir(), "sitemap.xml");
-          logger.info(`Writing sitemap to ${tempPath}`);
-          const smStream = Readable.from(Object.values(items).flat()).pipe(new SitemapStream(), { end: false });
+          const smStream = Readable.from(Object.values(items).flat()).pipe(new SitemapStream(), { end: true });
           const smPath = fileURLToPath(new URL(name, config.dir));
 
           if (!existsSync(smPath)) {
-            logger.error(`Sitemap file not found at ${smPath}. Skipping...`);
-            return;
+            logger.info(`Sitemap file not found at ${smPath}. Creating...`);
+            writeFileSync(smPath, "");
           }
-
-          const existingSiteMap = createReadStream(smPath)
-            .pipe(new XMLToSitemapItemStream())
-            .pipe(smStream)
-            .pipe(createWriteStream(tempPath));
-
-          existingSiteMap.on("error", error => logger.error(error.message));
-          existingSiteMap.on("finish", () => {
-            logger.info("Sitemap updated successfully");
-            copyFileSync(tempPath, smPath);
-            unlinkSync(tempPath);
-          });
 
           smStream.on("error", error => logger.error(error.message));
           smStream.on("finish", () => logger.success("SM Sitemap finished successfully"));
 
-          await streamToPromise(smStream);
+          const buffer = await streamToPromise(smStream);
+          await writeFile(smPath, buffer);
         } else {
           logger.warn("No routes found to generate sitemap. Skipping...");
         }

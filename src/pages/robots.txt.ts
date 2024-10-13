@@ -1,8 +1,6 @@
-import { getEnv } from "@/utils/env";
+import { SITE } from "astro:env/client";
 
 export function get() {
-  const { SITE } = getEnv();
-
   return {
     body: `
 User-agent: *

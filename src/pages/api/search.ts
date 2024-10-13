@@ -1,9 +1,9 @@
+import { ALGOLIA_APP_ID, ALGOLIA_INDEX_NAME } from "astro:env/server";
 import { DEFAULT_LOCALE, type Language } from "@/utils/i18n";
-import { getEnv } from "@/utils/env";
+import { PUBLIC_ALGOLIA_SEARCH_KEY } from "astro:env/client";
 import { algoliasearch, type HighlightResultOption, type SnippetResultOption } from "algoliasearch";
 import { isSupportedLang } from "@/utils/i18n";
 
-const { PUBLIC_ALGOLIA_SEARCH_KEY, ALGOLIA_APP_ID, ALGOLIA_INDEX_NAME } = getEnv();
 const algoliaclient = algoliasearch(ALGOLIA_APP_ID, PUBLIC_ALGOLIA_SEARCH_KEY);
 
 interface SearchHit {
