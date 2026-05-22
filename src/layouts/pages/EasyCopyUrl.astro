@@ -1,0 +1,86 @@
+---
+import { isSupportedLang, LANGUAGES, type Language } from "@/utils/i18n";
+import { slugToCanonical } from "@/utils/content";
+import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
+import Layout from "@/layouts/WithHeader.astro";
+import {
+  CHROME_WEB_STORE_URL,
+  getEasyCopyUrlPagePath,
+} from "@/constants/easy-copy-url";
+
+interface Props {
+  frontmatter: EasyCopyUrlFrontmatter;
+}
+
+interface EasyCopyUrlFrontmatter {
+  lang: Language;
+  title: string;
+  description: string;
+  tagline: string;
+  installLabel: string;
+  badgeLabel: string;
+}
+
+const { frontmatter } = Astro.props;
+const { lang, title, description, tagline, installLabel, badgeLabel } = frontmatter;
+
+if (!isSupportedLang(lang)) {
+  return Astro.redirect(`/404?from=${Astro.url.pathname}`);
+}
+
+const { origin } = Astro.url;
+const translations = LANGUAGES.filter(l => l !== lang).map(language => ({
+  lang: language,
+  id: slugToCanonical(getEasyCopyUrlPagePath(language), origin),
+}));
+
+const canonical = slugToCanonical(getEasyCopyUrlPagePath(lang), origin);
+---
+
+<Layout
+  lang={lang}
+  canonical={canonical}
+  description={description}
+  title={title}
+  translations={translations}
+>
+  <main>
+    <FullWidthBlock
+      withContainer
+      class="bg-gradient-to-br from-blue-50 via-white to-blue-100 px-8 py-16 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 md:py-24"
+    >
+      <div class="mx-auto flex max-w-4xl flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div class="max-w-2xl">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400">
+            {badgeLabel}
+          </p>
+          <h1 class="text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 md:text-5xl">
+            Easy URL Copy
+          </h1>
+          <p class="mt-4 text-xl leading-relaxed text-slate-600 dark:text-slate-300">
+            {tagline}
+          </p>
+          <a
+            href={CHROME_WEB_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-8 inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            {installLabel}
+          </a>
+        </div>
+        <div
+          class="flex size-32 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-5xl shadow-lg md:size-40"
+          aria-hidden="true"
+        >
+          🔗
+        </div>
+      </div>
+    </FullWidthBlock>
+    <div class="container mx-auto w-full">
+      <div class="prose prose-slate mx-auto px-4 dark:prose-invert lg:prose-lg 2xl:prose-xl">
+        <slot />
+      </div>
+    </div>
+  </main>
+</Layout>
