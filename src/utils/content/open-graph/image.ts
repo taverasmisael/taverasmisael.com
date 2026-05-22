@@ -1,4 +1,6 @@
 import satori from "satori";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { renderToStringAsync } from "solid-js/web";
 import { html as toStringReactElement } from "satori-html";
 import ImageTemplate from "./ImageTemplate";
@@ -12,31 +14,14 @@ interface ImageGeneratorConfig {
   writtenTag: string;
 }
 
-let displayFont: ArrayBuffer | undefined;
-let bodyFont: ArrayBuffer | undefined;
-let lightFont: ArrayBuffer | undefined;
 
 const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; light: ArrayBuffer }> => {
-  if (displayFont && bodyFont && lightFont) {
-    return { display: displayFont, body: bodyFont, light: lightFont };
-  }
+
   // The project decided to stop publishing otf files. A kind samaritan uploaded them to a CDN
   // Thinking about hosting them myself, maybe in the future.
   // ISSUE: https://github.com/rsms/inter/issues/631
-  const displayFontRequest = await fetch("https://www.fontmirror.com/app_public/files/t/1/Inter-SemiBold_5a940f143aafecbf00719f75eea1dd90.otf");
-  const bodyFontRequest = await fetch("https://www.fontmirror.com/app_public/files/t/1/Inter-Regular_900a4848c22b68892f850f9b43961571.otf");
-  const lightFontRequest = await fetch("https://www.fontmirror.com/app_public/files/t/1/Inter-Italic_d34411fedc6f06b7fb44d8500d4d244a.otf");
-
-  const [display, body, light] = await Promise.all([
-    displayFontRequest.arrayBuffer(),
-    bodyFontRequest.arrayBuffer(),
-    lightFontRequest.arrayBuffer(),
-  ]);
-
-  displayFont = display;
-  bodyFont = body;
-  lightFont = light;
-  return { display, body, light };
+const font = await fs.readFile(path.join(__dirname, "./fonts/inter.ttf"));
+  return { display: font, body: font, light: font };
 };
 
 export const generateOGImage = async ({
