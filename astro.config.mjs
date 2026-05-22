@@ -1,5 +1,7 @@
 import { loadEnv } from "vite";
 import { defineConfig, envField } from "astro/config";
+import path from "node:path";
+import { createRequire } from "node:module";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import solidjs from "@astrojs/solid-js";
@@ -10,6 +12,13 @@ import { algolia } from "./integrations/algolia";
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "") || process.env;
 const site = env.PUBLIC_SITE_URL || `https://${env.VERCEL_URL}/` || "https://localhost:4321/";
+const require = createRequire(import.meta.url);
+const fontsourceDir = path.join(path.dirname(require.resolve("@fontsource/inter/package.json")), "files");
+const ogFontPaths = {
+  display: path.join(fontsourceDir, "inter-latin-600-normal.woff"),
+  body: path.join(fontsourceDir, "inter-latin-400-normal.woff"),
+  light: path.join(fontsourceDir, "inter-latin-300-normal.woff"),
+};
 
 // Vercel adapter doesn't support SSR yet, so we use node adapter for local builds
 // This is useful for testing SSR locally
@@ -46,6 +55,11 @@ export default defineConfig({
   },
   output: "server",
   vite: {
+    define: {
+      __OG_FONT_DISPLAY_PATH__: JSON.stringify(ogFontPaths.display),
+      __OG_FONT_BODY_PATH__: JSON.stringify(ogFontPaths.body),
+      __OG_FONT_LIGHT_PATH__: JSON.stringify(ogFontPaths.light),
+    },
     ssr: { external: ["@resvg/resvg-js"] },
     optimizeDeps: { exclude: ["@resvg/resvg-js"] },
     build: { rollupOptions: { external: ["@resvg/resvg-js"] } },

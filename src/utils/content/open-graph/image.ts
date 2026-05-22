@@ -1,9 +1,12 @@
 import satori from "satori";
 import fs from "node:fs/promises";
-import path from "node:path";
 import { renderToStringAsync } from "solid-js/web";
 import { html as toStringReactElement } from "satori-html";
 import ImageTemplate from "./ImageTemplate";
+
+declare const __OG_FONT_DISPLAY_PATH__: string;
+declare const __OG_FONT_BODY_PATH__: string;
+declare const __OG_FONT_LIGHT_PATH__: string;
 
 interface ImageGeneratorConfig {
   title: string;
@@ -14,14 +17,21 @@ interface ImageGeneratorConfig {
   writtenTag: string;
 }
 
+const toArrayBuffer = (buffer: Buffer): ArrayBuffer =>
+  buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
 
 const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; light: ArrayBuffer }> => {
+  const [display, body, light] = await Promise.all([
+    fs.readFile(__OG_FONT_DISPLAY_PATH__),
+    fs.readFile(__OG_FONT_BODY_PATH__),
+    fs.readFile(__OG_FONT_LIGHT_PATH__),
+  ]);
 
-  // The project decided to stop publishing otf files. A kind samaritan uploaded them to a CDN
-  // Thinking about hosting them myself, maybe in the future.
-  // ISSUE: https://github.com/rsms/inter/issues/631
-const font = await fs.readFile(path.join(__dirname, "./fonts/inter.ttf"));
-  return { display: font, body: font, light: font };
+  return {
+    display: toArrayBuffer(display),
+    body: toArrayBuffer(body),
+    light: toArrayBuffer(light),
+  };
 };
 
 export const generateOGImage = async ({

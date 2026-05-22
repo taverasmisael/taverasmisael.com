@@ -34,6 +34,7 @@
     "@fontsource-variable/fira-code": "^5.0.16",
     "@fontsource-variable/inter": "^5.0.16",
     "@fontsource-variable/red-hat-display": "^5.0.19",
+    "@fontsource/inter": "5.1.0",
     "@kobalte/core": "^0.13.7",
     "@solid-primitives/fetch": "^2.4.8",
     "@solid-primitives/scheduled": "^1.4.2",
