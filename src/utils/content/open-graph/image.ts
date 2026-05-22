@@ -23,9 +23,9 @@ const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; l
   // The project decided to stop publishing otf files. A kind samaritan uploaded them to a CDN
   // Thinking about hosting them myself, maybe in the future.
   // ISSUE: https://github.com/rsms/inter/issues/631
-  const displayFontRequest = await fetch("https://files.terriblefish.com/fonts/Inter/v4/extras/otf/Inter-SemiBold.otf");
-  const bodyFontRequest = await fetch("https://files.terriblefish.com/fonts/Inter/v4/extras/otf/Inter-Regular.otf");
-  const lightFontRequest = await fetch("https://files.terriblefish.com/fonts/Inter/v4/extras/otf/Inter-Light.otf");
+  const displayFontRequest = await fetch("https://www.fontmirror.com/app_public/files/t/1/Inter-SemiBold_5a940f143aafecbf00719f75eea1dd90.otf");
+  const bodyFontRequest = await fetch("https://www.fontmirror.com/app_public/files/t/1/Inter-Regular_900a4848c22b68892f850f9b43961571.otf");
+  const lightFontRequest = await fetch("https://www.fontmirror.com/app_public/files/t/1/Inter-Italic_d34411fedc6f06b7fb44d8500d4d244a.otf");
 
   const [display, body, light] = await Promise.all([
     displayFontRequest.arrayBuffer(),
