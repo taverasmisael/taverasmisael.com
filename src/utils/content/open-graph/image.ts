@@ -1,7 +1,12 @@
 import satori from "satori";
+import fs from "node:fs/promises";
 import { renderToStringAsync } from "solid-js/web";
 import { html as toStringReactElement } from "satori-html";
 import ImageTemplate from "./ImageTemplate";
+
+declare const __OG_FONT_DISPLAY_PATH__: string;
+declare const __OG_FONT_BODY_PATH__: string;
+declare const __OG_FONT_LIGHT_PATH__: string;
 
 interface ImageGeneratorConfig {
   title: string;
@@ -12,31 +17,21 @@ interface ImageGeneratorConfig {
   writtenTag: string;
 }
 
-let displayFont: ArrayBuffer | undefined;
-let bodyFont: ArrayBuffer | undefined;
-let lightFont: ArrayBuffer | undefined;
+const toArrayBuffer = (buffer: Buffer): ArrayBuffer =>
+  buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
 
 const loadFonts = async (): Promise<{ display: ArrayBuffer; body: ArrayBuffer; light: ArrayBuffer }> => {
-  if (displayFont && bodyFont && lightFont) {
-    return { display: displayFont, body: bodyFont, light: lightFont };
-  }
-  // The project decided to stop publishing otf files. A kind samaritan uploaded them to a CDN
-  // Thinking about hosting them myself, maybe in the future.
-  // ISSUE: https://github.com/rsms/inter/issues/631
-  const displayFontRequest = await fetch("https://files.terriblefish.com/fonts/Inter/v4/extras/otf/Inter-SemiBold.otf");
-  const bodyFontRequest = await fetch("https://files.terriblefish.com/fonts/Inter/v4/extras/otf/Inter-Regular.otf");
-  const lightFontRequest = await fetch("https://files.terriblefish.com/fonts/Inter/v4/extras/otf/Inter-Light.otf");
-
   const [display, body, light] = await Promise.all([
-    displayFontRequest.arrayBuffer(),
-    bodyFontRequest.arrayBuffer(),
-    lightFontRequest.arrayBuffer(),
+    fs.readFile(__OG_FONT_DISPLAY_PATH__),
+    fs.readFile(__OG_FONT_BODY_PATH__),
+    fs.readFile(__OG_FONT_LIGHT_PATH__),
   ]);
 
-  displayFont = display;
-  bodyFont = body;
-  lightFont = light;
-  return { display, body, light };
+  return {
+    display: toArrayBuffer(display),
+    body: toArrayBuffer(body),
+    light: toArrayBuffer(light),
+  };
 };
 
 export const generateOGImage = async ({

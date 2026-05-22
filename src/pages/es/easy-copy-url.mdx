@@ -1,0 +1,115 @@
+---
+title: Easy URL Copy — Extensión de Chrome
+description: Copia o abre URLs con un atajo. El modo limpio opcional elimina parámetros de rastreo como UTM, fbclid y más.
+lang: "es"
+layout: "@/layouts/pages/EasyCopyUrl.astro"
+tagline: Copia o abre URLs con un atajo. El modo limpio opcional elimina parámetros de rastreo como UTM.
+installLabel: Añadir a Chrome — es gratis
+badgeLabel: Extensión de Chrome
+---
+
+export const prerender = true;
+
+import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
+import Admonition from "@/components/content/Admonition/Admonition.astro";
+
+## Funciones principales
+
+**Easy URL Copy** hace que compartir y abrir URLs sea más limpio y rápido:
+
+- **Copy Tab URL** — Un clic o atajo de teclado (`Ctrl+Shift+C` / `Cmd+Shift+C`) para copiar la dirección de la página actual
+- **Open from Clipboard** — Atajo de teclado (`Ctrl+Shift+V` / `Cmd+Shift+V`) para abrir cualquier URL del portapapeles
+- **Copy Clean Link** — Clic derecho en cualquier enlace para copiar una versión limpia sin visitarlo
+
+<FullWidthBlock withContainer class="not-prose gradient-slate-slate mt-12 bg-gradient-to-t dark:gradient-gray-slate dark:prose-blockquote:border-gray-700 prose-blockquote:border-gray-400">
+
+<div class="grid gap-6 md:grid-cols-3">
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <h3 class="mt-0 text-lg font-semibold text-slate-900 dark:text-slate-100">Copiar URL de la pestaña</h3>
+    <p class="mb-0 text-slate-600 dark:text-slate-400">Una pulsación copia la página actual — completa o limpia, tú eliges.</p>
+  </div>
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <h3 class="mt-0 text-lg font-semibold text-slate-900 dark:text-slate-100">Abrir del portapapeles</h3>
+    <p class="mb-0 text-slate-600 dark:text-slate-400">Pega una URL de cualquier sitio y ábrela en una nueva pestaña con el formato aplicado.</p>
+  </div>
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <h3 class="mt-0 text-lg font-semibold text-slate-900 dark:text-slate-100">Copiar enlace limpio</h3>
+    <p class="mb-0 text-slate-600 dark:text-slate-400">Clic derecho en cualquier enlace y copia la URL sin rastreo sin visitarlo.</p>
+  </div>
+</div>
+
+</FullWidthBlock>
+
+## Modo URL limpia
+
+Por defecto, Easy URL Copy elimina los parámetros de rastreo comunes de las URLs:
+
+- Parámetros UTM (`utm_source`, `utm_medium`, etc.)
+- IDs de rastreo de plataformas (`fbclid`, `gclid`, `msclkid`, etc.)
+- Más de 70 parámetros de rastreo conocidos
+
+Puedes desactivar cualquier parámetro integrado que necesites conservar, añadir parámetros personalizados que use tu sitio y alternar entre modo Completa y Limpia en cualquier momento en las opciones.
+
+### Antes y después
+
+```text
+Antes: https://example.com/page?utm_source=email&fbclid=abc123&ref=tracking
+Después: https://example.com/page
+```
+
+## ¿Por qué usar Easy URL Copy?
+
+1. **Privacidad** — Deja de compartir parámetros de rastreo al copiar enlaces. Mantén privados tus hábitos de navegación.
+2. **Velocidad** — Una pulsación de tecla en lugar de editar URLs manualmente o usar herramientas de terceros.
+3. **Flexibilidad** — Desactiva o añade parámetros de rastreo según tu flujo de trabajo.
+4. **Sin sobrecarga** — Extensión ligera (~0.3 MB). Funciona silenciosamente en segundo plano.
+5. **Gratis y abierta** — Sin funciones premium, sin anuncios, sin rastreo.
+
+## Atajos de teclado
+
+| Acción | Windows / Linux | Mac |
+| --- | --- | --- |
+| Copiar URL de la pestaña | `Ctrl+Shift+C` | `Cmd+Shift+C` |
+| Abrir del portapapeles | `Ctrl+Shift+V` | `Cmd+Shift+V` |
+
+Visita `chrome://extensions/shortcuts` para reasignar cualquier atajo según tu preferencia.
+
+## Cómo funciona
+
+1. **Instala** la extensión — añade un icono a tu barra de herramientas
+2. **Abre las opciones** (clic derecho en la extensión → Options) y elige el formato de URL
+3. **Copia URLs** con el atajo de teclado o el botón de la barra de herramientas
+4. **Gestiona las reglas de rastreo** en las opciones si necesitas personalizar el comportamiento
+
+Toda la configuración se sincroniza entre tus dispositivos Chrome.
+
+<Admonition type="info">
+
+**Privacidad primero.** Easy URL Copy funciona completamente en tu dispositivo — no se envían datos a servidores, no requiere cuentas y la configuración se guarda localmente en tu navegador. Completamente sin conexión excepto al leer el portapapeles y la pestaña actual.
+
+</Admonition>
+
+## Permisos explicados
+
+Easy URL Copy requiere estos permisos — ninguno se usa para rastrearte:
+
+| Permiso | Motivo |
+| --- | --- |
+| `tabs` | Leer la URL de la página actual para copiarla |
+| `clipboardRead` / `clipboardWrite` | Copiar URLs al portapapeles y leer URLs del portapapeles |
+| `storage` | Guardar tus preferencias (formato de URL, parámetros de rastreo personalizados) |
+| `scripting` | Inyectar acceso al portapapeles en páginas web (limitación de Chrome MV3) |
+| `contextMenus` | Añadir "Copy clean link" al hacer clic derecho en un enlace |
+
+## Registro de cambios
+
+### Versión 1.0.0
+
+- Copiar URL de la pestaña con atajo de teclado o botón de la barra de herramientas
+- Abrir URL desde el portapapeles con atajo de teclado
+- El modo URL limpia elimina parámetros de rastreo
+- Reglas de rastreo personalizables (desactivar/añadir parámetros)
+- Menú contextual "Copy clean link" para clic derecho en enlaces
+- Soporte de tema claro/oscuro
+- Personalización completa de atajos de teclado
+- Sincronización de Chrome para la configuración entre dispositivos

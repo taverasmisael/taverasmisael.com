@@ -1,0 +1,115 @@
+---
+title: Easy URL Copy — Chrome extension
+description: Copy or open URLs with one shortcut. Optional clean mode removes tracking parameters like UTM, fbclid, and more.
+lang: "en"
+layout: "@/layouts/pages/EasyCopyUrl.astro"
+tagline: Copy or open URLs with one shortcut. Optional clean mode removes tracking junk like UTM parameters.
+installLabel: Add to Chrome — it's free
+badgeLabel: Chrome extension
+---
+
+export const prerender = true;
+
+import FullWidthBlock from "@/components/content/FullWidthBlock.astro";
+import Admonition from "@/components/content/Admonition/Admonition.astro";
+
+## Core features
+
+**Easy URL Copy** makes sharing and opening URLs cleaner and faster:
+
+- **Copy Tab URL** — One click or keyboard shortcut (`Ctrl+Shift+C` / `Cmd+Shift+C`) to copy the current page's address
+- **Open from Clipboard** — Keyboard shortcut (`Ctrl+Shift+V` / `Cmd+Shift+V`) to open any URL from your clipboard
+- **Copy Clean Link** — Right-click any link to copy a cleaned version without visiting it
+
+<FullWidthBlock withContainer class="not-prose gradient-slate-slate mt-12 bg-gradient-to-t dark:gradient-gray-slate dark:prose-blockquote:border-gray-700 prose-blockquote:border-gray-400">
+
+<div class="grid gap-6 md:grid-cols-3">
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <h3 class="mt-0 text-lg font-semibold text-slate-900 dark:text-slate-100">Copy tab URL</h3>
+    <p class="mb-0 text-slate-600 dark:text-slate-400">One keystroke copies the current page — full or clean, your choice.</p>
+  </div>
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <h3 class="mt-0 text-lg font-semibold text-slate-900 dark:text-slate-100">Open from clipboard</h3>
+    <p class="mb-0 text-slate-600 dark:text-slate-400">Paste a URL from anywhere and open it in a new tab with formatting applied.</p>
+  </div>
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <h3 class="mt-0 text-lg font-semibold text-slate-900 dark:text-slate-100">Copy clean link</h3>
+    <p class="mb-0 text-slate-600 dark:text-slate-400">Right-click any hyperlink and copy a stripped URL without visiting it.</p>
+  </div>
+</div>
+
+</FullWidthBlock>
+
+## Clean URL mode
+
+By default, Easy URL Copy removes common tracking parameters from URLs:
+
+- UTM parameters (`utm_source`, `utm_medium`, etc.)
+- Platform tracking IDs (`fbclid`, `gclid`, `msclkid`, etc.)
+- 70+ other known tracking parameters
+
+You can disable any built-in parameter you need to keep, add custom parameters your site uses, and toggle between Full and Clean mode anytime in options.
+
+### Before and after
+
+```text
+Before: https://example.com/page?utm_source=email&fbclid=abc123&ref=tracking
+After:  https://example.com/page
+```
+
+## Why use Easy URL Copy?
+
+1. **Privacy** — Stop sharing tracking parameters when you copy links. Keep your browsing habits private.
+2. **Speed** — One keystroke instead of manually editing URLs or using third-party tools.
+3. **Flexibility** — Disable or add tracking parameters to match your workflow.
+4. **No bloat** — Lightweight extension (~0.3 MB). Runs silently in the background.
+5. **Free & open** — No premium features, no ads, no tracking.
+
+## Keyboard shortcuts
+
+| Action | Windows / Linux | Mac |
+| --- | --- | --- |
+| Copy tab URL | `Ctrl+Shift+C` | `Cmd+Shift+C` |
+| Open from clipboard | `Ctrl+Shift+V` | `Cmd+Shift+V` |
+
+Visit `chrome://extensions/shortcuts` to rebind any shortcut to your preference.
+
+## How it works
+
+1. **Install** the extension — it adds an icon to your toolbar
+2. **Open options** (right-click extension → Options) and choose URL format
+3. **Copy URLs** with the keyboard shortcut or toolbar button
+4. **Manage tracking rules** in options if you need to customize behavior
+
+All settings sync across your Chrome devices.
+
+<Admonition type="info">
+
+**Privacy first.** Easy URL Copy runs entirely on your device — no data sent to servers, no accounts required, and settings stored locally in your browser. Completely offline except when reading your clipboard and current tab.
+
+</Admonition>
+
+## Permissions explained
+
+Easy URL Copy requires these permissions — none are used to track you:
+
+| Permission | Why |
+| --- | --- |
+| `tabs` | Read the current page URL to copy it |
+| `clipboardRead` / `clipboardWrite` | Copy URLs to clipboard and read URLs from clipboard |
+| `storage` | Save your preferences (URL format, custom tracking parameters) |
+| `scripting` | Inject clipboard access into web pages (Chrome MV3 limitation) |
+| `contextMenus` | Add "Copy clean link" when you right-click a link |
+
+## Changelog
+
+### Version 1.0.0
+
+- Copy tab URL with keyboard shortcut or toolbar button
+- Open URL from clipboard with keyboard shortcut
+- Clean URL mode removes tracking parameters
+- Customizable tracking rules (disable/add parameters)
+- Context menu "Copy clean link" for right-clicking links
+- Light/dark theme support
+- Full keyboard shortcut customization
+- Chrome sync for settings across devices
