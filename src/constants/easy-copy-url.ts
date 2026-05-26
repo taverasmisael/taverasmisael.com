@@ -1,4 +1,4 @@
-export const CHROME_WEB_STORE_URL = "https://chromewebstore.google.com/detail/easy-url-copy";
+export const CHROME_WEB_STORE_URL = "https://chromewebstore.google.com/detail/easy-url-copy/jdbibeapiahhamifafnnlplhmomciodh";
 
 export const GITHUB_URL = "https://github.com/taverasmisael/easy-url-copy";
 
